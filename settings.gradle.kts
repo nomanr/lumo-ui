@@ -20,5 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "compose-ui"
-include(":app")
+include(":sample")
  
