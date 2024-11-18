@@ -43,6 +43,9 @@ junit = "4.13.2"
 androidx-test-ext-junit = "1.2.1"
 espresso-core = "3.6.1"
 org-jetbrains-kotlin-jvm = "1.9.20"
+material = "1.12.0"
+
+vanniktech-maven-publish = "0.30.0"
 
 
 
@@ -97,7 +100,11 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+# For build-logic dependencies
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle-plugin" }
+vanniktech-gradle-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktech-maven-publish" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -110,6 +117,11 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
+
+#Local plugins
+app-publishing-plugin = { id = "com.nomanr.composeui.publishing-plugin" }
+
 
 
 

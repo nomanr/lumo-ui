@@ -1,4 +1,7 @@
 pluginManagement {
+    includeBuild("build-logic")
+    includeBuild("compose-ui/plugin")
+
     repositories {
         google {
             content {
@@ -16,9 +19,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 rootProject.name = "compose-ui"
-include(":sample")
- 
+//include(":compose-ui:components")
+//include(":compose-ui:plugin")
+include(":sample:catalogue")
