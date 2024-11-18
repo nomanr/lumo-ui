@@ -24,6 +24,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "compose-ui"
-//include(":compose-ui:components")
-//include(":compose-ui:plugin")
+include(":compose-ui:components")
 include(":sample:catalogue")

@@ -4,6 +4,11 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/compose-ui" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
@@ -28,6 +33,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
+            <option value="$PROJECT_DIR$/compose-ui" />
+            <option value="$PROJECT_DIR$/compose-ui/components" />
             <option value="$PROJECT_DIR$/compose-ui/plugin" />
             <option value="$PROJECT_DIR$/sample" />
             <option value="$PROJECT_DIR$/sample/catalogue" />
