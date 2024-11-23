@@ -73,10 +73,8 @@ class ComponentGenerator(
     private fun ensureDirectoryExists(file: File) {
         val parentDir = file.parentFile
         if (parentDir != null && !parentDir.exists()) {
-            if (parentDir.mkdirs()) {
-                logger.info("Created directory: ${parentDir.absolutePath}")
-            } else {
-                throw IllegalStateException("Failed to create directory: ${parentDir.absolutePath}")
+            if (!parentDir.mkdirs()) {
+                throw ComposeUIException("Failed to create directory: ${parentDir.absolutePath}")
             }
         }
     }
@@ -85,7 +83,7 @@ class ComponentGenerator(
         val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 
-        logger.info("$componentName generated successfully.")
+        logger.success("'$componentName' generated successfully.")
         logger.info("Generated files:")
         logger.info(successLinks)
 

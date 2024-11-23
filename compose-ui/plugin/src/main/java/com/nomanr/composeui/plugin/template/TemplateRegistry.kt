@@ -9,7 +9,7 @@ object TemplateRegistry {
     )
 
     private val text = Template(
-        fileName = "Text.kt.template",
+        fileName = "components/Text.kt.template",
     )
 
     private val templates = mapOf(

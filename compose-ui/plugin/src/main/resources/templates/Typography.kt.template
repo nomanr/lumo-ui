@@ -2,20 +2,24 @@ package {{packageName}}
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.nomanr.composeui.components.R
 
 val fontFamily = FontFamily(
+    /** Make sure to pass at least one font to the FontFamily, otherwise it will throw an error. **/
+
     /***
      * Your custom font family goes here. For example:
      *
-     *     Font(R.font.poppins_black, FontWeight.Black),
-     *     Font(R.font.poppins_extrabold, FontWeight.ExtraBold),
-     *     Font(R.font.poppins_bold, FontWeight.Bold),
-     *     Font(R.font.poppins_semibold, FontWeight.SemiBold),
-     *     Font(R.font.poppins_medium, FontWeight.Medium),
-     *     Font(R.font.poppins_regular, FontWeight.Normal),
+     *     Font(R.font.black, FontWeight.Black),
+     *     Font(R.font.extrabold, FontWeight.ExtraBold),
+     *     Font(R.font.bold, FontWeight.Bold),
+     *     Font(R.font.semibold, FontWeight.SemiBold),
+     *     Font(R.font.medium, FontWeight.Medium),
+     *     Font(R.font.regular, FontWeight.Normal),
      */
 )
 

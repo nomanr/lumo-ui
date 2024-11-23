@@ -28,17 +28,16 @@ process_files() {
 
       temp_file=$(mktemp)
 
-      # Update sed command for package, import, and AppTheme replacements
       if ! sed -E -e "s|^package com\.nomanr\.compose\.ui(\..*)?|package {{packageName}}\1|" \
                   -e "s|import com\.nomanr\.compose\.ui(\..*)?|import {{packageName}}\1|" \
                   -e "s|AppTheme|{{themeName}}|g" \
+                  -e "/Font\(R\.font\.poppins/d" \
                   "$item" > "$temp_file"; then
         echo "Error: Failed to process file -> $item"
         rm -f "$temp_file"
         exit 1
       fi
 
-      # Compare files and update only if changes are detected
       if [ -f "$dest_file" ] && cmp -s "$temp_file" "$dest_file"; then
         rm -f "$temp_file"
       else

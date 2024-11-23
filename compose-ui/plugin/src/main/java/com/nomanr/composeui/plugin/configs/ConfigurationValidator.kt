@@ -18,8 +18,6 @@ class ConfigurationValidator(private val project: Project, private val logger: L
             logger.warn("The directory (${config.componentsDir}) and the package name (${config.packageName}) do not match.")
             return false
         }
-
-        logger.success("Configuration validation successful.")
         return true
     }
 }

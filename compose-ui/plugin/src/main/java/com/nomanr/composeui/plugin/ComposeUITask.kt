@@ -72,6 +72,10 @@ abstract class ComposeUITask : DefaultTask() {
             generateComponent.execute(SupportedComponents.Theme)
             return
         }
+
+        if (componentToAdd != null) {
+            generateComponent.execute(componentToAdd!!)
+        }
     }
 
     private fun noInputProvided(): Boolean {
@@ -86,17 +90,18 @@ abstract class ComposeUITask : DefaultTask() {
 
     private fun printHelpMessage() {
         val helpMessage = """
-            |Usage: ./gradlew composeUI -<option> [--option <value>]
+            |Usage: ./gradlew composeUI --option <value>
             |
             |Options:
             |  --init                  Initialize Compose UI Plugin
             |  --setup                 Setup theme to get started and verify the configs
             |  --required-deps         Returns the required dependencies to be added to the build.gradle.kts file
             |  --add <component>       Add a new Compose UI Component
-            |  --plugin-help              Display this help message
+            |  --plugin-help           Display this help message
             |
         """.trimMargin()
 
         logger.info(helpMessage)
     }
 }
+
