@@ -2,11 +2,14 @@ package com.nomanr.composeui.plugin.template
 
 import com.nomanr.composeui.exceptions.ComposeUIException
 import com.nomanr.composeui.plugin.configs.ComposeUIConfig
-import com.nomanr.composeui.utils.Logger
 import com.nomanr.composeui.utils.LinkFormatter
+import com.nomanr.composeui.utils.Logger
 import java.io.File
 
-class ComponentGenerator(private val config: ComposeUIConfig) {
+class ComponentGenerator(
+    private val rootDir: File,
+    private val config: ComposeUIConfig
+) {
     private val logger = Logger.getInstance()
     private val outputDir = File(config.componentsDir)
     private val successfullyGenerated = mutableListOf<File>()
@@ -62,6 +65,7 @@ class ComponentGenerator(private val config: ComposeUIConfig) {
         val templateContent = resource.readText()
 
         val content = templateContent.replace("{{packageName}}", config.packageName)
+            .replace("{{themeName}}", config.themeName)
 
         outputFile.writeText(content)
     }
@@ -78,8 +82,8 @@ class ComponentGenerator(private val config: ComposeUIConfig) {
     }
 
     private fun logSummary(componentName: String) {
-        val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(it) }
-        val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(it) }
+        val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
+        val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 
         logger.info("$componentName generated successfully.")
         logger.info("Generated files:")

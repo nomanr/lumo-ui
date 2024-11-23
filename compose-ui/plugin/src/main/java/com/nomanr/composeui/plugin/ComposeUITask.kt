@@ -22,7 +22,10 @@ abstract class ComposeUITask : DefaultTask() {
     @get:Input
     var setup: Boolean = false
 
-    @set:Option(option = "required-deps", description = "Returns the required dependencies to be added to the build.gradle.kts file")
+    @set:Option(
+        option = "required-deps",
+        description = "Returns the required dependencies to be added to the build.gradle.kts file"
+    )
     @get:Input
     var requiredDeps: Boolean = false
 
@@ -35,11 +38,11 @@ abstract class ComposeUITask : DefaultTask() {
     @Optional
     var componentToAdd: String? = null
 
-    private val propertyLoader = PropertyLoader(project)
-    private val initialiser = Initialiser(project, propertyLoader)
-    private val dependencyProvider = ComposeDependencyProvider(project)
+    private val propertyLoader by lazy { PropertyLoader(project) }
+    private val initialiser by lazy { Initialiser(project, propertyLoader) }
+    private val dependencyProvider by lazy { ComposeDependencyProvider(project) }
+    private val generateComponent by lazy { GenerateComponent(project, propertyLoader) }
     private val logger = Logger.getInstance()
-    private val generateComponent = GenerateComponent(propertyLoader)
 
     @TaskAction
     fun execute() {

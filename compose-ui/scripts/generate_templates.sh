@@ -28,9 +28,10 @@ process_files() {
 
       temp_file=$(mktemp)
 
-      # Update sed command for both package and import rules
+      # Update sed command for package, import, and AppTheme replacements
       if ! sed -E -e "s|^package com\.nomanr\.compose\.ui(\..*)?|package {{packageName}}\1|" \
                   -e "s|import com\.nomanr\.compose\.ui(\..*)?|import {{packageName}}\1|" \
+                  -e "s|AppTheme|{{themeName}}|g" \
                   "$item" > "$temp_file"; then
         echo "Error: Failed to process file -> $item"
         rm -f "$temp_file"

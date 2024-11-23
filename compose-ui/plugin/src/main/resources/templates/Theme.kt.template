@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import {{packageName}}.foundation.ripple
 
-object AppTheme {
+object {{themeName}} {
     val colors: Colors
         @ReadOnlyComposable @Composable get() = LocalColors.current
 
@@ -20,7 +20,7 @@ object AppTheme {
 }
 
 @Composable
-fun AppTheme(
+fun {{themeName}}(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
@@ -39,7 +39,7 @@ fun AppTheme(
 
 @Composable
 fun contentColorFor(color: Color): Color {
-    return AppTheme.colors.contentColorFor(color)
+    return {{themeName}}.colors.contentColorFor(color)
 }
 
 @Composable

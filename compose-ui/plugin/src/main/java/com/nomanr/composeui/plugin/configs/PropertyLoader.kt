@@ -1,6 +1,7 @@
 package com.nomanr.composeui.plugin.configs
 
 import com.nomanr.composeui.exceptions.ComposeUIException
+import com.nomanr.composeui.utils.LinkFormatter
 import com.nomanr.composeui.utils.Logger
 import java.io.File
 import java.util.Properties
@@ -54,7 +55,7 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
     }
 
     private fun configFilePath(): String {
-        return "file:///${project.rootDir}/$COMPOSE_UI_PROPERTIES"
+        return LinkFormatter.formatLink(rootDir = project.rootDir, File(COMPOSE_UI_PROPERTIES))
     }
 
     companion object {
