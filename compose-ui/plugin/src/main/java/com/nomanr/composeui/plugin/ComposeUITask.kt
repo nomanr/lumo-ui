@@ -1,6 +1,10 @@
 package com.nomanr.composeui.plugin
 
-import com.nomanr.composeui.actions.Initialiser
+import com.nomanr.composeui.exceptions.ComposeUIException
+import com.nomanr.composeui.plugin.actions.GenerateComponent
+import com.nomanr.composeui.plugin.actions.Initialiser
+import com.nomanr.composeui.plugin.configs.PropertyLoader
+import com.nomanr.composeui.plugin.template.SupportedComponents
 import com.nomanr.composeui.provider.ComposeDependencyProvider
 import com.nomanr.composeui.utils.Logger
 import org.gradle.api.DefaultTask
@@ -22,21 +26,29 @@ abstract class ComposeUITask : DefaultTask() {
     @get:Input
     var requiredDeps: Boolean = false
 
+    @set:Option(option = "plugin-help", description = "Display help message for Compose UI Plugin")
+    @get:Input
+    var help: Boolean = false
+
     @set:Option(option = "add", description = "Add a new Compose UI Component")
     @get:Input
     @Optional
     var componentToAdd: String? = null
 
-    private val initialiser = Initialiser(project)
+    private val propertyLoader = PropertyLoader(project)
+    private val initialiser = Initialiser(project, propertyLoader)
     private val dependencyProvider = ComposeDependencyProvider(project)
     private val logger = Logger.getInstance()
+    private val generateComponent = GenerateComponent(propertyLoader)
 
     @TaskAction
     fun execute() {
-        if (noInputProvided()) {
-            // TODO: Add a descriptive message and perhaps return all available options
-            logger.error("No options provided!")
+        if (help) {
+            printHelpMessage()
             return
+        }
+        if (noInputProvided()) {
+            throw ComposeUIException("No input provided, run with --plugin-help for more information")
         }
 
         if (requiredDeps) {
@@ -54,7 +66,7 @@ abstract class ComposeUITask : DefaultTask() {
         }
 
         if (setup) {
-            logger.info(">>SETTING UP")
+            generateComponent.execute(SupportedComponents.Theme)
             return
         }
     }
@@ -67,5 +79,21 @@ abstract class ComposeUITask : DefaultTask() {
                 else -> false
             }
         }
+    }
+
+    private fun printHelpMessage() {
+        val helpMessage = """
+            |Usage: ./gradlew composeUI -<option> [--option <value>]
+            |
+            |Options:
+            |  --init                  Initialize Compose UI Plugin
+            |  --setup                 Setup theme to get started and verify the configs
+            |  --required-deps         Returns the required dependencies to be added to the build.gradle.kts file
+            |  --add <component>       Add a new Compose UI Component
+            |  --plugin-help              Display this help message
+            |
+        """.trimMargin()
+
+        logger.info(helpMessage)
     }
 }

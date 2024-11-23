@@ -1,4 +1,4 @@
-package com.nomanr.compose.ui.foundation
+package com.nomanr.sample.ui.foundation
 
 import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.interaction.InteractionSource
@@ -18,7 +18,7 @@ import androidx.compose.ui.node.ObserverModifierNode
 import androidx.compose.ui.node.currentValueOf
 import androidx.compose.ui.node.observeReads
 import androidx.compose.ui.unit.Dp
-import com.nomanr.compose.ui.LocalContentColor
+import com.nomanr.sample.ui.LocalContentColor
 
 @Stable
 fun ripple(

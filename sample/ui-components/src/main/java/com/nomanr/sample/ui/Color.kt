@@ -1,4 +1,4 @@
-package com.nomanr.compose.ui
+package com.nomanr.sample.ui
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.compositionLocalOf

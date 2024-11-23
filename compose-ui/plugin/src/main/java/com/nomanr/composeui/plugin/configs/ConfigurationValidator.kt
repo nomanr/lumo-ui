@@ -1,4 +1,4 @@
-package com.nomanr.composeui.configs
+package com.nomanr.composeui.plugin.configs
 
 import com.nomanr.composeui.utils.Logger
 import java.io.File

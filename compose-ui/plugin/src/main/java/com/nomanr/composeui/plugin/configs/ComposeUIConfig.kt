@@ -1,4 +1,4 @@
-package com.nomanr.composeui.configs
+package com.nomanr.composeui.plugin.configs
 
 data class ComposeUIConfig(
     val themeName: String,

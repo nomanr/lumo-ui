@@ -1,7 +1,9 @@
 #!/bin/bash
 
+cd "$(dirname "$0")" || exit
+
 SOURCE_DIR="../components-lab/src/main/java/com/nomanr/compose/ui"
-DEST_DIR="../plugin/src/main/java/resources/templates"
+DEST_DIR="../plugin/src/main/resources/templates"
 
 check_directory_exists() {
   local dir="$1"
@@ -24,11 +26,23 @@ process_files() {
       local filename=$(basename "$item")
       local dest_file="$dest/${filename%.kt}.kt.template"
 
-      if ! sed -e "s/^package com\.nomanr\.compose\.ui\.\(.*\)/package {{packageName}}.\1/" \
-               -e 's/import com\.nomanr\.compose\.ui\.\(.*\)/import {{packageName}}.\1/' \
-               "$item" > "$dest_file"; then
+      temp_file=$(mktemp)
+
+      # Update sed command for both package and import rules
+      if ! sed -E -e "s|^package com\.nomanr\.compose\.ui(\..*)?|package {{packageName}}\1|" \
+                  -e "s|import com\.nomanr\.compose\.ui(\..*)?|import {{packageName}}\1|" \
+                  "$item" > "$temp_file"; then
         echo "Error: Failed to process file -> $item"
+        rm -f "$temp_file"
         exit 1
+      fi
+
+      # Compare files and update only if changes are detected
+      if [ -f "$dest_file" ] && cmp -s "$temp_file" "$dest_file"; then
+        rm -f "$temp_file"
+      else
+        mv "$temp_file" "$dest_file"
+        echo "Template generated: $dest_file"
       fi
     else
       echo "Warning: Skipping unrecognized item -> $item"
@@ -36,7 +50,6 @@ process_files() {
   done
 }
 
-echo "Running script from: $(pwd)"
 check_directory_exists "$SOURCE_DIR"
 process_files "$SOURCE_DIR" "$DEST_DIR"
-echo "Template files successfully generated in $DEST_DIR"
+echo "Templates updated in $DEST_DIR"

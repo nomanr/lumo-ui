@@ -1,18 +1,18 @@
-package com.nomanr.composeui.configs
+package com.nomanr.composeui.plugin.configs
 
+import com.nomanr.composeui.exceptions.ComposeUIException
 import com.nomanr.composeui.utils.Logger
 import java.io.File
 import java.util.Properties
 import org.gradle.api.Project
 
-class PropertyLoader(private val project: Project, private val logger: Logger) {
+class PropertyLoader(private val project: Project, private val logger: Logger = Logger.getInstance()) {
 
     fun loadProperties(): ComposeUIConfig {
         val propertiesFile = File(project.rootDir, COMPOSE_UI_PROPERTIES)
 
         if (!propertiesFile.exists()) {
-            logger.error("Compose UI plugin is not setup. Please run the plugin with --init to get started.")
-            throw IllegalStateException("Config file not found.")
+            throw ComposeUIException("The plugin is not setup. Run the plugin with --init to get started.")
         }
 
         val properties = Properties()
@@ -22,11 +22,9 @@ class PropertyLoader(private val project: Project, private val logger: Logger) {
 
         val requiredProperties = setOf(PROPERTY_THEME_NAME, PROPERTY_COMPONENTS_DIR, PROPERTY_PACKAGE_NAME)
         if (!properties.stringPropertyNames().containsAll(requiredProperties)) {
-            logger.error("Missing required configs in $COMPOSE_UI_PROPERTIES. Expected: $requiredProperties.")
-            throw IllegalArgumentException("Missing required properties.")
+            throw ComposeUIException("Missing required configs in $COMPOSE_UI_PROPERTIES. Expected: $requiredProperties.")
         }
 
-        logger.success("Properties loaded successfully.")
         return ComposeUIConfig(
             themeName = properties.getProperty(PROPERTY_THEME_NAME).orEmpty(),
             componentsDir = properties.getProperty(PROPERTY_COMPONENTS_DIR).orEmpty(),
@@ -38,7 +36,7 @@ class PropertyLoader(private val project: Project, private val logger: Logger) {
         val propertiesFile = File(project.rootDir, COMPOSE_UI_PROPERTIES)
 
         if (propertiesFile.exists()) {
-            throw IllegalStateException("Compose UI plugin is already initialised. The config file can be found here: ${configFilePath()}")
+            throw ComposeUIException("Compose UI plugin is already initialised. The config file can be found here: ${configFilePath()}")
         }
 
         val defaultProperties = """
@@ -52,7 +50,7 @@ class PropertyLoader(private val project: Project, private val logger: Logger) {
         """.trimIndent()
 
         propertiesFile.writeText(defaultProperties)
-        logger.success("Default properties file created at: ${configFilePath()}")
+        logger.success("Default config file created at: ${configFilePath()}")
     }
 
     private fun configFilePath(): String {

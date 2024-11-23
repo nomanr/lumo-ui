@@ -1,15 +1,14 @@
-package com.nomanr.composeui.actions
+package com.nomanr.composeui.plugin.actions
 
-import com.nomanr.composeui.configs.PropertyLoader
-import com.nomanr.composeui.configs.ConfigurationValidator
+import com.nomanr.composeui.plugin.configs.ConfigurationValidator
+import com.nomanr.composeui.plugin.configs.PropertyLoader
 import com.nomanr.composeui.provider.ComposeDependencyProvider
 import com.nomanr.composeui.utils.Logger
 import org.gradle.api.Project
 
-class Initialiser(project: Project) {
+class Initialiser(project: Project, private val propertyLoader: PropertyLoader) {
 
     private val logger = Logger.getInstance()
-    private val propertyLoader = PropertyLoader(project, logger)
     private val validator = ConfigurationValidator(project, logger)
     private val composeDependencyProvider = ComposeDependencyProvider(project)
 
@@ -27,13 +26,7 @@ class Initialiser(project: Project) {
     fun validateConfigs(): Boolean {
         return try {
             val config = propertyLoader.loadProperties()
-            if (validator.validate(config)) {
-                logger.success("Configuration is valid.")
-                true
-            } else {
-                logger.error("Configuration validation failed.")
-                false
-            }
+            return validator.validate(config)
         } catch (e: Exception) {
             logger.error(e.message ?: "An error occurred during configuration validation.")
             false
