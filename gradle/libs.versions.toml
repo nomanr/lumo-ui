@@ -16,6 +16,7 @@ androidx-lifecycle-compose = "2.8.7"
 androidx-lifecycle-runtime-compose = "2.8.7"
 androidx-compose-navigation = "2.8.3"
 androidx-compose-ripple = "1.7.5"
+androidx-core-splashscreen = "1.0.0"
 
 androidx-viewmodel-ktx = "2.8.7"
 
@@ -69,6 +70,7 @@ androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constr
 
 androidx-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-compose-navigation" }
 androidx-compose-ripple = { module = "androidx.compose.material:material-ripple", version.ref = "androidx-compose-ripple" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core-splashscreen" }
 
 
 androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-corektx" }

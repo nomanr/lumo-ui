@@ -12,9 +12,14 @@ object TemplateRegistry {
         fileName = "components/Text.kt.template",
     )
 
+    private val surface = Template(
+        fileName = "components/Surface.kt.template"
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
+        Surface to surface,
     )
 
     fun getTemplate(component: SupportedComponents): Template {
