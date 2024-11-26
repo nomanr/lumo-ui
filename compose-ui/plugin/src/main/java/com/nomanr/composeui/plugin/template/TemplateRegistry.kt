@@ -16,6 +16,11 @@ object TemplateRegistry {
         fileName = "components/Surface.kt.template"
     )
 
+    private val card = Template(
+        fileName = "components/card/Card.kt.template",
+        requiredFiles = listOf("Surface.kt.template", "components/card/CardElevation.kt.template", "foundation/Elevation.kt.template"),
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
