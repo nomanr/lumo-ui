@@ -8,7 +8,6 @@ import com.nomanr.sample.ui.navigation.CatalogueAppNavHost
 fun CatalogueApp(
     appState: CatalogueAppState = rememberCatalogueAppState()
 ) {
-
     Scaffold {
         CatalogueAppNavHost(
             appState = appState,

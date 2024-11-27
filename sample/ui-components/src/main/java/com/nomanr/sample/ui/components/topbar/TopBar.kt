@@ -252,7 +252,7 @@ class TopBarState(
 }
 
 @Stable
-class TopBarColors internal constructor(
+data class TopBarColors internal constructor(
     private val containerColor: Color,
     private val scrolledContainerColor: Color,
 ) {

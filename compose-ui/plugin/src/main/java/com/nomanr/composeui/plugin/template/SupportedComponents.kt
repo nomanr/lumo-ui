@@ -7,4 +7,5 @@ enum class SupportedComponents {
     Card,
     Scaffold,
     TopBar,
+    Icon,
 }

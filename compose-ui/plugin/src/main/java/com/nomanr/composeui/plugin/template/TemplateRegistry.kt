@@ -41,6 +41,10 @@ object TemplateRegistry {
         )
     )
 
+    private val icon = Template(
+        fileName = "components/Icon.kt.template",
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
@@ -48,6 +52,7 @@ object TemplateRegistry {
         Card to card,
         Scaffold to scaffold,
         TopBar to topBar,
+        Icon to icon,
     )
 
     fun getTemplate(component: SupportedComponents): Template {
