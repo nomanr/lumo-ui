@@ -147,7 +147,7 @@ internal val DarkColors = Colors(
 )
 
 val LocalColors = staticCompositionLocalOf { LightColors }
-val LocalContentColor = compositionLocalOf { Color.Black }
+val LocalContentColor = compositionLocalOf { Color.Unspecified}
 val LocalContentAlpha = compositionLocalOf { 1f }
 
 fun Colors.contentColorFor(backgroundColor: Color): Color {

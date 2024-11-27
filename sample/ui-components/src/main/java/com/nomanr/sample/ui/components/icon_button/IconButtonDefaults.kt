@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.foundation.ButtonElevation
 
 internal object IconButtonDefaults {
@@ -74,7 +75,7 @@ internal object IconButtonDefaults {
     fun primaryGhost(shape: Shape) = ButtonStyle(
         colors = ButtonColors(
             containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
+            contentColor = if(LocalContentColor.current == Color.Unspecified) AppTheme.colors.primary else LocalContentColor.current,
             borderColor = AppTheme.colors.transparent,
             disabledContainerColor = AppTheme.colors.transparent,
             disabledContentColor = AppTheme.colors.onDisabled,
@@ -130,7 +131,7 @@ internal object IconButtonDefaults {
     fun secondaryGhost(shape: Shape) = ButtonStyle(
         colors = ButtonColors(
             containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
+            contentColor = AppTheme.colors.secondary,
             borderColor = AppTheme.colors.transparent,
             disabledContainerColor = AppTheme.colors.transparent,
             disabledContentColor = AppTheme.colors.onDisabled,

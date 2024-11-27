@@ -3,7 +3,6 @@
 
     <style name="Theme.Composeui" parent="android:Theme.Material.Light.NoActionBar" >
         <item name="windowSplashScreenBackground">@color/black</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
     </style>
 
 

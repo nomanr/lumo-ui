@@ -34,13 +34,21 @@ data class Typography(
     ),
     val h3: TextStyle = TextStyle(
         fontFamily = fontFamily,
+        fontWeight = FontWeight.W500,
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp
+    ),
+
+    val h4: TextStyle = TextStyle(
+        fontFamily = fontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.sp
     ),
 
-    val h4: TextStyle = TextStyle(
+    val h5: TextStyle = TextStyle(
         fontFamily = fontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,

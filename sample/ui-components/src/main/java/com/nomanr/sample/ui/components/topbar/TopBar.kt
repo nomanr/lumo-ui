@@ -1,5 +1,6 @@
 package com.nomanr.sample.ui.components.topbar
 
+import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.DecayAnimationSpec
@@ -7,6 +8,7 @@ import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.rememberSplineBasedDecay
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -17,11 +19,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -40,10 +46,47 @@ import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.nomanr.composeui.sample.ui_components.R
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
+import com.nomanr.sample.ui.components.Icon
+import com.nomanr.sample.ui.components.icon_button.GhostIconButton
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults.TopBarHeight
+import com.nomanr.sample.ui.contentColorFor
 import com.nomanr.sample.ui.foundation.systemBarsForVisualComponents
+
+
+@Composable
+fun TopBar(
+    modifier: Modifier = Modifier,
+    scrollBehavior: TopBarScrollBehavior? = null,
+    actions: @Composable () -> Unit = {},
+) {
+    TopBar(
+        modifier = modifier,
+        scrollBehavior = scrollBehavior,
+        colors = TopBarDefaults.topBarColors(),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Icon(
+                modifier = Modifier.height(26.dp),
+                painter = painterResource(id = R.drawable.logo_with_name),
+                contentDescription = "Logo"
+            )
+
+            actions()
+        }
+
+    }
+}
 
 @Composable
 fun TopBar(
@@ -52,10 +95,12 @@ fun TopBar(
     colors: TopBarColors = TopBarDefaults.topBarColors(),
     content: @Composable () -> Unit
 ) {
+
+    val containerColor = colors.containerColor(0f)
+    val contentColor = contentColorFor(color = containerColor)
+
     TopBarLayout(
-        modifier = modifier,
-        scrollBehavior = scrollBehavior,
-        colors = colors
+        modifier = modifier, scrollBehavior = scrollBehavior, colors = colors
     ) {
         Row(
             modifier = Modifier
@@ -64,7 +109,9 @@ fun TopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            content()
+            CompositionLocalProvider(LocalContentColor provides contentColor) {
+                content()
+            }
         }
     }
 }
@@ -100,31 +147,22 @@ internal fun TopBarLayout(
     )
 
     val topBarDragModifier = if (scrollBehavior != null && !scrollBehavior.isPinned) {
-        Modifier.draggable(
-            orientation = Orientation.Vertical,
-            state = rememberDraggableState {
-                scrollBehavior.state.heightOffset += it
-            },
-            onDragStopped = { velocity ->
-                settleBar(
-                    scrollBehavior.state,
-                    velocity,
-                    scrollBehavior.flingAnimationSpec,
-                    scrollBehavior.snapAnimationSpec
-                )
-            }
-        )
+        Modifier.draggable(orientation = Orientation.Vertical, state = rememberDraggableState {
+            scrollBehavior.state.heightOffset += it
+        }, onDragStopped = { velocity ->
+            settleBar(
+                scrollBehavior.state, velocity, scrollBehavior.flingAnimationSpec, scrollBehavior.snapAnimationSpec
+            )
+        })
     } else {
         Modifier
     }
 
     // calculating based on scrolling behaviour
-    val dynamicHeight =
-        height.intValue + (scrollBehavior?.state?.heightOffset ?: 0).toInt()
+    val dynamicHeight = height.intValue + (scrollBehavior?.state?.heightOffset ?: 0).toInt()
 
     Layout(
-        content = content,
-        modifier = modifier
+        content = content, modifier = modifier
             .then(topBarDragModifier)
             .background(topBarContainerColor)
             .padding(paddingValue)

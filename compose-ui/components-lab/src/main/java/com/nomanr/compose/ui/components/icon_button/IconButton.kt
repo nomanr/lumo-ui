@@ -95,7 +95,7 @@ fun OutlinedIconButton(
 }
 
 @Composable
-fun PrimaryGhostIconButton(
+fun GhostIconButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     loading: Boolean = false,
@@ -558,7 +558,7 @@ fun GhostButtonPreview() {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                PrimaryGhostIconButton {
+                GhostIconButton {
                     Icon(Icons.Filled.AcUnit, contentDescription = "Filled Icon Button")
                 }
 

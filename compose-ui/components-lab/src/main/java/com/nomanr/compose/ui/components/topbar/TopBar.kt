@@ -27,11 +27,9 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -48,14 +46,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.compose.ui.AppTheme
+import com.nomanr.compose.ui.LocalContentColor
 import com.nomanr.compose.ui.components.Text
 import com.nomanr.compose.ui.components.topbar.TopBarDefaults.TopBarHeight
+import com.nomanr.compose.ui.contentColorFor
 import com.nomanr.compose.ui.foundation.systemBarsForVisualComponents
 
 @Composable
@@ -65,6 +64,10 @@ fun TopBar(
     colors: TopBarColors = TopBarDefaults.topBarColors(),
     content: @Composable () -> Unit
 ) {
+
+    val containerColor = colors.containerColor(0f)
+    val contentColor = contentColorFor(color = containerColor)
+
     TopBarLayout(
         modifier = modifier, scrollBehavior = scrollBehavior, colors = colors
     ) {
@@ -75,7 +78,9 @@ fun TopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            content()
+            CompositionLocalProvider(LocalContentColor provides contentColor) {
+                content()
+            }
         }
     }
 }
