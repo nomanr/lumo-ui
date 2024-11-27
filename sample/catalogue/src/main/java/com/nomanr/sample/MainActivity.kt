@@ -1,4 +1,4 @@
-package com.nomanr.catalogue
+package com.nomanr.sample
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

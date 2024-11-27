@@ -1,4 +1,4 @@
-package com.nomanr.catalogue.app.components
+package com.nomanr.sample.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -23,10 +23,10 @@ import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.nomanr.catalogue.app.AppTheme
-import com.nomanr.catalogue.app.LocalContentColor
-import com.nomanr.catalogue.app.contentColorFor
-import com.nomanr.catalogue.app.foundation.ripple
+import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
+import com.nomanr.sample.ui.contentColorFor
+import com.nomanr.sample.ui.foundation.ripple
 
 @Composable
 @NonRestartableComposable

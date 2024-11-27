@@ -1,4 +1,4 @@
-package com.nomanr.catalogue.app
+package com.nomanr.sample.ui
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle

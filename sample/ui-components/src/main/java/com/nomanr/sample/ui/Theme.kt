@@ -1,4 +1,4 @@
-package com.nomanr.catalogue.app
+package com.nomanr.sample.ui
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -9,7 +9,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
-import com.nomanr.catalogue.app.foundation.ripple
+import com.nomanr.sample.ui.foundation.ripple
 
 object AppTheme {
     val colors: Colors

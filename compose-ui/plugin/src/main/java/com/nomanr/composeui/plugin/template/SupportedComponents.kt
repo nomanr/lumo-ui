@@ -4,4 +4,7 @@ enum class SupportedComponents {
     Theme,
     Text,
     Surface,
+    Card,
+    Scaffold,
+    TopBar,
 }

@@ -1,4 +1,4 @@
-package com.nomanr.catalogue.app.components
+package com.nomanr.sample.ui.components
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.text.BasicText
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
-import com.nomanr.catalogue.app.LocalContentColor
+import com.nomanr.sample.ui.LocalContentColor
 
 @Composable
 fun Text(

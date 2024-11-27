@@ -1,4 +1,4 @@
-package com.nomanr.catalogue
+package com.nomanr.sample
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
