@@ -19,8 +19,7 @@ object TemplateRegistry {
     private val card = Template(
         fileName = "components/card/Card.kt.template",
         requiredFiles = listOf(
-            surface.fileName,
-            *surface.requiredFilesAsArray(),
+            *surface.allRequiredFiles(),
             "components/card/CardElevation.kt.template",
             "foundation/Elevation.kt.template"
         )
@@ -45,6 +44,15 @@ object TemplateRegistry {
         fileName = "components/Icon.kt.template",
     )
 
+    private val iconButton = Template(
+        fileName = "components/icon_button/IconButton.kt.template",
+        requiredFiles = listOf(
+            *surface.allRequiredFiles(),
+            "components/icon_button/IconButtonDefaults.kt.template",
+            "foundation/ButtonElevation.kt.template",
+        )
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
@@ -53,6 +61,7 @@ object TemplateRegistry {
         Scaffold to scaffold,
         TopBar to topBar,
         Icon to icon,
+        IconButton to iconButton,
     )
 
     fun getTemplate(component: SupportedComponents): Template {

@@ -8,4 +8,5 @@ enum class SupportedComponents {
     Scaffold,
     TopBar,
     Icon,
+    IconButton,
 }
