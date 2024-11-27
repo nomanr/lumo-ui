@@ -10,17 +10,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.nomanr.sample.ui.CatalogueApp
+import com.nomanr.sample.ui.CatalogueAppProviders
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         installSplashScreen()
-
         setContent {
-
-            Box(modifier = Modifier.fillMaxSize().background(Color.Red)) {
-
+            CatalogueAppProviders{
+                CatalogueApp()
             }
         }
     }
