@@ -13,6 +13,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ColorLens
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Web
+import androidx.compose.material.icons.outlined.ColorLens
+import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material.icons.outlined.Web
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -65,17 +68,17 @@ internal fun HomeTopBar() {
             GhostIconButton(onClick = {
                 Log.d("TODO: NOMAN", "More Options Clicked")
             }) {
-                Icon(Icons.Filled.Web, contentDescription = "More Options")
+                Icon(Icons.Outlined.Web, contentDescription = "More Options")
             }
             GhostIconButton(onClick = {
                 Log.d("TODO: NOMAN", "More Options Clicked")
             }) {
-                Icon(Icons.Filled.ColorLens, contentDescription = "More Options")
+                Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
             }
             GhostIconButton(onClick = {
                 Log.d("TODO: NOMAN", "More Options Clicked")
             }) {
-                Icon(Icons.Filled.MoreVert, contentDescription = "More Options")
+                Icon(Icons.Outlined.MoreVert, contentDescription = "More Options")
             }
         }
     }
