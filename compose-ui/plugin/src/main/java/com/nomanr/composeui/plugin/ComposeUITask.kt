@@ -5,7 +5,7 @@ import com.nomanr.composeui.plugin.actions.GenerateComponent
 import com.nomanr.composeui.plugin.actions.Initialiser
 import com.nomanr.composeui.plugin.configs.PropertyLoader
 import com.nomanr.composeui.plugin.template.SupportedComponents
-import com.nomanr.composeui.provider.ComposeDependencyProvider
+import com.nomanr.composeui.provider.PluginDependencyProvider
 import com.nomanr.composeui.utils.Logger
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
@@ -40,7 +40,7 @@ abstract class ComposeUITask : DefaultTask() {
 
     private val propertyLoader by lazy { PropertyLoader(project) }
     private val initialiser by lazy { Initialiser(project, propertyLoader) }
-    private val dependencyProvider by lazy { ComposeDependencyProvider(project) }
+    private val dependencyProvider by lazy { PluginDependencyProvider(project) }
     private val generateComponent by lazy { GenerateComponent(project, propertyLoader) }
     private val logger = Logger.getInstance()
 
@@ -55,7 +55,7 @@ abstract class ComposeUITask : DefaultTask() {
         }
 
         if (requiredDeps) {
-            dependencyProvider.printFormattedDependencies()
+            dependencyProvider.printFormattedComposeDependencies()
             return
         }
 

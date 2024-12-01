@@ -13,6 +13,7 @@ class ComponentGenerator(
     private val logger = Logger.getInstance()
     private val outputDir = File(config.componentsDir)
     private val successfullyGenerated = mutableListOf<File>()
+    private val otherSuccessMessages = mutableListOf<String>()
     private val failedToGenerate = mutableListOf<File>()
     private val linkFormatter = LinkFormatter
 
@@ -38,6 +39,7 @@ class ComponentGenerator(
         ensureDirectoryExists(componentFile)
         generateTemplate(template.fileName, componentFile)
         successfullyGenerated.add(componentFile)
+        template.requirements?.let { otherSuccessMessages.add(it) }
 
         template.requiredFiles.forEach { dependencyPath ->
             val dependencyOutputFile = File(outputDir, dependencyPath.replace(".kt.template", ".kt"))
@@ -49,6 +51,10 @@ class ComponentGenerator(
                 try {
                     generateTemplate(dependencyPath, dependencyOutputFile)
                     successfullyGenerated.add(dependencyOutputFile)
+
+                    if(!template.requirements.isNullOrEmpty()){
+                        otherSuccessMessages.add(template.requirements)
+                    }
                 } catch (e: Exception) {
                     failedToGenerate.add(dependencyOutputFile)
                 }
@@ -81,11 +87,17 @@ class ComponentGenerator(
 
     private fun logSummary(componentName: String) {
         val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
+        val otherSuccessMessages = otherSuccessMessages.joinToString("\n")
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 
         logger.success("'$componentName' generated successfully.")
         logger.info("Generated files:")
         logger.info(successLinks)
+
+        if (otherSuccessMessages.isNotEmpty()) {
+            logger.info("\n")
+            logger.info(otherSuccessMessages)
+        }
 
         if (failedToGenerate.isNotEmpty()) {
             logger.warn("Failed to generate some files as they already exist:")

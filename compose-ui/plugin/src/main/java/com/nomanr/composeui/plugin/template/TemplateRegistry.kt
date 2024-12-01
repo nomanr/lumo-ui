@@ -61,6 +61,14 @@ object TemplateRegistry {
         )
     )
 
+    private val modalBottomSheet = Template(
+        fileName = "components/ModalBottomSheet.kt.template",
+        requirements =
+            "Note: Add the following dependency to the project to use this component: \n" +
+                    "implementation(\"com.nomanr:composables:{version}\")\n" +
+                    "Reference: https://github.com/nomanr/compose-components",
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
@@ -71,6 +79,7 @@ object TemplateRegistry {
         Icon to icon,
         IconButton to iconButton,
         Button to button,
+        ModalBottomSheet to modalBottomSheet,
     )
 
     fun getTemplate(component: SupportedComponents): Template {

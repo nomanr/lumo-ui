@@ -2,7 +2,7 @@ package com.nomanr.composeui.plugin.actions
 
 import com.nomanr.composeui.plugin.configs.ConfigurationValidator
 import com.nomanr.composeui.plugin.configs.PropertyLoader
-import com.nomanr.composeui.provider.ComposeDependencyProvider
+import com.nomanr.composeui.provider.PluginDependencyProvider
 import com.nomanr.composeui.utils.Logger
 import org.gradle.api.Project
 
@@ -10,14 +10,14 @@ class Initialiser(project: Project, private val propertyLoader: PropertyLoader) 
 
     private val logger = Logger.getInstance()
     private val validator = ConfigurationValidator(project, logger)
-    private val composeDependencyProvider = ComposeDependencyProvider(project)
+    private val pluginDependencyProvider = PluginDependencyProvider(project)
 
     fun init() {
         try {
             propertyLoader.createDefaultPropertiesFile()
             logger.success("Default properties file created successfully.")
 
-            composeDependencyProvider.printFormattedDependencies()
+            pluginDependencyProvider.printFormattedComposeDependencies()
         } catch (e: IllegalStateException) {
             logger.error(e.message ?: "Failed to create default properties file.")
         }
