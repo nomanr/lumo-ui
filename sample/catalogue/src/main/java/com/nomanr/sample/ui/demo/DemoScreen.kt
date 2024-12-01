@@ -18,9 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.components.Icon
+import com.nomanr.sample.ui.components.IconButton
+import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Scaffold
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.icon_button.GhostIconButton
 import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
@@ -71,7 +72,9 @@ fun DemoTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            GhostIconButton(onClick = onBack) {
+            IconButton(
+                variant = IconButtonVariant.PrimaryGhost, onClick = onBack
+            ) {
                 Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "More Options")
             }
 

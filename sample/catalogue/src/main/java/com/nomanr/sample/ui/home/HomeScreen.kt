@@ -23,10 +23,11 @@ import androidx.compose.ui.unit.dp
 import com.nomanr.composeui.sample.ui_components.R
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.components.Icon
+import com.nomanr.sample.ui.components.IconButton
+import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Scaffold
 import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.OutlinedCard
-import com.nomanr.sample.ui.components.icon_button.GhostIconButton
 import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
@@ -88,17 +89,17 @@ fun HomeTopBar(
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                GhostIconButton(onClick = {
+                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
                     Log.d("TODO: NOMAN", "More Options Clicked")
                 }) {
                     Icon(Icons.Outlined.Web, contentDescription = "More Options")
                 }
-                GhostIconButton(onClick = {
+                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
                     Log.d("TODO: NOMAN", "More Options Clicked")
                 }) {
                     Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
                 }
-                GhostIconButton(onClick = {
+                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
                     Log.d("TODO: NOMAN", "More Options Clicked")
                 }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = "More Options")
@@ -113,8 +114,7 @@ fun HomeTopBar(
 internal fun ComponentListItem(name: String, onClick: () -> Unit = {}) {
     OutlinedCard(onClick = onClick) {
         Column(
-            modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp),
-            verticalArrangement = Arrangement.Center
+            modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp), verticalArrangement = Arrangement.Center
         ) {
             Text(
                 text = name, style = AppTheme.typography.label1

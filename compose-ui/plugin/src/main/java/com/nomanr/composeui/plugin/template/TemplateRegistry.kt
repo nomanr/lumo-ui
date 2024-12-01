@@ -40,15 +40,23 @@ object TemplateRegistry {
         )
     )
 
+    private val button = Template(
+        fileName = "components/Button.kt.template",
+        requiredFiles = listOf(
+            *surface.allRequiredFiles(),
+            "foundation/ButtonElevation.kt.template",
+        )
+    )
+
     private val icon = Template(
         fileName = "components/Icon.kt.template",
     )
 
+
     private val iconButton = Template(
-        fileName = "components/icon_button/IconButton.kt.template",
+        fileName = "components/IconButton.kt.template",
         requiredFiles = listOf(
             *surface.allRequiredFiles(),
-            "components/icon_button/IconButtonDefaults.kt.template",
             "foundation/ButtonElevation.kt.template",
         )
     )
@@ -62,6 +70,7 @@ object TemplateRegistry {
         TopBar to topBar,
         Icon to icon,
         IconButton to iconButton,
+        Button to button,
     )
 
     fun getTemplate(component: SupportedComponents): Template {
