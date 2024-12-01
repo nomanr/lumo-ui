@@ -24,7 +24,7 @@ fun CatalogueAppNavHost(
 
         composable<NavRoute.Demo> {
             val args = it.toRoute<NavRoute.Demo>()
-            DemoScreen(component = args.component)
+            DemoScreen(component = args.component, navigateUp = { navController.navigateUp() })
         }
     }
 }

@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
@@ -42,44 +41,13 @@ import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.nomanr.composeui.sample.ui_components.R
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
-import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults.TopBarHeight
 import com.nomanr.sample.ui.contentColorFor
 import com.nomanr.sample.ui.foundation.systemBarsForVisualComponents
 
-
-@Composable
-fun TopBar(
-    modifier: Modifier = Modifier,
-    scrollBehavior: TopBarScrollBehavior? = null,
-    actions: @Composable () -> Unit = {},
-) {
-    TopBar(
-        modifier = modifier,
-        scrollBehavior = scrollBehavior,
-        colors = TopBarDefaults.topBarColors(),
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Icon(
-                modifier = Modifier.height(26.dp),
-                painter = painterResource(id = R.drawable.logo_with_name),
-                contentDescription = "Logo"
-            )
-            actions()
-        }
-    }
-}
 
 @Composable
 fun TopBar(

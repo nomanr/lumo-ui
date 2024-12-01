@@ -1,5 +1,6 @@
 package com.nomanr.sample.ui.navigation
 
+import com.nomanr.sample.ui.data.Component
 import kotlinx.serialization.Serializable
 
 
@@ -8,5 +9,5 @@ sealed class  NavRoute {
     data object Home: NavRoute()
 
     @Serializable
-    data class Demo(val component: String) : NavRoute()
+    data class Demo(val component: Component) : NavRoute()
 }
