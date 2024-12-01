@@ -12,16 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Composeui"
         tools:targetApi="31">
-        <activity
-            android:name="com.nomanr.compose.sample.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Composeui">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

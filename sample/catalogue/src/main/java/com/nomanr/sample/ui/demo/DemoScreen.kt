@@ -1,21 +1,22 @@
 package com.nomanr.sample.ui.demo
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.CatalogueAppState
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Scaffold
 import com.nomanr.sample.ui.components.Text
@@ -24,15 +25,32 @@ import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
 import com.nomanr.sample.ui.data.Component
-import com.nomanr.sample.ui.navigation.NavRoute
-import com.nomanr.sample.ui.rememberCatalogueAppState
+import com.nomanr.sample.ui.samples.Samples
 
 @Composable
 fun DemoScreen(component: Component, navigateUp: () -> Unit = {}) {
+
+    val sample = Samples.components[component]
+    var interceptNavigateUp by remember {
+        mutableStateOf(false)
+    }
+
+    BackHandler {
+        if (!interceptNavigateUp) {
+            navigateUp()
+        }
+    }
+
     Scaffold(topBar = {
         DemoTopBar(component = component.label, onBack = navigateUp)
-    }) {
-
+    }) { padding ->
+        if (sample != null) {
+            sample(padding) { intercept -> interceptNavigateUp = intercept }
+        } else {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(text = "Sample not found for ${component.label}")
+            }
+        }
     }
 }
 
@@ -40,9 +58,6 @@ fun DemoScreen(component: Component, navigateUp: () -> Unit = {}) {
 fun DemoTopBar(
     modifier: Modifier = Modifier, scrollBehavior: TopBarScrollBehavior? = null, component: String, onBack: () -> Unit = {}
 ) {
-    BackHandler {
-
-    }
 
     TopBar(
         modifier = modifier,
