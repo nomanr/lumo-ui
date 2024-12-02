@@ -15,6 +15,10 @@ import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Web
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -32,10 +36,13 @@ import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
 import com.nomanr.sample.ui.data.Component
+import com.nomanr.sample.ui.home.components.ConfigModal
 
 @Composable
 fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {
     val components = Component.entries
+
+
     Scaffold(topBar = {
         HomeTopBar()
     }) { padding ->
@@ -62,6 +69,7 @@ fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {
             }
         }
     }
+
 }
 
 
@@ -70,6 +78,9 @@ fun HomeTopBar(
     modifier: Modifier = Modifier,
     scrollBehavior: TopBarScrollBehavior? = null,
 ) {
+    var isConfigModalVisible by remember {
+        mutableStateOf(false)
+    }
     TopBar(
         modifier = modifier,
         scrollBehavior = scrollBehavior,
@@ -100,13 +111,18 @@ fun HomeTopBar(
                     Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
                 }
                 IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
-                    Log.d("TODO: NOMAN", "More Options Clicked")
+                    isConfigModalVisible = true
                 }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = "More Options")
                 }
             }
         }
     }
+
+    ConfigModal(isVisible = isConfigModalVisible, onDismiss = {
+        isConfigModalVisible = false
+    })
+
 }
 
 

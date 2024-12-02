@@ -11,4 +11,5 @@ enum class SupportedComponents {
     Icon,
     IconButton,
     ModalBottomSheet,
+    RadioButton,
 }

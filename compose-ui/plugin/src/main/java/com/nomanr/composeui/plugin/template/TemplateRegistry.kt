@@ -69,6 +69,13 @@ object TemplateRegistry {
                     "Reference: https://github.com/nomanr/compose-components",
     )
 
+    private val radioButton = Template(
+        fileName = "components/RadioButton.kt.template",
+        requiredFiles = listOf(
+            "foundation/Ripple.kt.template",
+        )
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
@@ -80,6 +87,7 @@ object TemplateRegistry {
         IconButton to iconButton,
         Button to button,
         ModalBottomSheet to modalBottomSheet,
+        RadioButton to radioButton,
     )
 
     fun getTemplate(component: SupportedComponents): Template {
