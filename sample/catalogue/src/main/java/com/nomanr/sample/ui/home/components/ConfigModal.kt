@@ -53,10 +53,11 @@ fun ConfigModal(isVisible: Boolean, onDismiss: () -> Unit) {
 
 @Composable
 fun FontScale() {
-    var isSystemFontScale: Boolean by remember {
-        mutableStateOf(true)
-    }
     val fontScaleState = LocalFontScaleState.current
+
+    var isSystemFontScale: Boolean by remember {
+        mutableStateOf(fontScaleState.systemFontScale == fontScaleState.fontScale)
+    }
 
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {

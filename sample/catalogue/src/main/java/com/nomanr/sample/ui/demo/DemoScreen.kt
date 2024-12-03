@@ -78,7 +78,7 @@ fun DemoTopBar(
                 Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "More Options")
             }
 
-            Text(text = component, style = AppTheme.typography.h4)
+            Text(text = component, style = AppTheme.typography.h3)
 
         }
     }

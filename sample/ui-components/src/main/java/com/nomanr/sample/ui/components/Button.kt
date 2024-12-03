@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -40,7 +41,7 @@ fun Button(
     onClick: () -> Unit = {},
     contentPadding: PaddingValues = ButtonDefaults.contentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: (@Composable RowScope.() -> Unit)? = null,
+    content: (@Composable () -> Unit)? = null,
 ) {
     ButtonComponent(
         text = text,
@@ -65,7 +66,7 @@ internal fun ButtonComponent(
     onClick: () -> Unit,
     contentPadding: PaddingValues = ButtonDefaults.contentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: (@Composable RowScope.() -> Unit)? = null,
+    content: (@Composable () -> Unit)? = null,
 ) {
 
     val containerColor = style.colors.containerColor(enabled).value
@@ -110,10 +111,10 @@ private fun DefaultButtonContent(
     text: String? = null,
     loading: Boolean,
     contentColor: Color,
-    content: (@Composable RowScope.() -> Unit)? = null
+    content: (@Composable () -> Unit)? = null
 ) {
 
-    if (text?.isNullOrEmpty() == false) {
+    if (text?.isEmpty() == false) {
         Row(
             modifier, horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
@@ -137,28 +138,17 @@ private fun DefaultButtonContent(
             )
         }
     } else if (content != null) {
-        Row(
+        Box(
             modifier = modifier,
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            content = content
-        )
+            contentAlignment = Alignment.Center,
+        ) {
+            content()
+        }
     }
 }
 
 enum class ButtonVariant {
-    Primary,
-    PrimaryOutlined,
-    PrimaryElevated,
-    PrimaryGhost,
-    Secondary,
-    SecondaryOutlined,
-    SecondaryElevated,
-    SecondaryGhost,
-    Destructive,
-    DestructiveOutlined,
-    DestructiveElevated,
-    DestructiveGhost
+    Primary, PrimaryOutlined, PrimaryElevated, PrimaryGhost, Secondary, SecondaryOutlined, SecondaryElevated, SecondaryGhost, Destructive, DestructiveOutlined, DestructiveElevated, DestructiveGhost
 }
 
 @Composable
@@ -182,7 +172,7 @@ internal fun buttonStyleFor(variant: ButtonVariant): ButtonStyle {
 internal object ButtonDefaults {
     internal val MinHeight = 44.dp
     internal val OutlineHeight = 1.dp
-    private val ButtonHorizontalPadding = 24.dp
+    private val ButtonHorizontalPadding = 16.dp
     private val ButtonVerticalPadding = 8.dp
     private val ButtonShape = RoundedCornerShape(12)
 
@@ -394,8 +384,7 @@ internal data class ButtonColors(
         rememberUpdatedState(newValue = if (enabled) contentColor else disabledContentColor)
 
     @Composable
-    fun borderColor(enabled: Boolean) =
-        rememberUpdatedState(newValue = if (enabled) borderColor else disabledBorderColor)
+    fun borderColor(enabled: Boolean) = rememberUpdatedState(newValue = if (enabled) borderColor else disabledBorderColor)
 }
 
 @Immutable
@@ -409,7 +398,7 @@ internal data class ButtonStyle(
 
 @Composable
 @Preview("Button", backgroundColor = 0xFFFFFFFF, showBackground = true)
-fun ButtonPreview(){
+fun ButtonPreview() {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         PrimaryButtonPreview()
         SecondaryButtonPreview()
@@ -431,58 +420,34 @@ fun PrimaryButtonPreview() {
             Text(text = "Primary Buttons", style = AppTheme.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "PrimaryFilled",
-                    variant = ButtonVariant.Primary,
-                    onClick = {}
-                )
+                Button(text = "PrimaryFilled", variant = ButtonVariant.Primary, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.Primary,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.Primary, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "PrimaryOutlined",
-                    variant = ButtonVariant.PrimaryOutlined,
-                    onClick = {}
-                )
+                Button(text = "PrimaryOutlined", variant = ButtonVariant.PrimaryOutlined, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.PrimaryOutlined,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.PrimaryOutlined, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "PrimaryElevated",
-                    variant = ButtonVariant.PrimaryElevated,
-                    onClick = {}
-                )
+                Button(text = "PrimaryElevated", variant = ButtonVariant.PrimaryElevated, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.PrimaryElevated,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.PrimaryElevated, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "PrimaryGhost",
-                    variant = ButtonVariant.PrimaryGhost,
-                    onClick = {}
-                )
+                Button(text = "PrimaryGhost", variant = ButtonVariant.PrimaryGhost, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.PrimaryGhost,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.PrimaryGhost, enabled = false
                 )
             }
         }
@@ -502,58 +467,34 @@ fun SecondaryButtonPreview() {
             Text(text = "Secondary Buttons", style = AppTheme.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "SecondaryFilled",
-                    variant = ButtonVariant.Secondary,
-                    onClick = {}
-                )
+                Button(text = "SecondaryFilled", variant = ButtonVariant.Secondary, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.Secondary,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.Secondary, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "SecondaryOutlined",
-                    variant = ButtonVariant.SecondaryOutlined,
-                    onClick = {}
-                )
+                Button(text = "SecondaryOutlined", variant = ButtonVariant.SecondaryOutlined, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.SecondaryOutlined,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.SecondaryOutlined, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "SecondaryElevated",
-                    variant = ButtonVariant.SecondaryElevated,
-                    onClick = {}
-                )
+                Button(text = "SecondaryElevated", variant = ButtonVariant.SecondaryElevated, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.SecondaryElevated,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.SecondaryElevated, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "SecondaryGhost",
-                    variant = ButtonVariant.SecondaryGhost,
-                    onClick = {}
-                )
+                Button(text = "SecondaryGhost", variant = ButtonVariant.SecondaryGhost, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.SecondaryGhost,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.SecondaryGhost, enabled = false
                 )
             }
         }
@@ -573,58 +514,34 @@ fun DestructiveButtonPreview() {
             Text(text = "Destructive Buttons", style = AppTheme.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "DestructiveFilled",
-                    variant = ButtonVariant.Destructive,
-                    onClick = {}
-                )
+                Button(text = "DestructiveFilled", variant = ButtonVariant.Destructive, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.Destructive,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.Destructive, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "DestructiveOutlined",
-                    variant = ButtonVariant.DestructiveOutlined,
-                    onClick = {}
-                )
+                Button(text = "DestructiveOutlined", variant = ButtonVariant.DestructiveOutlined, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.DestructiveOutlined,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.DestructiveOutlined, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "DestructiveElevated",
-                    variant = ButtonVariant.DestructiveElevated,
-                    onClick = {}
-                )
+                Button(text = "DestructiveElevated", variant = ButtonVariant.DestructiveElevated, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.DestructiveElevated,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.DestructiveElevated, enabled = false
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(
-                    text = "DestructiveGhost",
-                    variant = ButtonVariant.DestructiveGhost,
-                    onClick = {}
-                )
+                Button(text = "DestructiveGhost", variant = ButtonVariant.DestructiveGhost, onClick = {})
 
                 Button(
-                    text = "Disabled",
-                    variant = ButtonVariant.DestructiveGhost,
-                    enabled = false
+                    text = "Disabled", variant = ButtonVariant.DestructiveGhost, enabled = false
                 )
             }
         }
