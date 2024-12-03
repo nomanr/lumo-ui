@@ -76,6 +76,14 @@ object TemplateRegistry {
         )
     )
 
+    private val slider = Template(
+        fileName = "components/Slider.kt.template",
+        requirements =
+        "Note: Add the following dependency to the project to use this component: \n" +
+                "implementation(\"com.nomanr:composables:{version}\")\n" +
+                "Reference: https://github.com/nomanr/compose-components",
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
@@ -88,6 +96,7 @@ object TemplateRegistry {
         Button to button,
         ModalBottomSheet to modalBottomSheet,
         RadioButton to radioButton,
+        Slider to slider,
     )
 
     fun getTemplate(component: SupportedComponents): Template {

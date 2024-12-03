@@ -111,3 +111,21 @@ data class Typography(
 val typography = Typography()
 
 val LocalTypography = staticCompositionLocalOf { typography }
+val LocalOriginalTypography = staticCompositionLocalOf { typography }
+
+fun scaledTypography(fontScale: Float): Typography {
+    return Typography(
+        h1 = typography.h1.copy(fontSize = 24.sp * fontScale, lineHeight = 32.sp * fontScale),
+        h2 = typography.h2.copy(fontSize = 20.sp * fontScale, lineHeight = 28.sp * fontScale),
+        h3 = typography.h3.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+        h4 = typography.h4.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+        body1 = typography.body1.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+        body2 = typography.body2.copy(fontSize = 14.sp * fontScale, lineHeight = 20.sp * fontScale),
+        body3 = typography.body3.copy(fontSize = 12.sp * fontScale, lineHeight = 16.sp * fontScale),
+        label1 = typography.label1.copy(fontSize = 14.sp * fontScale, lineHeight = 20.sp * fontScale),
+        label2 = typography.label2.copy(fontSize = 12.sp * fontScale, lineHeight = 16.sp * fontScale),
+        label3 = typography.label3.copy(fontSize = 10.sp * fontScale, lineHeight = 12.sp * fontScale),
+        button = typography.button.copy(fontSize = 14.sp * fontScale, lineHeight = 20.sp * fontScale),
+        input = typography.input.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+    )
+}

@@ -1,5 +1,6 @@
 package com.nomanr.sample.ui
 
+import android.util.Log
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
@@ -9,6 +10,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import com.nomanr.sample.ui.configs.LocalFontScaleState
+import com.nomanr.sample.ui.configs.rememberFontScaleState
 import com.nomanr.sample.ui.foundation.ripple
 
 object AppTheme {
@@ -17,6 +20,9 @@ object AppTheme {
 
     val typography: Typography
         @ReadOnlyComposable @Composable get() = LocalTypography.current
+
+    val originalScaleTypography: Typography
+        @ReadOnlyComposable @Composable get() = LocalOriginalTypography.current
 }
 
 @Composable
@@ -28,11 +34,16 @@ fun AppTheme(
     val selectionColors = rememberTextSelectionColors(LightColors)
     val colors = if (isDarkTheme) DarkColors else LightColors
 
+    val fontScaleState = rememberFontScaleState()
+
+
     CompositionLocalProvider(
         LocalColors provides colors,
-        LocalTypography provides typography,
+        LocalTypography provides scaledTypography(fontScaleState.fontScale),
+        LocalOriginalTypography provides typography,
         LocalIndication provides rippleIndication,
         LocalTextSelectionColors provides selectionColors,
+        LocalFontScaleState provides fontScaleState,
         content = content
     )
 }
