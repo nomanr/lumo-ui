@@ -39,7 +39,6 @@ class ComponentGenerator(
         ensureDirectoryExists(componentFile)
         generateTemplate(template.fileName, componentFile)
         successfullyGenerated.add(componentFile)
-        template.requirements?.let { otherSuccessMessages.add(it) }
 
         template.requiredFiles.forEach { dependencyPath ->
             val dependencyOutputFile = File(outputDir, dependencyPath.replace(".kt.template", ".kt"))
@@ -51,6 +50,7 @@ class ComponentGenerator(
                 try {
                     generateTemplate(dependencyPath, dependencyOutputFile)
                     successfullyGenerated.add(dependencyOutputFile)
+
 
                     if(!template.requirements.isNullOrEmpty()){
                         otherSuccessMessages.add(template.requirements)
@@ -95,7 +95,6 @@ class ComponentGenerator(
         logger.info(successLinks)
 
         if (otherSuccessMessages.isNotEmpty()) {
-            logger.info("\n")
             logger.info(otherSuccessMessages)
         }
 

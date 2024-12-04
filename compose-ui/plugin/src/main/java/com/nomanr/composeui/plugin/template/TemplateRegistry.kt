@@ -84,6 +84,13 @@ object TemplateRegistry {
                 "Reference: https://github.com/nomanr/compose-components",
     )
 
+    private val progressIndicator = Template(
+        fileName = "components/progress_indicator/CircularProgressIndicator.kt.template",
+        requiredFiles = listOf(
+            "components/progress_indicator/LinearProgressIndicator.kt.template"
+        )
+    )
+
     private val templates = mapOf(
         Theme to theme,
         Text to text,
@@ -97,6 +104,7 @@ object TemplateRegistry {
         ModalBottomSheet to modalBottomSheet,
         RadioButton to radioButton,
         Slider to slider,
+        ProgressIndicator to progressIndicator
     )
 
     fun getTemplate(component: SupportedComponents): Template {

@@ -13,4 +13,5 @@ enum class SupportedComponents {
     ModalBottomSheet,
     RadioButton,
     Slider,
+    ProgressIndicator
 }
