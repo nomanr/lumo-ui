@@ -33,7 +33,7 @@ fun IconButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     loading: Boolean = false,
-    variant: IconButtonVariant = IconButtonVariant.PrimaryFilled,
+    variant: IconButtonVariant = IconButtonVariant.Primary,
     shape: Shape = IconButtonDefaults.ButtonSquareShape,
     onClick: () -> Unit = {},
     contentPadding: PaddingValues = IconButtonDefaults.ButtonPadding,
@@ -93,23 +93,21 @@ private fun IconButtonComponent(
             contentAlignment = Alignment.Center
         ) {
             // Add a loading indicator if needed
-            if (!loading) {
-                content()
-            }
+            content()
         }
     }
 }
 
 enum class IconButtonVariant {
-    PrimaryFilled,
+    Primary,
     PrimaryOutlined,
     PrimaryElevated,
     PrimaryGhost,
-    SecondaryFilled,
+    Secondary,
     SecondaryOutlined,
     SecondaryElevated,
     SecondaryGhost,
-    DestructiveFilled,
+    Destructive,
     DestructiveOutlined,
     DestructiveElevated,
     DestructiveGhost
@@ -134,15 +132,15 @@ internal object IconButtonDefaults {
     @Composable
     fun styleFor(variant: IconButtonVariant, shape: Shape): IconButtonStyle {
         return when (variant) {
-            IconButtonVariant.PrimaryFilled -> primaryFilled(shape)
+            IconButtonVariant.Primary -> primaryFilled(shape)
             IconButtonVariant.PrimaryOutlined -> primaryOutlined(shape)
             IconButtonVariant.PrimaryElevated -> primaryElevated(shape)
             IconButtonVariant.PrimaryGhost -> primaryGhost(shape)
-            IconButtonVariant.SecondaryFilled -> secondaryFilled(shape)
+            IconButtonVariant.Secondary -> secondaryFilled(shape)
             IconButtonVariant.SecondaryOutlined -> secondaryOutlined(shape)
             IconButtonVariant.SecondaryElevated -> secondaryElevated(shape)
             IconButtonVariant.SecondaryGhost -> secondaryGhost(shape)
-            IconButtonVariant.DestructiveFilled -> destructiveFilled(shape)
+            IconButtonVariant.Destructive -> destructiveFilled(shape)
             IconButtonVariant.DestructiveOutlined -> destructiveOutlined(shape)
             IconButtonVariant.DestructiveElevated -> destructiveElevated(shape)
             IconButtonVariant.DestructiveGhost -> destructiveGhost(shape)
@@ -346,7 +344,7 @@ fun PrimaryIconButtonPreview() {
             Text(text = "Primary Icon Buttons", style = AppTheme.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                IconButton(variant = IconButtonVariant.PrimaryFilled) {
+                IconButton(variant = IconButtonVariant.Primary) {
                     Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryFilled")
                 }
                 IconButton(variant = IconButtonVariant.PrimaryOutlined) {
@@ -374,7 +372,7 @@ fun SecondaryIconButtonPreview() {
             Text(text = "Secondary Icon Buttons", style = AppTheme.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                IconButton(variant = IconButtonVariant.SecondaryFilled) {
+                IconButton(variant = IconButtonVariant.Secondary) {
                     Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryFilled")
                 }
                 IconButton(variant = IconButtonVariant.SecondaryOutlined) {
@@ -402,7 +400,7 @@ fun DestructiveIconButtonPreview() {
             Text(text = "Destructive Icon Buttons", style = AppTheme.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                IconButton(variant = IconButtonVariant.DestructiveFilled) {
+                IconButton(variant = IconButtonVariant.Destructive) {
                     Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
                 }
                 IconButton(variant = IconButtonVariant.DestructiveOutlined) {
@@ -431,7 +429,7 @@ fun IconButtonShapesPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(
-                    variant = IconButtonVariant.PrimaryFilled,
+                    variant = IconButtonVariant.Primary,
                     shape = IconButtonDefaults.ButtonSquareShape
                 ) {
                     Icon(Icons.Filled.AcUnit, contentDescription = "SquareShape")
@@ -448,7 +446,7 @@ fun IconButtonShapesPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(
-                    variant = IconButtonVariant.PrimaryFilled,
+                    variant = IconButtonVariant.Primary,
                     shape = IconButtonDefaults.ButtonCircleShape
                 ) {
                     Icon(Icons.Filled.AcUnit, contentDescription = "CircleShape")
