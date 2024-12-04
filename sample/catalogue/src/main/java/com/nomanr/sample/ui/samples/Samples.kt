@@ -9,5 +9,6 @@ object Samples {
         mapOf<Component, @Composable (padding: PaddingValues, interceptNavigateUp: (intercept: Boolean) -> Unit) -> Unit>(
             Component.Text to { padding, _ -> TextSample(padding) },
             Component.Button to { padding, _ -> ButtonSample(padding) },
+            Component.Icon to { padding, _ -> IconSample(padding) },
         )
 }

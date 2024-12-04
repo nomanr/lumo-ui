@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui
 
-import android.util.Log
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
@@ -39,6 +38,7 @@ fun AppTheme(
 
     CompositionLocalProvider(
         LocalColors provides colors,
+        LocalContentColor provides colors.contentColorFor(colors.background),
         LocalTypography provides scaledTypography(fontScaleState.fontScale),
         LocalOriginalTypography provides typography,
         LocalIndication provides rippleIndication,

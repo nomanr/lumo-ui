@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.samples
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -32,6 +32,7 @@ import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.ButtonVariant
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Text
+import com.nomanr.sample.ui.components.progress_indicator.CircularProgressIndicator
 
 @Composable
 fun ButtonSample(padding: PaddingValues) {
@@ -180,15 +181,39 @@ internal fun ButtonRealWorldExamples() {
                 modifier = Modifier, variant = ButtonVariant.SecondaryGhost
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text("See All", style = AppTheme.typography.button)
                     Icon(Icons.Default.ChevronRight, contentDescription = "Next")
-
                 }
             }
 
+        }
+
+        FlowRow(
+            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            Button(variant = ButtonVariant.Primary, enabled = false) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text("Disabled", style = AppTheme.typography.button)
+                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                }
+            }
+
+            Button(variant = ButtonVariant.SecondaryOutlined) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text("Submitting", style = AppTheme.typography.button)
+                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                }
+            }
+
+        }
+
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            variant = ButtonVariant.Destructive,
+        ) {
+            CircularProgressIndicator(modifier = Modifier.size(24.dp))
         }
 
     }

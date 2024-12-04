@@ -116,7 +116,7 @@ internal val DarkColors = Colors(
     onPrimary = Black,
 
     secondary = Gray400,
-    onSecondary = White,
+    onSecondary = Black,
 
     tertiary = Blue300,
     onTertiary = Black,

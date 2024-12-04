@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.Text
 import kotlin.math.PI
 import kotlin.math.abs
@@ -186,7 +187,7 @@ private fun DrawScope.drawIndeterminateCircularIndicator(
 
 object CircularProgressIndicatorDefaults {
     val Color: Color
-        @Composable get() = AppTheme.colors.primary
+        @Composable get() = LocalContentColor.current
 
     val TrackColor: Color
         @Composable get() = AppTheme.colors.transparent
