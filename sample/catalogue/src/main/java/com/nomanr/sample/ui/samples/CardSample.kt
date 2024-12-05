@@ -27,6 +27,7 @@ import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.Card
 import com.nomanr.sample.ui.components.card.ElevatedCard
 import com.nomanr.sample.ui.components.card.OutlinedCard
+import com.nomanr.sample.ui.demo.components.Skeleton
 
 @Composable
 fun CardSample(padding: PaddingValues) {
@@ -253,11 +254,3 @@ fun CardSample(padding: PaddingValues) {
 
 }
 
-@Composable
-private fun Skeleton(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .clip(RoundedCornerShape(8.dp))
-            .background(Color.LightGray)
-    )
-}

@@ -5,6 +5,7 @@ import androidx.compose.animation.core.AnimationState
 import androidx.compose.animation.core.DecayAnimationSpec
 import androidx.compose.animation.core.animateDecay
 import androidx.compose.animation.core.animateTo
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
@@ -220,3 +221,13 @@ suspend fun settleBar(
 
     return Velocity(0f, remainingVelocity)
 }
+
+@Stable
+interface TopBarScrollBehavior {
+    val state: TopBarState
+    val isPinned: Boolean
+    val snapAnimationSpec: AnimationSpec<Float>?
+    val flingAnimationSpec: DecayAnimationSpec<Float>?
+    val nestedScrollConnection: NestedScrollConnection
+}
+

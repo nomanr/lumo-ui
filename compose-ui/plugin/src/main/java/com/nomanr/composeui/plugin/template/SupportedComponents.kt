@@ -1,17 +1,19 @@
 package com.nomanr.composeui.plugin.template
 
 enum class SupportedComponents {
-    Theme,
-    Text,
-    Surface,
-    Card,
-    Scaffold,
-    TopBar,
+    Accordion,
     Button,
+    Card,
+    Divider,
     Icon,
     IconButton,
     ModalBottomSheet,
+    ProgressIndicator,
     RadioButton,
+    Scaffold,
     Slider,
-    ProgressIndicator
+    Surface,
+    Text,
+    Theme,
+    TopBar
 }

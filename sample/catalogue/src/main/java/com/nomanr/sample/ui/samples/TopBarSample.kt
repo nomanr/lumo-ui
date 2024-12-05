@@ -116,7 +116,8 @@ private fun InitialStateSample(onClick: (sample: TopBarSamples) -> Unit) {
             .padding(horizontal = 16.dp, vertical = 60.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        Button(modifier = Modifier.fillMaxWidth(),
+        Button(
+            modifier = Modifier.fillMaxWidth(),
             text = "Example with insets",
             variant = ButtonVariant.PrimaryOutlined,
             onClick = {
@@ -314,13 +315,27 @@ private fun ChangeColorOnScrollSample() {
                     WindowInsetsSides.Horizontal
                 )
             ) {
-                Box(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    contentAlignment = Alignment.Center,
-
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
+                        Icon(
+                            modifier = Modifier.size(32.dp), imageVector = Icons.Filled.Hub, contentDescription = "More options"
+                        )
+
+                        IconButton(variant = IconButtonVariant.Ghost) {
+                            Icon(
+                                imageVector = Icons.Filled.MoreVert,
+                                contentDescription = "More options",
+                            )
+                        }
+                    }
                     Text(
-                        text = "topbar", style = AppTheme.typography.h3, textAlign = TextAlign.Center
+                        text = "Hello.", style = AppTheme.typography.h3, textAlign = TextAlign.Center
                     )
                 }
             }
@@ -356,10 +371,8 @@ private fun ChangeColorOnScrollSample() {
                         }
                     }
                 }
-
             }
         }
-
     }
 }
 

@@ -272,17 +272,6 @@ data class TopBarColors internal constructor(
     }
 }
 
-
-@Stable
-interface TopBarScrollBehavior {
-    val state: TopBarState
-    val isPinned: Boolean
-    val snapAnimationSpec: AnimationSpec<Float>?
-    val flingAnimationSpec: DecayAnimationSpec<Float>?
-    val nestedScrollConnection: NestedScrollConnection
-}
-
-
 @Composable
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 fun TopBarSamples() {
