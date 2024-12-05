@@ -15,6 +15,8 @@ object Samples {
             Component.Button to { padding, _, _ -> ButtonSample(padding) },
             Component.Icon to { padding, _, _ -> IconSample(padding) },
             Component.IconButton to { padding, _, _ -> IconButtonSample(padding) },
+            Component.Card to { padding, _, _ -> CardSample(padding) },
             Component.TopBar to { padding, triggerBackAction, interceptNavigateUp -> TopBarSample(padding, triggerBackAction, interceptNavigateUp) }
+
         )
 }
