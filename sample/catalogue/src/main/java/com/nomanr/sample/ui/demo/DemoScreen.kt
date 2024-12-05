@@ -1,5 +1,6 @@
 package com.nomanr.sample.ui.demo
 
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,17 +38,31 @@ fun DemoScreen(component: Component, navigateUp: () -> Unit = {}) {
         mutableStateOf(false)
     }
 
+    var triggerBackAction by remember {
+        mutableIntStateOf(0)
+    }
+
     BackHandler {
         if (!interceptNavigateUp) {
             navigateUp()
+        } else {
+            triggerBackAction++
         }
     }
 
     Scaffold(topBar = {
-        DemoTopBar(component = component.label, onBack = navigateUp)
+        DemoTopBar(component = component.label, onBack = {
+            if (!interceptNavigateUp) {
+                navigateUp()
+            } else {
+                triggerBackAction++
+            }
+        })
     }) { padding ->
         if (sample != null) {
-            sample(padding) { intercept -> interceptNavigateUp = intercept }
+            sample(padding, triggerBackAction) { intercept ->
+                interceptNavigateUp = intercept
+            }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(text = "Sample not found for ${component.label}")

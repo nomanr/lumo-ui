@@ -46,7 +46,6 @@ import com.nomanr.sample.ui.home.components.ConfigModal
 @Composable
 fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {
 
-
     Scaffold(topBar = {
         HomeTopBar()
     }) { padding ->
@@ -59,7 +58,6 @@ fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {
 @Composable
 fun HomeTopBar(
     modifier: Modifier = Modifier,
-    scrollBehavior: TopBarScrollBehavior? = null,
 ) {
     var isConfigModalVisible by remember {
         mutableStateOf(false)
@@ -68,7 +66,6 @@ fun HomeTopBar(
 
     TopBar(
         modifier = modifier,
-        scrollBehavior = scrollBehavior,
         colors = TopBarDefaults.topBarColors(),
     ) {
         Row(

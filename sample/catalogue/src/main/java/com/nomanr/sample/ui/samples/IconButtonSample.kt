@@ -101,7 +101,7 @@ internal fun RealWorldIconButtonExamples() {
             IconButton(variant = IconButtonVariant.Destructive) {
                 Icon(Icons.Default.Delete, contentDescription = "Delete")
             }
-            IconButton(variant = IconButtonVariant.Secondary) {
+            IconButton(variant = IconButtonVariant.SecondaryGhost) {
                 CircularProgressIndicator(modifier = Modifier.size(24.dp))
             }
         }

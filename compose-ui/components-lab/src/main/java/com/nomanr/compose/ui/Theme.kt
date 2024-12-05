@@ -9,6 +9,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import com.nomanr.compose.ui.components.LocalTextStyle
 import com.nomanr.compose.ui.foundation.ripple
 
 object AppTheme {
@@ -33,6 +34,8 @@ fun AppTheme(
         LocalTypography provides typography,
         LocalIndication provides rippleIndication,
         LocalTextSelectionColors provides selectionColors,
+        LocalContentColor provides colors.contentColorFor(colors.background),
+        LocalTextStyle provides typography.body1,
         content = content
     )
 }

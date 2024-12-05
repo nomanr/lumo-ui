@@ -54,6 +54,7 @@ fun TopBar(
     modifier: Modifier = Modifier,
     scrollBehavior: TopBarScrollBehavior? = null,
     colors: TopBarColors = TopBarDefaults.topBarColors(),
+    windowInsets: WindowInsets? = TopBarDefaults.windowInsets,
     content: @Composable () -> Unit
 ) {
 
@@ -61,7 +62,7 @@ fun TopBar(
     val contentColor = contentColorFor(color = containerColor)
 
     TopBarLayout(
-        modifier = modifier, scrollBehavior = scrollBehavior, colors = colors
+        modifier = modifier, scrollBehavior = scrollBehavior, colors = colors, windowInsets = windowInsets
     ) {
         Row(
             modifier = Modifier
@@ -251,9 +252,9 @@ class TopBarState(
 }
 
 @Stable
-data class TopBarColors internal constructor(
-    private val containerColor: Color,
-    private val scrolledContainerColor: Color,
+data class TopBarColors(
+    val containerColor: Color,
+    val scrolledContainerColor: Color,
 ) {
 
     @Composable
@@ -279,13 +280,4 @@ data class TopBarColors internal constructor(
     }
 }
 
-
-@Stable
-interface TopBarScrollBehavior {
-    val state: TopBarState
-    val isPinned: Boolean
-    val snapAnimationSpec: AnimationSpec<Float>?
-    val flingAnimationSpec: DecayAnimationSpec<Float>?
-    val nestedScrollConnection: NestedScrollConnection
-}
 
