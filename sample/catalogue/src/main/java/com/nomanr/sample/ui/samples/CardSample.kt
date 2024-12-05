@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,8 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +23,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.Card
 import com.nomanr.sample.ui.components.card.ElevatedCard
@@ -63,9 +61,7 @@ fun CardSample(padding: PaddingValues) {
                         .width(180.dp)
                         .height(24.dp)
                 )
-
             }
-
         }
 
         Row(
@@ -131,17 +127,21 @@ fun CardSample(padding: PaddingValues) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(32.dp)
-                    .height(80.dp),
+                    .defaultMinSize(minHeight = 80.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Outlined Card", style = AppTheme.typography.h4)
+                Box(modifier = Modifier.weight(0.75f)) {
+                    Text(text = "Outlined Card", style = AppTheme.typography.h4)
+                }
 
-                Skeleton(
-                    modifier = Modifier
-                        .width(56.dp)
-                        .height(56.dp)
-                )
+                Box(modifier = Modifier.weight(0.25f)) {
+                    Skeleton(
+                        modifier = Modifier
+                            .width(56.dp)
+                            .height(56.dp)
+                    )
+                }
             }
         }
 
@@ -152,17 +152,21 @@ fun CardSample(padding: PaddingValues) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(32.dp)
-                    .height(80.dp),
+                    .defaultMinSize(minHeight = 80.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Filled Card", style = AppTheme.typography.h4)
+                Box(modifier = Modifier.weight(0.75f)) {
+                    Text(text = "Filled Card", style = AppTheme.typography.h4)
+                }
 
-                Skeleton(
-                    modifier = Modifier
-                        .width(56.dp)
-                        .height(56.dp)
-                )
+                Box(modifier = Modifier.weight(0.25f)) {
+                    Skeleton(
+                        modifier = Modifier
+                            .width(56.dp)
+                            .height(56.dp)
+                    )
+                }
             }
         }
 
@@ -173,17 +177,21 @@ fun CardSample(padding: PaddingValues) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(32.dp)
-                    .height(80.dp),
+                    .defaultMinSize(minHeight = 80.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Elevated Card", style = AppTheme.typography.h4)
+                Box(modifier = Modifier.weight(0.75f)) {
+                    Text(text = "Elevated Card", style = AppTheme.typography.h4)
+                }
 
-                Skeleton(
-                    modifier = Modifier
-                        .width(56.dp)
-                        .height(56.dp)
-                )
+                Box(modifier = Modifier.weight(0.25f)) {
+                    Skeleton(
+                        modifier = Modifier
+                            .width(56.dp)
+                            .height(56.dp)
+                    )
+                }
             }
         }
 

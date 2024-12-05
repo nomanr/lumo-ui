@@ -3,6 +3,7 @@ package com.nomanr.sample.ui.samples
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -17,21 +18,26 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AcUnit
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.IconButton
 import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.progress_indicator.CircularProgressIndicator
+import com.nomanr.sample.ui.contentColorFor
 
 @Composable
 fun IconButtonSample(padding: PaddingValues) {
@@ -55,6 +61,10 @@ fun IconButtonSample(padding: PaddingValues) {
         Spacer(modifier = Modifier.height(30.dp))
 
         DestructiveIconButtonSample()
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        GhostIconButtonSample()
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -91,8 +101,7 @@ internal fun RealWorldIconButtonExamples() {
         }
 
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             IconButton(variant = IconButtonVariant.PrimaryElevated) {
                 Icon(Icons.Default.Email, contentDescription = "Email")
@@ -107,8 +116,7 @@ internal fun RealWorldIconButtonExamples() {
         }
 
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(variant = IconButtonVariant.Primary, shape = CircleShape) {
                 Icon(Icons.Default.PhotoCamera, contentDescription = "Circle Icon")
@@ -143,8 +151,7 @@ internal fun PrimaryIconButtonSample() {
         Text(text = "Primary Icon Buttons", style = AppTheme.typography.h4)
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             IconButton(variant = IconButtonVariant.Primary) {
                 Icon(Icons.Default.Star, contentDescription = "PrimaryFilled")
@@ -174,8 +181,7 @@ internal fun SecondaryIconButtonSample() {
         Text(text = "Secondary Icon Buttons", style = AppTheme.typography.h4)
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             IconButton(variant = IconButtonVariant.Secondary) {
                 Icon(Icons.Default.Email, contentDescription = "SecondaryFilled")
@@ -205,8 +211,7 @@ internal fun DestructiveIconButtonSample() {
         Text(text = "Destructive Icon Buttons", style = AppTheme.typography.h4)
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             IconButton(variant = IconButtonVariant.Destructive) {
                 Icon(Icons.Default.Delete, contentDescription = "DestructiveFilled")
@@ -220,6 +225,107 @@ internal fun DestructiveIconButtonSample() {
             IconButton(variant = IconButtonVariant.DestructiveGhost) {
                 Icon(Icons.Default.Delete, contentDescription = "DestructiveGhost")
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+internal fun GhostIconButtonSample() {
+    Column(
+        modifier = Modifier
+            .background(AppTheme.colors.background)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Text(text = "Ghost Icon Buttons - content color based on LocalContentColor", style = AppTheme.typography.h4)
+
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(RoundedCornerShape(8))
+                    .background(AppTheme.colors.background),
+                contentAlignment = Alignment.Center
+            ) {
+                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.background)) {
+                    IconButton(variant = IconButtonVariant.Ghost) {
+                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    }
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(RoundedCornerShape(8))
+                    .background(AppTheme.colors.primary),
+                contentAlignment = Alignment.Center
+            ) {
+                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.primary)) {
+                    IconButton(variant = IconButtonVariant.Ghost) {
+                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    }
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(RoundedCornerShape(8))
+                    .background(AppTheme.colors.secondary),
+                contentAlignment = Alignment.Center
+            ) {
+                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.secondary)) {
+                    IconButton(variant = IconButtonVariant.Ghost) {
+                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    }
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(RoundedCornerShape(8))
+                    .background(AppTheme.colors.tertiary),
+                contentAlignment = Alignment.Center
+            ) {
+                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.tertiary)) {
+                    IconButton(variant = IconButtonVariant.Ghost) {
+                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    }
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(RoundedCornerShape(8))
+                    .background(AppTheme.colors.surface),
+                contentAlignment = Alignment.Center
+            ) {
+                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.surface)) {
+                    IconButton(variant = IconButtonVariant.Ghost) {
+                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    }
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(56.dp)
+                    .clip(RoundedCornerShape(8))
+                    .background(AppTheme.colors.error),
+                contentAlignment = Alignment.Center
+            ) {
+                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.error)) {
+                    IconButton(variant = IconButtonVariant.Ghost) {
+                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    }
+                }
+            }
+
+
         }
     }
 }

@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +43,7 @@ import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
 import com.nomanr.sample.ui.data.Component
 import com.nomanr.sample.ui.home.components.ConfigModal
+import com.nomanr.sample.ui.samples.Samples
 
 @Composable
 fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {
@@ -138,6 +140,7 @@ internal fun ComponentList(padding: PaddingValues, navigateToDemo: (Component) -
 
 @Composable
 internal fun ComponentListItem(name: String, onClick: () -> Unit) {
+    val hasSample = remember { Samples.hasComponent(name) }
     OutlinedCard(modifier = Modifier.fillMaxSize(), onClick = onClick) {
         Column(
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp), verticalArrangement = Arrangement.Center
@@ -145,6 +148,12 @@ internal fun ComponentListItem(name: String, onClick: () -> Unit) {
             Text(
                 text = name, style = AppTheme.typography.label1, minLines = 2, maxLines = 2
             )
+
+            if (!hasSample) {
+                Text(
+                    text = "Coming Soon", style = AppTheme.typography.body2, textAlign = TextAlign.Center, color = Color.Red
+                )
+            }
         }
     }
 }

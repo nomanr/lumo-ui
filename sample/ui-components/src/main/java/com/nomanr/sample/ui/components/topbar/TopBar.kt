@@ -59,7 +59,6 @@ fun TopBar(
 ) {
 
     val containerColor = colors.containerColor(0f)
-    val contentColor = contentColorFor(color = containerColor)
 
     TopBarLayout(
         modifier = modifier, scrollBehavior = scrollBehavior, colors = colors, windowInsets = windowInsets
@@ -71,9 +70,7 @@ fun TopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            CompositionLocalProvider(LocalContentColor provides contentColor) {
-                content()
-            }
+            content()
         }
     }
 }
@@ -105,7 +102,12 @@ internal fun TopBarLayout(
     val topBarContainerColor by animateColorAsState(
         targetValue = colors.containerColor(fraction),
         animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-        label = "",
+        label = "animate container color",
+    )
+    val topBarContentColor by animateColorAsState(
+        targetValue = colors.contentColor(fraction),
+        animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+        label = "animate content color",
     )
 
     val topBarDragModifier = if (scrollBehavior != null && !scrollBehavior.isPinned) {
@@ -123,25 +125,28 @@ internal fun TopBarLayout(
     // calculating based on scrolling behaviour
     val dynamicHeight = height.intValue + (scrollBehavior?.state?.heightOffset ?: 0).toInt()
 
-    Layout(
-        content = content, modifier = modifier
-            .then(topBarDragModifier)
-            .background(topBarContainerColor)
-            .padding(paddingValue)
-    ) { measurables, constraints ->
-        val placeables = measurables.map { measurable ->
-            measurable.measure(constraints)
-        }
 
-        if (placeables.isEmpty() || placeables.size > 1) {
-            throw IllegalStateException("TopBar expects one child!")
-        }
+    CompositionLocalProvider(LocalContentColor provides topBarContentColor) {
+        Layout(
+            content = content, modifier = modifier
+                .then(topBarDragModifier)
+                .background(topBarContainerColor)
+                .padding(paddingValue)
+        ) { measurables, constraints ->
+            val placeables = measurables.map { measurable ->
+                measurable.measure(constraints)
+            }
 
-        if (height.intValue == 0) height.intValue = placeables.first().height
+            if (placeables.isEmpty() || placeables.size > 1) {
+                throw IllegalStateException("TopBar expects one child!")
+            }
 
-        layout(constraints.maxWidth, dynamicHeight) {
-            // Expects only one child, a layout with topbar content
-            placeables.first().place(0, dynamicHeight - height.intValue)
+            if (height.intValue == 0) height.intValue = placeables.first().height
+
+            layout(constraints.maxWidth, dynamicHeight) {
+                // Expects only one child, a layout with topbar content
+                placeables.first().place(0, dynamicHeight - height.intValue)
+            }
         }
     }
 }
@@ -261,6 +266,15 @@ data class TopBarColors(
     internal fun containerColor(colorTransitionFraction: Float): Color {
         return lerp(
             containerColor, scrolledContainerColor, FastOutLinearInEasing.transform(colorTransitionFraction)
+        )
+    }
+
+    @Composable
+    internal fun contentColor(colorTransitionFraction: Float): Color {
+        return lerp(
+            contentColorFor(color = containerColor),
+            contentColorFor(color = scrolledContainerColor),
+            FastOutLinearInEasing.transform(colorTransitionFraction)
         )
     }
 

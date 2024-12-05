@@ -39,6 +39,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.ButtonVariant
 import com.nomanr.sample.ui.components.Icon
@@ -169,7 +170,7 @@ private fun WithInsetsSample() {
         ) {
             TopBar(
                 colors = TopBarColors(
-                    containerColor = AppTheme.colors.secondary, scrolledContainerColor = AppTheme.colors.secondary
+                    containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
                 ),
             ) {
                 Box(
@@ -188,7 +189,7 @@ private fun WithInsetsSample() {
                             text = "Hello.", style = AppTheme.typography.h3, textAlign = TextAlign.Center
                         )
 
-                        IconButton(variant = IconButtonVariant.PrimaryGhost) {
+                        IconButton(variant = IconButtonVariant.Ghost) {
                             Icon(imageVector = Icons.Filled.MoreVert, contentDescription = "More options")
                         }
                     }
@@ -236,9 +237,8 @@ private fun WithoutInsetsSample() {
         ) {
             TopBar(
                 colors = TopBarColors(
-                    containerColor = AppTheme.colors.secondary, scrolledContainerColor = AppTheme.colors.secondary
-                ),
-                windowInsets = WindowInsets.systemBarsForVisualComponents.only(
+                    containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
+                ), windowInsets = WindowInsets.systemBarsForVisualComponents.only(
                     WindowInsetsSides.Horizontal
                 )
             ) {
@@ -254,8 +254,11 @@ private fun WithoutInsetsSample() {
                             modifier = Modifier.size(32.dp), imageVector = Icons.Filled.Hub, contentDescription = "More options"
                         )
 
-                        IconButton(variant = IconButtonVariant.PrimaryGhost) {
-                            Icon(imageVector = Icons.Filled.MoreVert, contentDescription = "More options")
+                        IconButton(variant = IconButtonVariant.Ghost) {
+                            Icon(
+                                imageVector = Icons.Filled.MoreVert,
+                                contentDescription = "More options",
+                            )
                         }
                     }
                     Text(
@@ -306,7 +309,7 @@ private fun ChangeColorOnScrollSample() {
         Scaffold(topBar = {
             TopBar(
                 scrollBehavior = scrollBehavior, colors = TopBarColors(
-                    containerColor = AppTheme.colors.background, scrolledContainerColor = AppTheme.colors.secondary
+                    containerColor = AppTheme.colors.background, scrolledContainerColor = AppTheme.colors.primary
                 ), windowInsets = WindowInsets.systemBarsForVisualComponents.only(
                     WindowInsetsSides.Horizontal
                 )
@@ -370,9 +373,8 @@ private fun EnterAlwaysScrollBehaviorSample() {
         Scaffold(topBar = {
             TopBar(
                 colors = TopBarColors(
-                    containerColor = AppTheme.colors.secondary, scrolledContainerColor = AppTheme.colors.secondary
-                ),
-                scrollBehavior = scrollBehavior, windowInsets = WindowInsets.systemBarsForVisualComponents.only(
+                    containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
+                ), scrollBehavior = scrollBehavior, windowInsets = WindowInsets.systemBarsForVisualComponents.only(
                     WindowInsetsSides.Horizontal
                 )
             ) {
@@ -434,9 +436,8 @@ private fun ExitUntilCollapsedScrollBehaviorSample() {
         Scaffold(topBar = {
             TopBar(
                 colors = TopBarColors(
-                    containerColor = AppTheme.colors.secondary, scrolledContainerColor = AppTheme.colors.secondary
-                ),
-                scrollBehavior = scrollBehavior, windowInsets = WindowInsets.systemBarsForVisualComponents.only(
+                    containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
+                ), scrollBehavior = scrollBehavior, windowInsets = WindowInsets.systemBarsForVisualComponents.only(
                     WindowInsetsSides.Horizontal
                 )
             ) {
@@ -495,7 +496,7 @@ private fun DeviceFrame(content: @Composable () -> Unit) {
         modifier = Modifier
             .padding(16.dp)
             .clip(RoundedCornerShape(8.dp))
-            .border(6.dp, AppTheme.colors.secondary)
+            .border(6.dp, AppTheme.colors.primary)
             .padding(top = 6.dp)
     ) {
         content()
@@ -503,5 +504,10 @@ private fun DeviceFrame(content: @Composable () -> Unit) {
 }
 
 private enum class TopBarSamples {
-    InitialState, ExampleWithInsets, ExampleWithoutInsets, ChangeColorOnScroll, EnterAlwaysScrollBehavior, ExitUntilCollapsedScrollBehavior
+    InitialState,
+    ExampleWithInsets,
+    ExampleWithoutInsets,
+    ChangeColorOnScroll,
+    EnterAlwaysScrollBehavior,
+    ExitUntilCollapsedScrollBehavior
 }

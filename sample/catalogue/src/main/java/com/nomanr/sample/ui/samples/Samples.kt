@@ -19,4 +19,8 @@ object Samples {
             Component.TopBar to { padding, triggerBackAction, interceptNavigateUp -> TopBarSample(padding, triggerBackAction, interceptNavigateUp) }
 
         )
+
+    fun hasComponent(componentName: String): Boolean {
+        return components.keys.any { it.label.equals(componentName, ignoreCase = true) }
+    }
 }

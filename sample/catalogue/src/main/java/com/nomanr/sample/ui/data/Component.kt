@@ -1,5 +1,30 @@
 package com.nomanr.sample.ui.data
 
 enum class Component(val label: String) {
-    Text("Text"), Button("Button"), Icon("Icon"), IconButton("Icon Button"), TopBar("Top App bar"), Card("Card")
+    Accordion("Accordion"),
+    AlertDialog("Alert Dialog"),
+    Badge("Badge"),
+    BottomNavigation("Modal Bottom Sheet"),
+    Button("Button"),
+    Card("Card"),
+    Checkbox("Checkbox"),
+    CheckBox("Checkbox"),
+    Chip("Chip"),
+    Divider("Divider"),
+    Icon("Icon"),
+    IconButton("Icon Button"),
+    NavigationBar("Navigation Bar"),
+    OTPTextField("OTP Text Field"),
+    ProgressIndicator("Progress Indicator"),
+    RadioButton("Radio Button"),
+    RatingBar("Rating Bar"),
+    Scaffold("Scaffold"),
+    Slider("Slider"),
+    SnackBar("Snackbar"),
+    Surface("Surface"),
+    Switch("Switch"),
+    Text("Text"),
+    TextField("TextField"),
+    Tooltip("Tooltip"),
+    TopBar("Top App bar")
 }
