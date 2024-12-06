@@ -18,6 +18,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalTypography
@@ -25,11 +27,16 @@ import com.nomanr.sample.ui.components.ModalBottomSheet
 import com.nomanr.sample.ui.components.RadioButton
 import com.nomanr.sample.ui.components.Slider
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.configs.LocalFontScaleState
+import com.nomanr.sample.ui.configs.LocalAppConfigState
 
 @Composable
 fun ConfigModal(isVisible: Boolean, onDismiss: () -> Unit) {
-    CompositionLocalProvider(LocalTypography provides AppTheme.originalScaleTypography) {
+    val appConfigState = LocalAppConfigState.current
+
+    CompositionLocalProvider(
+        LocalTypography provides AppTheme.originalScaleTypography,
+        LocalLayoutDirection provides appConfigState.systemLayoutDirection
+    ) {
         ModalBottomSheet(isVisible = isVisible, onDismissRequest = onDismiss) {
             Column(
                 modifier = Modifier
@@ -43,34 +50,63 @@ fun ConfigModal(isVisible: Boolean, onDismiss: () -> Unit) {
 
                 Spacer(modifier = Modifier.height(24.dp))
 
+                ConfigSection("Layout Direction") {
+                    LayoutDirectionSettings()
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
                 ConfigSection("Font Scale") {
                     FontScale()
                 }
+
+
             }
         }
     }
 }
 
 @Composable
+fun LayoutDirectionSettings() {
+    val appConfigState = LocalAppConfigState.current
+
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+        RadioButton(selected = appConfigState.layoutDirection == LayoutDirection.Ltr, onClick = {
+            appConfigState.updateLayoutDirection(LayoutDirection.Ltr)
+        }) {
+            Text(text = "LTR", style = AppTheme.typography.body3)
+        }
+
+        RadioButton(selected = appConfigState.layoutDirection == LayoutDirection.Rtl, onClick = {
+            appConfigState.updateLayoutDirection(LayoutDirection.Rtl)
+        }) {
+            Text(text = "RTL", style = AppTheme.typography.body3)
+        }
+    }
+}
+
+@Composable
 fun FontScale() {
-    val fontScaleState = LocalFontScaleState.current
+    val appConfigState = LocalAppConfigState.current
 
     var isSystemFontScale: Boolean by remember {
-        mutableStateOf(fontScaleState.systemFontScale == fontScaleState.fontScale)
+        mutableStateOf(appConfigState.systemFontScale == appConfigState.fontScale)
     }
 
     Column {
         Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(selected = isSystemFontScale, onClick = {
                 isSystemFontScale = true
-                fontScaleState.resetFontScale()
-            })
-            Text(text = "System", style = AppTheme.typography.body3)
+                appConfigState.resetFontScale()
+            }) {
+                Text(text = "System", style = AppTheme.typography.body3)
+            }
         }
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            RadioButton(selected = !isSystemFontScale, onClick = { isSystemFontScale = false })
-            Text(text = "Custom", style = AppTheme.typography.body3)
+            RadioButton(selected = !isSystemFontScale, onClick = { isSystemFontScale = false }) {
+                Text(text = "Custom", style = AppTheme.typography.body3)
+            }
         }
 
         Row(
@@ -82,14 +118,14 @@ fun FontScale() {
 
             Slider(
                 modifier = Modifier.weight(0.8f),
-                value = fontScaleState.fontScale,
-                valueRange = (fontScaleState.systemFontScale)..2.5f,
-                onValueChange = { fontScaleState.updateFontScale(it) },
+                value = appConfigState.fontScale,
+                valueRange = (appConfigState.systemFontScale)..2.5f,
+                onValueChange = { appConfigState.updateFontScale(it) },
                 enabled = !isSystemFontScale
             )
 
             Box(modifier = Modifier.weight(0.2f), contentAlignment = Alignment.Center) {
-                Text("%.2f".format(fontScaleState.fontScale), style = AppTheme.typography.label2)
+                Text("%.2f".format(appConfigState.fontScale), style = AppTheme.typography.label2)
             }
 
         }
@@ -100,10 +136,10 @@ fun FontScale() {
 @Composable
 fun ConfigSection(title: String, content: @Composable () -> Unit) {
 
-
-    Text("Font Scale", style = AppTheme.typography.label1)
+    Text(title, style = AppTheme.typography.label1)
 
     Spacer(modifier = Modifier.height(8.dp))
 
     content()
 }
+

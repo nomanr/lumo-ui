@@ -166,10 +166,17 @@ fun Surface(
     }
 }
 
+@Composable
 private fun Modifier.surface(
     shape: Shape, backgroundColor: Color, border: BorderStroke?, shadowElevation: Dp
 ) = this
-    .shadow(shadowElevation, shape, clip = false)
+    .shadow(
+        spotColor = AppTheme.colors.elevation,
+        ambientColor = AppTheme.colors.elevation,
+        elevation = shadowElevation,
+        shape = shape,
+        clip = false
+    )
     .then(if (border != null) Modifier.border(border, shape) else Modifier)
     .background(color = backgroundColor, shape = shape)
     .clip(shape)

@@ -322,14 +322,12 @@ fun CardComponentSample() {
         }
 
         Column {
-            Text(text = "Elevated Card with Action", style = LocalTypography.current.h3)
+            Text(text = "Elevated Card", style = LocalTypography.current.h3)
             ElevatedCard(
                 modifier = cardModifier,
-                onClick = { /* Handle click */ },
             ) {}
         }
 
-        // Outlined Card
         Column {
             Text(text = "Custom Outlined Card", style = LocalTypography.current.h3)
             OutlinedCard(
@@ -363,24 +361,7 @@ fun CardComponentSample() {
             ) {}
         }
 
-        Column {
-            Text(text = "Outlined Card with Hover Elevation", style = LocalTypography.current.h3)
-            OutlinedCard(
-                modifier = cardModifier,
-                onClick = { /* Handle click */ },
-                elevation = CardDefaults.outlinedCardElevation(
-                    defaultElevation = 0.dp,
-                    hoveredElevation = 4.dp
-                ),
-                border = BorderStroke(1.dp, Color(0xFFBDBDBD)),
-                colors = CardDefaults.outlinedCardColors(
-                    containerColor = Color(0xFFE0E0E0),
-                    contentColor = Color(0xFF616161)
-                )
-            ) {}
-        }
 
-        // Interactive Card
         Column {
             Text(text = "Interactive Card", style = LocalTypography.current.h3)
             Card(

@@ -9,9 +9,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
 import com.nomanr.sample.ui.components.LocalTextStyle
-import com.nomanr.sample.ui.configs.LocalFontScaleState
-import com.nomanr.sample.ui.configs.rememberFontScaleState
+import com.nomanr.sample.ui.configs.LocalAppConfigState
+import com.nomanr.sample.ui.configs.rememberAppConfigState
 import com.nomanr.sample.ui.foundation.ripple
 
 object AppTheme {
@@ -34,11 +35,10 @@ fun AppTheme(
     val selectionColors = rememberTextSelectionColors(LightColors)
     val colors = if (isDarkTheme) DarkColors else LightColors
 
-    val fontScaleState = rememberFontScaleState()
-    val scaledTypography = remember(fontScaleState.fontScale) {
-        scaledTypography(fontScaleState.fontScale)
+    val appConfigState = rememberAppConfigState()
+    val scaledTypography = remember(appConfigState.fontScale) {
+        scaledTypography(appConfigState.fontScale)
     }
-
 
     CompositionLocalProvider(
         LocalColors provides colors,
@@ -47,8 +47,9 @@ fun AppTheme(
         LocalOriginalTypography provides typography,
         LocalIndication provides rippleIndication,
         LocalTextSelectionColors provides selectionColors,
-        LocalFontScaleState provides fontScaleState,
+        LocalAppConfigState provides appConfigState,
         LocalTextStyle provides scaledTypography.body1,
+        LocalLayoutDirection provides appConfigState.layoutDirection,
         content = content
     )
 }

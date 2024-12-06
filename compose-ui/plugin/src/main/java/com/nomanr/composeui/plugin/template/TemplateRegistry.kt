@@ -91,7 +91,6 @@ object TemplateRegistry {
         supportingFiles = listOf("foundation/Ripple.kt.template"),
     )
 
-
     private val topBar = Template(
         componentFiles = listOf(
             "components/topbar/TopBar.kt.template", "components/topbar/TopBarScrollBehaviours.kt.template"

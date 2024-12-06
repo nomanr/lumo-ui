@@ -211,7 +211,7 @@ internal fun ButtonRealWorldExamples() {
 
         Button(
             modifier = Modifier.fillMaxWidth(),
-            variant = ButtonVariant.Destructive,
+            variant = ButtonVariant.DestructiveElevated,
         ) {
             CircularProgressIndicator(modifier = Modifier.size(24.dp))
         }

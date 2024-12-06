@@ -74,6 +74,7 @@ data class Colors(
     val textDisabled: Color,
 
     val scrim: Color,
+    val elevation: Color,
 )
 
 internal val LightColors = Colors(
@@ -109,6 +110,7 @@ internal val LightColors = Colors(
     textDisabled = Gray400,
 
     scrim = Color.Black.copy(alpha = 0.32f),
+    elevation = Gray700,
 )
 
 internal val DarkColors = Colors(
@@ -144,6 +146,7 @@ internal val DarkColors = Colors(
     textDisabled = Gray600,
 
     scrim = Color.Black.copy(alpha = 0.72f),
+    elevation = Gray200
 )
 
 val LocalColors = staticCompositionLocalOf { LightColors }
