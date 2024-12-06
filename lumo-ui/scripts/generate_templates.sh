@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")" || exit
 
-SOURCE_DIR="../components-lab/src/main/java/com/nomanr/compose/ui"
+SOURCE_DIR="../components-lab/src/main/java/com/nomanr/lumo/ui"
 DEST_DIR="../plugin/src/main/resources/templates"
 
 check_directory_exists() {
@@ -28,8 +28,8 @@ process_files() {
 
       temp_file=$(mktemp)
 
-      if ! sed -E -e "s|^package com\.nomanr\.compose\.ui(\..*)?|package {{packageName}}\1|" \
-                  -e "s|import com\.nomanr\.compose\.ui(\..*)?|import {{packageName}}\1|" \
+      if ! sed -E -e "s|^package com\.nomanr\.lumo\.ui(\..*)?|package {{packageName}}\1|" \
+                  -e "s|import com\.nomanr\.lumo\.ui(\..*)?|import {{packageName}}\1|" \
                   -e "s|AppTheme|{{themeName}}|g" \
                   -e "/Font\(R\.font\.poppins/d" \
                   "$item" > "$temp_file"; then
