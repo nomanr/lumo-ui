@@ -16,11 +16,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.KeyboardArrowDown
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -55,6 +50,8 @@ fun AccordionSample(padding: PaddingValues) {
         AnimateArrowWithExpandCollapse()
         NoAnimation()
         OnlyOneShouldOpenAtATime()
+
+        Spacer(modifier = Modifier.height(16.dp))
 
     }
 }
