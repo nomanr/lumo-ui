@@ -6,11 +6,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
@@ -19,7 +17,6 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Web
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -30,7 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nomanr.composeui.sample.ui_components.R
+import com.nomanr.lumo.sample.R
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.IconButton
@@ -40,7 +37,6 @@ import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.OutlinedCard
 import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
-import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
 import com.nomanr.sample.ui.data.Component
 import com.nomanr.sample.ui.home.components.ConfigModal
 import com.nomanr.sample.ui.samples.Samples

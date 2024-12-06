@@ -24,8 +24,8 @@ tasks {
 gradlePlugin {
     plugins{
         register("mavenPublishingPlugin") {
-            id = "com.nomanr.composeui.publishing-plugin"
-            implementationClass = "com.nomanr.composeui.plugins.PublishingPlugin"
+            id = "com.nomanr.lumo.publishing-plugin"
+            implementationClass = "com.nomanr.lumo.plugins.PublishingPlugin"
         }
     }
 }

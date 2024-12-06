@@ -3,15 +3,15 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
-    id("com.nomanr.plugin.composeui")
+    id("com.nomanr.plugin.lumo")
 }
 
 android {
-    namespace = "com.nomanr.composeui.sample"
+    namespace = "com.nomanr.lumo.sample"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.nomanr.composeui.sample"
+        applicationId = "com.nomanr.lumo.sample"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1

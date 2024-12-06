@@ -19,10 +19,8 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
-import com.nomanr.composeui.sample.R
+import com.nomanr.lumo.sample.R
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Text

@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.nomanr.composeui.sample.ui_components.R
+import com.nomanr.lumo.sample.ui_components.R
 
 val fontFamily = FontFamily(
     Font(R.font.poppins_black, FontWeight.Black),

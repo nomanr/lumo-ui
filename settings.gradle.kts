@@ -1,6 +1,6 @@
 pluginManagement {
     includeBuild("build-logic")
-    includeBuild("compose-ui/plugin")
+    includeBuild("lumo-ui/plugin")
 
     repositories {
         google {
@@ -23,7 +23,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "compose-ui"
-include(":compose-ui:components-lab")
+rootProject.name = "lumo-ui"
+include(":lumo-ui:components-lab")
 include(":sample:catalogue")
 include(":sample:ui-components")

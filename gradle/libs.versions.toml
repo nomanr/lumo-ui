@@ -122,7 +122,7 @@ org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
 
 #Local plugins
-app-publishing-plugin = { id = "com.nomanr.composeui.publishing-plugin" }
+app-publishing-plugin = { id = "com.nomanr.lumo.publishing-plugin" }
 
 
 

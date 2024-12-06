@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Composeui" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.Lumo" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowSplashScreenBackground">@color/black</item>
     </style>
 </resources>

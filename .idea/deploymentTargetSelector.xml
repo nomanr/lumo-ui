@@ -31,6 +31,9 @@
       <SelectionState runConfigName="UnderlinedTextFieldExample">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="lumo-ui.components-lab">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
