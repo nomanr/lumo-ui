@@ -31,16 +31,23 @@ class ComponentGenerator(
         logger.info("Generating ${component.name} ...")
         val template = TemplateRegistry.getTemplate(component)
 
-        val componentFile = File(outputDir, template.fileName.replace(".kt.template", ".kt"))
-        if (componentFile.exists()) {
-            throw ComposeUIException("Component '${component.name}' already exists. Nothing to generate.")
+        template.componentFiles.forEach { componentPath ->
+            val componentOutputFile = File(outputDir, componentPath.replace(".kt.template", ".kt"))
+            ensureDirectoryExists(componentOutputFile)
+
+            if (componentOutputFile.exists()) {
+                failedToGenerate.add(componentOutputFile)
+            } else {
+                try {
+                    generateTemplate(componentPath, componentOutputFile)
+                    successfullyGenerated.add(componentOutputFile)
+                } catch (e: Exception) {
+                    failedToGenerate.add(componentOutputFile)
+                }
+            }
         }
 
-        ensureDirectoryExists(componentFile)
-        generateTemplate(template.fileName, componentFile)
-        successfullyGenerated.add(componentFile)
-
-        template.requiredFiles.forEach { dependencyPath ->
+        template.supportingFiles.forEach { dependencyPath ->
             val dependencyOutputFile = File(outputDir, dependencyPath.replace(".kt.template", ".kt"))
             ensureDirectoryExists(dependencyOutputFile)
 

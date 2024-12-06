@@ -1,11 +1,11 @@
-package {{packageName}}.foundation
+package com.nomanr.sample.ui.foundation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import {{packageName}}.LocalContentColor
-import {{packageName}}.components.LocalTextStyle
+import com.nomanr.sample.ui.LocalContentColor
+import com.nomanr.sample.ui.components.LocalTextStyle
 
 @Composable
 fun ProvideTextStyle(value: TextStyle, content: @Composable () -> Unit) {

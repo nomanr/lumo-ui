@@ -14,6 +14,7 @@ enum class SupportedComponents {
     Slider,
     Surface,
     Text,
+    TextField,
     Theme,
     TopBar
 }

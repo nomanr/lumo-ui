@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.samples
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -74,7 +74,11 @@ private fun ExpandClickingHeader() {
                         text = "Click the header to expand and collapse", style = AppTheme.typography.body1
                     )
                 }
-                Box(modifier = Modifier.weight(0.2f), contentAlignment = Alignment.CenterEnd) {
+                Box(
+                    modifier = Modifier
+                        .size(44.dp)
+                        .weight(0.2f), contentAlignment = Alignment.CenterEnd
+                ) {
                     Icon(imageVector = Icons.Outlined.KeyboardArrowDown, contentDescription = "Expand")
                 }
             }
@@ -225,8 +229,15 @@ private fun NoAnimation() {
                         text = "No animation", style = AppTheme.typography.body1
                     )
                 }
-                Box(modifier = Modifier.weight(0.2f), contentAlignment = Alignment.CenterEnd) {
-                    Icon(imageVector = Icons.Outlined.KeyboardArrowDown, contentDescription = "Expand")
+                Box(
+                    modifier = Modifier
+                        .size(44.dp)
+                        .weight(0.2f), contentAlignment = Alignment.CenterEnd
+                ) {
+                    Icon(
+
+                        imageVector = Icons.Outlined.KeyboardArrowDown, contentDescription = "Expand"
+                    )
                 }
             }
         }, bodyContent = {
@@ -282,16 +293,17 @@ private fun OnlyOneShouldOpenAtATime() {
                                 text = text.first, style = AppTheme.typography.body1
                             )
                         }
-                        Box(modifier = Modifier.weight(0.2f), contentAlignment = Alignment.CenterEnd) {
-                            IconButton(
-                                variant = IconButtonVariant.Ghost, enabled = false
-                            ) {
-                                Icon(
-                                    modifier = Modifier.rotate(state.animationProgress * 180),
-                                    imageVector = Icons.Outlined.KeyboardArrowDown,
-                                    contentDescription = "Expand"
-                                )
-                            }
+                        Box(
+                            modifier = Modifier
+                                .size(44.dp)
+                                .weight(0.2f), contentAlignment = Alignment.CenterEnd
+                        ) {
+
+                            Icon(
+                                modifier = Modifier.rotate(state.animationProgress * 180),
+                                imageVector = Icons.Outlined.KeyboardArrowDown,
+                                contentDescription = "Expand"
+                            )
                         }
                     }
                 }, bodyContent = {
