@@ -11,6 +11,6 @@ class LumoGradlePlugin : Plugin<Project> {
     }
 
     companion object {
-        const val TASK_NAME = "compose"
+        const val TASK_NAME = "lumo"
     }
 }

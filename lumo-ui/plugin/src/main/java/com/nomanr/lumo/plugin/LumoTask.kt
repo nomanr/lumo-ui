@@ -90,7 +90,7 @@ abstract class LumoTask : DefaultTask() {
 
     private fun printHelpMessage() {
         val helpMessage = """
-            |Usage: ./gradlew composeUI --option <value>
+            |Usage: ./gradlew lumo --option <value>
             |
             |Options:
             |  --init                  Initialize Compose UI Plugin
