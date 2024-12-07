@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,6 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.foundation.ButtonElevation
 
 @Composable
@@ -148,7 +148,19 @@ private fun DefaultButtonContent(
 }
 
 enum class ButtonVariant {
-    Primary, PrimaryOutlined, PrimaryElevated, PrimaryGhost, Secondary, SecondaryOutlined, SecondaryElevated, SecondaryGhost, Destructive, DestructiveOutlined, DestructiveElevated, DestructiveGhost
+    Primary,
+    PrimaryOutlined,
+    PrimaryElevated,
+    PrimaryGhost,
+    Secondary,
+    SecondaryOutlined,
+    SecondaryElevated,
+    SecondaryGhost,
+    Destructive,
+    DestructiveOutlined,
+    DestructiveElevated,
+    DestructiveGhost,
+    Ghost,
 }
 
 @Composable
@@ -166,6 +178,7 @@ internal fun buttonStyleFor(variant: ButtonVariant): ButtonStyle {
         ButtonVariant.DestructiveOutlined -> ButtonDefaults.destructiveOutlined()
         ButtonVariant.DestructiveElevated -> ButtonDefaults.destructiveElevated()
         ButtonVariant.DestructiveGhost -> ButtonDefaults.destructiveGhost()
+        ButtonVariant.Ghost -> ButtonDefaults.ghost()
     }
 }
 
@@ -355,6 +368,21 @@ internal object ButtonDefaults {
         colors = ButtonColors(
             containerColor = AppTheme.colors.transparent,
             contentColor = AppTheme.colors.error,
+            borderColor = AppTheme.colors.transparent,
+            disabledContainerColor = AppTheme.colors.transparent,
+            disabledContentColor = AppTheme.colors.onDisabled,
+            disabledBorderColor = AppTheme.colors.transparent,
+        ),
+        shape = filledShape,
+        elevation = null,
+        contentPadding = contentPadding,
+    )
+
+    @Composable
+    fun ghost() = ButtonStyle(
+        colors = ButtonColors(
+            containerColor = AppTheme.colors.transparent,
+            contentColor = LocalContentColor.current,
             borderColor = AppTheme.colors.transparent,
             disabledContainerColor = AppTheme.colors.transparent,
             disabledContentColor = AppTheme.colors.onDisabled,

@@ -11,6 +11,13 @@ object TemplateRegistry {
         componentFiles = listOf("components/Accordion.kt.template")
     )
 
+    private val alertDialog = Template(
+        componentFiles = listOf("components/AlertDialog.kt.template"),
+        supportingFiles = listOf(
+            "foundation/Providers.kt.template",
+        )
+    )
+
     private val button = Template(
         componentFiles = listOf("components/Button.kt.template"), supportingFiles = listOf(
             *surface.allRequiredFiles(),
@@ -106,6 +113,7 @@ object TemplateRegistry {
 
     private val templates = mapOf(
         Accordion to accordion,
+        AlertDialog to alertDialog,
         Button to button,
         Card to card,
         Checkbox to checkbox,

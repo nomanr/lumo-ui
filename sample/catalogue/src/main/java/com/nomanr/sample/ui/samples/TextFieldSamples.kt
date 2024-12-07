@@ -73,7 +73,8 @@ private fun Examples() {
             modifier = Modifier.padding(top = 16.dp), text = "Simple TextField", style = AppTheme.typography.h4
         )
 
-        TextField(value = phone1,
+        TextField(
+            value = phone1,
             onValueChange = { if (it.isDigitsOnly()) phone1 = it },
             label = { Text("Phone") },
             placeholder = { Text("000-000-0000") },
@@ -86,7 +87,8 @@ private fun Examples() {
         )
 
 
-        OutlinedTextField(value = phone2,
+        OutlinedTextField(
+            value = phone2,
             onValueChange = { if (it.isDigitsOnly()) phone2 = it },
             label = { Text("Phone") },
             placeholder = { Text("000-000-0000") },
@@ -99,7 +101,8 @@ private fun Examples() {
             modifier = Modifier.padding(top = 16.dp), text = "And with a prefix", style = AppTheme.typography.h4
         )
 
-        UnderlinedTextField(value = phone3,
+        UnderlinedTextField(
+            value = phone3,
             onValueChange = { if (it.isDigitsOnly()) phone3 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -113,7 +116,8 @@ private fun Examples() {
             modifier = Modifier.padding(top = 16.dp), text = "And with a suffix", style = AppTheme.typography.h4
         )
 
-        TextField(value = phone4,
+        TextField(
+            value = phone4,
             onValueChange = { if (it.isDigitsOnly()) phone4 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -128,7 +132,8 @@ private fun Examples() {
             modifier = Modifier.padding(top = 16.dp), text = "And with a leading icon", style = AppTheme.typography.h4
         )
 
-        TextField(value = phone5,
+        TextField(
+            value = phone5,
             onValueChange = { if (it.isDigitsOnly()) phone5 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -146,7 +151,8 @@ private fun Examples() {
             modifier = Modifier.padding(top = 16.dp), text = "And with a trailing icon", style = AppTheme.typography.h4
         )
 
-        TextField(value = phone6,
+        TextField(
+            value = phone6,
             onValueChange = { if (it.isDigitsOnly()) phone6 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -171,7 +177,8 @@ private fun Examples() {
             modifier = Modifier.padding(top = 16.dp), text = "And with an error", style = AppTheme.typography.h4
         )
 
-        TextField(value = phone6,
+        TextField(
+            value = phone6,
             onValueChange = { if (it.isDigitsOnly()) phone6 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -197,7 +204,8 @@ private fun Examples() {
             modifier = Modifier.padding(top = 16.dp), text = "And read-only", style = AppTheme.typography.h4
         )
 
-        TextField(value = phone7,
+        TextField(
+            value = phone7,
             onValueChange = { if (it.isDigitsOnly()) phone7 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -233,7 +241,8 @@ private fun Examples() {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OutlinedTextField(modifier = Modifier.weight(1f),
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
                 value = day,
                 onValueChange = {
                     day = it
@@ -243,7 +252,8 @@ private fun Examples() {
                 supportingText = { Text("DD", style = AppTheme.typography.label2) },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
             )
-            OutlinedTextField(modifier = Modifier.weight(1f),
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
                 value = month,
                 onValueChange = {
                     month = it
@@ -253,7 +263,8 @@ private fun Examples() {
                 supportingText = { Text("MM", style = AppTheme.typography.label2) },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
             )
-            OutlinedTextField(modifier = Modifier.weight(1f),
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
                 value = year,
                 onValueChange = {
                     year = it
@@ -280,7 +291,9 @@ fun InteractiveSample() {
     var leadingIconEnabled by remember { mutableStateOf(false) }
     var trailingIconEnabled by remember { mutableStateOf(false) }
     var errorEnabled by remember { mutableStateOf(false) }
-    var placeholderEnabled by remember { mutableStateOf(false) }
+    var disabled by remember { mutableStateOf(false) }
+    var readOnly by remember { mutableStateOf(false) }
+
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -300,6 +313,8 @@ fun InteractiveSample() {
             prefix = if (prefixEnabled) "+44" else null,
             suffix = if (suffixEnabled) "${phone.length}/10" else null,
             isError = errorEnabled,
+            enabled = !disabled,
+            readOnly = readOnly,
             leadingIcon = if (leadingIconEnabled) {
                 { Icon(Icons.Filled.Phone, contentDescription = "Phone Icon") }
             } else null,
@@ -341,6 +356,8 @@ fun InteractiveSample() {
             ToggleOption("Leading Icon", leadingIconEnabled) { leadingIconEnabled = it }
             ToggleOption("Trailing Icon", trailingIconEnabled) { trailingIconEnabled = it }
             ToggleOption("Error State", errorEnabled) { errorEnabled = it }
+            ToggleOption("Disabled", disabled) { disabled = it }
+            ToggleOption("Readonly", readOnly) { readOnly = it }
         }
     }
 }
@@ -356,10 +373,11 @@ fun RenderTextField(
     prefix: String? = null,
     suffix: String? = null,
     isError: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
-
-    ) {
+) {
     when (type) {
         "TextField" -> TextField(value = value,
             onValueChange = onValueChange,
@@ -374,7 +392,11 @@ fun RenderTextField(
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
             isError = isError,
-            placeholder = { Text("Enter your phone number") })
+            enabled = enabled,
+            readOnly = readOnly,
+            placeholder = { Text("Enter your phone number") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
 
         "OutlinedTextField" -> OutlinedTextField(value = value,
             onValueChange = onValueChange,
@@ -389,7 +411,11 @@ fun RenderTextField(
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
             isError = isError,
-            placeholder = { Text("Enter your phone number") })
+            enabled = enabled,
+            readOnly = readOnly,
+            placeholder = { Text("Enter your phone number") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
 
         "UnderlinedTextField" -> UnderlinedTextField(value = value,
             onValueChange = onValueChange,
@@ -404,7 +430,11 @@ fun RenderTextField(
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
             isError = isError,
-            placeholder = { Text("Enter your phone number") })
+            enabled = enabled,
+            readOnly = readOnly,
+            placeholder = { Text("Enter your phone number") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
     }
 
 

@@ -19,6 +19,7 @@ object Samples {
             Component.TopBar to { padding, triggerBackAction, interceptNavigateUp -> TopBarSample(padding, triggerBackAction, interceptNavigateUp) },
             Component.Accordion to { padding, _, _ -> AccordionSample(padding) },
             Component.TextField to { padding, _, _ -> TextFieldSamples(padding) },
+            Component.AlertDialog to { padding, _, _ -> AlertDialogSample(padding) },
 
         )
 

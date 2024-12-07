@@ -79,7 +79,7 @@ fun OutlinedTextField(
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
         BasicTextField(modifier = modifier.defaultMinSize(
             minHeight = OutlinedTextFieldDefaults.MinHeight
-        ),
+        ).fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,

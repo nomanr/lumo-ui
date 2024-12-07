@@ -2,6 +2,7 @@ package com.nomanr.lumo.plugin.template
 
 enum class SupportedComponents {
     Accordion,
+    AlertDialog,
     Button,
     Card,
     Checkbox,
