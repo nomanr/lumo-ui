@@ -23,6 +23,11 @@ object TemplateRegistry {
             *surface.allRequiredFiles(), "components/card/CardElevation.kt.template", "foundation/Elevation.kt.template"
         )
     )
+    private val checkbox = Template(
+        componentFiles = listOf("components/Checkbox.kt.template"), supportingFiles = listOf(
+            "foundation/Ripple.kt.template",
+        )
+    )
 
     private val divider = Template(
         componentFiles = listOf("components/Divider.kt.template"),
@@ -103,6 +108,7 @@ object TemplateRegistry {
         Accordion to accordion,
         Button to button,
         Card to card,
+        Checkbox to checkbox,
         Divider to divider,
         Icon to icon,
         IconButton to iconButton,

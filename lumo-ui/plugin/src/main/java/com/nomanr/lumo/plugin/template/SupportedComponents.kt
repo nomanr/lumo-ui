@@ -4,6 +4,7 @@ enum class SupportedComponents {
     Accordion,
     Button,
     Card,
+    Checkbox,
     Divider,
     Icon,
     IconButton,

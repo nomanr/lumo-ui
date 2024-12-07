@@ -18,7 +18,7 @@ object Samples {
             Component.Card to { padding, _, _ -> CardSample(padding) },
             Component.TopBar to { padding, triggerBackAction, interceptNavigateUp -> TopBarSample(padding, triggerBackAction, interceptNavigateUp) },
             Component.Accordion to { padding, _, _ -> AccordionSample(padding) },
-            Component.Divider to { padding, _, _ -> TextFieldSamples(padding) },
+            Component.TextField to { padding, _, _ -> TextFieldSamples(padding) },
 
         )
 

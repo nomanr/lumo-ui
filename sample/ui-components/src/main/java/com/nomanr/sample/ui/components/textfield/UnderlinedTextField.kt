@@ -73,9 +73,11 @@ fun UnderlinedTextField(
     val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        BasicTextField(modifier = modifier.defaultMinSize(
-            minHeight = UnderlinedTextFieldDefaults.MinHeight
-        ),
+        BasicTextField(modifier = modifier
+            .defaultMinSize(
+                minHeight = UnderlinedTextFieldDefaults.MinHeight
+            )
+            .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -189,10 +191,7 @@ internal object UnderlinedTextFieldDefaults {
     val MinHeight = TextFieldMinHeight
 
     private fun contentPadding(
-        start: Dp = 0.dp,
-        end: Dp = 0.dp,
-        top: Dp = TextFieldVerticalPadding,
-        bottom: Dp = TextFieldVerticalPadding
+        start: Dp = 0.dp, end: Dp = 0.dp, top: Dp = TextFieldVerticalPadding, bottom: Dp = TextFieldVerticalPadding
     ): PaddingValues = PaddingValues(start, top, end, bottom)
 
     private fun labelPadding(
@@ -213,13 +212,13 @@ internal object UnderlinedTextFieldDefaults {
     private fun leadingIconPadding(
         start: Dp = 0.dp,
         top: Dp = 0.dp,
-        end: Dp = HorizontalIconPadding/2,
+        end: Dp = HorizontalIconPadding / 2,
         bottom: Dp = 0.dp,
     ): PaddingValues = PaddingValues(start, top, end, bottom)
 
     @Composable
     private fun trailingIconPadding(
-        start: Dp = HorizontalIconPadding/2,
+        start: Dp = HorizontalIconPadding / 2,
         top: Dp = 0.dp,
         end: Dp = 0.dp,
         bottom: Dp = 0.dp,
