@@ -3,6 +3,7 @@ package com.nomanr.sample.ui.sample
 import androidx.compose.runtime.Composable
 import com.nomanr.sample.ui.sample.samples.AccordionSample
 import com.nomanr.sample.ui.sample.samples.AlertDialogSample
+import com.nomanr.sample.ui.sample.samples.BadgeSample
 import com.nomanr.sample.ui.sample.samples.ButtonSample
 import com.nomanr.sample.ui.sample.samples.CardSample
 import com.nomanr.sample.ui.sample.samples.IconButtonSample
@@ -52,7 +53,7 @@ data class Component internal constructor(
         private val components: List<Component> = listOf(
             Component(id = ComponentId.ACCORDION),
             Component(id = ComponentId.ALERT_DIALOG),
-            Component(id = ComponentId.BADGE),
+            Component(id = ComponentId.BADGE, showTopBar = false),
             Component(id = ComponentId.BOTTOM_NAVIGATION),
             Component(id = ComponentId.BUTTON),
             Component(id = ComponentId.CARD),
@@ -96,8 +97,8 @@ object Samples {
             ComponentId.ACCORDION to { AccordionSample() },
             ComponentId.TEXT_FIELD to { TextFieldSamples() },
             ComponentId.ALERT_DIALOG to { AlertDialogSample() },
-
-            )
+            ComponentId.BADGE to { navigateUp -> BadgeSample(navigateUp) },
+        )
 
     fun hasComponent(componentName: String): Boolean {
         return components.keys.any { it.label.equals(componentName, ignoreCase = true) }

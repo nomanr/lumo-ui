@@ -17,6 +17,12 @@ object TemplateRegistry {
         )
     )
 
+    private val badge = Template(
+        componentFiles = listOf("components/Badge.kt.template"), supportingFiles = listOf(
+            "foundation/Providers.kt.template",
+        )
+    )
+
     private val button = Template(
         componentFiles = listOf("components/Button.kt.template"), supportingFiles = listOf(
             *surface.allRequiredFiles(),
@@ -113,6 +119,7 @@ object TemplateRegistry {
     private val templates = mapOf(
         Accordion to accordion,
         AlertDialog to alertDialog,
+        Badge to badge,
         Button to button,
         Card to card,
         Checkbox to checkbox,

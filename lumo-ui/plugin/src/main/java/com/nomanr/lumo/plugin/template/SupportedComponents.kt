@@ -3,6 +3,7 @@ package com.nomanr.lumo.plugin.template
 enum class SupportedComponents {
     Accordion,
     AlertDialog,
+    Badge,
     Button,
     Card,
     Checkbox,

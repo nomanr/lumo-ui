@@ -59,8 +59,8 @@ fun AlertDialog(
     shape: Shape = DialogShape,
     containerColor: Color = Color.White,
     iconContentColor: Color = {{themeName}}.colors.primary,
-    titleContentColor: Color = Color.Yellow,
-    textContentColor: Color = Color.Blue,
+    titleContentColor: Color = {{themeName}}.colors.primary,
+    textContentColor: Color = {{themeName}}.colors.primary,
     elevation: Dp = DialogElevation,
     properties: DialogProperties = DialogProperties(),
     content: @Composable (() -> Unit)? = null
