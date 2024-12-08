@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.nomanr.sample.ui.CatalogueAppState
-import com.nomanr.sample.ui.demo.DemoScreen
+import com.nomanr.sample.ui.sample.SampleScreen
 import com.nomanr.sample.ui.home.HomeScreen
 
 @Composable
@@ -24,7 +24,7 @@ fun CatalogueAppNavHost(
 
         composable<NavRoute.Demo> {
             val args = it.toRoute<NavRoute.Demo>()
-            DemoScreen(componentId = args.componentId, navigateUp = { navController.navigateUp() })
+            SampleScreen(componentId = args.componentId, navigateUp = { navController.navigateUp() })
         }
     }
 }

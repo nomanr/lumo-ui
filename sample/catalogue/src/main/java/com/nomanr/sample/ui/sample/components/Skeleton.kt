@@ -1,4 +1,4 @@
-package com.nomanr.sample.ui.demo.components
+package com.nomanr.sample.ui.sample.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

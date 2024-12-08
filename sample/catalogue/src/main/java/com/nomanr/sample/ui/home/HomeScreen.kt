@@ -38,8 +38,8 @@ import com.nomanr.sample.ui.components.card.OutlinedCard
 import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.home.components.ConfigModal
-import com.nomanr.sample.ui.samples.Component
-import com.nomanr.sample.ui.samples.Samples
+import com.nomanr.sample.ui.sample.Component
+import com.nomanr.sample.ui.sample.Samples
 
 @Composable
 fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {

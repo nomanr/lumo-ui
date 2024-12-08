@@ -1,6 +1,15 @@
-package com.nomanr.sample.ui.samples
+package com.nomanr.sample.ui.sample
 
 import androidx.compose.runtime.Composable
+import com.nomanr.sample.ui.sample.samples.AccordionSample
+import com.nomanr.sample.ui.sample.samples.AlertDialogSample
+import com.nomanr.sample.ui.sample.samples.ButtonSample
+import com.nomanr.sample.ui.sample.samples.CardSample
+import com.nomanr.sample.ui.sample.samples.IconButtonSample
+import com.nomanr.sample.ui.sample.samples.IconSample
+import com.nomanr.sample.ui.sample.samples.TextFieldSamples
+import com.nomanr.sample.ui.sample.samples.TextSample
+import com.nomanr.sample.ui.sample.samples.TopBarSample
 import kotlinx.serialization.Serializable
 
 enum class ComponentId(val label: String) {
@@ -76,14 +85,14 @@ data class Component internal constructor(
 
 
 object Samples {
-    val components: Map<ComponentId, @Composable () -> Unit>
-        get() = mapOf<ComponentId, @Composable () -> Unit>(
+    val components: Map<ComponentId, @Composable (navigateUp: () -> Unit) -> Unit>
+        get() = mapOf<ComponentId, @Composable (navigateUp: () -> Unit) -> Unit>(
             ComponentId.TEXT to { TextSample() },
             ComponentId.BUTTON to { ButtonSample() },
             ComponentId.ICON to { IconSample() },
             ComponentId.ICON_BUTTON to { IconButtonSample() },
             ComponentId.CARD to { CardSample() },
-            ComponentId.TOP_BAR to { TopBarSample() },
+            ComponentId.TOP_BAR to { navigateUp -> TopBarSample(navigateUp) },
             ComponentId.ACCORDION to { AccordionSample() },
             ComponentId.TEXT_FIELD to { TextFieldSamples() },
             ComponentId.ALERT_DIALOG to { AlertDialogSample() },

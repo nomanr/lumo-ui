@@ -7,7 +7,6 @@ import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.rememberSplineBasedDecay
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
@@ -36,14 +35,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
+import com.nomanr.sample.ui.components.Surface
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults.TopBarHeight
 import com.nomanr.sample.ui.contentColorFor
 import com.nomanr.sample.ui.foundation.systemBarsForVisualComponents
@@ -57,8 +58,6 @@ fun TopBar(
     windowInsets: WindowInsets? = TopBarDefaults.windowInsets,
     content: @Composable () -> Unit
 ) {
-
-    val containerColor = colors.containerColor(0f)
 
     TopBarLayout(
         modifier = modifier, scrollBehavior = scrollBehavior, colors = colors, windowInsets = windowInsets
@@ -88,7 +87,7 @@ internal fun TopBarLayout(
 
     val density = LocalDensity.current
 
-    val paddingValue = windowInsets?.asPaddingValues(density) ?: PaddingValues()
+    val windowInsetsPaddingValues = windowInsets?.asPaddingValues(density) ?: PaddingValues()
 
     val heightOffsetLimit = -height.intValue.toFloat()
     SideEffect {
@@ -126,26 +125,27 @@ internal fun TopBarLayout(
     val dynamicHeight = height.intValue + (scrollBehavior?.state?.heightOffset ?: 0).toInt()
 
 
-    CompositionLocalProvider(LocalContentColor provides topBarContentColor) {
-        Layout(
-            content = content, modifier = modifier
-                .then(topBarDragModifier)
-                .background(topBarContainerColor)
-                .padding(paddingValue)
-        ) { measurables, constraints ->
-            val placeables = measurables.map { measurable ->
-                measurable.measure(constraints)
-            }
+    Surface(modifier = modifier.then(topBarDragModifier), color = topBarContainerColor) {
+        CompositionLocalProvider(LocalContentColor provides topBarContentColor) {
+            Layout(
+                content = content, modifier = Modifier
+                    .padding(windowInsetsPaddingValues)
+                    .clipToBounds()
+            ) { measurables, constraints ->
+                val placeables = measurables.map { measurable ->
+                    measurable.measure(constraints)
+                }
 
-            if (placeables.isEmpty() || placeables.size > 1) {
-                throw IllegalStateException("TopBar expects one child!")
-            }
+                if (placeables.isEmpty() || placeables.size > 1) {
+                    throw IllegalStateException("TopBar expects one child!")
+                }
 
-            if (height.intValue == 0) height.intValue = placeables.first().height
+                if (height.intValue == 0) height.intValue = placeables.first().height
 
-            layout(constraints.maxWidth, dynamicHeight) {
-                // Expects only one child, a layout with topbar content
-                placeables.first().place(0, dynamicHeight - height.intValue)
+                layout(constraints.maxWidth, dynamicHeight) {
+                    // Expects only one child, a layout with topbar content
+                    placeables.first().place(0, dynamicHeight - height.intValue)
+                }
             }
         }
     }
@@ -278,20 +278,6 @@ data class TopBarColors(
         )
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || other !is TopBarColors) return false
-
-        if (containerColor != other.containerColor) return false
-        return scrolledContainerColor != other.scrolledContainerColor
-    }
-
-    override fun hashCode(): Int {
-        var result = containerColor.hashCode()
-        result = 31 * result + scrolledContainerColor.hashCode()
-
-        return result
-    }
 }
 
 

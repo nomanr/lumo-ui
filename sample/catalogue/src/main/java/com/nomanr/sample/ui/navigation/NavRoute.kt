@@ -1,6 +1,6 @@
 package com.nomanr.sample.ui.navigation
 
-import com.nomanr.sample.ui.samples.ComponentId
+import com.nomanr.sample.ui.sample.ComponentId
 import kotlinx.serialization.Serializable
 
 

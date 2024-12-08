@@ -12,8 +12,7 @@ object TemplateRegistry {
     )
 
     private val alertDialog = Template(
-        componentFiles = listOf("components/AlertDialog.kt.template"),
-        supportingFiles = listOf(
+        componentFiles = listOf("components/AlertDialog.kt.template"), supportingFiles = listOf(
             "foundation/Providers.kt.template",
         )
     )
@@ -92,8 +91,7 @@ object TemplateRegistry {
             "components/textfield/base/TextFieldColors.kt.template",
             "components/textfield/base/TextFieldDecoration.kt.template",
             "components/textfield/base/TextFieldLayout.kt.template",
-        ),
-        supportingFiles = listOf(
+        ), supportingFiles = listOf(
             "foundation/Providers.kt.template",
         )
     )
@@ -108,6 +106,7 @@ object TemplateRegistry {
             "components/topbar/TopBar.kt.template", "components/topbar/TopBarScrollBehaviours.kt.template"
         ), supportingFiles = listOf(
             "foundation/SystemBarsDefaultInsets.kt.template",
+            "components/Surface.kt.template",
         )
     )
 

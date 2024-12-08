@@ -1,4 +1,4 @@
-package com.nomanr.sample.ui.samples
+package com.nomanr.sample.ui.sample.samples
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,7 +22,7 @@ import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.Card
 import com.nomanr.sample.ui.components.card.ElevatedCard
 import com.nomanr.sample.ui.components.card.OutlinedCard
-import com.nomanr.sample.ui.demo.components.Skeleton
+import com.nomanr.sample.ui.sample.components.Skeleton
 
 @Composable
 fun CardSample() {
