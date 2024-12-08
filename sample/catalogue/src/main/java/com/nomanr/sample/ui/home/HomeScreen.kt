@@ -37,8 +37,8 @@ import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.OutlinedCard
 import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
-import com.nomanr.sample.ui.data.Component
 import com.nomanr.sample.ui.home.components.ConfigModal
+import com.nomanr.sample.ui.samples.Component
 import com.nomanr.sample.ui.samples.Samples
 
 @Composable
@@ -107,7 +107,7 @@ fun HomeTopBar(
 
 @Composable
 internal fun ComponentList(padding: PaddingValues, navigateToDemo: (Component) -> Unit) {
-    val components = Component.entries
+    val componentSamples = Component.getAll()
 
     LazyVerticalGrid(
         modifier = Modifier.padding(horizontal = 16.dp),
@@ -120,8 +120,8 @@ internal fun ComponentList(padding: PaddingValues, navigateToDemo: (Component) -
                 Spacer(modifier = Modifier.padding(padding))
             }
         }
-        items(components.size) { index ->
-            val component = components[index]
+        items(componentSamples.size) { index ->
+            val component = componentSamples[index]
             ComponentListItem(component.label, onClick = {
                 navigateToDemo(component)
             })

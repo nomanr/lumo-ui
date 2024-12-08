@@ -1,27 +1,94 @@
 package com.nomanr.sample.ui.samples
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import com.nomanr.sample.ui.data.Component
+import kotlinx.serialization.Serializable
+
+enum class ComponentId(val label: String) {
+    ACCORDION("Accordion"),
+    ALERT_DIALOG("Alert Dialog"),
+    BADGE("Badge"),
+    BOTTOM_NAVIGATION("Modal Bottom Sheet"),
+    BUTTON("Button"),
+    CARD("Card"),
+    CHECKBOX("Checkbox"),
+    CHIP("Chip"),
+    DIVIDER("Divider"),
+    ICON("Icon"),
+    ICON_BUTTON("Icon Button"),
+    NAVIGATION_BAR("Navigation Bar"),
+    OTP_TEXT_FIELD("OTP Text Field"),
+    PROGRESS_INDICATOR("Progress Indicator"),
+    RADIO_BUTTON("Radio Button"),
+    RATING_BAR("Rating Bar"),
+    SCAFFOLD("Scaffold"),
+    SLIDER("Slider"),
+    SNACKBAR("Snackbar"),
+    SURFACE("Surface"),
+    SWITCH("Switch"),
+    TEXT("Text"),
+    TEXT_FIELD("TextField"),
+    TOOLTIP("Tooltip"),
+    TOP_BAR("Top App Bar")
+}
+
+@Serializable
+data class Component internal constructor(
+    val id: ComponentId, val showTopBar: Boolean = true
+) {
+
+    val label: String
+        get() = id.label
+
+    companion object {
+        private val components: List<Component> = listOf(
+            Component(id = ComponentId.ACCORDION),
+            Component(id = ComponentId.ALERT_DIALOG),
+            Component(id = ComponentId.BADGE),
+            Component(id = ComponentId.BOTTOM_NAVIGATION),
+            Component(id = ComponentId.BUTTON),
+            Component(id = ComponentId.CARD),
+            Component(id = ComponentId.CHECKBOX),
+            Component(id = ComponentId.CHIP),
+            Component(id = ComponentId.DIVIDER),
+            Component(id = ComponentId.ICON),
+            Component(id = ComponentId.ICON_BUTTON),
+            Component(id = ComponentId.NAVIGATION_BAR),
+            Component(id = ComponentId.OTP_TEXT_FIELD),
+            Component(id = ComponentId.PROGRESS_INDICATOR),
+            Component(id = ComponentId.RADIO_BUTTON),
+            Component(id = ComponentId.RATING_BAR),
+            Component(id = ComponentId.SCAFFOLD),
+            Component(id = ComponentId.SLIDER),
+            Component(id = ComponentId.SNACKBAR),
+            Component(id = ComponentId.SURFACE),
+            Component(id = ComponentId.SWITCH),
+            Component(id = ComponentId.TEXT),
+            Component(id = ComponentId.TEXT_FIELD),
+            Component(id = ComponentId.TOOLTIP),
+            Component(id = ComponentId.TOP_BAR, showTopBar = false)
+        )
+
+        fun getAll(): List<Component> = components
+
+        fun getById(id: ComponentId): Component = components.first { it.id == id }
+    }
+}
+
 
 object Samples {
-    val components: Map<Component, @Composable (padding: PaddingValues, triggerBackAction: Int, interceptNavigateUp: (intercept: Boolean) -> Unit) -> Unit>
-        get() = mapOf<Component, @Composable (
-            padding: PaddingValues,
-            triggerBackAction: Int,
-            interceptNavigateUp: (intercept: Boolean) -> Unit
-        ) -> Unit>(
-            Component.Text to { padding, _, _ -> TextSample(padding) },
-            Component.Button to { padding, _, _ -> ButtonSample(padding) },
-            Component.Icon to { padding, _, _ -> IconSample(padding) },
-            Component.IconButton to { padding, _, _ -> IconButtonSample(padding) },
-            Component.Card to { padding, _, _ -> CardSample(padding) },
-            Component.TopBar to { padding, triggerBackAction, interceptNavigateUp -> TopBarSample(padding, triggerBackAction, interceptNavigateUp) },
-            Component.Accordion to { padding, _, _ -> AccordionSample(padding) },
-            Component.TextField to { padding, _, _ -> TextFieldSamples(padding) },
-            Component.AlertDialog to { padding, _, _ -> AlertDialogSample(padding) },
+    val components: Map<ComponentId, @Composable () -> Unit>
+        get() = mapOf<ComponentId, @Composable () -> Unit>(
+            ComponentId.TEXT to { TextSample() },
+            ComponentId.BUTTON to { ButtonSample() },
+            ComponentId.ICON to { IconSample() },
+            ComponentId.ICON_BUTTON to { IconButtonSample() },
+            ComponentId.CARD to { CardSample() },
+            ComponentId.TOP_BAR to { TopBarSample() },
+            ComponentId.ACCORDION to { AccordionSample() },
+            ComponentId.TEXT_FIELD to { TextFieldSamples() },
+            ComponentId.ALERT_DIALOG to { AlertDialogSample() },
 
-        )
+            )
 
     fun hasComponent(componentName: String): Boolean {
         return components.keys.any { it.label.equals(componentName, ignoreCase = true) }

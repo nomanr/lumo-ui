@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,10 +39,9 @@ import com.nomanr.sample.ui.components.textfield.TextField
 import com.nomanr.sample.ui.components.textfield.UnderlinedTextField
 
 @Composable
-fun TextFieldSamples(paddingValues: PaddingValues) {
+fun TextFieldSamples() {
     Column(
         modifier = Modifier
-            .padding(paddingValues)
             .verticalScroll(rememberScrollState())
             .fillMaxWidth()
             .padding(16.dp)

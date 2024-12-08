@@ -40,10 +40,9 @@ import com.nomanr.sample.ui.components.progress_indicator.CircularProgressIndica
 import com.nomanr.sample.ui.contentColorFor
 
 @Composable
-fun IconButtonSample(padding: PaddingValues) {
+fun IconButtonSample() {
     Column(
         modifier = Modifier
-            .padding(padding)
             .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState())
     ) {

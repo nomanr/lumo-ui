@@ -28,13 +28,12 @@ class AlertDialogState {
 fun rememberAlertDialogState() = remember { AlertDialogState() }
 
 @Composable
-fun AlertDialogSample(padding: PaddingValues) {
+fun AlertDialogSample() {
     val state = rememberAlertDialogState()
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(padding)
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)

@@ -3,7 +3,6 @@ package com.nomanr.sample.ui.samples
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,10 +32,9 @@ import com.nomanr.sample.ui.components.rememberAccordionState
 import com.nomanr.sample.ui.demo.components.Skeleton
 
 @Composable
-fun AccordionSample(padding: PaddingValues) {
+fun AccordionSample() {
     Column(
         modifier = Modifier
-            .padding(padding)
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 16.dp),

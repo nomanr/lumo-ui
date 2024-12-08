@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.demo
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,45 +26,33 @@ import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
-import com.nomanr.sample.ui.data.Component
+import com.nomanr.sample.ui.samples.Component
+import com.nomanr.sample.ui.samples.ComponentId
 import com.nomanr.sample.ui.samples.Samples
 
 @Composable
-fun DemoScreen(component: Component, navigateUp: () -> Unit = {}) {
+fun DemoScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
+    val component = Component.getById(componentId)
+    val sample = Samples.components[component.id]
 
-    val sample = Samples.components[component]
-    var interceptNavigateUp by remember {
-        mutableStateOf(false)
-    }
 
-    var triggerBackAction by remember {
-        mutableIntStateOf(0)
-    }
-
-    BackHandler {
-        if (!interceptNavigateUp) {
-            navigateUp()
-        } else {
-            triggerBackAction++
-        }
-    }
 
     Scaffold(topBar = {
         DemoTopBar(component = component.label, onBack = {
-            if (!interceptNavigateUp) {
-                navigateUp()
-            } else {
-                triggerBackAction++
-            }
+            navigateUp()
         })
     }) { padding ->
-        if (sample != null) {
-            sample(padding, triggerBackAction) { intercept ->
-                interceptNavigateUp = intercept
-            }
-        } else {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(text = "Sample not found for ${component.label}")
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
+        ) {
+            if (sample != null) {
+                sample()
+            } else {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(text = "Sample not found for ${component.id.label}")
+                }
             }
         }
     }

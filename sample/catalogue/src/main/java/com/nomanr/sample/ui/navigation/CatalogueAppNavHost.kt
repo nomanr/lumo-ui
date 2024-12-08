@@ -18,13 +18,13 @@ fun CatalogueAppNavHost(
     NavHost(navController = navController, startDestination = startDestination) {
         composable<NavRoute.Home> {
             HomeScreen { component ->
-                navController.navigate(NavRoute.Demo(component))
+                navController.navigate(NavRoute.Demo(component.id))
             }
         }
 
         composable<NavRoute.Demo> {
             val args = it.toRoute<NavRoute.Demo>()
-            DemoScreen(component = args.component, navigateUp = { navController.navigateUp() })
+            DemoScreen(componentId = args.componentId, navigateUp = { navController.navigateUp() })
         }
     }
 }

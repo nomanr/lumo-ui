@@ -2,7 +2,6 @@ package com.nomanr.sample.ui.samples
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -16,14 +15,13 @@ import com.nomanr.sample.ui.LocalTypography
 import com.nomanr.sample.ui.components.Text
 
 @Composable
-fun TextSample(paddingValues: PaddingValues) {
+fun TextSample() {
     val typography = LocalTypography.current
 
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .fillMaxSize()
-            .padding(paddingValues)
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {

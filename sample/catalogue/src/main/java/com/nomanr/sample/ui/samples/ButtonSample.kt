@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,10 +34,9 @@ import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.progress_indicator.CircularProgressIndicator
 
 @Composable
-fun ButtonSample(padding: PaddingValues) {
+fun ButtonSample() {
     Column(
         modifier = Modifier
-            .padding(paddingValues = padding)
             .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState())
     ) {

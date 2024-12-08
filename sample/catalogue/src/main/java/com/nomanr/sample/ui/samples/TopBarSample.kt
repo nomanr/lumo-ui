@@ -1,12 +1,9 @@
 package com.nomanr.sample.ui.samples
 
-import android.widget.Space
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -34,12 +31,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.ButtonVariant
 import com.nomanr.sample.ui.components.Icon
@@ -54,26 +49,13 @@ import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 import com.nomanr.sample.ui.foundation.systemBarsForVisualComponents
 
 @Composable
-fun TopBarSample(
-    padding: PaddingValues, triggerBackAction: Int, interceptNavigateUp: (intercept: Boolean) -> Unit
-) {
+fun TopBarSample() {
 
     var currentScreen by remember {
         mutableStateOf(TopBarSamples.InitialState)
     }
 
-    LaunchedEffect(currentScreen) {
-        interceptNavigateUp(currentScreen != TopBarSamples.InitialState)
-    }
-
-    LaunchedEffect(triggerBackAction) {
-        if (triggerBackAction > 0) {
-            currentScreen = TopBarSamples.InitialState
-        }
-    }
-
-
-    Box(modifier = Modifier.padding(padding)) {
+    Box() {
         when (currentScreen) {
             TopBarSamples.ExampleWithInsets -> {
                 WithInsetsSample()
