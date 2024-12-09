@@ -185,7 +185,7 @@ private object TextFieldTransitionScope {
     @Composable
     fun Transition(
         inputState: InputPhase, showLabel: Boolean, content: @Composable (
-            placeholderOpacity: Float,
+            placeholderOpacity: Float
         ) -> Unit
     ) {
 
