@@ -3,12 +3,14 @@ package com.nomanr.sample.ui.sample.samples
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.filled.CircleNotifications
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.outlined.Warning
@@ -44,7 +46,7 @@ fun BadgeSample(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+                .padding(16.dp), verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
 
             Text(text = "Badges", style = AppTheme.typography.h4)
@@ -57,10 +59,11 @@ fun BadgeSample(
                 }
 
                 Badge() {
-                    Icon(Icons.Outlined.Warning, contentDescription = "Warning")
+                    Icon(Icons.Filled.CircleNotifications, contentDescription = "Warning")
                 }
             }
 
+            Spacer(modifier = Modifier.size(8.dp))
             Text(text = "Example with BadgeBox", style = AppTheme.typography.h4)
 
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(32.dp)) {
