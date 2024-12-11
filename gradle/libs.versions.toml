@@ -5,31 +5,31 @@ targetSdk = "35"
 compose-compiler = "1.5.5"
 
 
-android-gradle-plugin = "8.5.2"
+android-gradle-plugin = "8.7.3"
 
 androidx-activity-compose = "1.9.3"
 androidx-appcompat = "1.7.0"
-androidx-compose-bom = "2024.11.00"
+androidx-compose-bom = "2024.12.01"
 androidx-constraintlayout = "1.1.0"
 androidx-corektx = "1.15.0"
 androidx-lifecycle-compose = "2.8.7"
 androidx-lifecycle-runtime-compose = "2.8.7"
-androidx-compose-navigation = "2.8.4"
-androidx-compose-ripple = "1.7.5"
+androidx-compose-navigation = "2.8.5"
+androidx-compose-ripple = "1.7.6"
 androidx-core-splashscreen = "1.0.1"
 
 androidx-viewmodel-ktx = "2.8.7"
 
 androidx-multidex = "2.0.1"
 
-coil = "2.5.0"
+coil = "2.7.0"
 
 hilt = "2.50"
 hilt-ext = "1.2.0"
 hilt-navigation-compose = "1.2.0"
 
-kotlin = "2.0.20"
-kotlin-coroutines-android = "1.8.0"
+kotlin = "2.0.21"
+kotlin-coroutines-android = "1.8.1"
 kotlin-serialization-json = "1.6.3"
 ksp = "2.0.0-1.0.21"
 ktlint = "0.42.1"
@@ -38,7 +38,7 @@ mockk = "1.13.10"
 
 nomanr-composables = "0.0.1-alpha.12"
 
-spotless = "5.15.0"
+spotless = "6.25.0"
 
 junit = "4.13.2"
 androidx-test-ext-junit = "1.2.1"
