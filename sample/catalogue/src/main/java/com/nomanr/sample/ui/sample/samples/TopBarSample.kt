@@ -50,7 +50,7 @@ import kotlinx.serialization.Serializable
 
 
 @Composable
-fun TopBarSample(navigateUp: () -> Unit) {
+fun TopBarSample(navigateUp: (() -> Unit)? = null) {
 
     val navController = rememberNavController()
 
@@ -58,7 +58,9 @@ fun TopBarSample(navigateUp: () -> Unit) {
         composable<TopbarNavRoute.InitialStateSample> {
             InitialStateSample(onClick = { route ->
                 navController.navigate(route)
-            }, navigateUp = navigateUp)
+            }, navigateUp = {
+                navigateUp?.invoke()
+            })
         }
 
         composable<TopbarNavRoute.WithInsetsSample> {

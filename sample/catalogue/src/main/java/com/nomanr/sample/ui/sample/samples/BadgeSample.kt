@@ -34,11 +34,13 @@ import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 
 @Composable
 fun BadgeSample(
-    navigateUp: () -> Unit
+    navigateUp: (() -> Unit)? = null
 ) {
     Scaffold(topBar = {
         BadgeSampleTopBar(
-            onBack = navigateUp,
+            onBack = {
+                navigateUp?.invoke()
+            },
         )
     }) { padding ->
 

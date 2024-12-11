@@ -1,6 +1,7 @@
 package com.nomanr.sample.ui.sample
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -26,7 +27,7 @@ fun SampleScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
             navigateUp()
         })
     }) { padding ->
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding),

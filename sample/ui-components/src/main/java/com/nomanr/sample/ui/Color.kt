@@ -110,7 +110,7 @@ internal val LightColors = Colors(
     textDisabled = Gray400,
 
     scrim = Color.Black.copy(alpha = 0.32f),
-    elevation = Gray700,
+    elevation = Gray500,
 )
 
 internal val DarkColors = Colors(
@@ -146,7 +146,7 @@ internal val DarkColors = Colors(
     textDisabled = Gray600,
 
     scrim = Color.Black.copy(alpha = 0.72f),
-    elevation = Gray200
+    elevation = Gray400
 )
 
 val LocalColors = staticCompositionLocalOf { LightColors }

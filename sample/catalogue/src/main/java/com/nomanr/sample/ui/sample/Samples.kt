@@ -6,6 +6,7 @@ import com.nomanr.sample.ui.sample.samples.AlertDialogSample
 import com.nomanr.sample.ui.sample.samples.BadgeSample
 import com.nomanr.sample.ui.sample.samples.ButtonSample
 import com.nomanr.sample.ui.sample.samples.CardSample
+import com.nomanr.sample.ui.sample.samples.CheckboxSample
 import com.nomanr.sample.ui.sample.samples.IconButtonSample
 import com.nomanr.sample.ui.sample.samples.IconSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSamples
@@ -17,7 +18,6 @@ enum class ComponentId(val label: String) {
     ACCORDION("Accordion"),
     ALERT_DIALOG("Alert Dialog"),
     BADGE("Badge"),
-    BOTTOM_NAVIGATION("Modal Bottom Sheet"),
     BUTTON("Button"),
     CARD("Card"),
     CHECKBOX("Checkbox"),
@@ -25,6 +25,7 @@ enum class ComponentId(val label: String) {
     DIVIDER("Divider"),
     ICON("Icon"),
     ICON_BUTTON("Icon Button"),
+    MODAL_BOTTOM_SHEET("Modal Bottom Sheet"),
     NAVIGATION_BAR("Navigation Bar"),
     OTP_TEXT_FIELD("OTP Text Field"),
     PROGRESS_INDICATOR("Progress Indicator"),
@@ -54,7 +55,6 @@ data class Component internal constructor(
             Component(id = ComponentId.ACCORDION),
             Component(id = ComponentId.ALERT_DIALOG),
             Component(id = ComponentId.BADGE, showTopBar = false),
-            Component(id = ComponentId.BOTTOM_NAVIGATION),
             Component(id = ComponentId.BUTTON),
             Component(id = ComponentId.CARD),
             Component(id = ComponentId.CHECKBOX),
@@ -62,6 +62,7 @@ data class Component internal constructor(
             Component(id = ComponentId.DIVIDER),
             Component(id = ComponentId.ICON),
             Component(id = ComponentId.ICON_BUTTON),
+            Component(id = ComponentId.MODAL_BOTTOM_SHEET),
             Component(id = ComponentId.NAVIGATION_BAR),
             Component(id = ComponentId.OTP_TEXT_FIELD),
             Component(id = ComponentId.PROGRESS_INDICATOR),
@@ -86,10 +87,11 @@ data class Component internal constructor(
 
 
 object Samples {
-    val components: Map<ComponentId, @Composable (navigateUp: () -> Unit) -> Unit>
-        get() = mapOf<ComponentId, @Composable (navigateUp: () -> Unit) -> Unit>(
+    val components: Map<ComponentId, @Composable ((() -> Unit)?) -> Unit>
+        get() = mapOf<ComponentId, @Composable ((() -> Unit)?) -> Unit>(
             ComponentId.TEXT to { TextSample() },
             ComponentId.BUTTON to { ButtonSample() },
+            ComponentId.CHECKBOX to { CheckboxSample() },
             ComponentId.ICON to { IconSample() },
             ComponentId.ICON_BUTTON to { IconButtonSample() },
             ComponentId.CARD to { CardSample() },
@@ -101,6 +103,6 @@ object Samples {
         )
 
     fun hasComponent(componentName: String): Boolean {
-        return components.keys.any { it.label.equals(componentName, ignoreCase = true) }
+        return components?.keys?.any { it.label.equals(componentName, ignoreCase = true) } == true
     }
 }

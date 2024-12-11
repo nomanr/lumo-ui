@@ -183,7 +183,7 @@ object CardDefaults {
 
     @Composable
     fun elevatedCardElevation(
-        defaultElevation: Dp = 2.0.dp,
+        defaultElevation: Dp = 6.0.dp,
         pressedElevation: Dp = 4.0.dp,
         focusedElevation: Dp = 4.0.dp,
         hoveredElevation: Dp = 4.0.dp,
