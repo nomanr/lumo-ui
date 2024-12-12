@@ -4,7 +4,6 @@ package com.nomanr.sample.ui.components
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.snap
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Canvas
@@ -126,50 +125,46 @@ private fun CheckboxComponent(
     modifier: Modifier,
     colors: CheckboxColors
 ) {
-    val transition = updateTransition(value, label = "transition")
-    val checkDrawFraction = transition.animateFloat(
-        transitionSpec = {
-            when {
-                initialState == ToggleableState.Off -> tween(CheckAnimationDuration)
-                targetState == ToggleableState.Off -> snap(BoxOutDuration)
-                else -> spring()
+    val transition = updateTransition(value, label = "checkbox")
+    val checkDrawFraction =
+        transition.animateFloat(
+            transitionSpec = {
+                when {
+                    initialState == ToggleableState.Off -> snap()
+                    targetState == ToggleableState.Off -> snap(delayMillis = BoxOutDuration)
+                    else -> tween(durationMillis = CheckAnimationDuration)
+                }
+            }, label = "checkDrawFraction"
+        ) {
+            when (it) {
+                ToggleableState.On -> 1f
+                ToggleableState.Off -> 0f
+                ToggleableState.Indeterminate -> 1f
             }
-        },
-        label = "checkDrawFraction"
-    ) {
-        when (it) {
-            ToggleableState.On -> 1f
-            ToggleableState.Off -> 0f
-            ToggleableState.Indeterminate -> 1f
         }
-    }
 
-    val checkCenterGravitationShiftFraction = transition.animateFloat(
-        transitionSpec = {
-            when {
-                initialState == ToggleableState.Off -> snap()
-                targetState == ToggleableState.Off -> snap(BoxOutDuration)
-                else -> tween(durationMillis = CheckAnimationDuration)
+    val checkCenterGravitationShiftFraction =
+        transition.animateFloat(
+            transitionSpec = {
+                when {
+                    initialState == ToggleableState.Off -> snap()
+                    targetState == ToggleableState.Off -> snap(delayMillis = BoxOutDuration)
+                    else -> tween(durationMillis = CheckAnimationDuration)
+                }
+            }, label = "checkCenterGravitationShiftFraction"
+        ) {
+            when (it) {
+                ToggleableState.On -> 0f
+                ToggleableState.Off -> 0f
+                ToggleableState.Indeterminate -> 1f
             }
-        },
-        label = "checkCenterGravitationShiftFraction"
-    ) {
-        when (it) {
-            ToggleableState.On -> 0f
-            ToggleableState.Off -> 0f
-            ToggleableState.Indeterminate -> 1f
         }
-    }
     val checkCache = remember { CheckDrawingCache() }
-    val checkColor = colors.checkmarkColor(value)
+    val checkColor = colors.checkmarkColor( value)
     val boxColor = colors.boxColor(enabled, value)
     val borderColor = colors.borderColor(enabled, value)
 
-    Canvas(
-        modifier
-            .wrapContentSize(Alignment.Center)
-            .requiredSize(CheckboxSize)
-    ) {
+    Canvas(modifier.wrapContentSize(Alignment.Center).requiredSize(CheckboxSize)) {
         val strokeWidthPx = floor(StrokeWidth.toPx())
         drawBox(
             boxColor = boxColor.value,
@@ -178,7 +173,7 @@ private fun CheckboxComponent(
             strokeWidth = strokeWidthPx
         )
         drawCheck(
-            checkColor = checkColor.value,
+            checkColor = checkColor,
             checkFraction = checkDrawFraction.value,
             crossCenterGravitation = checkCenterGravitationShiftFraction.value,
             strokeWidthPx = strokeWidthPx,
@@ -282,7 +277,7 @@ object CheckboxDefaults {
         uncheckedBoxColor = AppTheme.colors.transparent,
         disabledCheckedBoxColor = AppTheme.colors.disabled,
         disabledUncheckedBoxColor = AppTheme.colors.transparent,
-        disabledIndeterminateBoxColor = AppTheme.colors.primary,
+        disabledIndeterminateBoxColor = AppTheme.colors.disabled,
         checkedBorderColor = AppTheme.colors.primary,
         uncheckedBorderColor = AppTheme.colors.primary,
         disabledBorderColor = AppTheme.colors.disabled,
@@ -308,15 +303,12 @@ data class CheckboxColors(
 ) {
 
     @Composable
-    internal fun checkmarkColor(state: ToggleableState): State<Color> {
-        val target = if (state == ToggleableState.Off) {
+    internal fun checkmarkColor(state: ToggleableState): Color {
+        return if (state == ToggleableState.Off) {
             uncheckedCheckmarkColor
         } else {
             checkedCheckmarkColor
         }
-
-        val duration = if (state == ToggleableState.Off) BoxOutDuration else BoxInDuration
-        return animateColorAsState(target, tween(durationMillis = duration), label = "animate checkmark color")
     }
 
     @Composable
@@ -367,128 +359,3 @@ data class CheckboxColors(
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun CheckboxPreview() {
-    AppTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            var isChecked by remember { mutableStateOf(false) }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Checkbox(
-                    checked = isChecked,
-                    onCheckedChange = { isChecked = it }
-                )
-                Text("Basic Checkbox")
-            }
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                Column {
-                    Checkbox(
-                        checked = true,
-                        onCheckedChange = null,
-                        enabled = false
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text("Disabled Checked")
-                }
-
-                Column {
-                    Checkbox(
-                        checked = false,
-                        onCheckedChange = null,
-                        enabled = false
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text("Disabled Unchecked")
-                }
-            }
-
-            var triState by remember { mutableStateOf(ToggleableState.Off) }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                TriStateCheckbox(
-                    state = triState,
-                    onClick = {
-                        triState = when (triState) {
-                            ToggleableState.Off -> ToggleableState.Indeterminate
-                            ToggleableState.Indeterminate -> ToggleableState.On
-                            ToggleableState.On -> ToggleableState.Off
-                        }
-                    }
-                )
-                Text("Tri-State Checkbox")
-            }
-
-            var customColorChecked by remember { mutableStateOf(false) }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                val customColors = CheckboxColors(
-                    checkedCheckmarkColor = AppTheme.colors.onPrimary,
-                    uncheckedCheckmarkColor = AppTheme.colors.transparent,
-                    checkedBoxColor = AppTheme.colors.primary,
-                    uncheckedBoxColor = AppTheme.colors.transparent,
-                    disabledCheckedBoxColor = AppTheme.colors.disabled,
-                    disabledUncheckedBoxColor = AppTheme.colors.transparent,
-                    disabledIndeterminateBoxColor = AppTheme.colors.primary,
-                    checkedBorderColor = AppTheme.colors.primary,
-                    uncheckedBorderColor = AppTheme.colors.primary,
-                    disabledBorderColor = AppTheme.colors.disabled,
-                    disabledUncheckedBorderColor = AppTheme.colors.disabled,
-                    disabledIndeterminateBorderColor = AppTheme.colors.disabled
-                )
-
-                Checkbox(
-                    checked = customColorChecked,
-                    onCheckedChange = { customColorChecked = it },
-                    colors = customColors
-                )
-                Text("Custom Colors")
-            }
-
-            var selectedItems by remember { mutableStateOf(setOf<String>()) }
-            val items = listOf("Option 1", "Option 2", "Option 3")
-
-            Column {
-                Text("Checkbox Group")
-                Spacer(modifier = Modifier.height(8.dp))
-                items.forEach { item ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Checkbox(
-                            checked = selectedItems.contains(item),
-                            onCheckedChange = { checked ->
-                                selectedItems = if (checked) {
-                                    selectedItems + item
-                                } else {
-                                    selectedItems - item
-                                }
-                            }
-                        )
-                        Text(item)
-                    }
-                }
-            }
-        }
-    }
-}

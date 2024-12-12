@@ -111,7 +111,7 @@ internal val LightColors = Colors(
     success = Green600,
     onSuccess = White,
 
-    disabled = Gray100,
+    disabled = Gray200,
     onDisabled = Gray500,
 
     background = White,

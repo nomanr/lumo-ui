@@ -20,31 +20,25 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material.icons.filled.CircleNotifications
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.LocalColors
 import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.Badge
 import com.nomanr.sample.ui.components.BadgedBox
-import com.nomanr.sample.ui.components.Button
-import com.nomanr.sample.ui.components.ButtonVariant
 import com.nomanr.sample.ui.components.HorizontalDivider
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.IconButton
 import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Scaffold
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.card.Card
 import com.nomanr.sample.ui.components.card.ElevatedCard
 import com.nomanr.sample.ui.components.topbar.TopBar
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults
@@ -69,7 +63,7 @@ fun BadgeSample(
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
 
-            Badges()
+            BadgeShowcase()
 
             BadgeExamples()
 
@@ -121,7 +115,7 @@ fun BadgeSampleTopBar(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun Badges() {
+fun BadgeShowcase() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -139,14 +133,15 @@ fun Badges() {
         )
 
         colors.forEach { color ->
-            FlowRow(verticalArrangement = Arrangement.Center, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            FlowRow(verticalArrangement = Arrangement.Center, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+
                 Badge(containerColor = color) {
                     Text("BADGE", style = AppTheme.typography.label3)
                 }
 
                 Badge(containerColor = color) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
                         Box(
                             modifier = Modifier
@@ -159,7 +154,7 @@ fun Badges() {
 
                 Badge(containerColor = color) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
                         Icon(
                             modifier = Modifier.size(12.dp),
@@ -172,7 +167,7 @@ fun Badges() {
 
                 Badge(containerColor = color) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
                         Text("BADGE", style = AppTheme.typography.label3)
                         Icon(
@@ -200,7 +195,9 @@ fun Badges() {
                     Text("9+", style = AppTheme.typography.label3)
                 }
 
-                Spacer(modifier = Modifier.size(8.dp))
+                 Box (modifier = Modifier.size(18.dp), contentAlignment = Alignment.Center) {
+                     Badge(containerColor = color)
+                 }
             }
 
         }
