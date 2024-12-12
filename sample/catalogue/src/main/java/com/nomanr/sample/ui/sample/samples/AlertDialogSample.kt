@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.*
 import com.nomanr.sample.ui.components.textfield.TextField
 
@@ -84,8 +87,7 @@ fun AlertDialogSample() {
 @Composable
 fun AlertDialogSamples(state: AlertDialogState) {
     if (state.showSimpleDialog) {
-        AlertDialog(
-            onDismissRequest = { state.showSimpleDialog = false },
+        AlertDialog(onDismissRequest = { state.showSimpleDialog = false },
             onConfirmClick = { state.showSimpleDialog = false },
             title = "Simple Dialog",
             text = "This is a simple dialog with default confirm and dismiss buttons.",
@@ -95,8 +97,7 @@ fun AlertDialogSamples(state: AlertDialogState) {
     }
 
     if (state.showSingleButtonDialog) {
-        AlertDialog(
-            onDismissRequest = { state.showSingleButtonDialog = false },
+        AlertDialog(onDismissRequest = { state.showSingleButtonDialog = false },
             onConfirmClick = { state.showSingleButtonDialog = false },
             title = "Information",
             text = "This dialog only has a confirm button.",
@@ -106,8 +107,7 @@ fun AlertDialogSamples(state: AlertDialogState) {
     }
 
     if (state.showLongContentDialog) {
-        AlertDialog(
-            onDismissRequest = { state.showLongContentDialog = false },
+        AlertDialog(onDismissRequest = { state.showLongContentDialog = false },
             onConfirmClick = { state.showLongContentDialog = false },
             title = "Terms & Conditions",
             text = "This dialog displays longer content to ensure readability and proper layout for users with detailed content. It can be used for displaying terms and conditions, privacy policies, or any other lengthy content.",
@@ -125,8 +125,14 @@ fun AlertDialogSamples(state: AlertDialogState) {
                     .background(Color.White)
                     .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text("Enter Details", style = AppTheme.typography.h4)
-                TextField(value = inputText, onValueChange = { inputText = it }, label = { Text("Input") })
+                Text("Enter your email", style = AppTheme.typography.h4)
+                TextField(value = inputText, onValueChange = { inputText = it }, label = { Text("Email") }, leadingIcon = {
+                    Icon(Icons.Default.Email, contentDescription = "Star Icon")
+                }, placeholder = {
+                    Text("abc@xyz.com")
+                })
+
+                Spacer(modifier = Modifier.height(16.dp))
                 Button(
                     text = "Submit",
                     variant = ButtonVariant.Primary,
@@ -145,13 +151,14 @@ fun AlertDialogSamples(state: AlertDialogState) {
             confirmButtonText = "OK",
             dismissButtonText = "Cancel",
             icon = {
-                Icon(Icons.Default.Star, contentDescription = "Star Icon")
+                Icon(
+                    modifier = Modifier.size(50.dp), imageVector = Icons.Default.Warning, contentDescription = "Star Icon"
+                )
             })
     }
 
     if (state.showMultipleButtonsDialog) {
-        AlertDialog(
-            onDismissRequest = { state.showMultipleButtonsDialog = false },
+        AlertDialog(onDismissRequest = { state.showMultipleButtonsDialog = false },
             onConfirmClick = { state.showMultipleButtonsDialog = false },
             title = "Multiple Actions",
             text = "This dialog features multiple actions for more flexibility.",
@@ -164,17 +171,23 @@ fun AlertDialogSamples(state: AlertDialogState) {
         BasicAlertDialog(onDismissRequest = { state.showCustomContentDialog = false }) {
             Column(
                 modifier = Modifier
-                    .background(Color.White)
+                    .background(AppTheme.colors.primary)
                     .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text("Custom Content", style = AppTheme.typography.h4)
-                Text("This dialog allows for fully customizable content.")
-                Button(
-                    text = "Close",
-                    variant = ButtonVariant.Primary,
-                    onClick = { state.showCustomContentDialog = false },
-                    modifier = Modifier.fillMaxWidth()
-                )
+                CompositionLocalProvider(
+                    LocalContentColor provides AppTheme.colors.onPrimary
+                ) {
+                    Text("Custom Content", style = AppTheme.typography.h4)
+
+                    Text("This dialog allows for fully customizable content.")
+
+                    Button(
+                        text = "Close",
+                        variant = ButtonVariant.Secondary,
+                        onClick = { state.showCustomContentDialog = false },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
         }
     }
