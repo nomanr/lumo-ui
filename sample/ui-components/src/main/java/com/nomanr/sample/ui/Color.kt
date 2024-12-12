@@ -40,6 +40,18 @@ val Blue200: Color = Color(0xFFCFDEFB)
 val Blue100: Color = Color(0xFFE7EEFD)
 val Blue50: Color = Color(0xFFFFFFFF)
 
+val Green950: Color = Color(0xFF0B4627)
+val Green900: Color = Color(0xFF16643B)
+val Green800: Color = Color(0xFF1A7544)
+val Green700: Color = Color(0xFF178C4E)
+val Green600: Color = Color(0xFF1DAF61)
+val Green500: Color = Color(0xFF1FC16B)
+val Green400: Color = Color(0xFF3EE089)
+val Green300: Color = Color(0xFF84EBB4)
+val Green200: Color = Color(0xFFC2F5DA)
+val Green100: Color = Color(0xFFD0FBE9)
+val Green50: Color = Color(0xFFE0FAEC)
+
 @Immutable
 data class Colors(
     val primary: Color,
@@ -53,6 +65,9 @@ data class Colors(
 
     val error: Color,
     val onError: Color,
+
+    val success: Color,
+    val onSuccess: Color,
 
     val disabled: Color,
     val onDisabled: Color,
@@ -93,6 +108,9 @@ internal val LightColors = Colors(
     error = Red600,
     onError = White,
 
+    success = Green600,
+    onSuccess = White,
+
     disabled = Gray100,
     onDisabled = Gray500,
 
@@ -114,43 +132,33 @@ internal val LightColors = Colors(
 )
 
 internal val DarkColors = Colors(
-    primary = White,
-    onPrimary = Black,
+    primary = White, onPrimary = Black,
 
-    secondary = Gray400,
-    onSecondary = Black,
+    secondary = Gray400, onSecondary = Black,
 
-    tertiary = Blue300,
-    onTertiary = Black,
+    tertiary = Blue700, onTertiary = Black,
 
-    surface = Gray900,
-    onSurface = White,
+    surface = Gray900, onSurface = White,
 
-    error = Red400,
-    onError = Black,
+    error = Red400, onError = Black,
 
-    disabled = Gray700,
-    onDisabled = Gray500,
+    success = Green400, onSuccess = Black,
 
-    background = Black,
-    onBackground = White,
+    disabled = Gray700, onDisabled = Gray500,
+
+    background = Black, onBackground = White,
 
     outline = Gray800,
 
-    transparent = Color.Transparent,
-    white = White,
-    black = Black,
+    transparent = Color.Transparent, white = White, black = Black,
 
-    text = White,
-    textSecondary = Gray300,
-    textDisabled = Gray600,
+    text = White, textSecondary = Gray300, textDisabled = Gray600,
 
-    scrim = Color.Black.copy(alpha = 0.72f),
-    elevation = Gray400
+    scrim = Color.Black.copy(alpha = 0.72f), elevation = Gray400
 )
 
 val LocalColors = staticCompositionLocalOf { LightColors }
-val LocalContentColor = compositionLocalOf { Color.Unspecified}
+val LocalContentColor = compositionLocalOf { Color.Unspecified }
 val LocalContentAlpha = compositionLocalOf { 1f }
 
 fun Colors.contentColorFor(backgroundColor: Color): Color {
@@ -160,6 +168,7 @@ fun Colors.contentColorFor(backgroundColor: Color): Color {
         tertiary -> onTertiary
         surface -> onSurface
         error -> onError
+        success -> onSuccess
         disabled -> onDisabled
         background -> onBackground
         else -> Color.Unspecified
