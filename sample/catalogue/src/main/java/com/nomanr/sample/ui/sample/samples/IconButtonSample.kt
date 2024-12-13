@@ -163,6 +163,14 @@ internal fun PrimaryIconButtonSample() {
             IconButton(variant = IconButtonVariant.PrimaryGhost) {
                 Icon(Icons.Default.Star, contentDescription = "PrimaryGhost")
             }
+
+            IconButton(variant = IconButtonVariant.Primary, enabled = false) {
+                Icon(Icons.Default.Star, contentDescription = "PrimaryGhost")
+            }
+
+            IconButton(variant = IconButtonVariant.PrimaryGhost, enabled = false) {
+                Icon(Icons.Default.Star, contentDescription = "PrimaryGhost")
+            }
         }
     }
 }
@@ -192,6 +200,13 @@ internal fun SecondaryIconButtonSample() {
             }
             IconButton(variant = IconButtonVariant.SecondaryGhost) {
                 Icon(Icons.Default.Email, contentDescription = "SecondaryGhost")
+            }
+            IconButton(variant = IconButtonVariant.Secondary, enabled = false) {
+                Icon(Icons.Default.Star, contentDescription = "PrimaryGhost")
+            }
+
+            IconButton(variant = IconButtonVariant.SecondaryGhost, enabled = false) {
+                Icon(Icons.Default.Star, contentDescription = "PrimaryGhost")
             }
         }
     }
@@ -223,6 +238,13 @@ internal fun DestructiveIconButtonSample() {
             IconButton(variant = IconButtonVariant.DestructiveGhost) {
                 Icon(Icons.Default.Delete, contentDescription = "DestructiveGhost")
             }
+            IconButton(variant = IconButtonVariant.Destructive, enabled = false) {
+                Icon(Icons.Default.Star, contentDescription = "PrimaryGhost")
+            }
+
+            IconButton(variant = IconButtonVariant.DestructiveGhost, enabled = false) {
+                Icon(Icons.Default.Star, contentDescription = "PrimaryGhost")
+            }
         }
     }
 }
@@ -230,100 +252,40 @@ internal fun DestructiveIconButtonSample() {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun GhostIconButtonSample() {
+
+    val backgroundColors = listOf(
+        AppTheme.colors.primary,
+        AppTheme.colors.secondary,
+        AppTheme.colors.error,
+        AppTheme.colors.success,
+        AppTheme.colors.background,
+        AppTheme.colors.surface,
+        AppTheme.colors.tertiary,
+        AppTheme.colors.disabled
+    )
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text(text = "Ghost Icon Buttons - content color based on LocalContentColor", style = AppTheme.typography.h4)
+        Text(text = "Ghost Icon Buttons - content color based on the container color", style = AppTheme.typography.h4)
 
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8))
-                    .background(AppTheme.colors.background),
-                contentAlignment = Alignment.Center
-            ) {
-                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.background)) {
-                    IconButton(variant = IconButtonVariant.Ghost) {
-                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+        FlowRow {
+            backgroundColors.forEach { color ->
+                Box(
+                    modifier = Modifier
+                        .size(75.dp)
+                        .background(color),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CompositionLocalProvider(LocalContentColor provides contentColorFor(color = color)) {
+                        IconButton(variant = IconButtonVariant.Ghost) {
+                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                        }
                     }
                 }
             }
-
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8))
-                    .background(AppTheme.colors.primary),
-                contentAlignment = Alignment.Center
-            ) {
-                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.primary)) {
-                    IconButton(variant = IconButtonVariant.Ghost) {
-                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
-                    }
-                }
-            }
-
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8))
-                    .background(AppTheme.colors.secondary),
-                contentAlignment = Alignment.Center
-            ) {
-                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.secondary)) {
-                    IconButton(variant = IconButtonVariant.Ghost) {
-                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
-                    }
-                }
-            }
-
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8))
-                    .background(AppTheme.colors.tertiary),
-                contentAlignment = Alignment.Center
-            ) {
-                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.tertiary)) {
-                    IconButton(variant = IconButtonVariant.Ghost) {
-                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
-                    }
-                }
-            }
-
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8))
-                    .background(AppTheme.colors.surface),
-                contentAlignment = Alignment.Center
-            ) {
-                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.surface)) {
-                    IconButton(variant = IconButtonVariant.Ghost) {
-                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
-                    }
-                }
-            }
-
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8))
-                    .background(AppTheme.colors.error),
-                contentAlignment = Alignment.Center
-            ) {
-                CompositionLocalProvider(LocalContentColor provides contentColorFor(color = AppTheme.colors.error)) {
-                    IconButton(variant = IconButtonVariant.Ghost) {
-                        Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
-                    }
-                }
-            }
-
-
         }
     }
 }
