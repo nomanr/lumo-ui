@@ -22,6 +22,7 @@ import com.nomanr.sample.ui.AppTheme
 
 @Composable
 fun ModalBottomSheet(
+    modifier: Modifier = Modifier,
     sheetState: SheetState = rememberModalBottomSheetState(),
     isVisible: Boolean,
     onDismissRequest: () -> Unit,
@@ -31,6 +32,7 @@ fun ModalBottomSheet(
 ) {
     if (isVisible) {
         BasicModalBottomSheet(
+            modifier = modifier,
             sheetState = sheetState,
             onDismissRequest = onDismissRequest,
             sheetGesturesEnabled = sheetGesturesEnabled,
