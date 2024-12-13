@@ -525,7 +525,7 @@ private fun ExitUntilCollapsedScrollBehaviorSample(onNavigateUp: () -> Unit) {
 }
 
 
-internal sealed class TopbarNavRoute {
+private  sealed class TopbarNavRoute {
     @Serializable
     data object InitialStateSample : TopbarNavRoute()
 

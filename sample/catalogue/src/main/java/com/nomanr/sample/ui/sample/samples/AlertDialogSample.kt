@@ -34,7 +34,7 @@ import com.nomanr.sample.ui.components.textfield.TextField
 
 
 @Composable
-fun rememberAlertDialogState() = remember { AlertDialogState() }
+private fun rememberAlertDialogState() = remember { AlertDialogState() }
 
 @Composable
 fun AlertDialogSample() {
@@ -91,7 +91,7 @@ fun AlertDialogSample() {
 }
 
 @Composable
-fun AlertDialogSamples(state: AlertDialogState) {
+private fun AlertDialogSamples(state: AlertDialogState) {
     if (state.showSimpleDialog) {
         AlertDialog(onDismissRequest = { state.showSimpleDialog = false },
             onConfirmClick = { state.showSimpleDialog = false },
@@ -200,7 +200,7 @@ fun AlertDialogSamples(state: AlertDialogState) {
 }
 
 
-class AlertDialogState {
+private class AlertDialogState {
     var showSimpleDialog by mutableStateOf(false)
     var showSingleButtonDialog by mutableStateOf(false)
     var showLongContentDialog by mutableStateOf(false)

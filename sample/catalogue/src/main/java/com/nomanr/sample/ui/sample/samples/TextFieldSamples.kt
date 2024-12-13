@@ -361,7 +361,7 @@ fun InteractiveSample() {
 }
 
 @Composable
-fun RenderTextField(
+private fun RenderTextField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
@@ -439,7 +439,7 @@ fun RenderTextField(
 }
 
 @Composable
-fun ToggleOption(label: String, state: Boolean, onStateChange: (Boolean) -> Unit) {
+private fun ToggleOption(label: String, state: Boolean, onStateChange: (Boolean) -> Unit) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
     ) {

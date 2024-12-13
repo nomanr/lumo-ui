@@ -71,7 +71,7 @@ fun IconButtonSample() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun RealWorldIconButtonExamples() {
+private fun RealWorldIconButtonExamples() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
@@ -139,7 +139,7 @@ internal fun RealWorldIconButtonExamples() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun PrimaryIconButtonSample() {
+private fun PrimaryIconButtonSample() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
@@ -177,7 +177,7 @@ internal fun PrimaryIconButtonSample() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun SecondaryIconButtonSample() {
+private fun SecondaryIconButtonSample() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
@@ -214,7 +214,7 @@ internal fun SecondaryIconButtonSample() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun DestructiveIconButtonSample() {
+private fun DestructiveIconButtonSample() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
@@ -251,7 +251,7 @@ internal fun DestructiveIconButtonSample() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun GhostIconButtonSample() {
+private fun GhostIconButtonSample() {
 
     val backgroundColors = listOf(
         AppTheme.colors.primary,

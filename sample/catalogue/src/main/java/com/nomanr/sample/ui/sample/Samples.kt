@@ -13,6 +13,7 @@ import com.nomanr.sample.ui.sample.samples.DividerSample
 import com.nomanr.sample.ui.sample.samples.IconButtonSample
 import com.nomanr.sample.ui.sample.samples.IconSample
 import com.nomanr.sample.ui.sample.samples.ModalBottomSheetSample
+import com.nomanr.sample.ui.sample.samples.NavigationBarSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSamples
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
@@ -107,6 +108,7 @@ object Samples {
             ALERT_DIALOG to { AlertDialogSample() },
             BADGE to { navigateUp -> BadgeSample(navigateUp) },
             MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
+            NAVIGATION_BAR to { NavigationBarSample() },
         )
 
     fun hasComponent(componentName: String): Boolean {

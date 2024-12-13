@@ -61,7 +61,7 @@ fun ButtonSample() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun ButtonRealWorldExamples() {
+private fun ButtonRealWorldExamples() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
@@ -219,7 +219,7 @@ internal fun ButtonRealWorldExamples() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun PrimaryButtonSample() {
+private fun PrimaryButtonSample() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
@@ -271,7 +271,7 @@ internal fun PrimaryButtonSample() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun SecondaryButtonSample() {
+private fun SecondaryButtonSample() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)
@@ -311,7 +311,7 @@ internal fun SecondaryButtonSample() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-internal fun DestructiveButtonSample() {
+private fun DestructiveButtonSample() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)

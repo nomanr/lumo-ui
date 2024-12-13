@@ -72,7 +72,7 @@ fun BadgeSample(
 }
 
 @Composable
-fun BadgeSampleTopBar(
+private fun BadgeSampleTopBar(
     onBack: () -> Unit = {}
 ) {
     TopBar(
@@ -115,7 +115,7 @@ fun BadgeSampleTopBar(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun BadgeShowcase() {
+private fun BadgeShowcase() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -134,7 +134,8 @@ fun BadgeShowcase() {
 
         colors.forEach { color ->
             FlowRow(
-                verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
 
                 Badge(containerColor = color) {
                     Text("BADGE", style = AppTheme.typography.label3)
@@ -196,9 +197,9 @@ fun BadgeShowcase() {
                     Text("9+", style = AppTheme.typography.label3)
                 }
 
-                 Box (modifier = Modifier.size(18.dp), contentAlignment = Alignment.Center) {
-                     Badge(containerColor = color)
-                 }
+                Box(modifier = Modifier.size(18.dp), contentAlignment = Alignment.Center) {
+                    Badge(containerColor = color)
+                }
             }
 
         }
@@ -207,7 +208,7 @@ fun BadgeShowcase() {
 
 
 @Composable
-internal fun BadgeExamples() {
+private fun BadgeExamples() {
     Spacer(modifier = Modifier.size(8.dp))
 
     Text(text = "Examples", style = AppTheme.typography.h4)
@@ -219,7 +220,7 @@ internal fun BadgeExamples() {
 
 
 @Composable
-internal fun NavigationBar() {
+private fun NavigationBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -345,7 +346,7 @@ internal fun NavigationBar() {
 
 
 @Composable
-internal fun MoviesExample() {
+private fun MoviesExample() {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()

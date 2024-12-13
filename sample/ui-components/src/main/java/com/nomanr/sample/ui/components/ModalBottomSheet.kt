@@ -36,7 +36,7 @@ fun ModalBottomSheet(
             sheetState = sheetState,
             onDismissRequest = onDismissRequest,
             sheetGesturesEnabled = sheetGesturesEnabled,
-            containerColor = AppTheme.colors.background,
+            containerColor = AppTheme.colors.surface,
             scrimColor = AppTheme.colors.scrim,
             shape = BottomSheetDefaults.ModalBottomSheetShape,
             dragHandle = dragHandle,

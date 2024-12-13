@@ -33,7 +33,7 @@ import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.sample.components.Skeleton
 
 @Composable
-fun rememberModalSheetState() = remember { ModalSheetState() }
+private fun rememberModalSheetState() = remember { ModalSheetState() }
 
 @Composable
 fun ModalBottomSheetSample() {
@@ -74,7 +74,7 @@ fun ModalBottomSheetSample() {
 }
 
 @Composable
-fun ModalBottomSheetSamples(state: ModalSheetState) {
+private fun ModalBottomSheetSamples(state: ModalSheetState) {
     ModalBottomSheet(isVisible = state.showSimpleSheet, onDismissRequest = { state.showSimpleSheet = false }) {
         Column(
             modifier = Modifier
@@ -212,7 +212,7 @@ private fun ProgressBarDragHandle() {
             .padding(12.dp)
             .height(6.dp)
             .clip(RoundedCornerShape(50))
-            .background(AppTheme.colors.surface)
+            .background(AppTheme.colors.secondary)
     ) {
         Box(
             modifier = Modifier
@@ -225,7 +225,7 @@ private fun ProgressBarDragHandle() {
 }
 
 @Composable
-fun AnimateDragHandle(progress: Float) {
+private fun AnimateDragHandle(progress: Float) {
     Box(
         modifier = Modifier
             .width(100.dp)
@@ -233,7 +233,7 @@ fun AnimateDragHandle(progress: Float) {
             .padding(12.dp)
             .height(6.dp)
             .clip(RoundedCornerShape(50))
-            .background(AppTheme.colors.surface)
+            .background(AppTheme.colors.secondary)
     ) {
         Box(
             modifier = Modifier
@@ -245,7 +245,7 @@ fun AnimateDragHandle(progress: Float) {
     }
 }
 
-class ModalSheetState {
+private class ModalSheetState {
     var showSimpleSheet by mutableStateOf(false)
     var showScrollableSheet by mutableStateOf(false)
     var showCustomDragHandleSheet by mutableStateOf(false)
