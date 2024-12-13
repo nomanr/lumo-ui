@@ -133,7 +133,8 @@ fun BadgeShowcase() {
         )
 
         colors.forEach { color ->
-            FlowRow(verticalArrangement = Arrangement.Center, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            FlowRow(
+                verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
 
                 Badge(containerColor = color) {
                     Text("BADGE", style = AppTheme.typography.label3)

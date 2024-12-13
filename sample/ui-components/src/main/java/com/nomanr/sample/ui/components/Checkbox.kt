@@ -357,5 +357,3 @@ data class CheckboxColors(
         }
     }
 }
-
-

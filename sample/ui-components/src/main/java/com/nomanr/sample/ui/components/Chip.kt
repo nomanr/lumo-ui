@@ -1,4 +1,4 @@
-package com.nomanr.lumo.ui.components
+package com.nomanr.sample.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -26,11 +26,11 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nomanr.lumo.ui.AppTheme
-import com.nomanr.lumo.ui.components.ChipDefaults.ChipIconHorizontalPadding
-import com.nomanr.lumo.ui.components.ChipDefaults.ChipIconSize
-import com.nomanr.lumo.ui.components.ChipDefaults.ChipRectShape
-import com.nomanr.lumo.ui.foundation.ButtonElevation
+import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.components.ChipDefaults.ChipIconHorizontalPadding
+import com.nomanr.sample.ui.components.ChipDefaults.ChipIconSize
+import com.nomanr.sample.ui.components.ChipDefaults.ChipRectShape
+import com.nomanr.sample.ui.foundation.ButtonElevation
 
 @Composable
 fun Chip(

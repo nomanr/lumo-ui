@@ -2,6 +2,8 @@ package com.nomanr.sample.ui.sample.samples
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,10 +19,11 @@ fun CheckboxSample() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(16.dp), horizontalAlignment = Alignment.Start
     ) {
 
-        Checkboxes()
+        CheckboxeShowcase()
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -30,7 +33,7 @@ fun CheckboxSample() {
 }
 
 @Composable
-private fun Checkboxes() {
+private fun CheckboxeShowcase() {
     Text(text = "Checkbox", style = AppTheme.typography.h4)
 
     var checkbox1A by remember { mutableStateOf(false) }

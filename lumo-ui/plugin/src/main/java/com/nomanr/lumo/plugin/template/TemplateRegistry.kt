@@ -41,6 +41,13 @@ object TemplateRegistry {
         )
     )
 
+    private val chip = Template(
+        componentFiles = listOf("components/Chip.kt.template"), supportingFiles = listOf(
+            *surface.allRequiredFiles(),
+            "foundation/ButtonElevation.kt.template",
+        )
+    )
+
     private val divider = Template(
         componentFiles = listOf("components/Divider.kt.template"),
     )
@@ -123,6 +130,7 @@ object TemplateRegistry {
         Button to button,
         Card to card,
         Checkbox to checkbox,
+        Chip to chip,
         Divider to divider,
         Icon to icon,
         IconButton to iconButton,

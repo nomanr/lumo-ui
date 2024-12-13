@@ -7,6 +7,7 @@ import com.nomanr.sample.ui.sample.samples.BadgeSample
 import com.nomanr.sample.ui.sample.samples.ButtonSample
 import com.nomanr.sample.ui.sample.samples.CardSample
 import com.nomanr.sample.ui.sample.samples.CheckboxSample
+import com.nomanr.sample.ui.sample.samples.ChipSample
 import com.nomanr.sample.ui.sample.samples.IconButtonSample
 import com.nomanr.sample.ui.sample.samples.IconSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSamples
@@ -92,6 +93,7 @@ object Samples {
             ComponentId.TEXT to { TextSample() },
             ComponentId.BUTTON to { ButtonSample() },
             ComponentId.CHECKBOX to { CheckboxSample() },
+            ComponentId.CHIP to { ChipSample() },
             ComponentId.ICON to { IconSample() },
             ComponentId.ICON_BUTTON to { IconButtonSample() },
             ComponentId.CARD to { CardSample() },
@@ -103,6 +105,6 @@ object Samples {
         )
 
     fun hasComponent(componentName: String): Boolean {
-        return components?.keys?.any { it.label.equals(componentName, ignoreCase = true) } == true
+        return components.keys.any { it.label.equals(componentName, ignoreCase = true) }
     }
 }

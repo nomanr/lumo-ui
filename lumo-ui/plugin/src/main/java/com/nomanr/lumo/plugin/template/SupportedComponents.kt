@@ -7,6 +7,7 @@ enum class SupportedComponents {
     Button,
     Card,
     Checkbox,
+    Chip,
     Divider,
     Icon,
     IconButton,
