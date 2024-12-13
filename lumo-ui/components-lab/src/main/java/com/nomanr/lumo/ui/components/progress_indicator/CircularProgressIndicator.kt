@@ -94,7 +94,7 @@ fun CircularProgressIndicator(
             animation = keyframes {
                 durationMillis = CircularProgressIndicatorDefaults.HeadTailAnimationDuration +
                         CircularProgressIndicatorDefaults.HeadTailDelayDuration
-                0f at 0 with CircularProgressIndicatorDefaults.CircularEasing
+                0f at 0 using CircularProgressIndicatorDefaults.CircularEasing
                 CircularProgressIndicatorDefaults.JumpRotationAngle at CircularProgressIndicatorDefaults.HeadTailAnimationDuration
             }
         ),
@@ -107,7 +107,7 @@ fun CircularProgressIndicator(
             animation = keyframes {
                 durationMillis = CircularProgressIndicatorDefaults.HeadTailAnimationDuration +
                         CircularProgressIndicatorDefaults.HeadTailDelayDuration
-                0f at CircularProgressIndicatorDefaults.HeadTailDelayDuration with CircularProgressIndicatorDefaults.CircularEasing
+                0f at CircularProgressIndicatorDefaults.HeadTailDelayDuration using CircularProgressIndicatorDefaults.CircularEasing
                 CircularProgressIndicatorDefaults.JumpRotationAngle at durationMillis
             }
         ),

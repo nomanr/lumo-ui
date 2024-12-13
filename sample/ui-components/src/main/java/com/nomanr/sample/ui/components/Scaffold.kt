@@ -223,7 +223,7 @@ object ScaffoldDefaults {
         get() = WindowInsets.systemBarsForVisualComponents
 }
 
-@kotlin.jvm.JvmInline
+@JvmInline
 value class FabPosition internal constructor(@Suppress("unused") private val value: Int) {
     companion object {
         val Center = FabPosition(0)

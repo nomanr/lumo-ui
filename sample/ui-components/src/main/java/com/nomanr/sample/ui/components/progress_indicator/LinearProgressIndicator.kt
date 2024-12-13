@@ -61,7 +61,7 @@ fun LinearProgressIndicator(
         infiniteRepeatable(
             animation = keyframes {
                 durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.FirstLineHeadDelay with LinearProgressIndicatorDefaults.FirstLineHeadEasing
+                0f at LinearProgressIndicatorDefaults.FirstLineHeadDelay using LinearProgressIndicatorDefaults.FirstLineHeadEasing
                 1f at LinearProgressIndicatorDefaults.FirstLineHeadDuration + LinearProgressIndicatorDefaults.FirstLineHeadDelay
             }
         ),
@@ -73,7 +73,7 @@ fun LinearProgressIndicator(
         infiniteRepeatable(
             animation = keyframes {
                 durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.FirstLineTailDelay with LinearProgressIndicatorDefaults.FirstLineTailEasing
+                0f at LinearProgressIndicatorDefaults.FirstLineTailDelay using LinearProgressIndicatorDefaults.FirstLineTailEasing
                 1f at LinearProgressIndicatorDefaults.FirstLineTailDuration + LinearProgressIndicatorDefaults.FirstLineTailDelay
             }
         ),
@@ -85,7 +85,7 @@ fun LinearProgressIndicator(
         infiniteRepeatable(
             animation = keyframes {
                 durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.SecondLineHeadDelay with LinearProgressIndicatorDefaults.SecondLineHeadEasing
+                0f at LinearProgressIndicatorDefaults.SecondLineHeadDelay using LinearProgressIndicatorDefaults.SecondLineHeadEasing
                 1f at LinearProgressIndicatorDefaults.SecondLineHeadDuration + LinearProgressIndicatorDefaults.SecondLineHeadDelay
             }
         ),
@@ -97,7 +97,7 @@ fun LinearProgressIndicator(
         infiniteRepeatable(
             animation = keyframes {
                 durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.SecondLineTailDelay with LinearProgressIndicatorDefaults.SecondLineTailEasing
+                0f at LinearProgressIndicatorDefaults.SecondLineTailDelay using LinearProgressIndicatorDefaults.SecondLineTailEasing
                 1f at LinearProgressIndicatorDefaults.SecondLineTailDuration + LinearProgressIndicatorDefaults.SecondLineTailDelay
             }
         ),

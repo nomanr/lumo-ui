@@ -101,7 +101,7 @@ fun BadgeSampleTopBar(
                 variant = IconButtonVariant.PrimaryGhost
             ) {
                 BadgedBox(badge = {
-                    Badge() {
+                    Badge {
                         Text(text = "9+", style = AppTheme.typography.label3)
                     }
                 }) {
@@ -237,7 +237,7 @@ internal fun NavigationBar() {
             Spacer(modifier = Modifier.size(8.dp))
             IconButton {
                 BadgedBox(badge = {
-                    Badge() {
+                    Badge {
                         Text(text = "9+", style = AppTheme.typography.label3)
                     }
                 }) {
@@ -320,7 +320,7 @@ internal fun NavigationBar() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 BadgedBox(badge = {
-                    Badge() {
+                    Badge {
                         Text(text = "9+", style = AppTheme.typography.label3)
                     }
                 }) {

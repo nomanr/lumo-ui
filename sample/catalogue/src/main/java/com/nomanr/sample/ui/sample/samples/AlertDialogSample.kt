@@ -1,31 +1,37 @@
 package com.nomanr.sample.ui.sample.samples
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Warning
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
-import com.nomanr.sample.ui.components.*
+import com.nomanr.sample.ui.components.AlertDialog
+import com.nomanr.sample.ui.components.BasicAlertDialog
+import com.nomanr.sample.ui.components.Button
+import com.nomanr.sample.ui.components.ButtonVariant
+import com.nomanr.sample.ui.components.Icon
+import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.textfield.TextField
 
-class AlertDialogState {
-    var showSimpleDialog by mutableStateOf(false)
-    var showSingleButtonDialog by mutableStateOf(false)
-    var showLongContentDialog by mutableStateOf(false)
-    var showInputDialog by mutableStateOf(false)
-    var showCustomIconDialog by mutableStateOf(false)
-    var showMultipleButtonsDialog by mutableStateOf(false)
-    var showCustomContentDialog by mutableStateOf(false)
-}
 
 @Composable
 fun rememberAlertDialogState() = remember { AlertDialogState() }
@@ -191,4 +197,15 @@ fun AlertDialogSamples(state: AlertDialogState) {
             }
         }
     }
+}
+
+
+class AlertDialogState {
+    var showSimpleDialog by mutableStateOf(false)
+    var showSingleButtonDialog by mutableStateOf(false)
+    var showLongContentDialog by mutableStateOf(false)
+    var showInputDialog by mutableStateOf(false)
+    var showCustomIconDialog by mutableStateOf(false)
+    var showMultipleButtonsDialog by mutableStateOf(false)
+    var showCustomContentDialog by mutableStateOf(false)
 }

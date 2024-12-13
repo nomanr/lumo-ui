@@ -17,6 +17,4 @@ fun rememberCatalogueAppState(
 @Stable
 class CatalogueAppState (
     val navController: NavHostController,
-){
-
-}
+)
