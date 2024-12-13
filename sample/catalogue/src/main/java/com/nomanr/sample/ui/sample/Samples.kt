@@ -8,6 +8,7 @@ import com.nomanr.sample.ui.sample.samples.ButtonSample
 import com.nomanr.sample.ui.sample.samples.CardSample
 import com.nomanr.sample.ui.sample.samples.CheckboxSample
 import com.nomanr.sample.ui.sample.samples.ChipSample
+import com.nomanr.sample.ui.sample.samples.DividerSample
 import com.nomanr.sample.ui.sample.samples.IconButtonSample
 import com.nomanr.sample.ui.sample.samples.IconSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSamples
@@ -94,6 +95,7 @@ object Samples {
             ComponentId.BUTTON to { ButtonSample() },
             ComponentId.CHECKBOX to { CheckboxSample() },
             ComponentId.CHIP to { ChipSample() },
+            ComponentId.DIVIDER to { DividerSample()},
             ComponentId.ICON to { IconSample() },
             ComponentId.ICON_BUTTON to { IconButtonSample() },
             ComponentId.CARD to { CardSample() },
