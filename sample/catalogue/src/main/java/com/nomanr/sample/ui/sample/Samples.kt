@@ -68,7 +68,7 @@ data class Component internal constructor(
             Component(id = ICON),
             Component(id = ICON_BUTTON),
             Component(id = MODAL_BOTTOM_SHEET),
-            Component(id = NAVIGATION_BAR),
+            Component(id = NAVIGATION_BAR, showTopBar = false),
             Component(id = OTP_TEXT_FIELD),
             Component(id = PROGRESS_INDICATOR),
             Component(id = RADIO_BUTTON),
@@ -108,7 +108,7 @@ object Samples {
             ALERT_DIALOG to { AlertDialogSample() },
             BADGE to { navigateUp -> BadgeSample(navigateUp) },
             MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
-            NAVIGATION_BAR to { NavigationBarSample() },
+            NAVIGATION_BAR to {navigateUp-> NavigationBarSample(navigateUp) },
         )
 
     fun hasComponent(componentName: String): Boolean {

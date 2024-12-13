@@ -26,7 +26,7 @@ import com.nomanr.sample.ui.components.Text
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private  fun IconSample() {
+fun IconSample() {
     Column(
         modifier = Modifier
             .background(AppTheme.colors.background)

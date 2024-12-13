@@ -195,10 +195,9 @@ internal object ChipDefaults {
     private val ChipPaddingHorizontal = 6.dp
     private val ChipPaddingVertical = 6.dp
     val ChipRectShape = RoundedCornerShape(12)
-    val ChipPillShape = RoundedCornerShape(50)
     val ChipOutlineHeight = 1.dp
     val ChipIconHorizontalPadding = 6.dp
-    val ChipIconSize = 18.dp
+    val ChipIconSize = 16.dp
 
     val contentPadding = PaddingValues(
         start = ChipPaddingHorizontal, end = ChipPaddingHorizontal, top = ChipPaddingVertical, bottom = ChipPaddingVertical
@@ -216,10 +215,10 @@ internal object ChipDefaults {
     @Composable
     fun primaryFilled(shape: Shape) = ChipStyle(
         colors = ChipColors(
-            containerColor = {{themeName}}.colors.primary,
-            contentColor = {{themeName}}.colors.onPrimary,
-            selectedContainerColor = {{themeName}}.colors.onPrimary,
-            selectedContentColor = {{themeName}}.colors.primary,
+            containerColor = {{themeName}}.colors.surface,
+            contentColor = {{themeName}}.colors.onSurface,
+            selectedContainerColor = {{themeName}}.colors.primary,
+            selectedContentColor = {{themeName}}.colors.onPrimary,
             disabledContainerColor = {{themeName}}.colors.disabled,
             disabledContentColor = {{themeName}}.colors.onDisabled,
         ),
@@ -231,10 +230,10 @@ internal object ChipDefaults {
     @Composable
     fun primaryElevated(shape: Shape) = ChipStyle(
         colors = ChipColors(
-            containerColor = {{themeName}}.colors.primary,
-            contentColor = {{themeName}}.colors.onPrimary,
-            selectedContainerColor = {{themeName}}.colors.onPrimary,
-            selectedContentColor = {{themeName}}.colors.primary,
+            containerColor = {{themeName}}.colors.surface,
+            contentColor = {{themeName}}.colors.onSurface,
+            selectedContainerColor = {{themeName}}.colors.primary,
+            selectedContentColor = {{themeName}}.colors.onPrimary,
             disabledContainerColor = {{themeName}}.colors.disabled,
             disabledContentColor = {{themeName}}.colors.onDisabled,
         ),

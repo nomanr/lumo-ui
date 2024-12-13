@@ -68,6 +68,12 @@ object TemplateRegistry {
         requirements = "Note: Add the following dependency to the project to use this component: \n" + "implementation(\"com.nomanr:composables:{version}\")\n" + "Reference: https://github.com/nomanr/compose-components",
     )
 
+    private val navigationBar = Template(
+        componentFiles = listOf("components/NavigationBar.kt.template"), supportingFiles = listOf(
+            *surface.allRequiredFiles(),
+        )
+    )
+
     private val progressIndicator = Template(
         componentFiles = listOf(
             "components/progress_indicator/CircularProgressIndicator.kt.template",
@@ -135,6 +141,7 @@ object TemplateRegistry {
         Icon to icon,
         IconButton to iconButton,
         ModalBottomSheet to modalBottomSheet,
+        NavigationBar to navigationBar,
         ProgressIndicator to progressIndicator,
         RadioButton to radioButton,
         Scaffold to scaffold,

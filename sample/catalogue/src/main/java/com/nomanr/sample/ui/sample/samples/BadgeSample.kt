@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,7 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
@@ -213,14 +211,14 @@ private fun BadgeExamples() {
 
     Text(text = "Examples", style = AppTheme.typography.h4)
 
-    NavigationBar()
+    DummyNavigationBar()
 
     MoviesExample()
 }
 
 
 @Composable
-private fun NavigationBar() {
+private fun DummyNavigationBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()

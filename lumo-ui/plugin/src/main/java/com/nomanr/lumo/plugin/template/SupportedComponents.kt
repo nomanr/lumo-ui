@@ -12,6 +12,7 @@ enum class SupportedComponents {
     Icon,
     IconButton,
     ModalBottomSheet,
+    NavigationBar,
     ProgressIndicator,
     RadioButton,
     Scaffold,
