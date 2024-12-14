@@ -3,9 +3,9 @@ package com.nomanr.lumo.plugin.configs
 import com.nomanr.lumo.exceptions.LumoException
 import com.nomanr.lumo.utils.LinkFormatter
 import com.nomanr.lumo.utils.Logger
+import org.gradle.api.Project
 import java.io.File
 import java.util.Properties
-import org.gradle.api.Project
 
 class PropertyLoader(private val project: Project, private val logger: Logger = Logger.getInstance()) {
 

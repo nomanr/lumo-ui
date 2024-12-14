@@ -1,8 +1,8 @@
 package com.nomanr.lumo.plugin.configs
 
 import com.nomanr.lumo.utils.Logger
-import java.io.File
 import org.gradle.api.Project
+import java.io.File
 
 class ConfigurationValidator(private val project: Project, private val logger: Logger) {
 

@@ -1,21 +1,15 @@
 package com.nomanr.sample.ui.components
 
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,13 +18,13 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
 import com.nomanr.sample.ui.components.AlertDialogDefaults.ButtonsMainAxisSpacing
@@ -42,8 +36,6 @@ import com.nomanr.sample.ui.components.AlertDialogDefaults.DialogShape
 import com.nomanr.sample.ui.components.AlertDialogDefaults.IconPadding
 import com.nomanr.sample.ui.components.AlertDialogDefaults.TextPadding
 import com.nomanr.sample.ui.components.AlertDialogDefaults.TitlePadding
-import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.components.textfield.TextField
 import com.nomanr.sample.ui.foundation.ProvideContentColorTextStyle
 import kotlin.math.max
 

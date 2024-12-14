@@ -1,6 +1,27 @@
 package com.nomanr.lumo.plugin.template
 
-import com.nomanr.lumo.plugin.template.SupportedComponents.*
+import com.nomanr.lumo.plugin.template.SupportedComponents.Accordion
+import com.nomanr.lumo.plugin.template.SupportedComponents.AlertDialog
+import com.nomanr.lumo.plugin.template.SupportedComponents.Badge
+import com.nomanr.lumo.plugin.template.SupportedComponents.Button
+import com.nomanr.lumo.plugin.template.SupportedComponents.Card
+import com.nomanr.lumo.plugin.template.SupportedComponents.Checkbox
+import com.nomanr.lumo.plugin.template.SupportedComponents.Chip
+import com.nomanr.lumo.plugin.template.SupportedComponents.Divider
+import com.nomanr.lumo.plugin.template.SupportedComponents.Icon
+import com.nomanr.lumo.plugin.template.SupportedComponents.IconButton
+import com.nomanr.lumo.plugin.template.SupportedComponents.ModalBottomSheet
+import com.nomanr.lumo.plugin.template.SupportedComponents.NavigationBar
+import com.nomanr.lumo.plugin.template.SupportedComponents.OTPTextField
+import com.nomanr.lumo.plugin.template.SupportedComponents.ProgressIndicator
+import com.nomanr.lumo.plugin.template.SupportedComponents.RadioButton
+import com.nomanr.lumo.plugin.template.SupportedComponents.Scaffold
+import com.nomanr.lumo.plugin.template.SupportedComponents.Slider
+import com.nomanr.lumo.plugin.template.SupportedComponents.Surface
+import com.nomanr.lumo.plugin.template.SupportedComponents.Text
+import com.nomanr.lumo.plugin.template.SupportedComponents.TextField
+import com.nomanr.lumo.plugin.template.SupportedComponents.Theme
+import com.nomanr.lumo.plugin.template.SupportedComponents.TopBar
 
 object TemplateRegistry {
     private val surface = Template(
@@ -74,6 +95,13 @@ object TemplateRegistry {
         )
     )
 
+    private val otpTextField = Template(
+        componentFiles = listOf(
+            "components/otp_textfield/OTPTextField.kt.template",
+            "components/otp_textfield/OTPTextFieldDefaults.kt.template",
+        )
+    )
+
     private val progressIndicator = Template(
         componentFiles = listOf(
             "components/progress_indicator/CircularProgressIndicator.kt.template",
@@ -142,6 +170,7 @@ object TemplateRegistry {
         IconButton to iconButton,
         ModalBottomSheet to modalBottomSheet,
         NavigationBar to navigationBar,
+        OTPTextField to otpTextField,
         ProgressIndicator to progressIndicator,
         RadioButton to radioButton,
         Scaffold to scaffold,

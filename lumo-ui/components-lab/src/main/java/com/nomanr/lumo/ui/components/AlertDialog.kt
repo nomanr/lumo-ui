@@ -31,6 +31,7 @@ import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.LocalContentColor
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.ButtonsMainAxisSpacing
@@ -42,7 +43,6 @@ import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogShape
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.IconPadding
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.TextPadding
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.TitlePadding
-import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.components.textfield.TextField
 import com.nomanr.lumo.ui.foundation.ProvideContentColorTextStyle
 import kotlin.math.max

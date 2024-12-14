@@ -1,16 +1,31 @@
 package com.nomanr.sample.ui.sample.samples
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.components.*
+import com.nomanr.sample.ui.components.Checkbox
+import com.nomanr.sample.ui.components.HorizontalDivider
+import com.nomanr.sample.ui.components.Text
+import com.nomanr.sample.ui.components.TriStateCheckbox
 import com.nomanr.sample.ui.components.card.CardDefaults
 import com.nomanr.sample.ui.components.card.OutlinedCard
 

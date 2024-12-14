@@ -39,7 +39,7 @@ import com.nomanr.sample.ui.components.textfield.TextField
 import com.nomanr.sample.ui.components.textfield.UnderlinedTextField
 
 @Composable
-fun TextFieldSamples() {
+fun TextFieldSample() {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -51,12 +51,12 @@ fun TextFieldSamples() {
         InteractiveSample()
 
         Spacer(modifier = Modifier.height(32.dp))
-        Examples()
+        TextFieldExamples()
     }
 }
 
 @Composable
-private fun Examples() {
+private fun TextFieldExamples() {
     var phone1 by remember { mutableStateOf("") }
     var phone2 by remember { mutableStateOf("") }
     var phone3 by remember { mutableStateOf("") }
@@ -280,7 +280,7 @@ private fun Examples() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun InteractiveSample() {
+private fun InteractiveSample() {
     var textFieldType by remember { mutableStateOf("TextField") }
     var phone by remember { mutableStateOf("") }
     var supportingTextEnabled by remember { mutableStateOf(false) }
@@ -348,14 +348,14 @@ fun InteractiveSample() {
         Spacer(modifier = Modifier.height(16.dp))
 
         FlowRow(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            ToggleOption("Supporting Text", supportingTextEnabled) { supportingTextEnabled = it }
-            ToggleOption("Prefix", prefixEnabled) { prefixEnabled = it }
-            ToggleOption("Suffix", suffixEnabled) { suffixEnabled = it }
-            ToggleOption("Leading Icon", leadingIconEnabled) { leadingIconEnabled = it }
-            ToggleOption("Trailing Icon", trailingIconEnabled) { trailingIconEnabled = it }
-            ToggleOption("Error State", errorEnabled) { errorEnabled = it }
-            ToggleOption("Disabled", disabled) { disabled = it }
-            ToggleOption("Readonly", readOnly) { readOnly = it }
+            TextFieldToggleOptions("Supporting Text", supportingTextEnabled) { supportingTextEnabled = it }
+            TextFieldToggleOptions("Prefix", prefixEnabled) { prefixEnabled = it }
+            TextFieldToggleOptions("Suffix", suffixEnabled) { suffixEnabled = it }
+            TextFieldToggleOptions("Leading Icon", leadingIconEnabled) { leadingIconEnabled = it }
+            TextFieldToggleOptions("Trailing Icon", trailingIconEnabled) { trailingIconEnabled = it }
+            TextFieldToggleOptions("Error State", errorEnabled) { errorEnabled = it }
+            TextFieldToggleOptions("Disabled", disabled) { disabled = it }
+            TextFieldToggleOptions("Readonly", readOnly) { readOnly = it }
         }
     }
 }
@@ -439,7 +439,7 @@ private fun RenderTextField(
 }
 
 @Composable
-private fun ToggleOption(label: String, state: Boolean, onStateChange: (Boolean) -> Unit) {
+private fun TextFieldToggleOptions(label: String, state: Boolean, onStateChange: (Boolean) -> Unit) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
     ) {

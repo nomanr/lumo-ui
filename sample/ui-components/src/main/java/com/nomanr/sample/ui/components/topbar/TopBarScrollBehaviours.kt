@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.components.topbar
 
-import android.util.Log
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.AnimationState
 import androidx.compose.animation.core.DecayAnimationSpec

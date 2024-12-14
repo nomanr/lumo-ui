@@ -1,7 +1,31 @@
 package com.nomanr.sample.ui.sample
 
 import androidx.compose.runtime.Composable
-import com.nomanr.sample.ui.sample.ComponentId.*
+import com.nomanr.sample.ui.sample.ComponentId.ACCORDION
+import com.nomanr.sample.ui.sample.ComponentId.ALERT_DIALOG
+import com.nomanr.sample.ui.sample.ComponentId.BADGE
+import com.nomanr.sample.ui.sample.ComponentId.BUTTON
+import com.nomanr.sample.ui.sample.ComponentId.CARD
+import com.nomanr.sample.ui.sample.ComponentId.CHECKBOX
+import com.nomanr.sample.ui.sample.ComponentId.CHIP
+import com.nomanr.sample.ui.sample.ComponentId.DIVIDER
+import com.nomanr.sample.ui.sample.ComponentId.ICON
+import com.nomanr.sample.ui.sample.ComponentId.ICON_BUTTON
+import com.nomanr.sample.ui.sample.ComponentId.MODAL_BOTTOM_SHEET
+import com.nomanr.sample.ui.sample.ComponentId.NAVIGATION_BAR
+import com.nomanr.sample.ui.sample.ComponentId.OTP_TEXT_FIELD
+import com.nomanr.sample.ui.sample.ComponentId.PROGRESS_INDICATOR
+import com.nomanr.sample.ui.sample.ComponentId.RADIO_BUTTON
+import com.nomanr.sample.ui.sample.ComponentId.RATING_BAR
+import com.nomanr.sample.ui.sample.ComponentId.SCAFFOLD
+import com.nomanr.sample.ui.sample.ComponentId.SLIDER
+import com.nomanr.sample.ui.sample.ComponentId.SNACKBAR
+import com.nomanr.sample.ui.sample.ComponentId.SURFACE
+import com.nomanr.sample.ui.sample.ComponentId.SWITCH
+import com.nomanr.sample.ui.sample.ComponentId.TEXT
+import com.nomanr.sample.ui.sample.ComponentId.TEXT_FIELD
+import com.nomanr.sample.ui.sample.ComponentId.TOOLTIP
+import com.nomanr.sample.ui.sample.ComponentId.TOP_BAR
 import com.nomanr.sample.ui.sample.samples.AccordionSample
 import com.nomanr.sample.ui.sample.samples.AlertDialogSample
 import com.nomanr.sample.ui.sample.samples.BadgeSample
@@ -14,7 +38,8 @@ import com.nomanr.sample.ui.sample.samples.IconButtonSample
 import com.nomanr.sample.ui.sample.samples.IconSample
 import com.nomanr.sample.ui.sample.samples.ModalBottomSheetSample
 import com.nomanr.sample.ui.sample.samples.NavigationBarSample
-import com.nomanr.sample.ui.sample.samples.TextFieldSamples
+import com.nomanr.sample.ui.sample.samples.OTPTextFieldSample
+import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
 import kotlinx.serialization.Serializable
@@ -93,23 +118,22 @@ data class Component internal constructor(
 
 object Samples {
     val components: Map<ComponentId, @Composable ((() -> Unit)?) -> Unit>
-        get() = mapOf<ComponentId, @Composable ((() -> Unit)?) -> Unit>(
-            TEXT to { TextSample() },
+        get() = mapOf<ComponentId, @Composable ((() -> Unit)?) -> Unit>(TEXT to { TextSample() },
             BUTTON to { ButtonSample() },
             CHECKBOX to { CheckboxSample() },
             CHIP to { ChipSample() },
-            DIVIDER to { DividerSample()},
+            DIVIDER to { DividerSample() },
             ICON to { IconSample() },
             ICON_BUTTON to { IconButtonSample() },
             CARD to { CardSample() },
             TOP_BAR to { navigateUp -> TopBarSample(navigateUp) },
             ACCORDION to { AccordionSample() },
-            TEXT_FIELD to { TextFieldSamples() },
+            TEXT_FIELD to { TextFieldSample() },
             ALERT_DIALOG to { AlertDialogSample() },
             BADGE to { navigateUp -> BadgeSample(navigateUp) },
             MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
-            NAVIGATION_BAR to {navigateUp-> NavigationBarSample(navigateUp) },
-        )
+            NAVIGATION_BAR to { navigateUp -> NavigationBarSample(navigateUp) },
+            OTP_TEXT_FIELD to { OTPTextFieldSample() })
 
     fun hasComponent(componentName: String): Boolean {
         return components.keys.any { it.label.equals(componentName, ignoreCase = true) }

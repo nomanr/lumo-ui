@@ -31,6 +31,7 @@ import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import {{packageName}}.{{themeName}}
 import {{packageName}}.LocalContentColor
 import {{packageName}}.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
 import {{packageName}}.components.AlertDialogDefaults.ButtonsMainAxisSpacing
@@ -42,7 +43,6 @@ import {{packageName}}.components.AlertDialogDefaults.DialogShape
 import {{packageName}}.components.AlertDialogDefaults.IconPadding
 import {{packageName}}.components.AlertDialogDefaults.TextPadding
 import {{packageName}}.components.AlertDialogDefaults.TitlePadding
-import {{packageName}}.{{themeName}}
 import {{packageName}}.components.textfield.TextField
 import {{packageName}}.foundation.ProvideContentColorTextStyle
 import kotlin.math.max
