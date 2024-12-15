@@ -16,7 +16,6 @@ import com.nomanr.sample.ui.sample.ComponentId.NAVIGATION_BAR
 import com.nomanr.sample.ui.sample.ComponentId.OTP_TEXT_FIELD
 import com.nomanr.sample.ui.sample.ComponentId.PROGRESS_INDICATOR
 import com.nomanr.sample.ui.sample.ComponentId.RADIO_BUTTON
-import com.nomanr.sample.ui.sample.ComponentId.RATING_BAR
 import com.nomanr.sample.ui.sample.ComponentId.SCAFFOLD
 import com.nomanr.sample.ui.sample.ComponentId.SLIDER
 import com.nomanr.sample.ui.sample.ComponentId.SNACKBAR
@@ -62,7 +61,6 @@ enum class ComponentId(val label: String) {
     OTP_TEXT_FIELD("OTP Text Field"),
     PROGRESS_INDICATOR("Progress Indicator"),
     RADIO_BUTTON("Radio Button"),
-    RATING_BAR("Rating Bar"),
     SCAFFOLD("Scaffold"),
     SLIDER("Slider"),
     SNACKBAR("Snackbar"),
@@ -99,7 +97,6 @@ data class Component internal constructor(
             Component(id = OTP_TEXT_FIELD),
             Component(id = PROGRESS_INDICATOR),
             Component(id = RADIO_BUTTON),
-            Component(id = RATING_BAR),
             Component(id = SCAFFOLD),
             Component(id = SLIDER),
             Component(id = SNACKBAR),

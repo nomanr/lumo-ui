@@ -15,4 +15,9 @@
 local.properties
 .kotlin/errors
 build/tmp
+.idea/
+
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
 

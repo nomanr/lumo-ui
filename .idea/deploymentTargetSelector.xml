@@ -19,9 +19,6 @@
       <SelectionState runConfigName="lumo-ui.components-lab">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="AlertDialogPreviews">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="PrimaryChipPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -40,6 +37,9 @@
         <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="PreviewOTPTextField (1)">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="RatingBarPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
