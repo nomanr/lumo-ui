@@ -40,6 +40,7 @@ import com.nomanr.sample.ui.sample.samples.ModalBottomSheetSample
 import com.nomanr.sample.ui.sample.samples.NavigationBarSample
 import com.nomanr.sample.ui.sample.samples.OTPTextFieldSample
 import com.nomanr.sample.ui.sample.samples.ProgressIndicatorSample
+import com.nomanr.sample.ui.sample.samples.RadioButtonSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
@@ -119,7 +120,8 @@ data class Component internal constructor(
 
 object Samples {
     val components: Map<ComponentId, @Composable ((() -> Unit)?) -> Unit>
-        get() = mapOf<ComponentId, @Composable ((() -> Unit)?) -> Unit>(TEXT to { TextSample() },
+        get() = mapOf<ComponentId, @Composable ((() -> Unit)?) -> Unit>(
+            TEXT to { TextSample() },
             BUTTON to { ButtonSample() },
             CHECKBOX to { CheckboxSample() },
             CHIP to { ChipSample() },
@@ -135,7 +137,9 @@ object Samples {
             MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
             NAVIGATION_BAR to { navigateUp -> NavigationBarSample(navigateUp) },
             OTP_TEXT_FIELD to { OTPTextFieldSample() },
-            PROGRESS_INDICATOR to { ProgressIndicatorSample() })
+            PROGRESS_INDICATOR to { ProgressIndicatorSample() },
+            RADIO_BUTTON to { RadioButtonSample() },
+        )
 
     fun hasComponent(componentName: String): Boolean {
         return components.keys.any { it.label.equals(componentName, ignoreCase = true) }

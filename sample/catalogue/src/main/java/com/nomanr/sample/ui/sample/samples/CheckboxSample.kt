@@ -42,7 +42,7 @@ fun CheckboxSample() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        CheckboxExample()
+        CheckboxExamples()
 
     }
 }
@@ -96,7 +96,7 @@ private fun CheckboxeShowcase() {
 
 
 @Composable
-private fun CheckboxExample() {
+private fun CheckboxExamples() {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
 
         ExampleWithOutline()

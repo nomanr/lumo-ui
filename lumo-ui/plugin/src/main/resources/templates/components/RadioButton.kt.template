@@ -19,16 +19,15 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import {{packageName}}.{{themeName}}
 import {{packageName}}.components.RadioButtonDefaults.MinimumInteractiveSize
 import {{packageName}}.components.RadioButtonDefaults.RadioAnimationDuration
-import {{packageName}}.components.RadioButtonDefaults.RadioButtonDotSize
 import {{packageName}}.components.RadioButtonDefaults.RadioButtonIconSize
 import {{packageName}}.components.RadioButtonDefaults.RadioButtonPadding
+import {{packageName}}.components.RadioButtonDefaults.RadioSelectedStrokeWidth
 import {{packageName}}.components.RadioButtonDefaults.RadioStrokeWidth
 import {{packageName}}.foundation.ripple
 
@@ -43,10 +42,10 @@ fun RadioButton(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable (() -> Unit)? = null
 ) {
-    val dotRadius = animateDpAsState(
-        targetValue = if (selected) RadioButtonDotSize / 2 else 0.dp,
+    val strokeWidth = animateDpAsState(
+        targetValue = if (selected) RadioSelectedStrokeWidth else RadioStrokeWidth,
         animationSpec = tween(durationMillis = RadioAnimationDuration),
-        label = "RadioButtonDotRadius"
+        label = "RadioButtonStrokeWidth"
     )
     val radioColor = colors.radioColor(enabled, selected)
     val selectableModifier = if (onClick != null) {
@@ -63,14 +62,22 @@ fun RadioButton(
     } else {
         Modifier
     }
-    Row(
-        modifier = modifier.clickable(
-            enabled = enabled && content != null,
+
+    val clickableModifier = if (onClick != null && content != null) {
+        Modifier.clickable(
+            enabled = enabled,
+            role = Role.RadioButton,
             interactionSource = interactionSource,
             indication = null,
-            onClick = onClick ?: {}
-        ),
-        verticalAlignment = Alignment.CenterVertically) {
+            onClick = onClick
+        )
+    } else {
+        Modifier
+    }
+
+    Row(
+        modifier = clickableModifier, verticalAlignment = Alignment.CenterVertically
+    ) {
         Canvas(
             modifier
                 .then(
@@ -85,13 +92,11 @@ fun RadioButton(
                 .padding(RadioButtonPadding)
                 .requiredSize(RadioButtonIconSize)
         ) {
-            val strokeWidth = RadioStrokeWidth.toPx()
             drawCircle(
-                radioColor.value, radius = (RadioButtonIconSize / 2).toPx() - strokeWidth / 2, style = Stroke(strokeWidth)
+                radioColor.value,
+                radius = (RadioButtonIconSize / 2).toPx() - strokeWidth.value.toPx() / 2,
+                style = Stroke(strokeWidth.value.toPx())
             )
-            if (dotRadius.value > 0.dp) {
-                drawCircle(radioColor.value, dotRadius.value.toPx() - strokeWidth / 2, style = Fill)
-            }
         }
         if (content != null) {
             content()
@@ -103,7 +108,7 @@ object RadioButtonDefaults {
     const val RadioAnimationDuration = 100
 
     val RadioButtonPadding = 2.dp
-    val RadioButtonDotSize = 12.dp
+    val RadioSelectedStrokeWidth = 6.dp
     val RadioStrokeWidth = 2.dp
     val RadioButtonIconSize = 20.dp
     val MinimumInteractiveSize = 44.dp
@@ -138,4 +143,3 @@ data class RadioButtonColors(
         }
     }
 }
-
