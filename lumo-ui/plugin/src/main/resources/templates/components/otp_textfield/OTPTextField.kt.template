@@ -33,6 +33,7 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
@@ -45,6 +46,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import {{packageName}}.{{themeName}}
+import kotlin.math.min
+
 @Composable
 fun OTPTextField(
     modifier: Modifier = Modifier,
@@ -58,7 +61,7 @@ fun OTPTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onComplete: (String) -> Unit = {},
 ) {
-    OTPTextFieldComponent(
+    OTPTextFieldLayout(
         modifier = modifier,
         state = state,
         enabled = enabled,
@@ -86,7 +89,7 @@ fun OutlinedOTPTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onComplete: (String) -> Unit = {},
 ) {
-    OTPTextFieldComponent(
+    OTPTextFieldLayout(
         modifier = modifier,
         state = state,
         enabled = enabled,
@@ -114,7 +117,7 @@ fun UnderlinedOTPTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onComplete: (String) -> Unit = {},
 ) {
-    OTPTextFieldComponent(
+    OTPTextFieldLayout(
         modifier = modifier,
         state = state,
         enabled = enabled,
@@ -131,7 +134,7 @@ fun UnderlinedOTPTextField(
 
 
 @Composable
-private fun OTPTextFieldComponent(
+private fun OTPTextFieldLayout(
     modifier: Modifier = Modifier,
     state: OTPState,
     enabled: Boolean,
@@ -155,16 +158,9 @@ private fun OTPTextFieldComponent(
     val focusRequester = remember { FocusRequester() }
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        Row(
-            modifier = modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(OTPTextFieldDefaults.ItemSpacing)
-        ) {
-            repeat(otpLength) { index ->
-                Box(
-                    modifier = Modifier.weight(1f),
-                    contentAlignment = Alignment.Center
-                ) {
+        Layout(
+            content = {
+                repeat(otpLength) { index ->
                     OTPTextFieldItem(
                         state = state,
                         position = index,
@@ -175,8 +171,30 @@ private fun OTPTextFieldComponent(
                         isError = isError,
                         focusRequester = focusRequester,
                         visualTransformation = visualTransformation,
-                        type = type
+                        type = type,
                     )
+                }
+            },
+            modifier = modifier,
+        ) { measurables, constraints ->
+            val itemSpacingPx = OTPTextFieldDefaults.ItemSpacing.toPx().toInt()
+            val availableWidth = constraints.maxWidth - itemSpacingPx * (otpLength - 1)
+            val itemWidthPx = min(
+                OTPTextFieldDefaults.ItemWidth.toPx().toInt(), availableWidth / otpLength
+            )
+
+            val placeables = measurables.map { measurable ->
+                measurable.measure(constraints.copy(minWidth = itemWidthPx, maxWidth = itemWidthPx))
+            }
+
+            val containerWidth = itemWidthPx * otpLength + itemSpacingPx * (otpLength - 1)
+            val containerHeight = placeables.maxOf { it.height }
+
+            layout(width = containerWidth, height = containerHeight) {
+                var xPosition = 0
+                placeables.forEachIndexed { index, placeable ->
+                    placeable.placeRelative(x = xPosition, y = 0)
+                    xPosition += placeable.width + if(index < otpLength - 1) itemSpacingPx else 0
                 }
             }
         }
@@ -200,7 +218,7 @@ private fun OTPTextFieldItem(
     isError: Boolean,
     focusRequester: FocusRequester,
     visualTransformation: VisualTransformation,
-    type: OTPTextFieldType
+    type: OTPTextFieldType,
 ) {
     val singleValue = state.code[position]
     val value = if (singleValue.isWhitespace()) "" else singleValue.toString()

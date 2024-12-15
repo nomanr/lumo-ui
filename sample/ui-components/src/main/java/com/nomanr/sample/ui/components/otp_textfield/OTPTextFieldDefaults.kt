@@ -6,7 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
@@ -141,7 +141,7 @@ internal object OTPTextFieldDefaults {
         Box(
             modifier = Modifier
                 .background(colors.containerColor(enabled, isError, interactionSource).value, OTPTextFieldShape)
-                .height(ItemHeight)
+                .defaultMinSize(minHeight = ItemHeight)
                 .then(containerModifier)
 
         ) {
