@@ -6,13 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
@@ -29,14 +23,11 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.min
 import com.nomanr.sample.ui.AppTheme
 
 enum class OTPTextFieldType {
@@ -48,8 +39,8 @@ enum class OTPTextFieldType {
 internal object OTPTextFieldDefaults {
     val OTPTextFieldShape: Shape = RoundedCornerShape(8.dp)
     const val OTPLength = 6
-    private val Width = 48.dp
-    private val Height = 48.dp
+    val ItemWidth = 48.dp
+    val ItemHeight = 48.dp
     private val UnfocusedOutlineThickness = 2.dp
     private val FocusedOutlineThickness = 2.dp
     val ItemSpacing = 8.dp
@@ -133,39 +124,31 @@ internal object OTPTextFieldDefaults {
         colors: OTPTextFieldColors,
         type: OTPTextFieldType,
     ) {
-        BoxWithConstraints {
-            val availableWidth = constraints.maxWidth.dp
-            val transformedText = remember(value, visualTransformation) {
-                visualTransformation.filter(AnnotatedString(value))
-            }.text.text
+        val transformedText = remember(value, visualTransformation) {
+            visualTransformation.filter(AnnotatedString(value))
+        }.text.text
 
-            val borderThickness = containerBorderThickness(interactionSource)
+        val borderThickness = containerBorderThickness(interactionSource)
 
+        val containerModifier = when (type) {
+            OTPTextFieldType.Underlined -> Modifier.containerUnderline(
+                transformedText, enabled, isError, interactionSource, colors, borderThickness
+            )
 
-            val containerModifier = when (type) {
-                OTPTextFieldType.Underlined -> Modifier.containerUnderline(
-                    transformedText, enabled, isError, interactionSource, colors, borderThickness
-                )
+            else -> Modifier.containerOutline(transformedText, enabled, isError, interactionSource, colors, borderThickness)
+        }
 
-                else -> Modifier.containerOutline(transformedText, enabled, isError, interactionSource, colors, borderThickness)
-            }
+        Box(
+            modifier = Modifier
+                .background(colors.containerColor(enabled, isError, interactionSource).value, OTPTextFieldShape)
+                .height(ItemHeight)
+                .then(containerModifier)
 
-            val sizeModifier = Modifier.size(min(availableWidth, Width), Height)
-
+        ) {
             Box(
-                modifier = Modifier
-                    .background(
-                        colors.containerColor(enabled, isError, interactionSource).value, OTPTextFieldShape
-                    )
-                    .then(containerModifier)
-                    .then(sizeModifier)
-
+                modifier = Modifier.align(Alignment.Center)
             ) {
-                Box(
-                    modifier = Modifier.align(Alignment.Center)
-                ) {
-                    innerTextField()
-                }
+                innerTextField()
             }
         }
     }

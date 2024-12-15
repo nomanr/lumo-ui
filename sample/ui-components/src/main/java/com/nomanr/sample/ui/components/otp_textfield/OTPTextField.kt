@@ -2,11 +2,8 @@ package com.nomanr.sample.ui.components.otp_textfield
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -20,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
@@ -33,6 +29,7 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
@@ -45,6 +42,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
+import kotlin.math.min
 
 @Composable
 fun OTPTextField(
@@ -59,7 +57,7 @@ fun OTPTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onComplete: (String) -> Unit = {},
 ) {
-    OTPTextFieldComponent(
+    OTPTextFieldLayout(
         modifier = modifier,
         state = state,
         enabled = enabled,
@@ -87,7 +85,7 @@ fun OutlinedOTPTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onComplete: (String) -> Unit = {},
 ) {
-    OTPTextFieldComponent(
+    OTPTextFieldLayout(
         modifier = modifier,
         state = state,
         enabled = enabled,
@@ -115,7 +113,7 @@ fun UnderlinedOTPTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onComplete: (String) -> Unit = {},
 ) {
-    OTPTextFieldComponent(
+    OTPTextFieldLayout(
         modifier = modifier,
         state = state,
         enabled = enabled,
@@ -132,7 +130,7 @@ fun UnderlinedOTPTextField(
 
 
 @Composable
-private fun OTPTextFieldComponent(
+private fun OTPTextFieldLayout(
     modifier: Modifier = Modifier,
     state: OTPState,
     enabled: Boolean,
@@ -156,16 +154,9 @@ private fun OTPTextFieldComponent(
     val focusRequester = remember { FocusRequester() }
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        Row(
-            modifier = modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(OTPTextFieldDefaults.ItemSpacing)
-        ) {
-            repeat(otpLength) { index ->
-                Box(
-                    modifier = Modifier.weight(1f),
-                    contentAlignment = Alignment.Center
-                ) {
+        Layout(
+            content = {
+                repeat(otpLength) { index ->
                     OTPTextFieldItem(
                         state = state,
                         position = index,
@@ -176,8 +167,30 @@ private fun OTPTextFieldComponent(
                         isError = isError,
                         focusRequester = focusRequester,
                         visualTransformation = visualTransformation,
-                        type = type
+                        type = type,
                     )
+                }
+            },
+            modifier = modifier,
+        ) { measurables, constraints ->
+            val itemSpacingPx = OTPTextFieldDefaults.ItemSpacing.toPx().toInt()
+            val availableWidth = constraints.maxWidth - itemSpacingPx * (otpLength - 1)
+            val itemWidthPx = min(
+                OTPTextFieldDefaults.ItemWidth.toPx().toInt(), availableWidth / otpLength
+            )
+
+            val placeables = measurables.map { measurable ->
+                measurable.measure(constraints.copy(minWidth = itemWidthPx, maxWidth = itemWidthPx))
+            }
+
+            val containerWidth = itemWidthPx * otpLength + itemSpacingPx * (otpLength - 1)
+            val containerHeight = placeables.maxOf { it.height }
+
+            layout(width = containerWidth, height = containerHeight) {
+                var xPosition = 0
+                placeables.forEachIndexed { index, placeable ->
+                    placeable.placeRelative(x = xPosition, y = 0)
+                    xPosition += placeable.width + if(index < otpLength - 1) itemSpacingPx else 0
                 }
             }
         }
@@ -201,7 +214,7 @@ private fun OTPTextFieldItem(
     isError: Boolean,
     focusRequester: FocusRequester,
     visualTransformation: VisualTransformation,
-    type: OTPTextFieldType
+    type: OTPTextFieldType,
 ) {
     val singleValue = state.code[position]
     val value = if (singleValue.isWhitespace()) "" else singleValue.toString()
