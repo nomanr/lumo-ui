@@ -40,6 +40,7 @@ import com.nomanr.sample.ui.sample.samples.NavigationBarSample
 import com.nomanr.sample.ui.sample.samples.OTPTextFieldSample
 import com.nomanr.sample.ui.sample.samples.ProgressIndicatorSample
 import com.nomanr.sample.ui.sample.samples.RadioButtonSample
+import com.nomanr.sample.ui.sample.samples.SliderSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
@@ -136,6 +137,7 @@ object Samples {
             OTP_TEXT_FIELD to { OTPTextFieldSample() },
             PROGRESS_INDICATOR to { ProgressIndicatorSample() },
             RADIO_BUTTON to { RadioButtonSample() },
+            SLIDER to { SliderSample() },
         )
 
     fun hasComponent(componentName: String): Boolean {
