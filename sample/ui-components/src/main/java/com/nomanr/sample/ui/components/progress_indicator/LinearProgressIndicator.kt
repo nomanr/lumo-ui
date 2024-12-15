@@ -181,7 +181,7 @@ object LinearProgressIndicatorDefaults {
         @Composable get() = AppTheme.colors.transparent
 
     val TrackHeight = 4.dp
-    val StrokeStyle: StrokeCap = StrokeCap.Butt
+    val StrokeStyle: StrokeCap = StrokeCap.Round
     const val AnimationDuration = 1800
 
     const val FirstLineHeadDuration = 750

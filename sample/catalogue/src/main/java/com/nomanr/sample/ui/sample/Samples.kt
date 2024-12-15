@@ -39,6 +39,7 @@ import com.nomanr.sample.ui.sample.samples.IconSample
 import com.nomanr.sample.ui.sample.samples.ModalBottomSheetSample
 import com.nomanr.sample.ui.sample.samples.NavigationBarSample
 import com.nomanr.sample.ui.sample.samples.OTPTextFieldSample
+import com.nomanr.sample.ui.sample.samples.ProgressIndicatorSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
@@ -133,7 +134,8 @@ object Samples {
             BADGE to { navigateUp -> BadgeSample(navigateUp) },
             MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
             NAVIGATION_BAR to { navigateUp -> NavigationBarSample(navigateUp) },
-            OTP_TEXT_FIELD to { OTPTextFieldSample() })
+            OTP_TEXT_FIELD to { OTPTextFieldSample() },
+            PROGRESS_INDICATOR to { ProgressIndicatorSample() })
 
     fun hasComponent(componentName: String): Boolean {
         return components.keys.any { it.label.equals(componentName, ignoreCase = true) }
