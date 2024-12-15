@@ -114,6 +114,7 @@ private fun CircularProgressIndicatorDemo() {
 
         Box(contentAlignment = Alignment.Center) {
             CircularProgressIndicator(
+                modifier = Modifier.size(92.dp),
                 progress = animatedProgress.value
             )
             Text(text = "${(animatedProgress.value * 100).toInt()}%", style = AppTheme.typography.label3)
@@ -173,7 +174,8 @@ private fun IndicatorExamples() {
                         Text(text = "${(animatedProgress.value * 100).toInt()}%", style = AppTheme.typography.label3)
                     }
                     LinearProgressIndicator(
-                        progress = animatedProgress.value
+                        progress = animatedProgress.value,
+                        trackColor = AppTheme.colors.secondary,
                     )
                 }
 
