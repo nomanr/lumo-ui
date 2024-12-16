@@ -19,6 +19,7 @@ import com.nomanr.lumo.plugin.template.SupportedComponents.Scaffold
 import com.nomanr.lumo.plugin.template.SupportedComponents.Slider
 import com.nomanr.lumo.plugin.template.SupportedComponents.Snackbar
 import com.nomanr.lumo.plugin.template.SupportedComponents.Surface
+import com.nomanr.lumo.plugin.template.SupportedComponents.Switch
 import com.nomanr.lumo.plugin.template.SupportedComponents.Text
 import com.nomanr.lumo.plugin.template.SupportedComponents.TextField
 import com.nomanr.lumo.plugin.template.SupportedComponents.Theme
@@ -131,9 +132,13 @@ object TemplateRegistry {
         componentFiles = listOf("components/snackbar/Snackbar.kt.template", "components/snackbar/SnackbarHost.kt.template"),
         supportingFiles = listOf(
             "foundation/Providers.kt.template",
-            *button.allRequiredFiles(),
             *surface.allRequiredFiles(),
-            *iconButton.allRequiredFiles(),
+        )
+    )
+
+    private val switch = Template(
+        componentFiles = listOf("components/Switch.kt.template"), supportingFiles = listOf(
+            "foundation/Ripple.kt.template",
         )
     )
 
@@ -188,6 +193,7 @@ object TemplateRegistry {
         Slider to slider,
         Surface to surface,
         Snackbar to snackBar,
+        Switch to switch,
         Text to text,
         TextField to textField,
         Theme to theme,

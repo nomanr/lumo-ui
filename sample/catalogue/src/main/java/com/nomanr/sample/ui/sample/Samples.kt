@@ -44,6 +44,7 @@ import com.nomanr.sample.ui.sample.samples.ScaffoldSample
 import com.nomanr.sample.ui.sample.samples.SliderSample
 import com.nomanr.sample.ui.sample.samples.SnackbarSample
 import com.nomanr.sample.ui.sample.samples.SurfaceSample
+import com.nomanr.sample.ui.sample.samples.SwitchSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
@@ -144,6 +145,7 @@ object Samples {
             SNACKBAR to { navigateUp -> SnackbarSample(navigateUp) },
             SCAFFOLD to { navigateUp -> ScaffoldSample(navigateUp) },
             SURFACE to { SurfaceSample() },
+            SWITCH to { SwitchSample() },
         )
 
     fun hasComponent(componentName: String): Boolean {

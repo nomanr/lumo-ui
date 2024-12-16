@@ -20,6 +20,7 @@ enum class SupportedComponents {
     Slider,
     Surface,
     Snackbar,
+    Switch,
     Text,
     TextField,
     Theme,
