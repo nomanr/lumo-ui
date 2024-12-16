@@ -40,6 +40,7 @@ import com.nomanr.sample.ui.sample.samples.NavigationBarSample
 import com.nomanr.sample.ui.sample.samples.OTPTextFieldSample
 import com.nomanr.sample.ui.sample.samples.ProgressIndicatorSample
 import com.nomanr.sample.ui.sample.samples.RadioButtonSample
+import com.nomanr.sample.ui.sample.samples.ScaffoldSample
 import com.nomanr.sample.ui.sample.samples.SliderSample
 import com.nomanr.sample.ui.sample.samples.SnackbarSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
@@ -99,7 +100,7 @@ data class Component internal constructor(
             Component(id = OTP_TEXT_FIELD),
             Component(id = PROGRESS_INDICATOR),
             Component(id = RADIO_BUTTON),
-            Component(id = SCAFFOLD),
+            Component(id = SCAFFOLD, false),
             Component(id = SLIDER),
             Component(id = SNACKBAR, false),
             Component(id = SURFACE),
@@ -140,6 +141,7 @@ object Samples {
             RADIO_BUTTON to { RadioButtonSample() },
             SLIDER to { SliderSample() },
             SNACKBAR to {navigateUp ->  SnackbarSample(navigateUp) },
+            SCAFFOLD to { navigateUp -> ScaffoldSample(navigateUp) },
         )
 
     fun hasComponent(componentName: String): Boolean {
