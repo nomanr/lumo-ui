@@ -19,6 +19,7 @@ enum class SupportedComponents {
     Scaffold,
     Slider,
     Surface,
+    Snackbar,
     Text,
     TextField,
     Theme,

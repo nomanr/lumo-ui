@@ -17,6 +17,7 @@ import com.nomanr.lumo.plugin.template.SupportedComponents.ProgressIndicator
 import com.nomanr.lumo.plugin.template.SupportedComponents.RadioButton
 import com.nomanr.lumo.plugin.template.SupportedComponents.Scaffold
 import com.nomanr.lumo.plugin.template.SupportedComponents.Slider
+import com.nomanr.lumo.plugin.template.SupportedComponents.Snackbar
 import com.nomanr.lumo.plugin.template.SupportedComponents.Surface
 import com.nomanr.lumo.plugin.template.SupportedComponents.Text
 import com.nomanr.lumo.plugin.template.SupportedComponents.TextField
@@ -126,6 +127,16 @@ object TemplateRegistry {
         requirements = "Note: Add the following dependency to the project to use this component: \n" + "implementation(\"com.nomanr:composables:{version}\")\n" + "Reference: https://github.com/nomanr/compose-components",
     )
 
+    private val snackBar = Template(
+        componentFiles = listOf("components/snackbar/Snackbar.kt.template", "components/snackbar/SnackbarHost.kt.template"),
+        supportingFiles = listOf(
+            "foundation/Providers.kt.template",
+            *button.allRequiredFiles(),
+            *surface.allRequiredFiles(),
+            *iconButton.allRequiredFiles(),
+        )
+    )
+
     private val text = Template(
         componentFiles = listOf("components/Text.kt.template"),
     )
@@ -176,6 +187,7 @@ object TemplateRegistry {
         Scaffold to scaffold,
         Slider to slider,
         Surface to surface,
+        Snackbar to snackBar,
         Text to text,
         TextField to textField,
         Theme to theme,

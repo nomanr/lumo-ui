@@ -98,8 +98,7 @@ class ComponentGenerator(
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 
         logger.success("'$componentName' generated successfully.")
-        logger.info("Generated files:")
-        logger.info(successLinks)
+
 
         if (otherSuccessMessages.isNotEmpty()) {
             logger.info(otherSuccessMessages)
@@ -109,5 +108,9 @@ class ComponentGenerator(
             logger.warn("Failed to generate some files as they already exist:")
             logger.warn(failedLinks)
         }
+
+        logger.info("Generated files:")
+        logger.info(successLinks)
+
     }
 }
