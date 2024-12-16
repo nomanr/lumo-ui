@@ -43,6 +43,7 @@ import com.nomanr.sample.ui.sample.samples.RadioButtonSample
 import com.nomanr.sample.ui.sample.samples.ScaffoldSample
 import com.nomanr.sample.ui.sample.samples.SliderSample
 import com.nomanr.sample.ui.sample.samples.SnackbarSample
+import com.nomanr.sample.ui.sample.samples.SurfaceSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
@@ -140,8 +141,9 @@ object Samples {
             PROGRESS_INDICATOR to { ProgressIndicatorSample() },
             RADIO_BUTTON to { RadioButtonSample() },
             SLIDER to { SliderSample() },
-            SNACKBAR to {navigateUp ->  SnackbarSample(navigateUp) },
+            SNACKBAR to { navigateUp -> SnackbarSample(navigateUp) },
             SCAFFOLD to { navigateUp -> ScaffoldSample(navigateUp) },
+            SURFACE to { SurfaceSample() },
         )
 
     fun hasComponent(componentName: String): Boolean {
