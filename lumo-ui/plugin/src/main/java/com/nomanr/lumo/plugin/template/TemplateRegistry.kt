@@ -23,6 +23,7 @@ import com.nomanr.lumo.plugin.template.SupportedComponents.Switch
 import com.nomanr.lumo.plugin.template.SupportedComponents.Text
 import com.nomanr.lumo.plugin.template.SupportedComponents.TextField
 import com.nomanr.lumo.plugin.template.SupportedComponents.Theme
+import com.nomanr.lumo.plugin.template.SupportedComponents.Tooltip
 import com.nomanr.lumo.plugin.template.SupportedComponents.TopBar
 
 object TemplateRegistry {
@@ -164,6 +165,10 @@ object TemplateRegistry {
         supportingFiles = listOf("foundation/Ripple.kt.template"),
     )
 
+    private val toolTip = Template(
+        componentFiles = listOf("components/Tooltip.kt.template")
+    )
+
     private val topBar = Template(
         componentFiles = listOf(
             "components/topbar/TopBar.kt.template", "components/topbar/TopBarScrollBehaviours.kt.template"
@@ -197,6 +202,7 @@ object TemplateRegistry {
         Text to text,
         TextField to textField,
         Theme to theme,
+        Tooltip to toolTip,
         TopBar to topBar,
     )
 

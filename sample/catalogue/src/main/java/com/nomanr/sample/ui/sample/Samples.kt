@@ -47,6 +47,7 @@ import com.nomanr.sample.ui.sample.samples.SurfaceSample
 import com.nomanr.sample.ui.sample.samples.SwitchSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
+import com.nomanr.sample.ui.sample.samples.TooltipSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
 import kotlinx.serialization.Serializable
 
@@ -146,6 +147,7 @@ object Samples {
             SCAFFOLD to { navigateUp -> ScaffoldSample(navigateUp) },
             SURFACE to { SurfaceSample() },
             SWITCH to { SwitchSample() },
+            TOOLTIP to { TooltipSample() }
         )
 
     fun hasComponent(componentName: String): Boolean {

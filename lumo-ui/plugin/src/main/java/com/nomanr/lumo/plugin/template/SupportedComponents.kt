@@ -24,5 +24,6 @@ enum class SupportedComponents {
     Text,
     TextField,
     Theme,
+    Tooltip,
     TopBar
 }
