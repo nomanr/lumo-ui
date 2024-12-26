@@ -24,6 +24,7 @@ object AppTheme {
 
     val originalScaleTypography: Typography
         @ReadOnlyComposable @Composable get() = LocalOriginalTypography.current
+
 }
 
 @Composable
@@ -33,15 +34,16 @@ fun AppTheme(
 ) {
     val rippleIndication = ripple()
     val selectionColors = rememberTextSelectionColors(LightColors)
-    val colors = if (isDarkTheme) DarkColors else LightColors
 
     val appConfigState = rememberAppConfigState()
     val scaledTypography = remember(appConfigState.fontScale) {
         scaledTypography(appConfigState.fontScale)
     }
+    val colors = if (isDarkTheme) appConfigState.colors.darkColors else appConfigState.colors.lightColors
 
     CompositionLocalProvider(
         LocalColors provides colors,
+        LocalDefaultColors provides AppColors(),
         LocalContentColor provides colors.contentColorFor(colors.background),
         LocalTypography provides scaledTypography,
         LocalOriginalTypography provides typography,

@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material.icons.outlined.Public
 import androidx.compose.material.icons.outlined.Web
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -42,10 +43,10 @@ import com.nomanr.sample.ui.sample.Component
 import com.nomanr.sample.ui.sample.Samples
 
 @Composable
-fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {
+fun HomeScreen(navigateToDemo: (Component) -> Unit, navigateToUpdateTheme: () -> Unit) {
 
     Scaffold(topBar = {
-        HomeTopBar()
+        HomeTopBar(navigateToUpdateTheme)
     }) { padding ->
         ComponentList(padding = padding, navigateToDemo)
     }
@@ -55,7 +56,7 @@ fun HomeScreen(navigateToDemo: (Component) -> Unit = {}) {
 
 @Composable
 fun HomeTopBar(
-    modifier: Modifier = Modifier,
+    navigateToUpdateTheme: () -> Unit
 ) {
     var isConfigModalVisible by remember {
         mutableStateOf(false)
@@ -63,7 +64,6 @@ fun HomeTopBar(
 
 
     TopBar(
-        modifier = modifier,
         colors = TopBarDefaults.topBarColors(),
     ) {
         Row(
@@ -83,11 +83,9 @@ fun HomeTopBar(
                 IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
                     Log.d("TODO: NOMAN", "More Options Clicked")
                 }) {
-                    Icon(Icons.Outlined.Web, contentDescription = "More Options")
+                    Icon(Icons.Outlined.Public, contentDescription = "More Options")
                 }
-                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
-                    Log.d("TODO: NOMAN", "More Options Clicked")
-                }) {
+                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = navigateToUpdateTheme) {
                     Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
                 }
                 IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
@@ -128,7 +126,7 @@ internal fun ComponentList(padding: PaddingValues, navigateToDemo: (Component) -
         }
 
         item {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
@@ -158,6 +156,6 @@ internal fun ComponentListItem(name: String, onClick: () -> Unit) {
 @Composable
 fun HomeScreenPreview() {
     AppTheme {
-        HomeScreen()
+        HomeScreen({}, {})
     }
 }

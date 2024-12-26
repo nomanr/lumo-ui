@@ -90,6 +90,8 @@ data class Colors(
 
     val scrim: Color,
     val elevation: Color,
+
+
 )
 
 internal val LightColors = Colors(
@@ -157,7 +159,13 @@ internal val DarkColors = Colors(
     scrim = Color.Black.copy(alpha = 0.72f), elevation = Gray400
 )
 
+data class AppColors(
+    val lightColors: Colors = LightColors,
+    val darkColors: Colors = DarkColors,
+)
+
 val LocalColors = staticCompositionLocalOf { LightColors }
+val LocalDefaultColors = compositionLocalOf { AppColors() }
 val LocalContentColor = compositionLocalOf { Color.Unspecified }
 val LocalContentAlpha = compositionLocalOf { 1f }
 

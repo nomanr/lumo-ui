@@ -10,4 +10,7 @@ sealed class  NavRoute {
 
     @Serializable
     data class Demo(val componentId: ComponentId) : NavRoute()
+
+    @Serializable
+    data object UpdateTheme: NavRoute()
 }

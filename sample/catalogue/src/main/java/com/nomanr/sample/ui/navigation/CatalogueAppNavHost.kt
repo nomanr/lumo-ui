@@ -7,6 +7,7 @@ import androidx.navigation.toRoute
 import com.nomanr.sample.ui.CatalogueAppState
 import com.nomanr.sample.ui.home.HomeScreen
 import com.nomanr.sample.ui.sample.SampleScreen
+import com.nomanr.sample.ui.update_theme.UpdateThemeScreen
 
 @Composable
 fun CatalogueAppNavHost(
@@ -17,14 +18,23 @@ fun CatalogueAppNavHost(
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable<NavRoute.Home> {
-            HomeScreen { component ->
-                navController.navigate(NavRoute.Demo(component.id))
-            }
+            HomeScreen(
+                navigateToDemo = { component ->
+                    navController.navigate(NavRoute.Demo(component.id))
+                },
+                navigateToUpdateTheme = {
+                    navController.navigate(NavRoute.UpdateTheme)
+                }
+            )
         }
 
         composable<NavRoute.Demo> {
             val args = it.toRoute<NavRoute.Demo>()
             SampleScreen(componentId = args.componentId, navigateUp = { navController.navigateUp() })
+        }
+
+        composable<NavRoute.UpdateTheme>{
+            UpdateThemeScreen(navigateUp = { navController.navigateUp() })
         }
     }
 }
