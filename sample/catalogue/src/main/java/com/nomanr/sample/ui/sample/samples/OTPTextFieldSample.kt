@@ -113,12 +113,15 @@ fun OTPTextFieldInteractiveSample() {
             }
         }
 
+
+
         FlowRow(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(checked = errorEnabled, onCheckedChange = {
                     errorEnabled = it
+                    disabled = false
                 })
                 Text(text = "Error State", style = AppTheme.typography.body2)
             }
@@ -128,6 +131,7 @@ fun OTPTextFieldInteractiveSample() {
             ) {
                 Checkbox(checked = disabled, onCheckedChange = {
                     disabled = it
+                    errorEnabled = false
                 })
                 Text(text = "Disabled", style = AppTheme.typography.body2)
             }

@@ -37,7 +37,7 @@ fun SampleScreenTopBar(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             IconButton(
-                variant = IconButtonVariant.PrimaryGhost, onClick = onBack
+                variant = IconButtonVariant.Ghost, onClick = onBack
             ) {
                 Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "More Options")
             }

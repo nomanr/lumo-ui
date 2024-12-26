@@ -80,15 +80,15 @@ fun HomeTopBar(
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
+                IconButton(variant = IconButtonVariant.Ghost, onClick = {
                     Log.d("TODO: NOMAN", "More Options Clicked")
                 }) {
                     Icon(Icons.Outlined.Public, contentDescription = "More Options")
                 }
-                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = navigateToUpdateTheme) {
+                IconButton(variant = IconButtonVariant.Ghost, onClick = navigateToUpdateTheme) {
                     Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
                 }
-                IconButton(variant = IconButtonVariant.PrimaryGhost, onClick = {
+                IconButton(variant = IconButtonVariant.Ghost, onClick = {
                     isConfigModalVisible = true
                 }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = "More Options")
