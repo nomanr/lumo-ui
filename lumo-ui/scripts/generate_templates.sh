@@ -32,10 +32,11 @@ process_files() {
                   -e "s|import com\.nomanr\.lumo\.ui(\..*)?|import {{packageName}}\1|" \
                   -e "s|AppTheme|{{themeName}}|g" \
                   -e "/Font\(R\.font\.poppins/d" \
+                  -e "/^import com\.nomanr\.lumo\.components\.R$/d" \
                   "$item" > "$temp_file"; then
-        echo "Error: Failed to process file -> $item"
-        rm -f "$temp_file"
-        exit 1
+          echo "Error: Failed to process file -> $item"
+          rm -f "$temp_file"
+          exit 1
       fi
 
       if [ -f "$dest_file" ] && cmp -s "$temp_file" "$dest_file"; then

@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -28,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.LocalContentColor
+import com.nomanr.lumo.ui.LocalTextStyle
 import com.nomanr.lumo.ui.LocalTypography
 
 @Composable
@@ -158,8 +157,6 @@ internal fun Text(
         inlineContent
     )
 }
-
-val LocalTextStyle = compositionLocalOf(structuralEqualityPolicy()) { TextStyle.Default }
 
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)

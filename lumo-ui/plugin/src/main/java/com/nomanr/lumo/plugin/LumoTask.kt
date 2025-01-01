@@ -14,7 +14,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 
 abstract class LumoTask : DefaultTask() {
-    @set:Option(option = "init", description = "Initialize Compose UI Plugin")
+    @set:Option(option = "init", description = "Initialize Lumo UI Plugin")
     @get:Input
     var init: Boolean = false
 
@@ -29,18 +29,18 @@ abstract class LumoTask : DefaultTask() {
     @get:Input
     var requiredDeps: Boolean = false
 
-    @set:Option(option = "plugin-help", description = "Display help message for Compose UI Plugin")
+    @set:Option(option = "plugin-help", description = "Display help message for Lumo UI Plugin")
     @get:Input
     var help: Boolean = false
 
-    @set:Option(option = "add", description = "Add a new Compose UI Component")
+    @set:Option(option = "add", description = "Add a new Lumo UI Component")
     @get:Input
     @Optional
     var componentToAdd: String? = null
 
     private val propertyLoader by lazy { PropertyLoader(project) }
     private val initialiser by lazy { Initialiser(project, propertyLoader) }
-    private val dependencyProvider by lazy { PluginDependencyProvider(project) }
+    private val dependencyProvider by lazy { PluginDependencyProvider() }
     private val generateComponent by lazy { GenerateComponent(project, propertyLoader) }
     private val logger = Logger.getInstance()
 
@@ -93,10 +93,10 @@ abstract class LumoTask : DefaultTask() {
             |Usage: ./gradlew lumo --option <value>
             |
             |Options:
-            |  --init                  Initialize Compose UI Plugin
+            |  --init                  Initialize Lumo UI Plugin
             |  --setup                 Setup theme to get started and verify the configs
             |  --required-deps         Returns the required dependencies to be added to the build.gradle.kts file
-            |  --add <component>       Add a new Compose UI Component
+            |  --add <component>       Add a new Lumo UI Component
             |  --plugin-help           Display this help message
             |
         """.trimMargin()

@@ -9,7 +9,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
-import com.nomanr.lumo.ui.components.LocalTextStyle
 import com.nomanr.lumo.ui.foundation.ripple
 
 object AppTheme {

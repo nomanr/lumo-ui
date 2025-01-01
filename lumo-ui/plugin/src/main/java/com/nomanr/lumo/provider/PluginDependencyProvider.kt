@@ -2,40 +2,33 @@ package com.nomanr.lumo.provider
 
 import com.nomanr.lumo.utils.Logger
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
 
-class PluginDependencyProvider(project: Project, private val logger: Logger = Logger.getInstance()) {
+class PluginDependencyProvider(private val logger: Logger = Logger.getInstance()) {
 
-    private val versionCatalog = project.extensions.getByType(VersionCatalogsExtension::class.java).named("libs")
+    private val composeBomVersion = "2024.12.01"
+    private val composeVersion = "1.5.5"
+    private val rippleVersion = "1.7.6"
+    private val nomanrComposablesVersion = "0.0.1-alpha.12"
 
     private fun getComposeBom(): String {
-        return versionCatalog.findLibrary("androidx-compose-bom")
-            .orElseThrow { IllegalArgumentException("androidx-compose-bom not found in libs.versions.toml") }.get().toString()
+        return "androidx.compose:compose-bom:$composeBomVersion"
     }
 
     private fun getComposeDependencies(): List<String> {
-        val dependencies = listOf(
-            "androidx-compose-foundation",
-            "androidx-compose-foundation-layout",
-            "androidx-compose-ui",
-            "androidx-compose-ui-tooling",
-            "androidx-compose-ui-tooling-preview",
-            "androidx-compose-ui-util"
+        return listOf(
+            "androidx.compose.foundation:foundation:$composeVersion",
+            "androidx.compose.foundation:foundation-layout:$composeVersion",
+            "androidx.compose.ui:ui:$composeVersion",
+            "androidx.compose.ui:ui-tooling:$composeVersion",
+            "androidx.compose.ui:ui-tooling-preview:$composeVersion",
+            "androidx.compose.ui:ui-util:$composeVersion"
         )
-
-        return dependencies.map { dependency ->
-            versionCatalog.findLibrary(dependency)
-                .orElseThrow { IllegalArgumentException("$dependency not found in libs.versions.toml") }.get().toString()
-        }
     }
 
     private fun getSupportingDependencies(): List<String> {
-        val dependencies = listOf("androidx-compose-ripple")
-
-        return dependencies.map { dependency ->
-            versionCatalog.findLibrary(dependency)
-                .orElseThrow { IllegalArgumentException("$dependency not found in libs.versions.toml") }.get().toString()
-        }
+        return listOf(
+            "androidx.compose.material:material-ripple:$rippleVersion"
+        )
     }
 
     fun printFormattedComposeDependencies() {
@@ -44,7 +37,8 @@ class PluginDependencyProvider(project: Project, private val logger: Logger = Lo
         )
 
         val allDependencies = listOf(
-            *getComposeDependencies().toTypedArray(), *getSupportingDependencies().toTypedArray()
+            *getComposeDependencies().toTypedArray(),
+            *getSupportingDependencies().toTypedArray()
         )
 
         allDependencies.forEach { dependencies.add("api(\"$it\")") }
@@ -57,8 +51,8 @@ class PluginDependencyProvider(project: Project, private val logger: Logger = Lo
 
     fun getNomanRDependencyMessage(): String {
         val dependency = "com.nomanr:composables"
-        val version = versionCatalog.findLibrary("com.nomanr:composables")
-            .orElseThrow { IllegalArgumentException("$dependency not found in libs.versions.toml") }.get().toString()
-        return "Note: Add the following dependency to the project to use this component: \n" + "implementation(\"${dependency}:${version}\")\n" + "Reference: https://github.com/nomanr/compose-components"
+        return "Note: Add the following dependency to the project to use this component: \n" +
+                "implementation(\"${dependency}:${nomanrComposablesVersion}\")\n" +
+                "Reference: https://github.com/nomanr/compose-components"
     }
 }

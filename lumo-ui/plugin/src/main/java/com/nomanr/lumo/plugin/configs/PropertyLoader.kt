@@ -37,12 +37,12 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
         val propertiesFile = File(project.rootDir, LUMO_PROPERTIES)
 
         if (propertiesFile.exists()) {
-            throw LumoException("Compose UI plugin is already initialised. The config file can be found here: ${configFilePath()}")
+            throw LumoException("Lumo UI plugin is already initialised. The config file can be found here: ${configFilePath()}")
         }
 
         val defaultProperties = """
-            # Compose UI Plugin
-            # This file is used to store configurations for the Compose UI Plugin
+            # Lumo UI Plugin
+            # This file is used to store configurations for the Lumo UI Plugin
             # Do not delete this file
             
             ThemeName=AppTheme
@@ -54,7 +54,11 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
         logger.success("Default config file created at: ${configFilePath()}")
     }
 
-    private fun configFilePath(): String {
+    fun hasPropertiesFile(): Boolean {
+        return File(project.rootDir, LUMO_PROPERTIES).exists()
+    }
+
+    fun configFilePath(): String {
         return LinkFormatter.formatLink(rootDir = project.rootDir, File(LUMO_PROPERTIES))
     }
 

@@ -10,14 +10,17 @@ class Initialiser(project: Project, private val propertyLoader: PropertyLoader) 
 
     private val logger = Logger.getInstance()
     private val validator = ConfigurationValidator(project, logger)
-    private val pluginDependencyProvider = PluginDependencyProvider(project)
+    private val pluginDependencyProvider = PluginDependencyProvider()
 
     fun init() {
         try {
-            propertyLoader.createDefaultPropertiesFile()
-            logger.success("Default properties file created successfully.")
-
+            if(propertyLoader.hasPropertiesFile()) {
+                logger.error("Lumo UI plugin is already initialised. The config file can be found here: ${propertyLoader.configFilePath()}")
+                return
+            }
             pluginDependencyProvider.printFormattedComposeDependencies()
+            propertyLoader.createDefaultPropertiesFile()
+            logger.success("Initialised successfully. List of required dependencies printed above.")
         } catch (e: IllegalStateException) {
             logger.error(e.message ?: "Failed to create default properties file.")
         }

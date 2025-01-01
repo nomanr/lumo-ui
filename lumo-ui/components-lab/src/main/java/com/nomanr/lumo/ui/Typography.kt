@@ -1,6 +1,8 @@
 package com.nomanr.lumo.ui
 
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -122,3 +124,4 @@ data class Typography(
 val typography = Typography()
 
 val LocalTypography = staticCompositionLocalOf { typography }
+val LocalTextStyle = compositionLocalOf(structuralEqualityPolicy()) { TextStyle.Default }

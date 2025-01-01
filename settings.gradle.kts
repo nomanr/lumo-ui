@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("build-logic")
     includeBuild("lumo-ui/plugin")
 
     repositories {
