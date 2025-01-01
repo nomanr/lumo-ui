@@ -31,6 +31,10 @@ object TemplateRegistry {
         componentFiles = listOf("components/Surface.kt.template")
     )
 
+    private val text = Template(
+        componentFiles = listOf("components/Text.kt.template"),
+    )
+
     private val accordion = Template(
         componentFiles = listOf("components/Accordion.kt.template")
     )
@@ -50,6 +54,7 @@ object TemplateRegistry {
     private val button = Template(
         componentFiles = listOf("components/Button.kt.template"), supportingFiles = listOf(
             *surface.allRequiredFiles(),
+            *text.allRequiredFiles(),
             "foundation/ButtonElevation.kt.template",
         )
     )
@@ -143,9 +148,6 @@ object TemplateRegistry {
         )
     )
 
-    private val text = Template(
-        componentFiles = listOf("components/Text.kt.template"),
-    )
 
     private val textField = Template(
         componentFiles = listOf(

@@ -13,6 +13,7 @@ class ComponentGenerator(
     private val logger = Logger.getInstance()
     private val outputDir = File(config.componentsDir)
     private val successfullyGenerated = mutableListOf<File>()
+    private val successFullyGeneratedSupportingFiles = mutableListOf<File>()
     private val otherSuccessMessages = mutableListOf<String>()
     private val failedToGenerate = mutableListOf<File>()
     private val linkFormatter = LinkFormatter
@@ -56,7 +57,7 @@ class ComponentGenerator(
             } else {
                 try {
                     generateTemplate(dependencyPath, dependencyOutputFile)
-                    successfullyGenerated.add(dependencyOutputFile)
+                    successFullyGeneratedSupportingFiles.add(dependencyOutputFile)
 
 
                     if(!template.requirements.isNullOrEmpty()){
@@ -94,11 +95,13 @@ class ComponentGenerator(
 
     private fun logSummary(componentName: String) {
         val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
+        val successSupportingLinks = successFullyGeneratedSupportingFiles.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
         val otherSuccessMessages = otherSuccessMessages.joinToString("\n")
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 
-        logger.success("'$componentName' generated successfully.")
-
+        if(successfullyGenerated.isNotEmpty()) {
+            logger.success("'$componentName' generated successfully.")
+        }
 
         if (otherSuccessMessages.isNotEmpty()) {
             logger.info(otherSuccessMessages)
@@ -109,8 +112,15 @@ class ComponentGenerator(
             logger.warn(failedLinks)
         }
 
-        logger.info("Generated files:")
-        logger.info(successLinks)
+        if(successLinks.isNotEmpty()) {
+            logger.info("Generated '$componentName' files:")
+            logger.info(successLinks)
+            println()
+        }
+        if(successSupportingLinks.isNotEmpty()) {
+            logger.info("Generated supporting files:")
+            logger.info(successSupportingLinks)
+        }
 
     }
 }
