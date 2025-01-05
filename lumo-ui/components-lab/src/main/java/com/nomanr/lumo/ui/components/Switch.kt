@@ -189,7 +189,7 @@ object SwitchDefaults {
         checkedBorderColor: Color = AppTheme.colors.primary,
         checkedIconColor: Color = AppTheme.colors.primary,
         uncheckedThumbColor: Color = AppTheme.colors.primary,
-        uncheckedTrackColor: Color = AppTheme.colors.white,
+        uncheckedTrackColor: Color = AppTheme.colors.background,
         uncheckedBorderColor: Color = AppTheme.colors.primary,
         uncheckedIconColor: Color = AppTheme.colors.onPrimary,
         disabledCheckedThumbColor: Color = AppTheme.colors.onDisabled,

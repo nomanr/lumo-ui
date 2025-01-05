@@ -1,5 +1,6 @@
 package {{packageName}}.components
 
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -18,6 +19,7 @@ fun SystemBars(colors: SystemBarColor) {
 
     val isStatusBarContentLight = shouldUseLightSystemBarIcons(colors.statusBarColor)
     val isNavigationBarContentLight = shouldUseLightSystemBarIcons(colors.navigationBarColor)
+
 
     // Since we are applying the status bar with edge-to-edge configuration,
     // the background and top bar colors will extend and cover the system bars.

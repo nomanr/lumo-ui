@@ -112,13 +112,10 @@ private fun SwitchComponent(
         modifier = modifier
             .size(SwitchWidth, SwitchHeight)
             .background(
-                color = colors.trackColor(enabled, checked),
-                shape = TrackShape
+                color = colors.trackColor(enabled, checked), shape = TrackShape
             )
             .border(
-                width = TrackBorderWidth,
-                color = borderColor,
-                shape = TrackShape
+                width = TrackBorderWidth, color = borderColor, shape = TrackShape
             )
     ) {
 
@@ -129,38 +126,32 @@ private fun SwitchComponent(
         val thumbSize = if (checked) checkedThumbSize else uncheckedThumbSize
         val verticalPadding = (SwitchHeight - ThumbSize) / 2
 
-        Box(
-            modifier = Modifier
-                .align(Alignment.CenterStart)
-                .size(thumbSize)
-                .offset {
-                    val trackWidth = SwitchWidth.toPx()
-                    val currentThumbSize = thumbSize.toPx()
-                    val maxThumbSize = ThumbSize.toPx()
-                    val padding = verticalPadding.toPx()
+        Box(modifier = Modifier
+            .align(Alignment.CenterStart)
+            .size(thumbSize)
+            .offset {
+                val trackWidth = SwitchWidth.toPx()
+                val currentThumbSize = thumbSize.toPx()
+                val maxThumbSize = ThumbSize.toPx()
+                val padding = verticalPadding.toPx()
 
-                    val totalMovableDistance = trackWidth - maxThumbSize - (padding * 2)
-                    val sizeDifference = (maxThumbSize - currentThumbSize) / 2
+                val totalMovableDistance = trackWidth - maxThumbSize - (padding * 2)
+                val sizeDifference = (maxThumbSize - currentThumbSize) / 2
 
-                    IntOffset(
-                        x = (padding + sizeDifference + (totalMovableDistance * thumbPosition)).roundToInt(),
-                        y = 0
-                    )
-                }
-                .drawBehind {
-                    drawCircle(
-                        color = colors.thumbColor(enabled, checked)
-                    )
-                }
-                .indication(
-                    interactionSource = interactionSource,
-                    indication = ripple(
-                        bounded = false,
-                        radius = RippleRadius
-                    )
-                ),
-            contentAlignment = Alignment.Center
-        ) {
+                IntOffset(
+                    x = (padding + sizeDifference + (totalMovableDistance * thumbPosition)).roundToInt(), y = 0
+                )
+            }
+            .drawBehind {
+                drawCircle(
+                    color = colors.thumbColor(enabled, checked)
+                )
+            }
+            .indication(
+                interactionSource = interactionSource, indication = ripple(
+                    bounded = false, radius = RippleRadius
+                )
+            ), contentAlignment = Alignment.Center) {
             if (thumbContent != null) {
                 CompositionLocalProvider(
                     LocalContentColor provides colors.iconColor(enabled, checked)
@@ -189,7 +180,7 @@ object SwitchDefaults {
         checkedBorderColor: Color = AppTheme.colors.primary,
         checkedIconColor: Color = AppTheme.colors.primary,
         uncheckedThumbColor: Color = AppTheme.colors.primary,
-        uncheckedTrackColor: Color = AppTheme.colors.white,
+        uncheckedTrackColor: Color = AppTheme.colors.background,
         uncheckedBorderColor: Color = AppTheme.colors.primary,
         uncheckedIconColor: Color = AppTheme.colors.onPrimary,
         disabledCheckedThumbColor: Color = AppTheme.colors.onDisabled,
@@ -240,46 +231,41 @@ class SwitchColors(
     private val disabledUncheckedIconColor: Color
 ) {
     @Stable
-    internal fun thumbColor(enabled: Boolean, checked: Boolean): Color =
-        when {
-            enabled && checked -> checkedThumbColor
-            enabled && !checked -> uncheckedThumbColor
-            !enabled && checked -> disabledCheckedThumbColor
-            else -> disabledUncheckedThumbColor
-        }
+    internal fun thumbColor(enabled: Boolean, checked: Boolean): Color = when {
+        enabled && checked -> checkedThumbColor
+        enabled && !checked -> uncheckedThumbColor
+        !enabled && checked -> disabledCheckedThumbColor
+        else -> disabledUncheckedThumbColor
+    }
 
     @Stable
-    internal fun trackColor(enabled: Boolean, checked: Boolean): Color =
-        when {
-            enabled && checked -> checkedTrackColor
-            enabled && !checked -> uncheckedTrackColor
-            !enabled && checked -> disabledCheckedTrackColor
-            else -> disabledUncheckedTrackColor
-        }
+    internal fun trackColor(enabled: Boolean, checked: Boolean): Color = when {
+        enabled && checked -> checkedTrackColor
+        enabled && !checked -> uncheckedTrackColor
+        !enabled && checked -> disabledCheckedTrackColor
+        else -> disabledUncheckedTrackColor
+    }
 
     @Stable
-    internal fun borderColor(enabled: Boolean, checked: Boolean): Color =
-        when {
-            enabled && checked -> checkedBorderColor
-            enabled && !checked -> uncheckedBorderColor
-            !enabled && checked -> disabledCheckedBorderColor
-            else -> disabledUncheckedBorderColor
-        }
+    internal fun borderColor(enabled: Boolean, checked: Boolean): Color = when {
+        enabled && checked -> checkedBorderColor
+        enabled && !checked -> uncheckedBorderColor
+        !enabled && checked -> disabledCheckedBorderColor
+        else -> disabledUncheckedBorderColor
+    }
 
     @Stable
-    internal fun iconColor(enabled: Boolean, checked: Boolean): Color =
-        when {
-            enabled && checked -> checkedIconColor
-            enabled && !checked -> uncheckedIconColor
-            !enabled && checked -> disabledCheckedIconColor
-            else -> disabledUncheckedIconColor
-        }
+    internal fun iconColor(enabled: Boolean, checked: Boolean): Color = when {
+        enabled && checked -> checkedIconColor
+        enabled && !checked -> uncheckedIconColor
+        !enabled && checked -> disabledCheckedIconColor
+        else -> disabledUncheckedIconColor
+    }
 }
 
 @Stable
 private class SwitchAnimationState(
-    initialChecked: Boolean,
-    initialPressed: Boolean
+    initialChecked: Boolean, initialPressed: Boolean
 ) {
     var checked by mutableStateOf(initialChecked)
     var pressed by mutableStateOf(initialPressed)
@@ -288,28 +274,23 @@ private class SwitchAnimationState(
     val thumbSizeOffset = Animatable(0f)
 
     val animationSpec = tween<Float>(
-        durationMillis = 100,
-        easing = FastOutSlowInEasing
+        durationMillis = 100, easing = FastOutSlowInEasing
     )
 
-    suspend fun animateTo(
-        targetChecked: Boolean,
-        targetPressed: Boolean,
-        scope: CoroutineScope
+    fun animateTo(
+        targetChecked: Boolean, targetPressed: Boolean, scope: CoroutineScope
     ) {
         checked = targetChecked
         pressed = targetPressed
 
         scope.launch {
             thumbPosition.animateTo(
-                targetValue = if (targetChecked) 1f else 0f,
-                animationSpec = animationSpec
+                targetValue = if (targetChecked) 1f else 0f, animationSpec = animationSpec
             )
         }
         scope.launch {
             thumbSizeOffset.animateTo(
-                targetValue = if (targetPressed) 1f else 0f,
-                animationSpec = animationSpec
+                targetValue = if (targetPressed) 1f else 0f, animationSpec = animationSpec
             )
         }
     }
@@ -327,53 +308,33 @@ private fun SwitchPreview() {
             }
 
             Spacer(modifier = Modifier.size(16.dp))
-            Switch(
-                checked = value.value,
-                onCheckedChange = {
-                    value.value = it
-                }
-            )
+            Switch(checked = value.value, onCheckedChange = {
+                value.value = it
+            })
             Spacer(modifier = Modifier.size(16.dp))
-            Switch(
-                checked = value.value,
-                onCheckedChange = {
-                    value.value = it
-                }
-            )
+            Switch(checked = value.value, onCheckedChange = {
+                value.value = it
+            })
             Spacer(modifier = Modifier.size(16.dp))
 
-            Switch(
-                checked = true,
-                onCheckedChange = {
-                    value.value = it
-                }
-            )
+            Switch(checked = true, onCheckedChange = {
+                value.value = it
+            })
             Spacer(modifier = Modifier.size(16.dp))
 
-            Switch(
-                checked = false,
-                onCheckedChange = {
-                    value.value = it
-                }
-            )
+            Switch(checked = false, onCheckedChange = {
+                value.value = it
+            })
             Spacer(modifier = Modifier.size(16.dp))
 
-            Switch(
-                checked = true,
-                enabled = false,
-                onCheckedChange = {
-                    value.value = it
-                }
-            )
+            Switch(checked = true, enabled = false, onCheckedChange = {
+                value.value = it
+            })
             Spacer(modifier = Modifier.size(16.dp))
 
-            Switch(
-                checked = false,
-                enabled = false,
-                onCheckedChange = {
-                    value.value = it
-                }
-            )
+            Switch(checked = false, enabled = false, onCheckedChange = {
+                value.value = it
+            })
             Spacer(modifier = Modifier.size(16.dp))
 
         }

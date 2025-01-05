@@ -189,7 +189,7 @@ object SwitchDefaults {
         checkedBorderColor: Color = {{themeName}}.colors.primary,
         checkedIconColor: Color = {{themeName}}.colors.primary,
         uncheckedThumbColor: Color = {{themeName}}.colors.primary,
-        uncheckedTrackColor: Color = {{themeName}}.colors.white,
+        uncheckedTrackColor: Color = {{themeName}}.colors.background,
         uncheckedBorderColor: Color = {{themeName}}.colors.primary,
         uncheckedIconColor: Color = {{themeName}}.colors.onPrimary,
         disabledCheckedThumbColor: Color = {{themeName}}.colors.onDisabled,
