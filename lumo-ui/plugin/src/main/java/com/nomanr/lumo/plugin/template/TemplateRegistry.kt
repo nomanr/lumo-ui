@@ -20,6 +20,7 @@ import com.nomanr.lumo.plugin.template.SupportedComponents.Slider
 import com.nomanr.lumo.plugin.template.SupportedComponents.Snackbar
 import com.nomanr.lumo.plugin.template.SupportedComponents.Surface
 import com.nomanr.lumo.plugin.template.SupportedComponents.Switch
+import com.nomanr.lumo.plugin.template.SupportedComponents.SystemBars
 import com.nomanr.lumo.plugin.template.SupportedComponents.Text
 import com.nomanr.lumo.plugin.template.SupportedComponents.TextField
 import com.nomanr.lumo.plugin.template.SupportedComponents.Theme
@@ -148,6 +149,10 @@ object TemplateRegistry {
         )
     )
 
+    private val systemBars = Template(
+        componentFiles = listOf("components/SystemBars.kt.template"),
+    )
+
 
     private val textField = Template(
         componentFiles = listOf(
@@ -201,6 +206,7 @@ object TemplateRegistry {
         Surface to surface,
         Snackbar to snackBar,
         Switch to switch,
+        SystemBars to systemBars,
         Text to text,
         TextField to textField,
         Theme to theme,

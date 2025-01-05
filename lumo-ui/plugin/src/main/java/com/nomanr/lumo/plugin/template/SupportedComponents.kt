@@ -21,6 +21,7 @@ enum class SupportedComponents {
     Surface,
     Snackbar,
     Switch,
+    SystemBars,
     Text,
     TextField,
     Theme,

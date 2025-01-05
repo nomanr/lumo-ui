@@ -1,5 +1,6 @@
 package com.nomanr.sample.ui.sample.samples
 
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,8 +23,14 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
@@ -33,12 +40,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.nomanr.sample.ui.AppTheme
+import com.nomanr.sample.ui.LocalColors
 import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.ButtonVariant
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.IconButton
 import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Scaffold
+import com.nomanr.sample.ui.components.SystemBars
+import com.nomanr.sample.ui.components.SystemBarsDefaults
 import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.Card
 import com.nomanr.sample.ui.components.topbar.TopBar
@@ -53,6 +63,8 @@ import kotlinx.serialization.Serializable
 fun TopBarSample(navigateUp: (() -> Unit)? = null) {
 
     val navController = rememberNavController()
+    var topbarColor by remember { mutableStateOf(Color.Unspecified) }
+
 
     NavHost(navController = navController, startDestination = TopbarNavRoute.InitialStateSample) {
         composable<TopbarNavRoute.InitialStateSample> {
@@ -60,43 +72,64 @@ fun TopBarSample(navigateUp: (() -> Unit)? = null) {
                 navController.navigate(route)
             }, navigateUp = {
                 navigateUp?.invoke()
+            }, onChangeTopBarColor = { color ->
+                topbarColor = color
             })
         }
 
         composable<TopbarNavRoute.WithInsetsSample> {
-            WithInsetsSample {
+            WithInsetsSample(onNavigateUp = {
                 navController.navigateUp()
-            }
+            }, onChangeTopBarColor = { color ->
+                topbarColor = color
+            })
         }
 
         composable<TopbarNavRoute.WithoutInsetsSample> {
-            WithoutInsetsSample {
+            WithoutInsetsSample(onNavigateUp = {
                 navController.navigateUp()
-            }
+            }, onChangeTopBarColor = { color ->
+                topbarColor = color
+            })
         }
 
         composable<TopbarNavRoute.ChangeColorOnScrollSample> {
-            ChangeColorOnScrollSample {
+            ChangeColorOnScrollSample(onNavigateUp = {
                 navController.navigateUp()
-            }
+            }, onChangeTopBarColor = { color ->
+                topbarColor = color
+            })
         }
 
         composable<TopbarNavRoute.EnterAlwaysScrollBehaviorSample> {
-            EnterAlwaysScrollBehaviorSample {
+            EnterAlwaysScrollBehaviorSample(onNavigateUp = {
                 navController.navigateUp()
-            }
+            }, onChangeTopBarColor = { color ->
+                topbarColor = color
+            })
         }
 
         composable<TopbarNavRoute.ExitUntilCollapsedScrollBehaviorSample> {
-            ExitUntilCollapsedScrollBehaviorSample {
+            ExitUntilCollapsedScrollBehaviorSample(onNavigateUp = {
                 navController.navigateUp()
-            }
+            }, onChangeTopBarColor = { color ->
+                topbarColor = color
+            })
         }
     }
+
+    HandleSystemBars(topBarColor = topbarColor)
+
 }
 
 @Composable
-private fun InitialStateSample(onClick: (navRoute: TopbarNavRoute) -> Unit, navigateUp: () -> Unit) {
+private fun InitialStateSample(
+    onClick: (navRoute: TopbarNavRoute) -> Unit, navigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit
+) {
+
+    val colors = LocalColors.current
+
+    LaunchedEffect(colors) { onChangeTopBarColor(colors.background) }
 
     Scaffold(topBar = {
         SampleScreenTopBar(title = "TopBar Sample", onBack = navigateUp)
@@ -156,11 +189,18 @@ private fun InitialStateSample(onClick: (navRoute: TopbarNavRoute) -> Unit, navi
 
 
 @Composable
-private fun WithInsetsSample(onNavigateUp: () -> Unit) {
+private fun WithInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
+
+    val colors = LocalColors.current
+    val containerColor = colors.primary
+    val scrolledContainerColor = colors.primary
+
+    LaunchedEffect(colors) { onChangeTopBarColor(containerColor) }
+
     Scaffold(topBar = {
         TopBar(
             colors = TopBarColors(
-                containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
+                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
             ),
         ) {
             Box(
@@ -233,7 +273,14 @@ private fun WithInsetsSample(onNavigateUp: () -> Unit) {
 }
 
 @Composable
-private fun WithoutInsetsSample(onNavigateUp: () -> Unit) {
+private fun WithoutInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
+
+    val colors = LocalColors.current
+    val containerColor = colors.primary
+    val scrolledContainerColor = colors.primary
+
+    LaunchedEffect(colors) { onChangeTopBarColor(colors.white) }
+
 
     val activity = LocalContext.current as ComponentActivity
 
@@ -248,7 +295,7 @@ private fun WithoutInsetsSample(onNavigateUp: () -> Unit) {
     Scaffold(topBar = {
         TopBar(
             colors = TopBarColors(
-                containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
+                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
             ), windowInsets = WindowInsets.systemBarsForVisualComponents.only(
                 WindowInsetsSides.Horizontal
             )
@@ -318,13 +365,26 @@ private fun WithoutInsetsSample(onNavigateUp: () -> Unit) {
 }
 
 @Composable
-private fun ChangeColorOnScrollSample(onNavigateUp: () -> Unit) {
+private fun ChangeColorOnScrollSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
     val scrollBehavior = TopBarDefaults.pinnedScrollBehavior()
+    val overlappedFraction = scrollBehavior.state.overlappedFraction
+    val colors = LocalColors.current
+    val containerColor = colors.background
+    val scrolledContainerColor = colors.primary
+
+
+    LaunchedEffect(colors, overlappedFraction) {
+        if (overlappedFraction > 0.5f) {
+            onChangeTopBarColor(scrolledContainerColor)
+        } else {
+            onChangeTopBarColor(containerColor)
+        }
+    }
 
     Scaffold(topBar = {
         TopBar(
             scrollBehavior = scrollBehavior, colors = TopBarColors(
-                containerColor = AppTheme.colors.background, scrolledContainerColor = AppTheme.colors.primary
+                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
             )
         ) {
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
@@ -393,12 +453,18 @@ private fun ChangeColorOnScrollSample(onNavigateUp: () -> Unit) {
 
 
 @Composable
-private fun EnterAlwaysScrollBehaviorSample(onNavigateUp: () -> Unit) {
+private fun EnterAlwaysScrollBehaviorSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
+    val colors = LocalColors.current
+    val containerColor = colors.primary
+    val scrolledContainerColor = colors.primary
     val scrollBehavior = TopBarDefaults.enterAlwaysScrollBehavior()
+
+    LaunchedEffect(Unit) { onChangeTopBarColor(containerColor) }
+
     Scaffold(topBar = {
         TopBar(
             colors = TopBarColors(
-                containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
+                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
             ), scrollBehavior = scrollBehavior
         ) {
             Row(
@@ -460,19 +526,27 @@ private fun EnterAlwaysScrollBehaviorSample(onNavigateUp: () -> Unit) {
 }
 
 @Composable
-private fun ExitUntilCollapsedScrollBehaviorSample(onNavigateUp: () -> Unit) {
+private fun ExitUntilCollapsedScrollBehaviorSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
+    val colors = LocalColors.current
+    val containerColor = colors.primary
+    val scrolledContainerColor = colors.primary
     val scrollBehavior = TopBarDefaults.exitUntilCollapsedScrollBehavior()
+
+
+    LaunchedEffect(Unit) { onChangeTopBarColor(containerColor) }
+
     Scaffold(topBar = {
         TopBar(
             colors = TopBarColors(
-                containerColor = AppTheme.colors.primary, scrolledContainerColor = AppTheme.colors.primary
+                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
             ), scrollBehavior = scrollBehavior
         ) {
             Row(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .fillMaxSize(),
-                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 IconButton(variant = IconButtonVariant.Ghost, onClick = onNavigateUp) {
                     Icon(
@@ -524,8 +598,20 @@ private fun ExitUntilCollapsedScrollBehaviorSample(onNavigateUp: () -> Unit) {
     }
 }
 
+@Composable
+fun HandleSystemBars(topBarColor: Color) {
+    val defaultColors = SystemBarsDefaults.defaultColors()
+    var systemBarColors by remember { mutableStateOf(defaultColors) }
 
-private  sealed class TopbarNavRoute {
+    systemBarColors = systemBarColors.copy(statusBarColor = topBarColor)
+
+
+
+    SystemBars(colors = systemBarColors)
+}
+
+
+private sealed class TopbarNavRoute {
     @Serializable
     data object InitialStateSample : TopbarNavRoute()
 
