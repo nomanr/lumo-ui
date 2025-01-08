@@ -17,6 +17,8 @@ local.properties
 build/tmp
 .idea/
 **/release/
+**/bin/
+
 
 !.idea/codeStyles/
 !.idea/inspectionProfiles/
