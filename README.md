@@ -5,6 +5,7 @@
 </a>
 
 <br>
+<br>
 
 A plugin for generating Compose UI components through a CLI. It provides customizable and ready-to-use components that you can copy-paste into your projects.
 
