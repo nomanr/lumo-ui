@@ -1,4 +1,4 @@
-package {{packageName}}.components.progress_indicator
+package com.nomanr.lumo.ui.components.progress_indicators
 
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.LinearEasing
@@ -28,8 +28,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import {{packageName}}.{{themeName}}
-import {{packageName}}.components.Text
+import com.nomanr.lumo.ui.AppTheme
+import com.nomanr.lumo.ui.components.Text
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.max
@@ -194,10 +194,10 @@ private fun DrawScope.drawIndeterminateCircularIndicator(
 
 object CircularProgressIndicatorDefaults {
     val Color: Color
-        @Composable get() = {{themeName}}.colors.primary
+        @Composable get() = AppTheme.colors.primary
 
     val TrackColor: Color
-        @Composable get() = {{themeName}}.colors.transparent
+        @Composable get() = AppTheme.colors.transparent
 
     private val Size = 48.dp
     private val ActiveIndicatorWidth = 2.dp
@@ -222,16 +222,16 @@ object CircularProgressIndicatorDefaults {
 @Composable
 @Preview
 fun CircularProgressIndicatorPreview() {
-    {{themeName}} {
+    AppTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(16.dp)
         ) {
-            Text(text = "Determinate Progress", style = {{themeName}}.typography.body1)
+            Text(text = "Determinate Progress", style = AppTheme.typography.body1)
             CircularProgressIndicator(progress = 0.7f)
 
-            Text(text = "Indeterminate Progress", style = {{themeName}}.typography.body1)
+            Text(text = "Indeterminate Progress", style = AppTheme.typography.body1)
             CircularProgressIndicator()
         }
     }

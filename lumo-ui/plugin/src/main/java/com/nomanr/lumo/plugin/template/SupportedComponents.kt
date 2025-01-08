@@ -14,7 +14,7 @@ enum class SupportedComponents {
     ModalBottomSheet,
     NavigationBar,
     OTPTextField,
-    ProgressIndicator,
+    ProgressIndicators,
     RadioButton,
     Scaffold,
     Slider,

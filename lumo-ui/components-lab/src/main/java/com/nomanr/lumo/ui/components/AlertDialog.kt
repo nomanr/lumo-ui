@@ -1,7 +1,5 @@
 package com.nomanr.lumo.ui.components
 
-
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,7 +41,6 @@ import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogShape
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.IconPadding
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.TextPadding
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.TitlePadding
-import com.nomanr.lumo.ui.components.textfield.TextField
 import com.nomanr.lumo.ui.foundation.ProvideContentColorTextStyle
 import kotlin.math.max
 
@@ -359,8 +356,6 @@ fun AlertDialogPreviews() {
         var showSingleButtonDialog by remember { mutableStateOf(false) }
         var showLongContentDialog by remember { mutableStateOf(false) }
         var showInputDialog by remember { mutableStateOf(false) }
-        var inputText by remember { mutableStateOf("") }
-        var projectDescription by remember { mutableStateOf("") }
 
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -433,41 +428,5 @@ fun AlertDialogPreviews() {
             )
         }
 
-        if (showInputDialog) {
-            BasicAlertDialog(
-                onDismissRequest = { showInputDialog = false },
-            ) {
-                Column(
-                    modifier = Modifier
-                        .background(Color.White)
-                        .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    Text(
-                        text = "Report issue", style = AppTheme.typography.h4, color = AppTheme.colors.primary
-                    )
-
-                    TextField(value = inputText,
-                        onValueChange = { inputText = it },
-                        modifier = Modifier.fillMaxWidth(),
-                        label = { Text("Issue") },
-                        placeholder = { Text("A few words") })
-
-                    TextField(
-                        value = projectDescription,
-                        onValueChange = { projectDescription = it },
-                        modifier = Modifier.fillMaxWidth(),
-                        label = { Text("Description") },
-                        placeholder = { Text("Enter detailed description") },
-                        minLines = 3
-                    )
-
-                    Button(
-                        variant = ButtonVariant.Primary, text = "Save", onClick = {
-                            showInputDialog = false
-                        }, modifier = Modifier.fillMaxWidth()
-                    )
-                }
-            }
-        }
     }
 }

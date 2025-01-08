@@ -13,7 +13,7 @@ import com.nomanr.lumo.plugin.template.SupportedComponents.IconButton
 import com.nomanr.lumo.plugin.template.SupportedComponents.ModalBottomSheet
 import com.nomanr.lumo.plugin.template.SupportedComponents.NavigationBar
 import com.nomanr.lumo.plugin.template.SupportedComponents.OTPTextField
-import com.nomanr.lumo.plugin.template.SupportedComponents.ProgressIndicator
+import com.nomanr.lumo.plugin.template.SupportedComponents.ProgressIndicators
 import com.nomanr.lumo.plugin.template.SupportedComponents.RadioButton
 import com.nomanr.lumo.plugin.template.SupportedComponents.Scaffold
 import com.nomanr.lumo.plugin.template.SupportedComponents.Slider
@@ -40,23 +40,23 @@ object TemplateRegistry {
         componentFiles = listOf("components/Accordion.kt.template")
     )
 
+    private val button = Template(
+        componentFiles = listOf("components/Button.kt.template"), supportingFiles = listOf(
+            *surface.allRequiredFiles(),
+            *text.allRequiredFiles(),
+            "foundation/ButtonElevation.kt.template",
+        )
+    )
     private val alertDialog = Template(
         componentFiles = listOf("components/AlertDialog.kt.template"), supportingFiles = listOf(
             "foundation/Providers.kt.template",
+            *button.allRequiredFiles()
         )
     )
 
     private val badge = Template(
         componentFiles = listOf("components/Badge.kt.template"), supportingFiles = listOf(
             "foundation/Providers.kt.template",
-        )
-    )
-
-    private val button = Template(
-        componentFiles = listOf("components/Button.kt.template"), supportingFiles = listOf(
-            *surface.allRequiredFiles(),
-            *text.allRequiredFiles(),
-            "foundation/ButtonElevation.kt.template",
         )
     )
 
@@ -100,7 +100,9 @@ object TemplateRegistry {
 
     private val navigationBar = Template(
         componentFiles = listOf("components/NavigationBar.kt.template"), supportingFiles = listOf(
+            "foundation/SystemBarsDefaultInsets.kt.template",
             *surface.allRequiredFiles(),
+
         )
     )
 
@@ -113,8 +115,8 @@ object TemplateRegistry {
 
     private val progressIndicator = Template(
         componentFiles = listOf(
-            "components/progress_indicator/CircularProgressIndicator.kt.template",
-            "components/progress_indicator/LinearProgressIndicator.kt.template"
+            "components/progress_indicators/CircularProgressIndicator.kt.template",
+            "components/progress_indicators/LinearProgressIndicator.kt.template"
         )
     )
 
@@ -169,7 +171,7 @@ object TemplateRegistry {
 
     private val theme = Template(
         componentFiles = listOf("Theme.kt.template", "Color.kt.template", "Typography.kt.template"),
-        supportingFiles = listOf("foundation/Ripple.kt.template"),
+        supportingFiles = listOf("foundation/Ripple.kt.template", "foundation/Elevation.kt.template"),
     )
 
     private val toolTip = Template(
@@ -199,7 +201,7 @@ object TemplateRegistry {
         ModalBottomSheet to modalBottomSheet,
         NavigationBar to navigationBar,
         OTPTextField to otpTextField,
-        ProgressIndicator to progressIndicator,
+        ProgressIndicators to progressIndicator,
         RadioButton to radioButton,
         Scaffold to scaffold,
         Slider to slider,

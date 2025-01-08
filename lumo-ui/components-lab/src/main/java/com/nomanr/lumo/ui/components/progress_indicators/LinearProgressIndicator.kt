@@ -1,4 +1,4 @@
-package com.nomanr.lumo.ui.components.progress_indicator
+package com.nomanr.lumo.ui.components.progress_indicators
 
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.animateFloat

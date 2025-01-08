@@ -25,7 +25,7 @@ import androidx.compose.ui.util.fastFirst
 import androidx.compose.ui.util.fastFirstOrNull
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.LocalContentColor
-import com.nomanr.lumo.ui.components.LocalTextStyle
+import com.nomanr.lumo.ui.LocalTextStyle
 import com.nomanr.lumo.ui.components.Surface
 import com.nomanr.lumo.ui.components.Text
 import com.nomanr.lumo.ui.components.snackbar.SnackbarDefaults.ContainerElevation
