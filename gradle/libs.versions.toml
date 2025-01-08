@@ -2,8 +2,6 @@
 compileSdk = "35"
 minSdk = "24"
 targetSdk = "35"
-compose-compiler = "1.5.5"
-
 
 android-gradle-plugin = "8.7.3"
 
@@ -28,7 +26,7 @@ hilt = "2.50"
 hilt-ext = "1.2.0"
 hilt-navigation-compose = "1.2.0"
 
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 kotlin-coroutines-android = "1.8.1"
 kotlin-serialization-json = "1.6.3"
 ksp = "2.0.0-1.0.21"

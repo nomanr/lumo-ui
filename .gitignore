@@ -16,6 +16,7 @@ local.properties
 .kotlin/errors
 build/tmp
 .idea/
+**/release/
 
 !.idea/codeStyles/
 !.idea/inspectionProfiles/
