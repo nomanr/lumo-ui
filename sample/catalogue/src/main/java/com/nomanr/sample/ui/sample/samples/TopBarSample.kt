@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.sample.samples
 
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

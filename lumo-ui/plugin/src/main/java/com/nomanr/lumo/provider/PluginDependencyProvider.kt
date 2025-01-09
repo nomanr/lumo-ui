@@ -1,7 +1,6 @@
 package com.nomanr.lumo.provider
 
 import com.nomanr.lumo.utils.Logger
-import org.gradle.api.Project
 
 class PluginDependencyProvider(private val logger: Logger = Logger.getInstance()) {
 
