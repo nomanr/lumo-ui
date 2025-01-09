@@ -31,13 +31,15 @@ subprojects {
             targetExclude("${layout.buildDirectory}/**/*.kt")
             targetExclude("bin/**/*.kt")
 
-            ktlint("0.41.0").editorConfigOverride(
+            ktlint("0.48.0").editorConfigOverride(
                 mapOf(
                     "ktlint_standard_no-wildcard-imports" to "disabled",
                     "ktlint_standard_max-line-length" to "100",
                     "android" to "true"
                 )
             )
+
+
         }
     }
 

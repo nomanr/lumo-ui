@@ -11,18 +11,6 @@ import androidx.compose.ui.unit.sp
 import com.nomanr.lumo.components.R
 
 val fontFamily = FontFamily(
-    /** Make sure to pass at least one font to the FontFamily, otherwise it will throw an error. **/
-
-    /***
-     * Your custom font family goes here. For example:
-     *
-     *     Font(R.font.black, FontWeight.Black),
-     *     Font(R.font.extrabold, FontWeight.ExtraBold),
-     *     Font(R.font.bold, FontWeight.Bold),
-     *     Font(R.font.semibold, FontWeight.SemiBold),
-     *     Font(R.font.medium, FontWeight.Medium),
-     *     Font(R.font.regular, FontWeight.Normal),
-     */
     Font(R.font.poppins_black, FontWeight.Black),
     Font(R.font.poppins_extrabold, FontWeight.ExtraBold),
     Font(R.font.poppins_bold, FontWeight.Bold),
