@@ -46,7 +46,7 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             # Do not delete this file
             
             ThemeName=AppTheme
-            ComponentsDir=<<path-to-components>>
+            ComponentsDir=<<relative-path-to-components-dir-from-root>>
             PackageName=<<component-files-package-name>>
         """.trimIndent()
 
