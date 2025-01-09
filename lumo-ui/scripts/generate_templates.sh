@@ -31,8 +31,9 @@ process_files() {
       if ! sed -E -e "s|^package com\.nomanr\.lumo\.ui(\..*)?|package {{packageName}}\1|" \
                   -e "s|import com\.nomanr\.lumo\.ui(\..*)?|import {{packageName}}\1|" \
                   -e "s|AppTheme|{{themeName}}|g" \
-                  -e "/Font\(R\.font\.poppins/d" \
                   -e "/^import com\.nomanr\.lumo\.components\.R$/d" \
+                  -e "/val fontFamily = FontFamily\(/,/^\)/c\\
+val fontFamily = FontFamily.Default" \
                   "$item" > "$temp_file"; then
           echo "Error: Failed to process file -> $item"
           rm -f "$temp_file"

@@ -8,16 +8,28 @@ class ConfigurationValidator(private val project: Project, private val logger: L
 
     fun validate(config: LumoConfig): Boolean {
         val destinationDir = File(project.rootDir, config.componentsDir)
+
         if (!destinationDir.exists()) {
             logger.error("The components directory (${config.componentsDir}) does not exist.")
             return false
         }
 
-        val packageNamePath = config.packageName.replace(".", File.separator)
-        if (!config.componentsDir.endsWith(packageNamePath)) {
-            logger.warn("The directory (${config.componentsDir}) and the package name (${config.packageName}) do not match.")
+        val normalizedDirPath = config.componentsDir
+            .replace("\\", ".") // Replace Windows-style backslashes
+            .replace("/", ".")  // Replace Unix-style forward slashes
+            .replace("//", ".") // Handle double forward slashes (if any)
+
+
+
+        if (!normalizedDirPath.endsWith(config.packageName)) {
+            logger.warn("componentsDir: $config.componentsDir")
+            logger.warn("normalisedComponentsDir: $normalizedDirPath")
+            logger.warn("config.packageName: ${config.packageName}")
+
+            logger.warn("The directory (${normalizedDirPath}) and the package name (${config.packageName}) do not match.")
             return false
         }
+
         return true
     }
 }
