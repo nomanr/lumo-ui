@@ -11,7 +11,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import com.nomanr.sample.ui.AppColors
-import com.nomanr.sample.ui.Colors
 import com.nomanr.sample.ui.LocalDefaultColors
 
 @Composable
