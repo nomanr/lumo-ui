@@ -13,6 +13,10 @@ A plugin for generating Compose UI components through a CLI. It provides customi
 
 ![cover](https://github.com/user-attachments/assets/2fd3d27f-7cea-4b64-a9d7-16313d772402)
 
+## How does it work?
+
+https://github.com/user-attachments/assets/fe662057-d223-4718-ac3d-06f5f29738c0
+
 ## Documentation
 
 Visit https://lumo.nomanr.com to view the documentation.
