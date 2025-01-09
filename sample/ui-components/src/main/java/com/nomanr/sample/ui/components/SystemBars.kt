@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.components
 
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
