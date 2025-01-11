@@ -21,6 +21,7 @@ androidx-viewmodel-ktx = "2.8.7"
 androidx-multidex = "2.0.1"
 
 coil = "2.7.0"
+compose-multiplatform = "1.7.0"
 
 hilt = "2.50"
 hilt-ext = "1.2.0"
@@ -114,13 +115,13 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
 
-#Local plugins
-app-publishing-plugin = { id = "com.nomanr.lumo.publishing-plugin" }
 
 
 
