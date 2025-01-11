@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":sample:ui-components"))
+    implementation(project(":sample-android:ui-components"))
     implementation(libs.androidx.corektx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.splashscreen)
