@@ -10,7 +10,7 @@ androidx-appcompat = "1.7.0"
 androidx-compose-bom = "2024.12.01"
 androidx-constraintlayout = "1.1.0"
 androidx-corektx = "1.15.0"
-androidx-lifecycle-compose = "2.8.7"
+androidx-lifecycle-compose = "2.8.4"
 androidx-lifecycle-runtime-compose = "2.8.7"
 androidx-compose-navigation = "2.8.5"
 androidx-compose-ripple = "1.7.6"
@@ -75,6 +75,8 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-corektx" }
 
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-runtime-compose" }
+androidx-lifecycle-runtime-multiplatform = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-compose" }
+
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle-compose" }
 androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle-compose" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-viewmodel-ktx" }

@@ -26,4 +26,5 @@ rootProject.name = "lumo-ui"
 include(":lumo-ui:components-lab")
 include(":sample-android:catalogue")
 include(":sample-android:ui-components")
-include(":sample-multiplatform:catalogue")
+include(":sample-multiplatform:catalogue:common")
+include(":sample-multiplatform:catalogue:android")
