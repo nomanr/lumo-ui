@@ -2,6 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.nomanr/lumo)](https://search.maven.org/artifact/com.nomanr/lumo)
 
+Download the app to explore all components.
 <a href="https://play.google.com/store/apps/details?id=com.nomanr.lumo.sample">
   <img src="https://github.com/user-attachments/assets/505530d4-3174-4e02-8013-53bd5ce7b7ef" width="150">
 </a>
