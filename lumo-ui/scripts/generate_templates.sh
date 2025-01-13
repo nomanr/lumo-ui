@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")" || exit
 
-SOURCE_DIR="../components-lab/src/main/java/com/nomanr/lumo/ui"
+SOURCE_DIR="../components-lab/android/src/main/java/com/nomanr/lumo/ui"
 DEST_DIR="../plugin/src/main/resources/templates"
 
 check_directory_exists() {
@@ -10,6 +10,13 @@ check_directory_exists() {
   if [ ! -d "$dir" ]; then
     echo "Error: Directory not found -> $dir"
     exit 1
+  fi
+}
+
+delete_existing_templates() {
+  local dir="$1"
+  if [ -d "$dir" ]; then
+    rm -rf "$dir"
   fi
 }
 
@@ -53,5 +60,6 @@ val fontFamily = FontFamily.Default" \
 }
 
 check_directory_exists "$SOURCE_DIR"
+delete_existing_templates "$DEST_DIR"
 process_files "$SOURCE_DIR" "$DEST_DIR"
 echo "Templates updated in $DEST_DIR"
