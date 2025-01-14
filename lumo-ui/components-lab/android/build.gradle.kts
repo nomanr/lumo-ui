@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.nomanr.lumo.components"
+    namespace = "com.nomanr.lumo.components.android"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
