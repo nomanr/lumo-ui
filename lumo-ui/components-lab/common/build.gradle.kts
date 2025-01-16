@@ -23,7 +23,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "lumo-ui"
+            baseName = "lumo-ui-common"
             isStatic = true
         }
     }
@@ -47,7 +47,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.nomanr.lumo.multiplatform.sample"
+    namespace = "com.nomanr.lumo.components.common"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
