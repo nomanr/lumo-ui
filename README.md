@@ -4,8 +4,8 @@
 
 Download the app to explore all components.
 
-<a href="https://play.google.com/store/apps/details?id=com.nomanr.lumo.sample">
-  <img src="https://github.com/user-attachments/assets/505530d4-3174-4e02-8013-53bd5ce7b7ef" width="150">
+<a href="https://lumo.nomanr.com/lumo-ui.apk">
+  <img src="https://github.com/user-attachments/assets/d3c79b3b-9481-4916-acb5-7f93f8e64e1e" width="200">
 </a>
 
 <br>
