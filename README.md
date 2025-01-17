@@ -5,7 +5,7 @@
 Download the app to explore all components.
 
 <a href="https://lumo.nomanr.com/lumo-ui.apk">
-  <img src="https://github.com/user-attachments/assets/8b9a79c4-5854-400b-96b9-6050809b4e8b" width="300">
+  <img src="https://github.com/user-attachments/assets/8b9a79c4-5854-400b-96b9-6050809b4e8b" width="200">
 </a>
 
 <br>
