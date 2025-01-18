@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.3] - January 19, 2025
+- Add `Surface` as `Scaffold` dependency in `TemplateRegistry`
+- 
 ## [1.0.2] - January 18, 2025
 - Remove slash or backslash from the end of the `ComponentDir` in `ConfigurationValidator`
 
