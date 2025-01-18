@@ -129,6 +129,7 @@ object TemplateRegistry {
     private val scaffold = Template(
         componentFiles = listOf("components/Scaffold.kt.template"), supportingFiles = listOf(
             "foundation/SystemBarsDefaultInsets.kt.template",
+            *surface.allRequiredFiles(),
         )
     )
 
