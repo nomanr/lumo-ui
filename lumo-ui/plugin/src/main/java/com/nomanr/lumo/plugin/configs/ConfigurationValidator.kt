@@ -18,6 +18,7 @@ class ConfigurationValidator(private val project: Project, private val logger: L
             .replace("\\", ".") // Replace Windows-style backslashes
             .replace("/", ".")  // Replace Unix-style forward slashes
             .replace("//", ".") // Handle double forward slashes (if any)
+            .removeSuffix("/").removeSuffix("\\") // Remove last slash
 
 
 
