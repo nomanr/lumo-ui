@@ -15,10 +15,10 @@ class ConfigurationValidator(private val project: Project, private val logger: L
         }
 
         val normalizedDirPath = config.componentsDir
+            .removeSuffix("/").removeSuffix("\\") // Remove the last slash or backslash
             .replace("\\", ".") // Replace Windows-style backslashes
             .replace("/", ".")  // Replace Unix-style forward slashes
             .replace("//", ".") // Handle double forward slashes (if any)
-            .removeSuffix("/").removeSuffix("\\") // Remove last slash
 
 
 
