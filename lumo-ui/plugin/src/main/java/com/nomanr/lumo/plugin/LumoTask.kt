@@ -38,10 +38,10 @@ abstract class LumoTask : DefaultTask() {
     @Optional
     var componentToAdd: String? = null
 
-    private val propertyLoader =  PropertyLoader(project)
-    private val initialiser = Initialiser(project, propertyLoader)
-    private val dependencyProvider =  PluginDependencyProvider()
-    private val generateComponent = GenerateComponent(project, propertyLoader)
+    private val propertyLoader by lazy { PropertyLoader(project) }
+    private val initialiser by lazy { Initialiser(project, propertyLoader) }
+    private val dependencyProvider by lazy { PluginDependencyProvider() }
+    private val generateComponent by lazy { GenerateComponent(project, propertyLoader) }
     private val logger = Logger.getInstance()
 
     @TaskAction
