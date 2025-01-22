@@ -21,13 +21,13 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.LocalTypography
 import com.nomanr.lumo.ui.components.Surface
 import com.nomanr.lumo.ui.components.Text
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Card(
@@ -291,7 +291,7 @@ data class CardColors internal constructor(
 
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Preview
 internal fun CardComponentSampleInTheme(){
     AppTheme {
         CardComponentSample()
@@ -299,7 +299,7 @@ internal fun CardComponentSampleInTheme(){
 }
 
 @Composable
-@Preview(showBackground = true,)
+@Preview
 fun CardComponentSample() {
     val cardModifier = Modifier
         .fillMaxWidth()

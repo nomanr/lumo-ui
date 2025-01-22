@@ -2,8 +2,8 @@
 
 cd "$(dirname "$0")" || exit
 
-SOURCE_DIR="../components-lab/src/main/java/com/nomanr/lumo/ui"
-DEST_DIR="../plugin/src/main/resources/templates"
+SOURCE_DIR="../multiplatform-components-lab/src/commonMain/kotlin/com/nomanr/lumo/ui"
+DEST_DIR="../plugin/src/main/resources/multiplatform-templates"
 
 check_directory_exists() {
   local dir="$1"

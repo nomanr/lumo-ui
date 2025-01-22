@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.offset
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.contentColorFor
 import com.nomanr.lumo.ui.foundation.systemBarsForVisualComponents
+import kotlin.jvm.JvmInline
 
 @Composable
 fun Scaffold(

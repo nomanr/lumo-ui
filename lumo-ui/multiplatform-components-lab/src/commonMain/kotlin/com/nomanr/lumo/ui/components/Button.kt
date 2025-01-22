@@ -25,11 +25,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.LocalContentColor
 import com.nomanr.lumo.ui.foundation.ButtonElevation
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Button(
@@ -425,7 +425,7 @@ internal data class ButtonStyle(
 
 
 @Composable
-@Preview("Button", backgroundColor = 0xFFFFFFFF, showBackground = true)
+@Preview
 fun ButtonPreview() {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         PrimaryButtonPreview()
@@ -436,7 +436,7 @@ fun ButtonPreview() {
 }
 
 @Composable
-@Preview("Primary Buttons")
+@Preview
 fun PrimaryButtonPreview() {
     AppTheme {
         Column(
@@ -483,7 +483,7 @@ fun PrimaryButtonPreview() {
 }
 
 @Composable
-@Preview("Secondary Buttons")
+@Preview
 fun SecondaryButtonPreview() {
     AppTheme {
         Column(
@@ -530,7 +530,7 @@ fun SecondaryButtonPreview() {
 }
 
 @Composable
-@Preview("Destructive Buttons")
+@Preview
 fun DestructiveButtonPreview() {
     AppTheme {
         Column(

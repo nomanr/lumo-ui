@@ -43,7 +43,6 @@ import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.state.ToggleableState
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.nomanr.lumo.ui.AppTheme
@@ -56,6 +55,7 @@ import com.nomanr.lumo.ui.components.CheckboxDefaults.MinimumInteractiveSize
 import com.nomanr.lumo.ui.components.CheckboxDefaults.RadiusSize
 import com.nomanr.lumo.ui.components.CheckboxDefaults.StrokeWidth
 import com.nomanr.lumo.ui.foundation.ripple
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.floor
 import kotlin.math.max
 
@@ -367,7 +367,7 @@ data class CheckboxColors(
 }
 
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun CheckboxPreview() {
     AppTheme {

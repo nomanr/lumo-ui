@@ -48,7 +48,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.LocalContentColor
@@ -57,6 +56,7 @@ import com.nomanr.lumo.ui.components.Text
 import com.nomanr.lumo.ui.components.topbar.TopBarDefaults.TopBarHeight
 import com.nomanr.lumo.ui.contentColorFor
 import com.nomanr.lumo.ui.foundation.systemBarsForVisualComponents
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TopBar(
@@ -290,7 +290,7 @@ data class TopBarColors(
 
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Preview
 fun TopBarSamples() {
     val icon = @Composable {
         Box(

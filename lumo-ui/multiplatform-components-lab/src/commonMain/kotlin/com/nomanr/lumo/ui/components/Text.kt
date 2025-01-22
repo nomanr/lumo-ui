@@ -1,6 +1,5 @@
 package com.nomanr.lumo.ui.components
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,7 +11,6 @@ import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
@@ -22,16 +20,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.LocalContentColor
 import com.nomanr.lumo.ui.LocalTextStyle
 import com.nomanr.lumo.ui.LocalTypography
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Text(
-    @StringRes textRes: Int,
+    stringRes: StringResource,
     modifier: Modifier = Modifier,
     color: Color = LocalContentColor.current,
     fontSize: TextUnit = TextUnit.Unspecified,
@@ -50,7 +50,7 @@ fun Text(
     textStyle: TextStyle = LocalTextStyle.current
 ) {
     Text(
-        text = stringResource(textRes),
+        text = stringResource(stringRes),
         modifier = modifier,
         color = color,
         fontSize = fontSize,
@@ -159,7 +159,7 @@ internal fun Text(
 }
 
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Preview
 @Composable
 fun TypographySample() {
     val typography = LocalTypography.current

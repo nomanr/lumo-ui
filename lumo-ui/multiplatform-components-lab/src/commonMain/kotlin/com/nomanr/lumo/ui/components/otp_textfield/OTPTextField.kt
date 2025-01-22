@@ -39,9 +39,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.AppTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.min
 
 @Composable
@@ -300,7 +300,7 @@ class OTPState(
         if (index in code.indices && value.isDigit()) {
             val chars = code.toCharArray()
             chars[index] = value
-            code = String(chars)
+            code = chars.concatToString()
 
             // Handle focus after digit entry
             if (index < length - 1) {
@@ -315,7 +315,7 @@ class OTPState(
         if (index in code.indices) {
             val chars = code.toCharArray()
             chars[index] = ' '
-            code = String(chars)
+            code = chars.concatToString()
 
             if (index > 0 && isFieldEmpty(index)) {
                 focusManager.moveFocus(FocusDirection.Previous)
