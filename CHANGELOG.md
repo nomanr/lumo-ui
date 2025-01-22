@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.5] January 23, 2025
+- Revert 1.0.4
+
+## [1.0.4] January 21, 2025
+- Initialise the properties in `LumoTask` directly instead of lazily initialisation. 
+
 ## [1.0.3] - January 19, 2025
 - Add `Surface` as `Scaffold` dependency in `TemplateRegistry`
 
