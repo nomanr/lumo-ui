@@ -2,8 +2,10 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.nomanr/lumo)](https://search.maven.org/artifact/com.nomanr/lumo)
 
-<a href="https://play.google.com/store/apps/details?id=com.nomanr.lumo.sample">
-  <img src="https://github.com/user-attachments/assets/505530d4-3174-4e02-8013-53bd5ce7b7ef" width="150">
+Download the app to explore all components.
+
+<a href="https://lumo.nomanr.com/lumo-ui.apk">
+  <img src="https://github.com/user-attachments/assets/8b9a79c4-5854-400b-96b9-6050809b4e8b" width="200">
 </a>
 
 <br>

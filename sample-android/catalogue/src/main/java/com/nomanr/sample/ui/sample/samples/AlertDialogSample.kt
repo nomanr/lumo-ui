@@ -93,7 +93,8 @@ fun AlertDialogSample() {
 @Composable
 private fun AlertDialogSamples(state: AlertDialogState) {
     if (state.showSimpleDialog) {
-        AlertDialog(onDismissRequest = { state.showSimpleDialog = false },
+        AlertDialog(
+            onDismissRequest = { state.showSimpleDialog = false },
             onConfirmClick = { state.showSimpleDialog = false },
             title = "Simple Dialog",
             text = "This is a simple dialog with default confirm and dismiss buttons.",
@@ -103,7 +104,8 @@ private fun AlertDialogSamples(state: AlertDialogState) {
     }
 
     if (state.showSingleButtonDialog) {
-        AlertDialog(onDismissRequest = { state.showSingleButtonDialog = false },
+        AlertDialog(
+            onDismissRequest = { state.showSingleButtonDialog = false },
             onConfirmClick = { state.showSingleButtonDialog = false },
             title = "Information",
             text = "This dialog only has a confirm button.",
@@ -113,7 +115,8 @@ private fun AlertDialogSamples(state: AlertDialogState) {
     }
 
     if (state.showLongContentDialog) {
-        AlertDialog(onDismissRequest = { state.showLongContentDialog = false },
+        AlertDialog(
+            onDismissRequest = { state.showLongContentDialog = false },
             onConfirmClick = { state.showLongContentDialog = false },
             title = "Terms & Conditions",
             text = "This dialog displays longer content to ensure readability and proper layout for users with detailed content. It can be used for displaying terms and conditions, privacy policies, or any other lengthy content.",
@@ -128,7 +131,7 @@ private fun AlertDialogSamples(state: AlertDialogState) {
         BasicAlertDialog(onDismissRequest = { state.showInputDialog = false }) {
             Column(
                 modifier = Modifier
-                    .background(Color.White)
+                    .background(AppTheme.colors.success)
                     .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text("Enter your email", style = AppTheme.typography.h4)
@@ -164,7 +167,8 @@ private fun AlertDialogSamples(state: AlertDialogState) {
     }
 
     if (state.showMultipleButtonsDialog) {
-        AlertDialog(onDismissRequest = { state.showMultipleButtonsDialog = false },
+        AlertDialog(
+            onDismissRequest = { state.showMultipleButtonsDialog = false },
             onConfirmClick = { state.showMultipleButtonsDialog = false },
             title = "Multiple Actions",
             text = "This dialog features multiple actions for more flexibility.",
@@ -177,7 +181,7 @@ private fun AlertDialogSamples(state: AlertDialogState) {
         BasicAlertDialog(onDismissRequest = { state.showCustomContentDialog = false }) {
             Column(
                 modifier = Modifier
-                    .background(AppTheme.colors.primary)
+                    .background(AppTheme.colors.success)
                     .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 CompositionLocalProvider(
