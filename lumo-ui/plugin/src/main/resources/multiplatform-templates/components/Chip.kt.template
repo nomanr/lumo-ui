@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AcUnit
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
@@ -24,13 +24,13 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import {{packageName}}.{{themeName}}
 import {{packageName}}.components.ChipDefaults.ChipIconHorizontalPadding
 import {{packageName}}.components.ChipDefaults.ChipIconSize
 import {{packageName}}.components.ChipDefaults.ChipRectShape
 import {{packageName}}.foundation.ButtonElevation
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Chip(
@@ -311,7 +311,7 @@ internal data class ChipStyle(
 )
 
 @Composable
-@Preview("Primary")
+@Preview
 fun PrimaryChipPreview() {
     {{themeName}} {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -320,7 +320,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -330,7 +330,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -339,7 +339,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -348,7 +348,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -358,7 +358,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -367,7 +367,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -376,7 +376,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -384,7 +384,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -394,7 +394,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -403,7 +403,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -412,7 +412,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -421,7 +421,7 @@ fun PrimaryChipPreview() {
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Icon(Icons.Filled.Warning, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }

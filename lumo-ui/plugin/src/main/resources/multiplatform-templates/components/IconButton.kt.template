@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AcUnit
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -29,12 +29,12 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import {{packageName}}.{{themeName}}
 import {{packageName}}.LocalContentColor
 import {{packageName}}.contentColorFor
 import {{packageName}}.foundation.ButtonElevation
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun IconButton(
@@ -323,7 +323,7 @@ data class IconButtonStyle(
 )
 
 @Composable
-@Preview("Primary Icon Buttons")
+@Preview
 fun PrimaryIconButtonPreview() {
     {{themeName}} {
         Column(
@@ -333,16 +333,16 @@ fun PrimaryIconButtonPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Primary) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryFilled")
+                    Icon(Icons.Filled.Warning, contentDescription = "PrimaryFilled")
                 }
                 IconButton(variant = IconButtonVariant.PrimaryOutlined) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryOutlined")
+                    Icon(Icons.Filled.Warning, contentDescription = "PrimaryOutlined")
                 }
                 IconButton(variant = IconButtonVariant.PrimaryElevated) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryElevated")
+                    Icon(Icons.Filled.Warning, contentDescription = "PrimaryElevated")
                 }
                 IconButton(variant = IconButtonVariant.PrimaryGhost) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryGhost")
+                    Icon(Icons.Filled.Warning, contentDescription = "PrimaryGhost")
                 }
             }
         }
@@ -350,7 +350,7 @@ fun PrimaryIconButtonPreview() {
 }
 
 @Composable
-@Preview("Secondary Icon Buttons")
+@Preview
 fun SecondaryIconButtonPreview() {
     {{themeName}} {
         Column(
@@ -360,16 +360,16 @@ fun SecondaryIconButtonPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Secondary) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryFilled")
+                    Icon(Icons.Filled.Warning, contentDescription = "SecondaryFilled")
                 }
                 IconButton(variant = IconButtonVariant.SecondaryOutlined) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryOutlined")
+                    Icon(Icons.Filled.Warning, contentDescription = "SecondaryOutlined")
                 }
                 IconButton(variant = IconButtonVariant.SecondaryElevated) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryElevated")
+                    Icon(Icons.Filled.Warning, contentDescription = "SecondaryElevated")
                 }
                 IconButton(variant = IconButtonVariant.SecondaryGhost) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryGhost")
+                    Icon(Icons.Filled.Warning, contentDescription = "SecondaryGhost")
                 }
             }
         }
@@ -377,7 +377,7 @@ fun SecondaryIconButtonPreview() {
 }
 
 @Composable
-@Preview("Destructive Icon Buttons")
+@Preview
 fun DestructiveIconButtonPreview() {
     {{themeName}} {
         Column(
@@ -387,16 +387,16 @@ fun DestructiveIconButtonPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Destructive) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    Icon(Icons.Filled.Warning, contentDescription = "DestructiveFilled")
                 }
                 IconButton(variant = IconButtonVariant.DestructiveOutlined) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveOutlined")
+                    Icon(Icons.Filled.Warning, contentDescription = "DestructiveOutlined")
                 }
                 IconButton(variant = IconButtonVariant.DestructiveElevated) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveElevated")
+                    Icon(Icons.Filled.Warning, contentDescription = "DestructiveElevated")
                 }
                 IconButton(variant = IconButtonVariant.DestructiveGhost) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveGhost")
+                    Icon(Icons.Filled.Warning, contentDescription = "DestructiveGhost")
                 }
             }
         }
@@ -405,7 +405,7 @@ fun DestructiveIconButtonPreview() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-@Preview("Ghost Icon Buttons")
+@Preview
 fun GhostIconButtonPreview() {
     {{themeName}} {
         Column(
@@ -423,7 +423,7 @@ fun GhostIconButtonPreview() {
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.background)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            Icon(Icons.Filled.Warning, contentDescription = "DestructiveFilled")
                         }
                     }
                 }
@@ -437,7 +437,7 @@ fun GhostIconButtonPreview() {
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.primary)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            Icon(Icons.Filled.Warning, contentDescription = "DestructiveFilled")
                         }
                     }
                 }
@@ -451,7 +451,7 @@ fun GhostIconButtonPreview() {
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.secondary)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            Icon(Icons.Filled.Warning, contentDescription = "DestructiveFilled")
                         }
                     }
                 }
@@ -465,7 +465,7 @@ fun GhostIconButtonPreview() {
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.tertiary)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            Icon(Icons.Filled.Warning, contentDescription = "DestructiveFilled")
                         }
                     }
                 }
@@ -479,7 +479,7 @@ fun GhostIconButtonPreview() {
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.surface)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            Icon(Icons.Filled.Warning, contentDescription = "DestructiveFilled")
                         }
                     }
                 }
@@ -493,7 +493,7 @@ fun GhostIconButtonPreview() {
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.error)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            Icon(Icons.Filled.Warning, contentDescription = "DestructiveFilled")
                         }
                     }
                 }
@@ -505,7 +505,7 @@ fun GhostIconButtonPreview() {
 }
 
 @Composable
-@Preview("All Icon Button Shapes")
+@Preview
 fun IconButtonShapesPreview() {
     {{themeName}} {
         Column(
@@ -517,12 +517,12 @@ fun IconButtonShapesPreview() {
                 IconButton(
                     variant = IconButtonVariant.Primary, shape = IconButtonDefaults.ButtonSquareShape
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SquareShape")
+                    Icon(Icons.Filled.Warning, contentDescription = "SquareShape")
                 }
                 IconButton(
                     variant = IconButtonVariant.PrimaryOutlined, shape = IconButtonDefaults.ButtonSquareShape
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SquareShapeOutlined")
+                    Icon(Icons.Filled.Warning, contentDescription = "SquareShapeOutlined")
                 }
             }
 
@@ -532,12 +532,12 @@ fun IconButtonShapesPreview() {
                 IconButton(
                     variant = IconButtonVariant.Primary, shape = IconButtonDefaults.ButtonCircleShape
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "CircleShape")
+                    Icon(Icons.Filled.Warning, contentDescription = "CircleShape")
                 }
                 IconButton(
                     variant = IconButtonVariant.PrimaryOutlined, shape = IconButtonDefaults.ButtonCircleShape
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "CircleShapeOutlined")
+                    Icon(Icons.Filled.Warning, contentDescription = "CircleShapeOutlined")
                 }
             }
         }

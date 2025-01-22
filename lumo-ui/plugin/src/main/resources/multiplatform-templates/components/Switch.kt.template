@@ -31,7 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import {{packageName}}.{{themeName}}
@@ -47,6 +46,7 @@ import {{packageName}}.components.SwitchDefaults.UncheckedThumbSize
 import {{packageName}}.foundation.ripple
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.roundToInt
 
 @Composable
@@ -316,7 +316,7 @@ private class SwitchAnimationState(
 }
 
 
-@Preview("Switch")
+@Preview
 @Composable
 private fun SwitchPreview() {
     {{themeName}} {

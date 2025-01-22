@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.offset
 import {{packageName}}.{{themeName}}
 import {{packageName}}.contentColorFor
 import {{packageName}}.foundation.systemBarsForVisualComponents
+import kotlin.jvm.JvmInline
 
 @Composable
 fun Scaffold(
