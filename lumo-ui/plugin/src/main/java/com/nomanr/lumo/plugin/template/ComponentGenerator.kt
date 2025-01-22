@@ -32,6 +32,9 @@ class ComponentGenerator(
         logger.info("Generating ${component.name} ...")
         val template = TemplateRegistry.getTemplate(component)
 
+        val templateParentPath = if (config.kotlinMultiplatform)
+            "multiplatform-templates" else "templates"
+
         template.componentFiles.forEach { componentPath ->
             val componentOutputFile = File(outputDir, componentPath.replace(".kt.template", ".kt"))
             ensureDirectoryExists(componentOutputFile)
@@ -40,7 +43,7 @@ class ComponentGenerator(
                 failedToGenerate.add(componentOutputFile)
             } else {
                 try {
-                    generateTemplate(componentPath, componentOutputFile)
+                    generateTemplate(componentPath, componentOutputFile, templateParentPath)
                     successfullyGenerated.add(componentOutputFile)
                 } catch (e: Exception) {
                     failedToGenerate.add(componentOutputFile)
@@ -56,7 +59,7 @@ class ComponentGenerator(
                 failedToGenerate.add(dependencyOutputFile)
             } else {
                 try {
-                    generateTemplate(dependencyPath, dependencyOutputFile)
+                    generateTemplate(dependencyPath, dependencyOutputFile, templateParentPath)
                     successFullyGeneratedSupportingFiles.add(dependencyOutputFile)
 
 
@@ -71,8 +74,12 @@ class ComponentGenerator(
 
         logSummary(component.name)
     }
-    private fun generateTemplate(templateFileName: String, outputFile: File) {
-        val resourcePath = "templates/$templateFileName"
+    private fun generateTemplate(
+        templateFileName: String,
+        outputFile: File,
+        templateParentPath: String = "templates",
+    ) {
+        val resourcePath = templateParentPath + File.separator + templateFileName
         val resource = javaClass.classLoader.getResource(resourcePath)
             ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
 
