@@ -29,7 +29,8 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
         return LumoConfig(
             themeName = properties.getProperty(PROPERTY_THEME_NAME).orEmpty(),
             componentsDir = properties.getProperty(PROPERTY_COMPONENTS_DIR).orEmpty(),
-            packageName = properties.getProperty(PROPERTY_PACKAGE_NAME).orEmpty()
+            packageName = properties.getProperty(PROPERTY_PACKAGE_NAME).orEmpty(),
+            kotlinMultiplatform = properties.getProperty(PROPERTY_KOTLIN_MULTIPLATFORM).toBoolean()
         )
     }
 
@@ -45,9 +46,10 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             # This file is used to store configurations for the Lumo UI Plugin
             # Do not delete this file
             
-            ThemeName=AppTheme
-            ComponentsDir=<<relative-path-to-components-dir-from-root>>
-            PackageName=<<component-files-package-name>>
+            themeName=AppTheme
+            componentsDir=<<relative-path-to-components-dir-from-root>>
+            packageName=<<component-files-package-name>>
+            kotlinMultiplatform=false
         """.trimIndent()
 
         propertiesFile.writeText(defaultProperties)
@@ -64,8 +66,9 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
 
     companion object {
         private const val LUMO_PROPERTIES = "lumo.properties"
-        private const val PROPERTY_THEME_NAME = "ThemeName"
-        private const val PROPERTY_COMPONENTS_DIR = "ComponentsDir"
-        private const val PROPERTY_PACKAGE_NAME = "PackageName"
+        private const val PROPERTY_THEME_NAME = "themeName"
+        private const val PROPERTY_COMPONENTS_DIR = "componentsDir"
+        private const val PROPERTY_PACKAGE_NAME = "packageName"
+        private const val PROPERTY_KOTLIN_MULTIPLATFORM = "kotlinMultiplatform"
     }
 }
