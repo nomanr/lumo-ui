@@ -32,8 +32,10 @@ class ComponentGenerator(
         logger.info("Generating ${component.name} ...")
         val template = TemplateRegistry.getTemplate(component)
 
-        val templateParentPath = if (config.kotlinMultiplatform)
-            "multiplatform-templates" else "templates"
+//        val templateParentPath = if (config.kotlinMultiplatform)
+//            "multiplatform-templates" else "templates"
+
+        val templateParentPath = "templates/android"
 
         template.componentFiles.forEach { componentPath ->
             val componentOutputFile = File(outputDir, componentPath.replace(".kt.template", ".kt"))
