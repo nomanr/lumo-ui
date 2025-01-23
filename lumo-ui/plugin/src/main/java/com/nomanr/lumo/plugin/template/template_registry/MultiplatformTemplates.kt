@@ -1,7 +1,6 @@
 package com.nomanr.lumo.plugin.template.template_registry
 
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.TestComponent
-import com.nomanr.lumo.plugin.template.Template
 
 object MultiplatformTemplates {
     private val testComponent = Template(

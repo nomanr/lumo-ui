@@ -27,6 +27,7 @@ import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Tex
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Theme
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Tooltip
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.TopBar
+import com.nomanr.lumo.plugin.template.template_registry.Template
 
 object TemplateRegistry {
     private val surface = Template(

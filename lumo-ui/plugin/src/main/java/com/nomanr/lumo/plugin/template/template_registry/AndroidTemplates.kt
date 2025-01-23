@@ -4,7 +4,6 @@ import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Ale
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.ModalBottomSheet
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.SystemBars
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Tooltip
-import com.nomanr.lumo.plugin.template.Template
 
 object AndroidTemplates {
     private val alertDialog = Template(
@@ -32,7 +31,7 @@ object AndroidTemplates {
     )
 
 
-    fun getTemplate() = mapOf(
+    fun getTemplates() = mapOf(
         AlertDialog to alertDialog,
         ModalBottomSheet to modalBottomSheet,
         SystemBars to systemBars,

@@ -2,14 +2,16 @@ package com.nomanr.lumo.plugin.template
 
 import com.nomanr.lumo.exceptions.LumoException
 import com.nomanr.lumo.plugin.configs.LumoConfig
+import com.nomanr.lumo.plugin.template.template_registry.MultiplatformSourceSet
 import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents
+import com.nomanr.lumo.plugin.template.template_registry.Template
+import com.nomanr.lumo.plugin.template.template_registry.TemplateProvider
 import com.nomanr.lumo.utils.LinkFormatter
 import com.nomanr.lumo.utils.Logger
 import java.io.File
 
 class ComponentGenerator(
-    private val rootDir: File,
-    private val config: LumoConfig
+    private val rootDir: File, private val config: LumoConfig
 ) {
     private val logger = Logger.getInstance()
     private val outputDir = File(config.componentsDir)
@@ -18,6 +20,7 @@ class ComponentGenerator(
     private val otherSuccessMessages = mutableListOf<String>()
     private val failedToGenerate = mutableListOf<File>()
     private val linkFormatter = LinkFormatter
+    private val templateProvider = TemplateProvider(config.kotlinMultiplatform)
 
     init {
         if (!outputDir.exists()) {
@@ -31,12 +34,9 @@ class ComponentGenerator(
 
     fun validateAndGenerate(component: SupportedComponents) {
         logger.info("Generating ${component.name} ...")
-        val template = TemplateRegistry.getTemplate(component)
 
-//        val templateParentPath = if (config.kotlinMultiplatform)
-//            "multiplatform-templates" else "templates"
-
-        val templateParentPath = "templates/android"
+        val templateSourceDir = templateProvider.templateSourceDir
+        val template = templateProvider.getTemplate(component)
 
         template.componentFiles.forEach { componentPath ->
             val componentOutputFile = File(outputDir, componentPath.replace(".kt.template", ".kt"))
@@ -46,7 +46,7 @@ class ComponentGenerator(
                 failedToGenerate.add(componentOutputFile)
             } else {
                 try {
-                    generateTemplate(componentPath, componentOutputFile, templateParentPath)
+                    generateTemplate(componentPath, componentOutputFile, templateSourceDir)
                     successfullyGenerated.add(componentOutputFile)
                 } catch (e: Exception) {
                     failedToGenerate.add(componentOutputFile)
@@ -62,11 +62,11 @@ class ComponentGenerator(
                 failedToGenerate.add(dependencyOutputFile)
             } else {
                 try {
-                    generateTemplate(dependencyPath, dependencyOutputFile, templateParentPath)
+                    generateTemplate(dependencyPath, dependencyOutputFile, templateSourceDir)
                     successFullyGeneratedSupportingFiles.add(dependencyOutputFile)
 
 
-                    if(!template.requirements.isNullOrEmpty()){
+                    if (!template.requirements.isNullOrEmpty()) {
                         otherSuccessMessages.add(template.requirements)
                     }
                 } catch (e: Exception) {
@@ -75,21 +75,69 @@ class ComponentGenerator(
             }
         }
 
+        if(config.kotlinMultiplatform) {
+            logger.error("HERE")
+            generatePlatformSpecificFiles(template, templateSourceDir)
+        }
+
         logSummary(component.name)
     }
+
+    private fun generatePlatformSpecificFiles(
+        template: Template, templateSourceDir: String
+    ) {
+        template.platformSpecificFiles.forEach { (sourceSet, files) ->
+            val platformOutputDir = config.componentsDir.replace(MultiplatformSourceSet.COMMON.sourceSetName, sourceSet.sourceSetName)
+            logger.error(platformOutputDir)
+            files.forEach { file ->
+                val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
+                ensureDirectoryExists(outputFile)
+
+                if (outputFile.exists()) {
+                    failedToGenerate.add(outputFile)
+                } else {
+                    try {
+                        generateTemplate(file, outputFile, templateSourceDir)
+                        successfullyGenerated.add(outputFile)
+                    } catch (e: Exception) {
+                        failedToGenerate.add(outputFile)
+                    }
+                }
+            }
+        }
+
+        template.platformSpecificSupportingFiles.forEach { (sourceSet, files) ->
+            val platformOutputDir = config.componentsDir.replace(MultiplatformSourceSet.COMMON.name, sourceSet.name)
+            files.forEach { file ->
+                val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
+                ensureDirectoryExists(outputFile)
+
+                if (outputFile.exists()) {
+                    failedToGenerate.add(outputFile)
+                } else {
+                    try {
+                        generateTemplate(file, outputFile, templateSourceDir)
+                        successFullyGeneratedSupportingFiles.add(outputFile)
+                    } catch (e: Exception) {
+                        failedToGenerate.add(outputFile)
+                    }
+                }
+            }
+        }
+    }
+
     private fun generateTemplate(
         templateFileName: String,
         outputFile: File,
-        templateParentPath: String = "templates",
+        templateSourceDir: String,
     ) {
-        val resourcePath = templateParentPath + File.separator + templateFileName
+        val resourcePath = "$templateSourceDir/$templateFileName"
         val resource = javaClass.classLoader.getResource(resourcePath)
             ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
 
         val templateContent = resource.readText()
 
-        val content = templateContent.replace("{{packageName}}", config.packageName)
-            .replace("{{themeName}}", config.themeName)
+        val content = templateContent.replace("{{packageName}}", config.packageName).replace("{{themeName}}", config.themeName)
 
         outputFile.writeText(content)
     }
@@ -105,11 +153,12 @@ class ComponentGenerator(
 
     private fun logSummary(componentName: String) {
         val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
-        val successSupportingLinks = successFullyGeneratedSupportingFiles.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
+        val successSupportingLinks =
+            successFullyGeneratedSupportingFiles.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
         val otherSuccessMessages = otherSuccessMessages.joinToString("\n")
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 
-        if(successfullyGenerated.isNotEmpty()) {
+        if (successfullyGenerated.isNotEmpty()) {
             logger.success("'$componentName' generated successfully.")
         }
 
@@ -122,12 +171,12 @@ class ComponentGenerator(
             logger.warn(failedLinks)
         }
 
-        if(successLinks.isNotEmpty()) {
+        if (successLinks.isNotEmpty()) {
             logger.info("Generated '$componentName' files:")
             logger.info(successLinks)
             println()
         }
-        if(successSupportingLinks.isNotEmpty()) {
+        if (successSupportingLinks.isNotEmpty()) {
             logger.info("Generated supporting files:")
             logger.info(successSupportingLinks)
         }
