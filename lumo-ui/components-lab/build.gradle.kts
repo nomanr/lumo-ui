@@ -53,8 +53,7 @@ kotlin {
             implementation(compose.components.resources)
             api(compose.runtime)
             api(compose.foundation)
-            //TODO: think of a way to getting rid of this, its need to work with Ripple.
-            api(compose.material)
+            api(libs.androidx.compose.ripple)
             api(compose.materialIconsExtended)
             api(compose.ui)
             api(compose.components.resources)
