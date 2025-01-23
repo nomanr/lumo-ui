@@ -1,4 +1,4 @@
-package com.nomanr.lumo.plugin.template
+package com.nomanr.lumo.plugin.template.template_registry
 
 enum class SupportedComponents {
     Accordion,
@@ -26,5 +26,6 @@ enum class SupportedComponents {
     TextField,
     Theme,
     Tooltip,
-    TopBar
+    TopBar,
+    TestComponent
 }

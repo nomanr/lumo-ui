@@ -2,6 +2,7 @@ package com.nomanr.lumo.plugin.template
 
 import com.nomanr.lumo.exceptions.LumoException
 import com.nomanr.lumo.plugin.configs.LumoConfig
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents
 import com.nomanr.lumo.utils.LinkFormatter
 import com.nomanr.lumo.utils.Logger
 import java.io.File

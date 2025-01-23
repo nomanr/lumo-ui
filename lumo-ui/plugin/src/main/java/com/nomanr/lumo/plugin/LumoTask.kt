@@ -4,7 +4,7 @@ import com.nomanr.lumo.exceptions.LumoException
 import com.nomanr.lumo.plugin.actions.GenerateComponent
 import com.nomanr.lumo.plugin.actions.Initialiser
 import com.nomanr.lumo.plugin.configs.PropertyLoader
-import com.nomanr.lumo.plugin.template.SupportedComponents
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents
 import com.nomanr.lumo.provider.PluginDependencyProvider
 import com.nomanr.lumo.utils.Logger
 import org.gradle.api.DefaultTask

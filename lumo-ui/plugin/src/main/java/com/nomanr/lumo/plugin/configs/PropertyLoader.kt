@@ -49,7 +49,8 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             themeName=AppTheme
             componentsDir=<<relative-path-to-components-dir-from-root>>
             packageName=<<component-files-package-name>>
-            kotlinMultiplatform=false
+            # Uncomment this line if you are using Kotlin Multiplatform
+            # kotlinMultiplatform=false 
         """.trimIndent()
 
         propertiesFile.writeText(defaultProperties)

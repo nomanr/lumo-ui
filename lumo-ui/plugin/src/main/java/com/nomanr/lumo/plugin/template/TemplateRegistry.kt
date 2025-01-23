@@ -1,31 +1,32 @@
 package com.nomanr.lumo.plugin.template
 
-import com.nomanr.lumo.plugin.template.SupportedComponents.Accordion
-import com.nomanr.lumo.plugin.template.SupportedComponents.AlertDialog
-import com.nomanr.lumo.plugin.template.SupportedComponents.Badge
-import com.nomanr.lumo.plugin.template.SupportedComponents.Button
-import com.nomanr.lumo.plugin.template.SupportedComponents.Card
-import com.nomanr.lumo.plugin.template.SupportedComponents.Checkbox
-import com.nomanr.lumo.plugin.template.SupportedComponents.Chip
-import com.nomanr.lumo.plugin.template.SupportedComponents.Divider
-import com.nomanr.lumo.plugin.template.SupportedComponents.Icon
-import com.nomanr.lumo.plugin.template.SupportedComponents.IconButton
-import com.nomanr.lumo.plugin.template.SupportedComponents.ModalBottomSheet
-import com.nomanr.lumo.plugin.template.SupportedComponents.NavigationBar
-import com.nomanr.lumo.plugin.template.SupportedComponents.OTPTextField
-import com.nomanr.lumo.plugin.template.SupportedComponents.ProgressIndicators
-import com.nomanr.lumo.plugin.template.SupportedComponents.RadioButton
-import com.nomanr.lumo.plugin.template.SupportedComponents.Scaffold
-import com.nomanr.lumo.plugin.template.SupportedComponents.Slider
-import com.nomanr.lumo.plugin.template.SupportedComponents.Snackbar
-import com.nomanr.lumo.plugin.template.SupportedComponents.Surface
-import com.nomanr.lumo.plugin.template.SupportedComponents.Switch
-import com.nomanr.lumo.plugin.template.SupportedComponents.SystemBars
-import com.nomanr.lumo.plugin.template.SupportedComponents.Text
-import com.nomanr.lumo.plugin.template.SupportedComponents.TextField
-import com.nomanr.lumo.plugin.template.SupportedComponents.Theme
-import com.nomanr.lumo.plugin.template.SupportedComponents.Tooltip
-import com.nomanr.lumo.plugin.template.SupportedComponents.TopBar
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Accordion
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.AlertDialog
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Badge
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Button
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Card
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Checkbox
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Chip
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Divider
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Icon
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.IconButton
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.ModalBottomSheet
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.NavigationBar
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.OTPTextField
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.ProgressIndicators
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.RadioButton
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Scaffold
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Slider
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Snackbar
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Surface
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Switch
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.SystemBars
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Text
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.TextField
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Theme
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.Tooltip
+import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.TopBar
 
 object TemplateRegistry {
     private val surface = Template(
@@ -42,15 +43,15 @@ object TemplateRegistry {
 
     private val button = Template(
         componentFiles = listOf("components/Button.kt.template"), supportingFiles = listOf(
-            *surface.allRequiredFiles(),
-            *text.allRequiredFiles(),
+            *surface.allFiles(),
+            *text.allFiles(),
             "foundation/ButtonElevation.kt.template",
         )
     )
     private val alertDialog = Template(
         componentFiles = listOf("components/AlertDialog.kt.template"), supportingFiles = listOf(
             "foundation/Providers.kt.template",
-            *button.allRequiredFiles()
+            *button.allFiles()
         )
     )
 
@@ -62,7 +63,7 @@ object TemplateRegistry {
 
     private val card = Template(
         componentFiles = listOf("components/card/Card.kt.template"), supportingFiles = listOf(
-            *surface.allRequiredFiles(), "components/card/CardElevation.kt.template", "foundation/Elevation.kt.template"
+            *surface.allFiles(), "components/card/CardElevation.kt.template", "foundation/Elevation.kt.template"
         )
     )
     private val checkbox = Template(
@@ -73,7 +74,7 @@ object TemplateRegistry {
 
     private val chip = Template(
         componentFiles = listOf("components/Chip.kt.template"), supportingFiles = listOf(
-            *surface.allRequiredFiles(),
+            *surface.allFiles(),
             "foundation/ButtonElevation.kt.template",
         )
     )
@@ -88,7 +89,7 @@ object TemplateRegistry {
 
     private val iconButton = Template(
         componentFiles = listOf("components/IconButton.kt.template"), supportingFiles = listOf(
-            *surface.allRequiredFiles(),
+            *surface.allFiles(),
             "foundation/ButtonElevation.kt.template",
         )
     )
@@ -101,7 +102,7 @@ object TemplateRegistry {
     private val navigationBar = Template(
         componentFiles = listOf("components/NavigationBar.kt.template"), supportingFiles = listOf(
             "foundation/SystemBarsDefaultInsets.kt.template",
-            *surface.allRequiredFiles(),
+            *surface.allFiles(),
 
         )
     )
@@ -129,7 +130,7 @@ object TemplateRegistry {
     private val scaffold = Template(
         componentFiles = listOf("components/Scaffold.kt.template"), supportingFiles = listOf(
             "foundation/SystemBarsDefaultInsets.kt.template",
-            *surface.allRequiredFiles(),
+            *surface.allFiles(),
         )
     )
 
@@ -142,7 +143,7 @@ object TemplateRegistry {
         componentFiles = listOf("components/snackbar/Snackbar.kt.template", "components/snackbar/SnackbarHost.kt.template"),
         supportingFiles = listOf(
             "foundation/Providers.kt.template",
-            *surface.allRequiredFiles(),
+            *surface.allFiles(),
         )
     )
 
