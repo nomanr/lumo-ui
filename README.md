@@ -4,7 +4,7 @@
 
 Download the app to explore all components.
 
-<a href="https://play.google.com/store/apps/details?id=com.nomanr.lumo.sample">
+<a href="https://play.google.com/store/apps/details?id=com.nomanr.lumo.sample" target="_blank">
   <img src="https://github.com/user-attachments/assets/c5304628-c1aa-42cb-b5be-321f6555acd9" width="150">
 </a>
 &nbsp;&nbsp;
