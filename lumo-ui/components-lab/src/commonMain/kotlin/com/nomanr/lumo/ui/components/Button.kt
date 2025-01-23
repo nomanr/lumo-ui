@@ -1,4 +1,4 @@
-package com.nomanr.sample.ui.components
+package com.nomanr.lumo.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -26,10 +26,10 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.LocalContentColor
-import com.nomanr.sample.ui.foundation.ButtonElevation
-import androidx.compose.ui.tooling.preview.Preview
+import com.nomanr.lumo.ui.AppTheme
+import com.nomanr.lumo.ui.LocalContentColor
+import com.nomanr.lumo.ui.foundation.ButtonElevation
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Button(
