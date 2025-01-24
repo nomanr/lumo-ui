@@ -47,6 +47,7 @@ material = "1.12.0"
 
 vanniktech-maven-publish = "0.30.0"
 
+material-navigation = "1.7.0-beta02"
 
 
 [libraries]
@@ -108,6 +109,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 # For build-logic dependencies
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle-plugin" }
 vanniktech-gradle-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "vanniktech-maven-publish" }
+
+androidx-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version = "2.8.0-alpha11"}
+material-navigation = { module = "org.jetbrains.compose.material:material-navigation", version.ref = "material-navigation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }

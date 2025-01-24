@@ -25,8 +25,9 @@ dependencyResolutionManagement {
 rootProject.name = "lumo-ui"
 include(":lumo-ui:components-lab")
 include(":lumo-ui:multiplatform-components-lab")
-include(":sample-android:catalogue")
-include(":sample-android:ui-components")
-include(":sample-multiplatform:catalogue:common")
-include(":sample-multiplatform:catalogue:android")
+//include(":sample-android:catalogue")
+//include(":sample-android:ui-components")
+include(":sample-multiplatform:ui-components")
+include(":sample-multiplatform:catalogue:composeApp")
+//include(":sample-multiplatform:catalogue:android")
 

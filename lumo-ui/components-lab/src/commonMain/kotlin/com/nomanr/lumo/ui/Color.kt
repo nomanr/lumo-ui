@@ -171,6 +171,13 @@ internal val DarkColors = Colors(
     elevation = Gray200
 )
 
+// TODO needed??
+data class AppColors(
+    val lightColors: Colors = LightColors,
+    val darkColors: Colors = DarkColors,
+)
+
+
 val LocalColors = staticCompositionLocalOf { LightColors }
 val LocalContentColor = compositionLocalOf { Color.Black }
 val LocalContentAlpha = compositionLocalOf { 1f }

@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.nomanr.lumo.ui.foundation.ripple
 
@@ -16,7 +17,7 @@ object AppTheme {
         @ReadOnlyComposable @Composable get() = LocalColors.current
 
     val typography: Typography
-        @ReadOnlyComposable @Composable get() = LocalTypography.current
+        @Composable get() = LocalTypography.current
 }
 
 @Composable
@@ -27,6 +28,7 @@ fun AppTheme(
     val rippleIndication = ripple()
     val selectionColors = rememberTextSelectionColors(LightColors)
     val colors = if (isDarkTheme) DarkColors else LightColors
+    val typography = Typo()
 
     CompositionLocalProvider(
         LocalColors provides colors,
