@@ -171,8 +171,8 @@ private fun Modifier.surface(
     shape: Shape, backgroundColor: Color, border: BorderStroke?, shadowElevation: Dp
 ) = this
     .shadow(
-        spotColor = AppTheme.colors.elevation,
         ambientColor = AppTheme.colors.elevation,
+        spotColor = AppTheme.colors.elevation,
         elevation = shadowElevation,
         shape = shape,
         clip = false

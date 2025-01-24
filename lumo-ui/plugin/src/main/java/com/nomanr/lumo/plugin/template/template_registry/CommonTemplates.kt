@@ -42,12 +42,6 @@ object CommonTemplates {
         dependsOn = listOf(Surface, Text)
     )
 
-    private val alertDialog = Template(
-        componentFiles = listOf("components/AlertDialog.kt.template"),
-        supportingFiles = listOf("foundation/Providers.kt.template"),
-        dependsOn = listOf(Button)
-    )
-
     private val badge = Template(
         componentFiles = listOf("components/Badge.kt.template"),
         supportingFiles = listOf("foundation/Providers.kt.template")
@@ -160,7 +154,6 @@ object CommonTemplates {
 
     fun getTemplates() = mapOf(
         Accordion to accordion,
-        AlertDialog to alertDialog,
         Badge to badge,
         Button to button,
         Card to card,

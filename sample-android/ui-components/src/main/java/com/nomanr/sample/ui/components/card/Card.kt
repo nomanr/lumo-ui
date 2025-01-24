@@ -21,13 +21,13 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalTypography
 import com.nomanr.sample.ui.components.Surface
 import com.nomanr.sample.ui.components.Text
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Card(
@@ -183,7 +183,7 @@ object CardDefaults {
 
     @Composable
     fun elevatedCardElevation(
-        defaultElevation: Dp = 6.0.dp,
+        defaultElevation: Dp = 2.0.dp,
         pressedElevation: Dp = 4.0.dp,
         focusedElevation: Dp = 4.0.dp,
         hoveredElevation: Dp = 4.0.dp,
@@ -291,7 +291,7 @@ data class CardColors internal constructor(
 
 
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Preview
 internal fun CardComponentSampleInTheme(){
     AppTheme {
         CardComponentSample()
@@ -299,7 +299,7 @@ internal fun CardComponentSampleInTheme(){
 }
 
 @Composable
-@Preview(showBackground = true,)
+@Preview
 fun CardComponentSample() {
     val cardModifier = Modifier
         .fillMaxWidth()
@@ -322,12 +322,14 @@ fun CardComponentSample() {
         }
 
         Column {
-            Text(text = "Elevated Card", style = LocalTypography.current.h3)
+            Text(text = "Elevated Card with Action", style = LocalTypography.current.h3)
             ElevatedCard(
                 modifier = cardModifier,
+                onClick = { /* Handle click */ },
             ) {}
         }
 
+        // Outlined Card
         Column {
             Text(text = "Custom Outlined Card", style = LocalTypography.current.h3)
             OutlinedCard(
@@ -361,7 +363,24 @@ fun CardComponentSample() {
             ) {}
         }
 
+        Column {
+            Text(text = "Outlined Card with Hover Elevation", style = LocalTypography.current.h3)
+            OutlinedCard(
+                modifier = cardModifier,
+                onClick = { /* Handle click */ },
+                elevation = CardDefaults.outlinedCardElevation(
+                    defaultElevation = 0.dp,
+                    hoveredElevation = 4.dp
+                ),
+                border = BorderStroke(1.dp, Color(0xFFBDBDBD)),
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = Color(0xFFE0E0E0),
+                    contentColor = Color(0xFF616161)
+                )
+            ) {}
+        }
 
+        // Interactive Card
         Column {
             Text(text = "Interactive Card", style = LocalTypography.current.h3)
             Card(

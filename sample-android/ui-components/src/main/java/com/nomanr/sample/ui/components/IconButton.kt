@@ -29,12 +29,12 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.contentColorFor
 import com.nomanr.sample.ui.foundation.ButtonElevation
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun IconButton(
@@ -323,7 +323,7 @@ data class IconButtonStyle(
 )
 
 @Composable
-@Preview("Primary Icon Buttons")
+@Preview
 fun PrimaryIconButtonPreview() {
     AppTheme {
         Column(
@@ -350,7 +350,7 @@ fun PrimaryIconButtonPreview() {
 }
 
 @Composable
-@Preview("Secondary Icon Buttons")
+@Preview
 fun SecondaryIconButtonPreview() {
     AppTheme {
         Column(
@@ -377,7 +377,7 @@ fun SecondaryIconButtonPreview() {
 }
 
 @Composable
-@Preview("Destructive Icon Buttons")
+@Preview
 fun DestructiveIconButtonPreview() {
     AppTheme {
         Column(
@@ -405,7 +405,7 @@ fun DestructiveIconButtonPreview() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-@Preview("Ghost Icon Buttons")
+@Preview
 fun GhostIconButtonPreview() {
     AppTheme {
         Column(
@@ -505,7 +505,7 @@ fun GhostIconButtonPreview() {
 }
 
 @Composable
-@Preview("All Icon Button Shapes")
+@Preview
 fun IconButtonShapesPreview() {
     AppTheme {
         Column(

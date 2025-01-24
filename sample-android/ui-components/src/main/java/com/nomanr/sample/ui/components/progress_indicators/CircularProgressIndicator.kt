@@ -1,4 +1,4 @@
-package com.nomanr.sample.ui.components.progress_indicator
+package com.nomanr.sample.ui.components.progress_indicators
 
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.LinearEasing
@@ -25,12 +25,11 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.Text
+import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.max
@@ -195,7 +194,7 @@ private fun DrawScope.drawIndeterminateCircularIndicator(
 
 object CircularProgressIndicatorDefaults {
     val Color: Color
-        @Composable get() = LocalContentColor.current
+        @Composable get() = AppTheme.colors.primary
 
     val TrackColor: Color
         @Composable get() = AppTheme.colors.transparent

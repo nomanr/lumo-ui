@@ -34,7 +34,7 @@ import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.IconButton
 import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.progress_indicator.CircularProgressIndicator
+import com.nomanr.sample.ui.components.progress_indicators.CircularProgressIndicator
 import com.nomanr.sample.ui.contentColorFor
 
 @Composable

@@ -19,6 +19,7 @@ fun SystemBars(colors: SystemBarColor) {
     val isStatusBarContentLight = shouldUseLightSystemBarIcons(colors.statusBarColor)
     val isNavigationBarContentLight = shouldUseLightSystemBarIcons(colors.navigationBarColor)
 
+
     // Since we are applying the status bar with edge-to-edge configuration,
     // the background and top bar colors will extend and cover the system bars.
     // The system bars themselves will be transparent, and we will only change
@@ -31,7 +32,7 @@ fun SystemBars(colors: SystemBarColor) {
         context.enableEdgeToEdge(
             statusBarStyle = if (isStatusBarContentLight) {
                 SystemBarStyle.dark(
-                    transparent,
+                    transparent
                 )
             } else {
                 SystemBarStyle.light(

@@ -27,5 +27,4 @@ enum class SupportedComponents {
     Theme,
     Tooltip,
     TopBar,
-    TestComponent
 }

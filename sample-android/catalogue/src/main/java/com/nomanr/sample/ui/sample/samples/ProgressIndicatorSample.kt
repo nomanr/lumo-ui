@@ -30,8 +30,8 @@ import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.OutlinedCard
-import com.nomanr.sample.ui.components.progress_indicator.CircularProgressIndicator
-import com.nomanr.sample.ui.components.progress_indicator.LinearProgressIndicator
+import com.nomanr.sample.ui.components.progress_indicators.CircularProgressIndicator
+import com.nomanr.sample.ui.components.progress_indicators.LinearProgressIndicator
 
 @Composable
 fun ProgressIndicatorSample() {

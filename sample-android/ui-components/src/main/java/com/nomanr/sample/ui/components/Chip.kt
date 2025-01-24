@@ -311,7 +311,7 @@ internal data class ChipStyle(
 )
 
 @Composable
-@Preview("Primary")
+@Preview
 fun PrimaryChipPreview() {
     AppTheme {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {

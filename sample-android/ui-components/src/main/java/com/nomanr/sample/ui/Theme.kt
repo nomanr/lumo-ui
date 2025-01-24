@@ -10,7 +10,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
-import com.nomanr.sample.ui.components.LocalTextStyle
 import com.nomanr.sample.ui.configs.LocalAppConfigState
 import com.nomanr.sample.ui.configs.rememberAppConfigState
 import com.nomanr.sample.ui.foundation.ripple

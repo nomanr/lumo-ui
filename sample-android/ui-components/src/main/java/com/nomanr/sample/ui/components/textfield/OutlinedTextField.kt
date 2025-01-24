@@ -77,11 +77,9 @@ fun OutlinedTextField(
     val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        BasicTextField(modifier = modifier
-            .defaultMinSize(
-                minHeight = OutlinedTextFieldDefaults.MinHeight
-            )
-            .fillMaxWidth(),
+        BasicTextField(modifier = modifier.defaultMinSize(
+            minHeight = OutlinedTextFieldDefaults.MinHeight
+        ).fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,

@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,7 +13,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.MoreVert
-import androidx.compose.material.icons.outlined.Public
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -79,11 +77,6 @@ fun HomeTopBar(
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                IconButton(variant = IconButtonVariant.Ghost, onClick = {
-                    Log.d("TODO: NOMAN", "More Options Clicked")
-                }) {
-                    Icon(Icons.Outlined.Public, contentDescription = "More Options")
-                }
                 IconButton(variant = IconButtonVariant.Ghost, onClick = navigateToUpdateTheme) {
                     Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
                 }

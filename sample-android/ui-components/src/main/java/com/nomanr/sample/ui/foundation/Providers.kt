@@ -5,7 +5,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import com.nomanr.sample.ui.LocalContentColor
-import com.nomanr.sample.ui.components.LocalTextStyle
+import com.nomanr.sample.ui.LocalTextStyle
 
 @Composable
 fun ProvideTextStyle(value: TextStyle, content: @Composable () -> Unit) {

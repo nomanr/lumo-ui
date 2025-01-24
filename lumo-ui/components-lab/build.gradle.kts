@@ -32,9 +32,8 @@ kotlin {
 //    macosArm64()
 
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
 
@@ -53,7 +52,8 @@ kotlin {
             implementation(compose.components.resources)
             api(compose.runtime)
             api(compose.foundation)
-            api(libs.androidx.compose.ripple)
+            api(compose.material)
+//            api(libs.androidx.compose.ripple)
             api(compose.materialIconsExtended)
             api(compose.ui)
             api(compose.components.resources)

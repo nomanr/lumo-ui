@@ -7,7 +7,7 @@ class TemplateProvider(kotlinMultiplatform: Boolean) {
 
      val templateSourceDir = if (kotlinMultiplatform) "templates/multiplatform" else "templates/android"
 
-    fun getTemplate(component: SupportedComponents): Template {
+    private fun getTemplate(component: SupportedComponents): Template {
         return templates[component] ?: error("Template not found for $component")
     }
 

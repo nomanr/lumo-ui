@@ -112,6 +112,7 @@ val typography = Typography()
 
 val LocalTypography = staticCompositionLocalOf { typography }
 val LocalOriginalTypography = staticCompositionLocalOf { typography }
+val LocalTextStyle = staticCompositionLocalOf { typography.body1 }
 
 fun scaledTypography(fontScale: Float): Typography {
     return Typography(

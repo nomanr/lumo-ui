@@ -29,7 +29,7 @@ import com.nomanr.sample.ui.LocalContentColor
 fun Icon(
     @DrawableRes resourceId: Int,
     modifier: Modifier = Modifier,
-    contentDescription: String,
+    contentDescription: String? = null,
     tint: Color = LocalContentColor.current
 ) {
     Icon(painter = painterResource(id = resourceId), modifier = modifier, contentDescription = contentDescription, tint = tint)
@@ -39,7 +39,7 @@ fun Icon(
 fun Icon(
     imageVector: ImageVector,
     modifier: Modifier = Modifier,
-    contentDescription: String,
+    contentDescription: String? = null,
     tint: Color = LocalContentColor.current
 ) {
     Icon(
@@ -51,7 +51,7 @@ fun Icon(
 fun Icon(
     bitmap: ImageBitmap,
     modifier: Modifier = Modifier,
-    contentDescription: String,
+    contentDescription: String? = null,
     tint: Color = LocalContentColor.current
 ) {
     val painter = remember(bitmap) { BitmapPainter(bitmap) }
@@ -62,12 +62,16 @@ fun Icon(
 
 @Composable
 fun Icon(
-    painter: Painter, modifier: Modifier = Modifier, contentDescription: String, tint: Color = LocalContentColor.current
+    painter: Painter, modifier: Modifier = Modifier, contentDescription: String? = null, tint: Color = LocalContentColor.current
 ) {
     val colorFilter = if (tint == Color.Unspecified) null else ColorFilter.tint(tint)
-    val semantics = Modifier.semantics {
-        this.contentDescription = contentDescription
-        this.role = Role.Image
+    val semantics = if (contentDescription != null) {
+        Modifier.semantics {
+            this.contentDescription = contentDescription
+            this.role = Role.Image
+        }
+    } else {
+        Modifier
     }
     Box(
         modifier

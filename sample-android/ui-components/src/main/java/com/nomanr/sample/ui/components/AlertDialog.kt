@@ -1,15 +1,19 @@
 package com.nomanr.sample.ui.components
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +22,7 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
@@ -26,6 +31,10 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
+import com.nomanr.sample.ui.components.Button
+import com.nomanr.sample.ui.components.ButtonVariant
+import com.nomanr.sample.ui.components.Surface
+import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
 import com.nomanr.sample.ui.components.AlertDialogDefaults.ButtonsMainAxisSpacing
 import com.nomanr.sample.ui.components.AlertDialogDefaults.DialogElevation
@@ -49,7 +58,7 @@ fun AlertDialog(
     dismissButtonText: String? = "Cancel",
     icon: (@Composable () -> Unit)? = null,
     shape: Shape = DialogShape,
-    containerColor: Color = AppTheme.colors.surface,
+    containerColor: Color = Color.White,
     iconContentColor: Color = AppTheme.colors.primary,
     titleContentColor: Color = AppTheme.colors.primary,
     textContentColor: Color = AppTheme.colors.primary,
@@ -338,3 +347,90 @@ internal object AlertDialogDefaults {
 
 }
 
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun AlertDialogPreviews() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        var showSimpleDialog by remember { mutableStateOf(false) }
+        var showSingleButtonDialog by remember { mutableStateOf(false) }
+        var showLongContentDialog by remember { mutableStateOf(false) }
+        var showInputDialog by remember { mutableStateOf(false) }
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(
+                variant = ButtonVariant.Primary,
+                text = "Show Simple Dialog",
+                onClick = { showSimpleDialog = true },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Button(
+                variant = ButtonVariant.Primary,
+                text = "Show Single Button Dialog",
+                onClick = { showSingleButtonDialog = true },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Button(
+                variant = ButtonVariant.Primary,
+                text = "Show Long Content Dialog",
+                onClick = { showLongContentDialog = true },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Button(
+                variant = ButtonVariant.Primary,
+                text = "Show Input Dialog",
+                onClick = { showInputDialog = true },
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        if (showSimpleDialog) {
+            AlertDialog(onDismissRequest = { showSimpleDialog = false },
+                onConfirmClick = { showSimpleDialog = false },
+                title = "Simple Alert",
+                text = "This is a basic alert dialog with default buttons",
+                confirmButtonText = "OK",
+                dismissButtonText = "Cancel",
+                containerColor = Color.White,
+                titleContentColor = Color.Black,
+                textContentColor = Color.DarkGray
+            )
+        }
+
+        if (showSingleButtonDialog) {
+            AlertDialog(onDismissRequest = { showSingleButtonDialog = false },
+                onConfirmClick = { showSingleButtonDialog = false },
+                title = "Information",
+                text = "This alert only has a confirmation button",
+                confirmButtonText = "Got it",
+                dismissButtonText = null, // Removes the dismiss button
+                containerColor = Color.White,
+                titleContentColor = Color.Black,
+                textContentColor = Color.DarkGray
+            )
+        }
+
+        if (showLongContentDialog) {
+            AlertDialog(onDismissRequest = { showLongContentDialog = false },
+                onConfirmClick = { showLongContentDialog = false },
+                title = "Terms & Conditions",
+                text = "This is a longer content example that demonstrates how the alert dialog handles " + "multiple lines of text. The content will automatically adjust to show longer " + "messages while maintaining readability. This is particularly useful for " + "displaying terms and conditions or detailed information to users.",
+                confirmButtonText = "Accept",
+                dismissButtonText = "Decline",
+                containerColor = Color.White,
+                titleContentColor = Color.Black,
+                textContentColor = Color.DarkGray
+            )
+        }
+
+    }
+}

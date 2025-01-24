@@ -1,4 +1,4 @@
-package com.nomanr.sample.ui.components.progress_indicator
+package com.nomanr.sample.ui.components.progress_indicators
 
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.animateFloat
@@ -55,54 +55,26 @@ fun LinearProgressIndicator(
     strokeCap: StrokeCap = LinearProgressIndicatorDefaults.StrokeStyle,
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "InfiniteTransition")
-    val firstLineHead = infiniteTransition.animateFloat(
-        0f,
-        1f,
-        infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.FirstLineHeadDelay using LinearProgressIndicatorDefaults.FirstLineHeadEasing
-                1f at LinearProgressIndicatorDefaults.FirstLineHeadDuration + LinearProgressIndicatorDefaults.FirstLineHeadDelay
-            }
-        ),
-        label = "FirstLineHead"
-    )
-    val firstLineTail = infiniteTransition.animateFloat(
-        0f,
-        1f,
-        infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.FirstLineTailDelay using LinearProgressIndicatorDefaults.FirstLineTailEasing
-                1f at LinearProgressIndicatorDefaults.FirstLineTailDuration + LinearProgressIndicatorDefaults.FirstLineTailDelay
-            }
-        ),
-        label = "FirstLineTail"
-    )
-    val secondLineHead = infiniteTransition.animateFloat(
-        0f,
-        1f,
-        infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.SecondLineHeadDelay using LinearProgressIndicatorDefaults.SecondLineHeadEasing
-                1f at LinearProgressIndicatorDefaults.SecondLineHeadDuration + LinearProgressIndicatorDefaults.SecondLineHeadDelay
-            }
-        ),
-        label = "SecondLineHead"
-    )
-    val secondLineTail = infiniteTransition.animateFloat(
-        0f,
-        1f,
-        infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
-                0f at LinearProgressIndicatorDefaults.SecondLineTailDelay using LinearProgressIndicatorDefaults.SecondLineTailEasing
-                1f at LinearProgressIndicatorDefaults.SecondLineTailDuration + LinearProgressIndicatorDefaults.SecondLineTailDelay
-            }
-        ),
-        label = "SecondLineTail"
-    )
+    val firstLineHead = infiniteTransition.animateFloat(0f, 1f, infiniteRepeatable(animation = keyframes {
+        durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
+        0f at LinearProgressIndicatorDefaults.FirstLineHeadDelay using LinearProgressIndicatorDefaults.FirstLineHeadEasing
+        1f at LinearProgressIndicatorDefaults.FirstLineHeadDuration + LinearProgressIndicatorDefaults.FirstLineHeadDelay
+    }), label = "FirstLineHead")
+    val firstLineTail = infiniteTransition.animateFloat(0f, 1f, infiniteRepeatable(animation = keyframes {
+        durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
+        0f at LinearProgressIndicatorDefaults.FirstLineTailDelay using LinearProgressIndicatorDefaults.FirstLineTailEasing
+        1f at LinearProgressIndicatorDefaults.FirstLineTailDuration + LinearProgressIndicatorDefaults.FirstLineTailDelay
+    }), label = "FirstLineTail")
+    val secondLineHead = infiniteTransition.animateFloat(0f, 1f, infiniteRepeatable(animation = keyframes {
+        durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
+        0f at LinearProgressIndicatorDefaults.SecondLineHeadDelay using LinearProgressIndicatorDefaults.SecondLineHeadEasing
+        1f at LinearProgressIndicatorDefaults.SecondLineHeadDuration + LinearProgressIndicatorDefaults.SecondLineHeadDelay
+    }), label = "SecondLineHead")
+    val secondLineTail = infiniteTransition.animateFloat(0f, 1f, infiniteRepeatable(animation = keyframes {
+        durationMillis = LinearProgressIndicatorDefaults.AnimationDuration
+        0f at LinearProgressIndicatorDefaults.SecondLineTailDelay using LinearProgressIndicatorDefaults.SecondLineTailEasing
+        1f at LinearProgressIndicatorDefaults.SecondLineTailDuration + LinearProgressIndicatorDefaults.SecondLineTailDelay
+    }), label = "SecondLineTail")
     Canvas(
         modifier
             .progressSemantics()
@@ -215,4 +187,5 @@ fun LinearProgressIndicatorPreview() {
             Text(text = "Indeterminate Progress", style = AppTheme.typography.body1)
             LinearProgressIndicator()
         }
-    }}
+    }
+}

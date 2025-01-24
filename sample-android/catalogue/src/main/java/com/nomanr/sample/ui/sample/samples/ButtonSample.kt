@@ -31,7 +31,7 @@ import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.ButtonVariant
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.progress_indicator.CircularProgressIndicator
+import com.nomanr.sample.ui.components.progress_indicators.CircularProgressIndicator
 
 @Composable
 fun ButtonSample() {

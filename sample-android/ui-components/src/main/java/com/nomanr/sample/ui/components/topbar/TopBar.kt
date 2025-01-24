@@ -7,19 +7,27 @@ import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.rememberSplineBasedDecay
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
@@ -40,14 +48,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.components.Surface
+import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.topbar.TopBarDefaults.TopBarHeight
 import com.nomanr.sample.ui.contentColorFor
 import com.nomanr.sample.ui.foundation.systemBarsForVisualComponents
-
 
 @Composable
 fun TopBar(
@@ -278,5 +287,86 @@ data class TopBarColors(
     }
 
 }
+
+
+@Composable
+@Preview
+fun TopBarSamples() {
+    val icon = @Composable {
+        Box(
+            modifier = Modifier
+                .size(24.dp)
+                .background(Color.White, shape = RoundedCornerShape(6.dp))
+        )
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+
+        Text("Sample 1: Title Centered", style = AppTheme.typography.label1)
+
+        Spacer(modifier = Modifier.width(16.dp))
+
+        TopBar(
+            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black)
+        ) {
+            Box(
+                modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Title", style = AppTheme.typography.h3, color = Color.White
+                )
+            }
+        }
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Text("Sample 2: Logo Left, Title Center, Logo Right", style = AppTheme.typography.label1)
+        Spacer(modifier = Modifier.width(16.dp))
+
+        TopBar(
+            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                icon()
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = "Title", style = AppTheme.typography.h3, color = Color.White
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                icon()
+            }
+        }
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Text("Sample 3: Logo and Title Left", style = AppTheme.typography.label1)
+        TopBar(
+            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black)
+        ) {
+            Row(
+                modifier = Modifier.padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                icon()
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = "Title", style = AppTheme.typography.h3, color = Color.White
+                )
+            }
+        }
+    }
+}
+
 
 

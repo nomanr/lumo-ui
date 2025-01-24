@@ -1,6 +1,6 @@
 package com.nomanr.lumo.plugin.template.template_registry
 
-import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.TestComponent
+//import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents.TestComponent
 
 object MultiplatformTemplates {
     private val testComponent = Template(
@@ -11,9 +11,7 @@ object MultiplatformTemplates {
         )
     )
 
-    fun getTemplate() = mapOf(
-        TestComponent to testComponent,
-    )
+    fun getTemplate() = emptyMap<SupportedComponents, Template>()
 
 }
 

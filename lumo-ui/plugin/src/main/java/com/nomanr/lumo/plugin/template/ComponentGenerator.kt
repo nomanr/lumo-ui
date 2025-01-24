@@ -36,7 +36,7 @@ class ComponentGenerator(
         logger.info("Generating ${component.name} ...")
 
         val templateSourceDir = templateProvider.templateSourceDir
-        val template = templateProvider.getTemplate(component)
+        val template = templateProvider.getFlattenedTemplate(component)
 
         template.componentFiles.forEach { componentPath ->
             val componentOutputFile = File(outputDir, componentPath.replace(".kt.template", ".kt"))
@@ -132,6 +132,7 @@ class ComponentGenerator(
         templateSourceDir: String,
     ) {
         val resourcePath = "$templateSourceDir/$templateFileName"
+        logger.error(resourcePath)
         val resource = javaClass.classLoader.getResource(resourcePath)
             ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
 
