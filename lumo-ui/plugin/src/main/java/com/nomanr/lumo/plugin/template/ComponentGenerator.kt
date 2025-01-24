@@ -35,7 +35,7 @@ class ComponentGenerator(
 //        val templateParentPath = if (config.kotlinMultiplatform)
 //            "multiplatform-templates" else "templates"
 
-        val templateParentPath = "templates/multiplatform"
+        val templateParentPath = "templates/commonMain" // TODO add androidMain and iOSMain
 
         template.componentFiles.forEach { componentPath ->
             val componentOutputFile = File(outputDir, componentPath.replace(".kt.template", ".kt"))

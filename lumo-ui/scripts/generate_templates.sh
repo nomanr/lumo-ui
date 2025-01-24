@@ -2,14 +2,13 @@
 
 cd "$(dirname "$0")" || exit
 
-ANDROID_NATIVE_SOURCE_DIR="../components-lab/src/androidMain/kotlin/com/nomanr/lumo/ui/components/native"
 ANDROID_SOURCE_DIR="../components-lab/src/androidMain/kotlin/com/nomanr/lumo/ui"
 COMMON_SOURCE_DIR="../components-lab/src/commonMain/kotlin/com/nomanr/lumo/ui"
 IOS_SOURCE_DIR="../components-lab/src/iosMain/kotlin/com/nomanr/lumo/ui"
 
-ANDROID_DEST_DIR="../plugin/src/main/resources/templates/android"
-ANDROID_DEST_COMPONENTS_DIR="$ANDROID_DEST_DIR/components"
-MULTIPLATFORM_DEST_DIR="../plugin/src/main/resources/templates/multiplatform"
+MULTIPLATFORM_DEST_DIR="../plugin/src/main/resources/templates/commonMain"
+ANDROID_NATIVE_DEST_DIR="../plugin/src/main/resources/templates/androidMain"
+IOS_NATIVE_DEST_DIR="../plugin/src/main/resources/templates/iosMain"
 
 check_directory_exists() {
   local dir="$1"
@@ -79,21 +78,20 @@ process_files() {
     fi
   done
 }
-check_directory_exists "$ANDROID_SOURCE_DIR"
 check_directory_exists "$COMMON_SOURCE_DIR"
-check_directory_exists "$ANDROID_NATIVE_SOURCE_DIR"
+check_directory_exists "$MULTIPLATFORM_DEST_DIR"
+check_directory_exists "$ANDROID_SOURCE_DIR"
+check_directory_exists "$ANDROID_NATIVE_DEST_DIR"
+check_directory_exists "$IOS_SOURCE_DIR"
+check_directory_exists "$IOS_NATIVE_DEST_DIR"
 
-delete_existing_templates "$ANDROID_DEST_DIR"
-delete_existing_templates "$ANDROID_DEST_COMPONENTS_DIR"
-delete_existing_templates "$MULTIPLATFORM_DEST_DIR"
-
-# Generating Android Templates
-process_files "$COMMON_SOURCE_DIR" "$ANDROID_DEST_DIR" "true"
-process_files "$ANDROID_NATIVE_SOURCE_DIR" "$ANDROID_DEST_COMPONENTS_DIR" "true"
+delete_existing_templates "$ANDROID_NATIVE_DEST_DIR"
+delete_existing_templates "$IOS_SOURCE_DIR"
+delete_existing_templates "$IOS_NATIVE_DEST_DIR"
 
 # Generating Multiplatform Templates
 process_files "$COMMON_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
-process_files "$ANDROID_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
-process_files "$IOS_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
+process_files "$ANDROID_SOURCE_DIR" "$ANDROID_NATIVE_DEST_DIR"
+process_files "$IOS_SOURCE_DIR" "$IOS_NATIVE_DEST_DIR"
 
 echo "Templates have been updated."
