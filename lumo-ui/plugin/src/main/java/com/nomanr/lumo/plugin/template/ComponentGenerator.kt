@@ -75,8 +75,7 @@ class ComponentGenerator(
             }
         }
 
-        if(config.kotlinMultiplatform) {
-            logger.error("HERE")
+        if (config.kotlinMultiplatform) {
             generatePlatformSpecificFiles(template, templateSourceDir)
         }
 
@@ -87,7 +86,8 @@ class ComponentGenerator(
         template: Template, templateSourceDir: String
     ) {
         template.platformSpecificFiles.forEach { (sourceSet, files) ->
-            val platformOutputDir = config.componentsDir.replace(MultiplatformSourceSet.COMMON.sourceSetName, sourceSet.sourceSetName)
+            val platformOutputDir =
+                config.componentsDir.replace(MultiplatformSourceSet.COMMON.sourceSetName, sourceSet.sourceSetName)
             logger.error(platformOutputDir)
             files.forEach { file ->
                 val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
@@ -158,28 +158,42 @@ class ComponentGenerator(
         val otherSuccessMessages = otherSuccessMessages.joinToString("\n")
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 
-        if (successfullyGenerated.isNotEmpty()) {
-            logger.success("'$componentName' generated successfully.")
-        }
 
-        if (otherSuccessMessages.isNotEmpty()) {
-            logger.info(otherSuccessMessages)
-        }
+
 
         if (failedToGenerate.isNotEmpty()) {
             logger.warn("Failed to generate some files as they already exist:")
             logger.warn(failedLinks)
         }
 
-        if (successLinks.isNotEmpty()) {
-            logger.info("Generated '$componentName' files:")
-            logger.info(successLinks)
-            println()
-        }
         if (successSupportingLinks.isNotEmpty()) {
-            logger.info("Generated supporting files:")
+            logger.info("\nGenerated supporting files:")
             logger.info(successSupportingLinks)
         }
 
+        if (successLinks.isNotEmpty()) {
+            logger.info("\nGenerated '$componentName' files:")
+            logger.info(successLinks)
+            println()
+        }
+
+        val totalGenerated = successfullyGenerated.size + successFullyGeneratedSupportingFiles.size
+        val totalFailed = failedToGenerate.size
+
+        if (otherSuccessMessages.isNotEmpty()) {
+            logger.info(otherSuccessMessages)
+        }
+
+        if (successfullyGenerated.isNotEmpty()) {
+            logger.success("'$componentName' generated successfully.")
+        }
+        logger.success("Generated Files: $totalGenerated")
+        if (totalFailed > 0) {
+            logger.warn("Failed to Generate: $totalFailed")
+        }
+
+        if(totalGenerated > 0) {
+            logger.info("Scroll up to see the generated files.")
+        }
     }
 }

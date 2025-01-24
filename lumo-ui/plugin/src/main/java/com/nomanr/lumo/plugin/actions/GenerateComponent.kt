@@ -12,7 +12,7 @@ class GenerateComponent(project: Project, propertyLoader: PropertyLoader) {
 
     fun execute(componentName: String) {
         if (componentName.isEmpty() || !SupportedComponents.values().map { it.name }.contains(componentName)) {
-            throw LumoException("Invalid component name") // TODO: NOMAN - you can find the list of suppported comonents here.link
+            throw LumoException("Invalid component name. Find supported components: https://lumo.nomanr.com")
         }
 
         execute(SupportedComponents.valueOf(componentName))
