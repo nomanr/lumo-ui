@@ -26,6 +26,7 @@ fun AppTheme(
 ) {
     val rippleIndication = ripple()
     val selectionColors = rememberTextSelectionColors(LightColors)
+    val typography = provideTypography()
     val colors = if (isDarkTheme) DarkColors else LightColors
 
     CompositionLocalProvider(
