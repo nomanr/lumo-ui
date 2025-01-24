@@ -1,5 +1,6 @@
 package com.nomanr.lumo.ui.components
 
+import LocalContentColor
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +23,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import com.nomanr.lumo.ui.LocalContentColor
 import com.nomanr.lumo.ui.LocalTextStyle
 import com.nomanr.lumo.ui.LocalTypography
 import org.jetbrains.compose.ui.tooling.preview.Preview

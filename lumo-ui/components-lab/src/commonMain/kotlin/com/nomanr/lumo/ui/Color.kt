@@ -1,4 +1,4 @@
-package {{packageName}}
+package com.nomanr.lumo.ui
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.compositionLocalOf

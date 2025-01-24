@@ -38,6 +38,10 @@ abstract class LumoTask : DefaultTask() {
     @Optional
     var componentToAdd: String? = null
 
+    @set:Option(option = "addAll", description = "Add a new Lumo UI Component")
+    @get:Input
+    var allAll: Boolean = false
+
     private val propertyLoader by lazy { PropertyLoader(project) }
     private val initialiser by lazy { Initialiser(project, propertyLoader) }
     private val dependencyProvider by lazy { PluginDependencyProvider() }
@@ -75,6 +79,12 @@ abstract class LumoTask : DefaultTask() {
 
         if (componentToAdd != null) {
             generateComponent.execute(componentToAdd!!)
+        }
+
+        if (allAll) {
+            SupportedComponents.values().forEach {
+                generateComponent.execute(it)
+            }
         }
     }
 
