@@ -11,7 +11,9 @@ class ComponentGenerator(
     private val config: LumoConfig
 ) {
     private val logger = Logger.getInstance()
-    private val outputDir = File(config.componentsDir)
+    private val outputDir = File(config.componentsDir + File.separator + "commonMain/kotlin/com/nomanr/sample/ui") // sample-multiplatform/ui-components/src
+    private val androidOutputDir = File(config.componentsDir + File.separator + "androidMain/kotlin/com/nomanr/sample/ui") // sample-multiplatform/ui-components/src
+    private val iOSOutputDir = File(config.componentsDir + File.separator + "iosMain/kotlin/com/nomanr/sample/ui") // sample-multiplatform/ui-components/src
     private val successfullyGenerated = mutableListOf<File>()
     private val successFullyGeneratedSupportingFiles = mutableListOf<File>()
     private val otherSuccessMessages = mutableListOf<String>()
@@ -19,11 +21,13 @@ class ComponentGenerator(
     private val linkFormatter = LinkFormatter
 
     init {
-        if (!outputDir.exists()) {
-            if (outputDir.mkdirs()) {
-                logger.info("Created base output directory: ${outputDir.absolutePath}")
-            } else {
-                throw IllegalStateException("Failed to create base output directory: ${outputDir.absolutePath}")
+        for (dir in listOf(outputDir, androidOutputDir, iOSOutputDir)) {
+            if (!dir.exists()) {
+                if (dir.mkdirs()) {
+                    logger.info("Created base output directory: ${dir.absolutePath}")
+                } else {
+                    throw IllegalStateException("Failed to create base output directory: ${dir.absolutePath}")
+                }
             }
         }
     }
@@ -32,20 +36,16 @@ class ComponentGenerator(
         logger.info("Generating ${component.name} ...")
         val template = TemplateRegistry.getTemplate(component)
 
-//        val templateParentPath = if (config.kotlinMultiplatform)
-//            "multiplatform-templates" else "templates"
-
-        val templateParentPath = "templates/commonMain" // TODO add androidMain and iOSMain
-
         template.componentFiles.forEach { componentPath ->
-            val componentOutputFile = File(outputDir, componentPath.replace(".kt.template", ".kt"))
+            val outputPath = getOutputDirectory(outputDir, componentPath)
+            val componentOutputFile = File(outputPath, componentPath.replace(".kt.template", ".kt"))
             ensureDirectoryExists(componentOutputFile)
 
             if (componentOutputFile.exists()) {
                 failedToGenerate.add(componentOutputFile)
             } else {
                 try {
-                    generateTemplate(componentPath, componentOutputFile, templateParentPath)
+                    generateComponentFromTemplate(componentPath, componentOutputFile, "templates/commonMain")
                     successfullyGenerated.add(componentOutputFile)
                 } catch (e: Exception) {
                     failedToGenerate.add(componentOutputFile)
@@ -61,9 +61,8 @@ class ComponentGenerator(
                 failedToGenerate.add(dependencyOutputFile)
             } else {
                 try {
-                    generateTemplate(dependencyPath, dependencyOutputFile, templateParentPath)
+                    generateComponentFromTemplate(dependencyPath, dependencyOutputFile, "templates/commonMain")
                     successFullyGeneratedSupportingFiles.add(dependencyOutputFile)
-
 
                     if(!template.requirements.isNullOrEmpty()){
                         otherSuccessMessages.add(template.requirements)
@@ -74,9 +73,48 @@ class ComponentGenerator(
             }
         }
 
+        template.multiplatformFiles.forEach { (platform, platformSpecificImplementationFiles) ->
+            val multiplatformTemplateParentPath = when (platform) {
+                SupportedPlatforms.ANDROID -> "templates/androidMain"
+                SupportedPlatforms.IOS -> "templates/iosMain"
+            }
+
+            platformSpecificImplementationFiles.forEach { multiplatformTemplateFile ->
+                val outputPath = getOutputDirectory(outputDir, multiplatformTemplateFile)
+                val dependencyOutputFile = File(outputPath, multiplatformTemplateFile.replace(".kt.template", ".kt"))
+                ensureDirectoryExists(dependencyOutputFile)
+
+                if (dependencyOutputFile.exists()) {
+                    failedToGenerate.add(dependencyOutputFile)
+                } else {
+                    try {
+                        generateComponentFromTemplate(multiplatformTemplateFile, dependencyOutputFile, multiplatformTemplateParentPath)
+                        successFullyGeneratedSupportingFiles.add(dependencyOutputFile)
+
+                        if(!template.requirements.isNullOrEmpty()){
+                            otherSuccessMessages.add(template.requirements)
+                        }
+                    } catch (e: Exception) {
+                        failedToGenerate.add(dependencyOutputFile)
+                    }
+                }
+            }
+        }
+
         logSummary(component.name)
     }
-    private fun generateTemplate(
+
+    private fun getOutputDirectory(outputDir: File, componentTemplatePath: String): File {
+        return if (componentTemplatePath.contains("ios.kt.template")) {
+            iOSOutputDir
+        } else if (componentTemplatePath.contains("android.kt.template")) {
+            androidOutputDir
+        } else {
+            outputDir
+        }
+    }
+
+    private fun generateComponentFromTemplate(
         templateFileName: String,
         outputFile: File,
         templateParentPath: String = "templates",

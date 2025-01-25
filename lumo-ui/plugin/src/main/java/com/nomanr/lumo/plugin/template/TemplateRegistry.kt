@@ -26,6 +26,7 @@ import com.nomanr.lumo.plugin.template.SupportedComponents.TextField
 import com.nomanr.lumo.plugin.template.SupportedComponents.Theme
 import com.nomanr.lumo.plugin.template.SupportedComponents.Tooltip
 import com.nomanr.lumo.plugin.template.SupportedComponents.TopBar
+import com.nomanr.lumo.plugin.template.SupportedComponents.TestComponent
 
 object TemplateRegistry {
     private val surface = Template(
@@ -188,6 +189,20 @@ object TemplateRegistry {
         )
     )
 
+    private val testComponent = Template(
+        componentFiles = listOf(
+            "components/TestComponent.kt.template"
+        ),
+        multiplatformFiles = mapOf(
+            SupportedPlatforms.ANDROID to listOf(
+                "components/TestComponent.android.kt.template",
+            ),
+            SupportedPlatforms.IOS to listOf(
+                "components/TestComponent.ios.kt.template",
+            )
+        )
+    )
+
     private val templates = mapOf(
         Accordion to accordion,
         AlertDialog to alertDialog,
@@ -215,6 +230,7 @@ object TemplateRegistry {
         Theme to theme,
         Tooltip to toolTip,
         TopBar to topBar,
+        TestComponent to testComponent
     )
 
     fun getTemplate(component: SupportedComponents): Template {

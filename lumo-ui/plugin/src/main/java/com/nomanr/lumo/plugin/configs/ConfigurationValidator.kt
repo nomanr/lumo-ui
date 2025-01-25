@@ -23,12 +23,12 @@ class ConfigurationValidator(private val project: Project, private val logger: L
 
 
         if (!normalizedDirPath.endsWith(config.packageName)) {
-            logger.warn("componentsDir: $config.componentsDir")
+            logger.warn("componentsDir: ${config.componentsDir}")
             logger.warn("normalisedComponentsDir: $normalizedDirPath")
             logger.warn("config.packageName: ${config.packageName}")
 
             logger.warn("The directory (${normalizedDirPath}) and the package name (${config.packageName}) do not match.")
-            return false
+//            return false
         }
 
         return true
