@@ -1,12 +1,12 @@
 package com.nomanr.sample.ui.components.snackbar
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -26,6 +26,9 @@ import androidx.compose.ui.util.fastFirstOrNull
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.LocalTextStyle
+import com.nomanr.sample.ui.components.Icon
+import com.nomanr.sample.ui.components.IconButton
+import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Surface
 import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.snackbar.SnackbarDefaults.ContainerElevation
@@ -65,15 +68,12 @@ fun Snackbar(
     }
     val dismissActionComposable: (@Composable () -> Unit)? = if (snackbarData.visuals.withDismissAction) {
         @Composable {
-            //TODO: Add close button here.
-            Box(modifier = Modifier
-                .padding(end = 12.dp)
-                .size(36.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(color = contentColor)
-                .clickable {
-                    snackbarData.dismiss()
-                })
+            IconButton(
+                variant = IconButtonVariant.Ghost,
+                modifier = Modifier.padding(end = 8.dp),
+                onClick = { snackbarData.dismiss() }) {
+                Icon(imageVector = Icons.Default.Close, contentDescription = "Close")
+            }
         }
     } else {
         null
@@ -146,50 +146,37 @@ private fun SnackbarLayout(
             if (action != null) {
                 Box(Modifier.layoutId(actionTag)) {
                     CompositionLocalProvider(
-                        LocalContentColor provides actionTextColor,
-                        LocalTextStyle provides actionTextStyle,
-                        content = action
+                        LocalContentColor provides actionTextColor, LocalTextStyle provides actionTextStyle, content = action
                     )
                 }
             }
             if (dismissAction != null) {
                 Box(Modifier.layoutId(dismissActionTag)) {
                     CompositionLocalProvider(
-                        LocalContentColor provides dismissActionColor,
-                        content = dismissAction
+                        LocalContentColor provides dismissActionColor, content = dismissAction
                     )
                 }
             }
-        },
-        modifier =
-        Modifier.padding(
-            start = HorizontalSpacing,
-            end = if (dismissAction == null) HorizontalSpacingButtonSide else 0.dp
+        }, modifier = Modifier.padding(
+            start = HorizontalSpacing, end = if (dismissAction == null) HorizontalSpacingButtonSide else 0.dp
         )
     ) { measurables, constraints ->
         val containerWidth = min(constraints.maxWidth, ContainerMaxWidth.roundToPx())
-        val actionButtonPlaceable =
-            measurables.fastFirstOrNull { it.layoutId == actionTag }?.measure(constraints)
-        val dismissButtonPlaceable =
-            measurables.fastFirstOrNull { it.layoutId == dismissActionTag }?.measure(constraints)
+        val actionButtonPlaceable = measurables.fastFirstOrNull { it.layoutId == actionTag }?.measure(constraints)
+        val dismissButtonPlaceable = measurables.fastFirstOrNull { it.layoutId == dismissActionTag }?.measure(constraints)
         val actionButtonWidth = actionButtonPlaceable?.width ?: 0
         val actionButtonHeight = actionButtonPlaceable?.height ?: 0
         val dismissButtonWidth = dismissButtonPlaceable?.width ?: 0
         val dismissButtonHeight = dismissButtonPlaceable?.height ?: 0
         val extraSpacingWidth = if (dismissButtonWidth == 0) TextEndExtraSpacing.roundToPx() else 0
         val textMaxWidth =
-            (containerWidth - actionButtonWidth - dismissButtonWidth - extraSpacingWidth)
-                .coerceAtLeast(constraints.minWidth)
+            (containerWidth - actionButtonWidth - dismissButtonWidth - extraSpacingWidth).coerceAtLeast(constraints.minWidth)
         val textPlaceable =
-            measurables
-                .fastFirst { it.layoutId == textTag }
-                .measure(constraints.copy(minHeight = 0, maxWidth = textMaxWidth))
+            measurables.fastFirst { it.layoutId == textTag }.measure(constraints.copy(minHeight = 0, maxWidth = textMaxWidth))
 
         val firstTextBaseline = textPlaceable[FirstBaseline]
         val lastTextBaseline = textPlaceable[LastBaseline]
-        val hasText =
-            firstTextBaseline != AlignmentLine.Unspecified &&
-                    lastTextBaseline != AlignmentLine.Unspecified
+        val hasText = firstTextBaseline != AlignmentLine.Unspecified && lastTextBaseline != AlignmentLine.Unspecified
         val isOneLine = firstTextBaseline == lastTextBaseline || !hasText
         val dismissButtonPlaceX = containerWidth - dismissButtonWidth
         val actionButtonPlaceX = dismissButtonPlaceX - actionButtonWidth
@@ -202,37 +189,34 @@ private fun SnackbarLayout(
             val contentHeight = max(actionButtonHeight, dismissButtonHeight)
             containerHeight = max(minContainerHeight, contentHeight)
             textPlaceY = (containerHeight - textPlaceable.height) / 2
-            actionButtonPlaceY =
-                if (actionButtonPlaceable != null) {
-                    actionButtonPlaceable[FirstBaseline].let {
-                        if (it != AlignmentLine.Unspecified) {
-                            textPlaceY + firstTextBaseline - it
-                        } else {
-                            0
-                        }
+            actionButtonPlaceY = if (actionButtonPlaceable != null) {
+                actionButtonPlaceable[FirstBaseline].let {
+                    if (it != AlignmentLine.Unspecified) {
+                        textPlaceY + firstTextBaseline - it
+                    } else {
+                        0
                     }
-                } else {
-                    0
                 }
+            } else {
+                0
+            }
         } else {
             val baselineOffset = HeightToFirstLine.roundToPx()
             textPlaceY = baselineOffset - firstTextBaseline
             val minContainerHeight = TwoLinesContainerHeight.roundToPx()
             val contentHeight = textPlaceY + textPlaceable.height
             containerHeight = max(minContainerHeight, contentHeight)
-            actionButtonPlaceY =
-                if (actionButtonPlaceable != null) {
-                    (containerHeight - actionButtonPlaceable.height) / 2
-                } else {
-                    0
-                }
-        }
-        val dismissButtonPlaceY =
-            if (dismissButtonPlaceable != null) {
-                (containerHeight - dismissButtonPlaceable.height) / 2
+            actionButtonPlaceY = if (actionButtonPlaceable != null) {
+                (containerHeight - actionButtonPlaceable.height) / 2
             } else {
                 0
             }
+        }
+        val dismissButtonPlaceY = if (dismissButtonPlaceable != null) {
+            (containerHeight - dismissButtonPlaceable.height) / 2
+        } else {
+            0
+        }
 
         layout(containerWidth, containerHeight) {
             textPlaceable.placeRelative(0, textPlaceY)
@@ -287,3 +271,4 @@ internal object SnackbarDefaults {
         }
     }
 }
+

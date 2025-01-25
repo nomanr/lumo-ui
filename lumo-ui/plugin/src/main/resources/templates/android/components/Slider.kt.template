@@ -32,6 +32,7 @@ import com.nomanr.composables.slider.RangeSliderState
 import com.nomanr.composables.slider.SliderColors
 import com.nomanr.composables.slider.SliderState
 import {{packageName}}.{{themeName}}
+import {{packageName}}.components.Text
 
 @Composable
 fun Slider(
@@ -180,12 +181,12 @@ private fun SliderPreview() {
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            com.nomanr.lumo.ui.components.Text(
+            Text(
                 text = "Slider Components", style = {{themeName}}.typography.h3
             )
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Basic Slider", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var value by remember { mutableFloatStateOf(0.5f) }
@@ -197,7 +198,7 @@ private fun SliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Stepped Slider (5 steps)", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var value by remember { mutableFloatStateOf(0.4f) }
@@ -210,7 +211,7 @@ private fun SliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Custom Range (0-100)", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var value by remember { mutableFloatStateOf(30f) }
@@ -225,14 +226,14 @@ private fun SliderPreview() {
                         valueRange = 0f..100f,
                         modifier = Modifier.weight(1f),
                     )
-                    com.nomanr.lumo.ui.components.Text(
+                    Text(
                         text = "${value.toInt()}", style = {{themeName}}.typography.body1, modifier = Modifier.width(40.dp)
                     )
                 }
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Disabled States", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 Slider(
@@ -246,7 +247,7 @@ private fun SliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Custom Colors", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var value by remember { mutableFloatStateOf(0.5f) }
@@ -263,12 +264,12 @@ private fun SliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Interactive Slider", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var value by remember { mutableFloatStateOf(50f) }
                 var isEditing by remember { mutableStateOf(false) }
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = if (isEditing) "Editing..." else "Value: ${value.toInt()}", style = {{themeName}}.typography.body1
                 )
                 Slider(
@@ -298,12 +299,12 @@ private fun RangeSliderPreview() {
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            com.nomanr.lumo.ui.components.Text(
+            Text(
                 text = "Range Slider Components", style = {{themeName}}.typography.h3
             )
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Basic Range Slider", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var range by remember { mutableStateOf(0.2f..0.8f) }
@@ -313,7 +314,7 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Stepped Range Slider (5 steps)", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var range by remember { mutableStateOf(0.2f..0.6f) }
@@ -323,7 +324,7 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Custom Range (0-100)", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var range by remember { mutableStateOf(20f..80f) }
@@ -334,10 +335,10 @@ private fun RangeSliderPreview() {
                     Row(
                         modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        com.nomanr.lumo.ui.components.Text(
+                        Text(
                             text = "Start: ${range.start.toInt()}", style = {{themeName}}.typography.body1
                         )
-                        com.nomanr.lumo.ui.components.Text(
+                        Text(
                             text = "End: ${range.endInclusive.toInt()}", style = {{themeName}}.typography.body1
                         )
                     }
@@ -345,7 +346,7 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Disabled State", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 RangeSlider(
@@ -354,7 +355,7 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Custom Colors", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var range by remember { mutableStateOf(0.3f..0.7f) }
@@ -370,12 +371,12 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = "Interactive Range Slider", style = {{themeName}}.typography.h4, color = {{themeName}}.colors.primary
                 )
                 var range by remember { mutableStateOf(30f..70f) }
                 var isEditing by remember { mutableStateOf(false) }
-                com.nomanr.lumo.ui.components.Text(
+                Text(
                     text = if (isEditing) "Editing..." else "Range: ${range.start.toInt()} - ${range.endInclusive.toInt()}",
                     style = {{themeName}}.typography.body1
                 )

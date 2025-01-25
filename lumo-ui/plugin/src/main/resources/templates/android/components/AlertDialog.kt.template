@@ -58,7 +58,7 @@ fun AlertDialog(
     dismissButtonText: String? = "Cancel",
     icon: (@Composable () -> Unit)? = null,
     shape: Shape = DialogShape,
-    containerColor: Color = Color.White,
+    containerColor: Color = {{themeName}}.colors.surface,
     iconContentColor: Color = {{themeName}}.colors.primary,
     titleContentColor: Color = {{themeName}}.colors.primary,
     textContentColor: Color = {{themeName}}.colors.primary,
