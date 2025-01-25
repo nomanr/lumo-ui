@@ -4,7 +4,6 @@ package com.nomanr.lumo.ui.components
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.snap
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Canvas
@@ -126,50 +125,46 @@ private fun CheckboxComponent(
     modifier: Modifier,
     colors: CheckboxColors
 ) {
-    val transition = updateTransition(value, label = "transition")
-    val checkDrawFraction = transition.animateFloat(
-        transitionSpec = {
-            when {
-                initialState == ToggleableState.Off -> tween(CheckAnimationDuration)
-                targetState == ToggleableState.Off -> snap(BoxOutDuration)
-                else -> spring()
+    val transition = updateTransition(value, label = "checkbox")
+    val checkDrawFraction =
+        transition.animateFloat(
+            transitionSpec = {
+                when {
+                    initialState == ToggleableState.Off -> snap()
+                    targetState == ToggleableState.Off -> snap(delayMillis = BoxOutDuration)
+                    else -> tween(durationMillis = CheckAnimationDuration)
+                }
+            }, label = "checkDrawFraction"
+        ) {
+            when (it) {
+                ToggleableState.On -> 1f
+                ToggleableState.Off -> 0f
+                ToggleableState.Indeterminate -> 1f
             }
-        },
-        label = "checkDrawFraction"
-    ) {
-        when (it) {
-            ToggleableState.On -> 1f
-            ToggleableState.Off -> 0f
-            ToggleableState.Indeterminate -> 1f
         }
-    }
 
-    val checkCenterGravitationShiftFraction = transition.animateFloat(
-        transitionSpec = {
-            when {
-                initialState == ToggleableState.Off -> snap()
-                targetState == ToggleableState.Off -> snap(BoxOutDuration)
-                else -> tween(durationMillis = CheckAnimationDuration)
+    val checkCenterGravitationShiftFraction =
+        transition.animateFloat(
+            transitionSpec = {
+                when {
+                    initialState == ToggleableState.Off -> snap()
+                    targetState == ToggleableState.Off -> snap(delayMillis = BoxOutDuration)
+                    else -> tween(durationMillis = CheckAnimationDuration)
+                }
+            }, label = "checkCenterGravitationShiftFraction"
+        ) {
+            when (it) {
+                ToggleableState.On -> 0f
+                ToggleableState.Off -> 0f
+                ToggleableState.Indeterminate -> 1f
             }
-        },
-        label = "checkCenterGravitationShiftFraction"
-    ) {
-        when (it) {
-            ToggleableState.On -> 0f
-            ToggleableState.Off -> 0f
-            ToggleableState.Indeterminate -> 1f
         }
-    }
     val checkCache = remember { CheckDrawingCache() }
-    val checkColor = colors.checkmarkColor(value)
+    val checkColor = colors.checkmarkColor( value)
     val boxColor = colors.boxColor(enabled, value)
     val borderColor = colors.borderColor(enabled, value)
 
-    Canvas(
-        modifier
-            .wrapContentSize(Alignment.Center)
-            .requiredSize(CheckboxSize)
-    ) {
+    Canvas(modifier.wrapContentSize(Alignment.Center).requiredSize(CheckboxSize)) {
         val strokeWidthPx = floor(StrokeWidth.toPx())
         drawBox(
             boxColor = boxColor.value,
@@ -178,7 +173,7 @@ private fun CheckboxComponent(
             strokeWidth = strokeWidthPx
         )
         drawCheck(
-            checkColor = checkColor.value,
+            checkColor = checkColor,
             checkFraction = checkDrawFraction.value,
             crossCenterGravitation = checkCenterGravitationShiftFraction.value,
             strokeWidthPx = strokeWidthPx,
@@ -282,7 +277,7 @@ object CheckboxDefaults {
         uncheckedBoxColor = AppTheme.colors.transparent,
         disabledCheckedBoxColor = AppTheme.colors.disabled,
         disabledUncheckedBoxColor = AppTheme.colors.transparent,
-        disabledIndeterminateBoxColor = AppTheme.colors.primary,
+        disabledIndeterminateBoxColor = AppTheme.colors.disabled,
         checkedBorderColor = AppTheme.colors.primary,
         uncheckedBorderColor = AppTheme.colors.primary,
         disabledBorderColor = AppTheme.colors.disabled,
@@ -308,15 +303,12 @@ data class CheckboxColors(
 ) {
 
     @Composable
-    internal fun checkmarkColor(state: ToggleableState): State<Color> {
-        val target = if (state == ToggleableState.Off) {
+    internal fun checkmarkColor(state: ToggleableState): Color {
+        return if (state == ToggleableState.Off) {
             uncheckedCheckmarkColor
         } else {
             checkedCheckmarkColor
         }
-
-        val duration = if (state == ToggleableState.Off) BoxOutDuration else BoxInDuration
-        return animateColorAsState(target, tween(durationMillis = duration), label = "animate checkmark color")
     }
 
     @Composable
@@ -365,7 +357,6 @@ data class CheckboxColors(
         }
     }
 }
-
 
 @Preview
 @Composable

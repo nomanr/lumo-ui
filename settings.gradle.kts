@@ -11,7 +11,6 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        mavenLocal()
     }
 }
 dependencyResolutionManagement {
@@ -25,7 +24,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "lumo-ui"
 include(":lumo-ui:components-lab")
+include(":sample-android:catalogue")
 include(":sample-multiplatform:ui-components")
 include(":sample-multiplatform:catalogue:composeApp")
-include(":tui-generator")
 

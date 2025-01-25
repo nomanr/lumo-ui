@@ -3,6 +3,7 @@ compileSdk = "35"
 minSdk = "24"
 targetSdk = "35"
 
+androidx-appcompat = "1.7.0"
 android-gradle-plugin = "8.8.0"
 androidx-activity-compose = "1.10.0"
 androidx-compose-bom = "2025.01.00"
@@ -10,6 +11,7 @@ androidx-lifecycle-compose = "2.8.4"
 androidx-compose-navigation = "2.8.5"
 androidx-compose-ripple = "1.7.6"
 androidx-core-splashscreen = "1.0.1"
+androidx-corektx = "1.15.0"
 compose-multiplatform = "1.7.3"
 
 kotlin = "2.1.0"
@@ -20,9 +22,11 @@ vanniktech-maven-publish = "0.30.0"
 material-navigation = "1.7.0-beta02"
 
 mosaic = "0.14.0"
+ksp = "2.1.0-1.0.29"
 
 
 [libraries]
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
@@ -38,6 +42,7 @@ androidx-compose-ripple = { module = "androidx.compose.material:material-ripple"
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core-splashscreen" }
 
 androidx-lifecycle-runtime-multiplatform = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-compose" }
+androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-corektx" }
 
 kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
 
@@ -53,7 +58,9 @@ android-application = { id = "com.android.application", version.ref = "android-g
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

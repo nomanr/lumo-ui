@@ -35,16 +35,16 @@ import com.nomanr.lumo.ui.components.Button
 import com.nomanr.lumo.ui.components.ButtonVariant
 import com.nomanr.lumo.ui.components.Surface
 import com.nomanr.lumo.ui.components.Text
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.ButtonsMainAxisSpacing
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogElevation
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogMaxWidth
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogMinWidth
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogPadding
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogShape
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.IconPadding
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.TextPadding
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.TitlePadding
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.ButtonsCrossAxisSpacing
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.ButtonsMainAxisSpacing
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.DialogElevation
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.DialogMaxWidth
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.DialogMinWidth
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.DialogPadding
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.DialogShape
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.IconPadding
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.TextPadding
+import com.nomanr.lumo.ui.components.native.AlertDialogDefaults.TitlePadding
 import com.nomanr.lumo.ui.foundation.ProvideContentColorTextStyle
 import kotlin.math.max
 
