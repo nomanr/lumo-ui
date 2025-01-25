@@ -30,16 +30,17 @@ import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Text
 import com.nomanr.sample.ui.components.card.OutlinedCard
-import com.nomanr.sample.ui.components.progress_indicators.CircularProgressIndicator
-import com.nomanr.sample.ui.components.progress_indicators.LinearProgressIndicator
+import com.nomanr.sample.ui.components.progressindicators.CircularProgressIndicator
+import com.nomanr.sample.ui.components.progressindicators.LinearProgressIndicator
 
 @Composable
 fun ProgressIndicatorSample() {
     Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
-            .padding(16.dp)
+        modifier =
+            Modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
+                .padding(16.dp),
     ) {
         LinearProgressIndicatorDemo()
 
@@ -56,9 +57,12 @@ fun ProgressIndicatorSample() {
 @Composable
 private fun LinearProgressIndicatorDemo() {
     var progress by remember { mutableFloatStateOf(0f) }
-    val animatedProgress = animateFloatAsState(
-        targetValue = progress, animationSpec = tween(durationMillis = 5000), label = "progress"
-    )
+    val animatedProgress =
+        animateFloatAsState(
+            targetValue = progress,
+            animationSpec = tween(durationMillis = 5000),
+            label = "progress",
+        )
 
     LaunchedEffect(Unit) {
         progress = 1f
@@ -75,24 +79,26 @@ private fun LinearProgressIndicatorDemo() {
             trackColor = AppTheme.colors.secondary,
         )
 
-
         Row(verticalAlignment = Alignment.CenterVertically) {
             LinearProgressIndicator(
-                modifier = Modifier.weight(1f), progress = animatedProgress.value
+                modifier = Modifier.weight(1f),
+                progress = animatedProgress.value,
             )
             Spacer(modifier = Modifier.width(16.dp))
             Text(text = "${(animatedProgress.value * 100).toInt()}%", style = AppTheme.typography.label3)
         }
     }
-
 }
 
 @Composable
 private fun CircularProgressIndicatorDemo() {
     var progress by remember { mutableFloatStateOf(0f) }
-    val animatedProgress = animateFloatAsState(
-        targetValue = progress, animationSpec = tween(durationMillis = 5000), label = "progress"
-    )
+    val animatedProgress =
+        animateFloatAsState(
+            targetValue = progress,
+            animationSpec = tween(durationMillis = 5000),
+            label = "progress",
+        )
 
     LaunchedEffect(Unit) {
         progress = 1f
@@ -105,7 +111,6 @@ private fun CircularProgressIndicatorDemo() {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-
         CircularProgressIndicator()
 
         CircularProgressIndicator(
@@ -115,20 +120,22 @@ private fun CircularProgressIndicatorDemo() {
         Box(contentAlignment = Alignment.Center) {
             CircularProgressIndicator(
                 modifier = Modifier.size(92.dp),
-                progress = animatedProgress.value
+                progress = animatedProgress.value,
             )
             Text(text = "${(animatedProgress.value * 100).toInt()}%", style = AppTheme.typography.label3)
         }
     }
-
 }
 
 @Composable
 private fun IndicatorExamples() {
     var progress by remember { mutableFloatStateOf(0f) }
-    val animatedProgress = animateFloatAsState(
-        targetValue = progress, animationSpec = tween(durationMillis = 5000), label = "progress"
-    )
+    val animatedProgress =
+        animateFloatAsState(
+            targetValue = progress,
+            animationSpec = tween(durationMillis = 5000),
+            label = "progress",
+        )
 
     LaunchedEffect(Unit) {
         progress = 1f
@@ -147,20 +154,20 @@ private fun IndicatorExamples() {
         }
 
         OutlinedCard(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     imageVector = Icons.Default.VideoFile,
                     contentDescription = "Video",
                 )
-
 
                 Column(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -168,7 +175,7 @@ private fun IndicatorExamples() {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         Text(text = "Intro.mp4", style = AppTheme.typography.label1)
                         Text(text = "${(animatedProgress.value * 100).toInt()}%", style = AppTheme.typography.label3)
@@ -178,7 +185,6 @@ private fun IndicatorExamples() {
                         trackColor = AppTheme.colors.secondary,
                     )
                 }
-
             }
         }
     }

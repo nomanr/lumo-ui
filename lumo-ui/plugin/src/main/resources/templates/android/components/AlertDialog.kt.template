@@ -64,18 +64,22 @@ fun AlertDialog(
     textContentColor: Color = {{themeName}}.colors.primary,
     elevation: Dp = DialogElevation,
     properties: DialogProperties = DialogProperties(),
-    content: @Composable (() -> Unit)? = null
+    content: @Composable (() -> Unit)? = null,
 ) {
-    AlertDialogComponent(onDismissRequest = onDismissRequest,
+    AlertDialogComponent(
+        onDismissRequest = onDismissRequest,
         confirmButton = {
             Button(variant = ButtonVariant.Ghost, text = confirmButtonText, onClick = onConfirmClick)
         },
         modifier = Modifier,
-        dismissButton = if (dismissButtonText != null) {
-            {
-                Button(variant = ButtonVariant.Ghost, text = dismissButtonText, onClick = onDismissRequest)
-            }
-        } else null,
+        dismissButton =
+            if (dismissButtonText != null) {
+                {
+                    Button(variant = ButtonVariant.Ghost, text = dismissButtonText, onClick = onDismissRequest)
+                }
+            } else {
+                null
+            },
         icon = icon,
         title = { Text(text = title) },
         text = { Text(text = text) },
@@ -86,7 +90,7 @@ fun AlertDialog(
         textContentColor = textContentColor,
         elevation = elevation,
         properties = properties,
-        content = content
+        content = content,
     )
 }
 
@@ -95,7 +99,7 @@ fun BasicAlertDialog(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
     properties: DialogProperties = DialogProperties(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Dialog(
         onDismissRequest = onDismissRequest,
@@ -103,9 +107,11 @@ fun BasicAlertDialog(
     ) {
         val dialogPaneDescription = "dialog"
         Box(
-            modifier = modifier
-                .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
-                .then(Modifier.semantics { paneTitle = dialogPaneDescription }), propagateMinConstraints = true
+            modifier =
+                modifier
+                    .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
+                    .then(Modifier.semantics { paneTitle = dialogPaneDescription }),
+            propagateMinConstraints = true,
         ) {
             content()
         }
@@ -128,7 +134,7 @@ private fun AlertDialogComponent(
     textContentColor: Color,
     elevation: Dp,
     properties: DialogProperties,
-    content: @Composable (() -> Unit)? = null
+    content: @Composable (() -> Unit)? = null,
 ) {
     BasicAlertDialog(
         onDismissRequest = onDismissRequest,
@@ -137,9 +143,11 @@ private fun AlertDialogComponent(
         val dialogPaneDescription = "Dialog"
 
         Box(
-            modifier = modifier
-                .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
-                .then(Modifier.semantics { paneTitle = dialogPaneDescription }), propagateMinConstraints = true
+            modifier =
+                modifier
+                    .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
+                    .then(Modifier.semantics { paneTitle = dialogPaneDescription }),
+            propagateMinConstraints = true,
         ) {
             if (content != null) {
                 content()
@@ -147,7 +155,8 @@ private fun AlertDialogComponent(
                 AlertDialogContent(
                     buttons = {
                         AlertDialogFlowRow(
-                            mainAxisSpacing = ButtonsMainAxisSpacing, crossAxisSpacing = ButtonsCrossAxisSpacing
+                            mainAxisSpacing = ButtonsMainAxisSpacing,
+                            crossAxisSpacing = ButtonsCrossAxisSpacing,
                         ) {
                             dismissButton?.invoke()
                             confirmButton()
@@ -196,7 +205,7 @@ internal fun AlertDialogContent(
                     Box(
                         Modifier
                             .padding(IconPadding)
-                            .align(Alignment.CenterHorizontally)
+                            .align(Alignment.CenterHorizontally),
                     ) {
                         icon()
                     }
@@ -204,7 +213,8 @@ internal fun AlertDialogContent(
             }
             title?.let {
                 ProvideContentColorTextStyle(
-                    contentColor = titleContentColor, textStyle = {{themeName}}.typography.h3
+                    contentColor = titleContentColor,
+                    textStyle = {{themeName}}.typography.h3,
                 ) {
                     Box(
                         Modifier
@@ -214,8 +224,8 @@ internal fun AlertDialogContent(
                                     Alignment.Start
                                 } else {
                                     Alignment.CenterHorizontally
-                                }
-                            )
+                                },
+                            ),
                     ) {
                         title()
                     }
@@ -224,13 +234,14 @@ internal fun AlertDialogContent(
             text?.let {
                 val textStyle = {{themeName}}.typography.body1
                 ProvideContentColorTextStyle(
-                    contentColor = textContentColor, textStyle = textStyle
+                    contentColor = textContentColor,
+                    textStyle = textStyle,
                 ) {
                     Box(
                         Modifier
                             .weight(weight = 1f, fill = false)
                             .padding(TextPadding)
-                            .align(Alignment.Start)
+                            .align(Alignment.Start),
                     ) {
                         text()
                     }
@@ -239,7 +250,9 @@ internal fun AlertDialogContent(
             Box(modifier = Modifier.align(Alignment.End)) {
                 val textStyle = {{themeName}}.typography.body2
                 ProvideContentColorTextStyle(
-                    contentColor = buttonContentColor, textStyle = textStyle, content = buttons
+                    contentColor = buttonContentColor,
+                    textStyle = textStyle,
+                    content = buttons,
                 )
             }
         }
@@ -248,7 +261,9 @@ internal fun AlertDialogContent(
 
 @Composable
 internal fun AlertDialogFlowRow(
-    mainAxisSpacing: Dp, crossAxisSpacing: Dp, content: @Composable () -> Unit
+    mainAxisSpacing: Dp,
+    crossAxisSpacing: Dp,
+    content: @Composable () -> Unit,
 ) {
     Layout(content) { measurables, constraints ->
         val sequences = mutableListOf<List<Placeable>>()
@@ -272,7 +287,8 @@ internal fun AlertDialogFlowRow(
                 crossAxisSpace += crossAxisSpacing.roundToPx()
             }
             // Ensures that confirming actions appear above dismissive actions.
-            @Suppress("ListIterator") sequences.add(0, currentSequence.toList())
+            @Suppress("ListIterator")
+            sequences.add(0, currentSequence.toList())
             crossAxisSizes += currentCrossAxisSize
             crossAxisPositions += crossAxisSpace
 
@@ -312,14 +328,18 @@ internal fun AlertDialogFlowRow(
 
         layout(layoutWidth, layoutHeight) {
             sequences.fastForEachIndexed { i, placeables ->
-                val childrenMainAxisSizes = IntArray(placeables.size) { j ->
-                    placeables[j].width + if (j < placeables.lastIndex) mainAxisSpacing.roundToPx() else 0
-                }
+                val childrenMainAxisSizes =
+                    IntArray(placeables.size) { j ->
+                        placeables[j].width + if (j < placeables.lastIndex) mainAxisSpacing.roundToPx() else 0
+                    }
                 val arrangement = Arrangement.End
                 val mainAxisPositions = IntArray(childrenMainAxisSizes.size)
                 with(arrangement) {
                     arrange(
-                        mainAxisLayoutSize, childrenMainAxisSizes, layoutDirection, mainAxisPositions
+                        mainAxisLayoutSize,
+                        childrenMainAxisSizes,
+                        layoutDirection,
+                        mainAxisPositions,
                     )
                 }
                 placeables.fastForEachIndexed { j, placeable ->
@@ -344,17 +364,17 @@ internal object AlertDialogDefaults {
 
     val DialogShape = RoundedCornerShape(16.dp)
     val DialogElevation = 4.dp
-
 }
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun AlertDialogPreviews() {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         var showSimpleDialog by remember { mutableStateOf(false) }
         var showSingleButtonDialog by remember { mutableStateOf(false) }
@@ -362,39 +382,40 @@ fun AlertDialogPreviews() {
         var showInputDialog by remember { mutableStateOf(false) }
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Button(
                 variant = ButtonVariant.Primary,
                 text = "Show Simple Dialog",
                 onClick = { showSimpleDialog = true },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
 
             Button(
                 variant = ButtonVariant.Primary,
                 text = "Show Single Button Dialog",
                 onClick = { showSingleButtonDialog = true },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
 
             Button(
                 variant = ButtonVariant.Primary,
                 text = "Show Long Content Dialog",
                 onClick = { showLongContentDialog = true },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
 
             Button(
                 variant = ButtonVariant.Primary,
                 text = "Show Input Dialog",
                 onClick = { showInputDialog = true },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
         }
 
         if (showSimpleDialog) {
-            AlertDialog(onDismissRequest = { showSimpleDialog = false },
+            AlertDialog(
+                onDismissRequest = { showSimpleDialog = false },
                 onConfirmClick = { showSimpleDialog = false },
                 title = "Simple Alert",
                 text = "This is a basic alert dialog with default buttons",
@@ -402,12 +423,13 @@ fun AlertDialogPreviews() {
                 dismissButtonText = "Cancel",
                 containerColor = Color.White,
                 titleContentColor = Color.Black,
-                textContentColor = Color.DarkGray
+                textContentColor = Color.DarkGray,
             )
         }
 
         if (showSingleButtonDialog) {
-            AlertDialog(onDismissRequest = { showSingleButtonDialog = false },
+            AlertDialog(
+                onDismissRequest = { showSingleButtonDialog = false },
                 onConfirmClick = { showSingleButtonDialog = false },
                 title = "Information",
                 text = "This alert only has a confirmation button",
@@ -415,22 +437,26 @@ fun AlertDialogPreviews() {
                 dismissButtonText = null, // Removes the dismiss button
                 containerColor = Color.White,
                 titleContentColor = Color.Black,
-                textContentColor = Color.DarkGray
+                textContentColor = Color.DarkGray,
             )
         }
 
         if (showLongContentDialog) {
-            AlertDialog(onDismissRequest = { showLongContentDialog = false },
+            AlertDialog(
+                onDismissRequest = { showLongContentDialog = false },
                 onConfirmClick = { showLongContentDialog = false },
                 title = "Terms & Conditions",
-                text = "This is a longer content example that demonstrates how the alert dialog handles " + "multiple lines of text. The content will automatically adjust to show longer " + "messages while maintaining readability. This is particularly useful for " + "displaying terms and conditions or detailed information to users.",
+                text =
+                    "This is a longer content example that demonstrates how the alert dialog handles " +
+                        "multiple lines of text. The content will automatically adjust to show longer " +
+                        "messages while maintaining readability. This is particularly useful for " +
+                        "displaying terms and conditions or detailed information to users.",
                 confirmButtonText = "Accept",
                 dismissButtonText = "Decline",
                 containerColor = Color.White,
                 titleContentColor = Color.Black,
-                textContentColor = Color.DarkGray
+                textContentColor = Color.DarkGray,
             )
         }
-
     }
 }

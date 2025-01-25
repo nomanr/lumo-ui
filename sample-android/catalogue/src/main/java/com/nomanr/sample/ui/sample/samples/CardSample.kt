@@ -26,35 +26,37 @@ import com.nomanr.sample.ui.sample.components.Skeleton
 
 @Composable
 fun CardSample() {
-
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-
         OutlinedCard(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(180.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(180.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Skeleton(
-                    modifier = Modifier
-                        .width(260.dp)
-                        .height(24.dp)
+                    modifier =
+                        Modifier
+                            .width(260.dp)
+                            .height(24.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Skeleton(
-                    modifier = Modifier
-                        .width(180.dp)
-                        .height(24.dp)
+                    modifier =
+                        Modifier
+                            .width(180.dp)
+                            .height(24.dp),
                 )
             }
         }
@@ -63,68 +65,71 @@ fun CardSample() {
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Card(
-                modifier = Modifier.weight(0.48f)
+                modifier = Modifier.weight(0.48f),
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Skeleton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(100.dp),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Skeleton(
-                        modifier = Modifier
-                            .width(260.dp)
-                            .height(24.dp)
+                        modifier =
+                            Modifier
+                                .width(260.dp)
+                                .height(24.dp),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Skeleton(
-                        modifier = Modifier
-                            .width(180.dp)
-                            .height(24.dp)
+                        modifier =
+                            Modifier
+                                .width(180.dp)
+                                .height(24.dp),
                     )
-
                 }
-
             }
 
             ElevatedCard(
-                modifier = Modifier.weight(0.48f)
+                modifier = Modifier.weight(0.48f),
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Skeleton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(100.dp),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Skeleton(
-                        modifier = Modifier
-                            .width(260.dp)
-                            .height(24.dp)
+                        modifier =
+                            Modifier
+                                .width(260.dp)
+                                .height(24.dp),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Skeleton(
-                        modifier = Modifier
-                            .width(180.dp)
-                            .height(24.dp)
+                        modifier =
+                            Modifier
+                                .width(180.dp)
+                                .height(24.dp),
                     )
-
                 }
-
             }
         }
 
         OutlinedCard(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(32.dp)
-                    .defaultMinSize(minHeight = 80.dp),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                        .defaultMinSize(minHeight = 80.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(modifier = Modifier.weight(0.75f)) {
                     Text(text = "Outlined Card", style = AppTheme.typography.h4)
@@ -132,24 +137,26 @@ fun CardSample() {
 
                 Box(modifier = Modifier.weight(0.25f)) {
                     Skeleton(
-                        modifier = Modifier
-                            .width(56.dp)
-                            .height(56.dp)
+                        modifier =
+                            Modifier
+                                .width(56.dp)
+                                .height(56.dp),
                     )
                 }
             }
         }
 
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(32.dp)
-                    .defaultMinSize(minHeight = 80.dp),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                        .defaultMinSize(minHeight = 80.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(modifier = Modifier.weight(0.75f)) {
                     Text(text = "Filled Card", style = AppTheme.typography.h4)
@@ -157,24 +164,26 @@ fun CardSample() {
 
                 Box(modifier = Modifier.weight(0.25f)) {
                     Skeleton(
-                        modifier = Modifier
-                            .width(56.dp)
-                            .height(56.dp)
+                        modifier =
+                            Modifier
+                                .width(56.dp)
+                                .height(56.dp),
                     )
                 }
             }
         }
 
         ElevatedCard(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(32.dp)
-                    .defaultMinSize(minHeight = 80.dp),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                        .defaultMinSize(minHeight = 80.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(modifier = Modifier.weight(0.75f)) {
                     Text(text = "Elevated Card", style = AppTheme.typography.h4)
@@ -182,9 +191,10 @@ fun CardSample() {
 
                 Box(modifier = Modifier.weight(0.25f)) {
                     Skeleton(
-                        modifier = Modifier
-                            .width(56.dp)
-                            .height(56.dp)
+                        modifier =
+                            Modifier
+                                .width(56.dp)
+                                .height(56.dp),
                     )
                 }
             }
@@ -195,12 +205,14 @@ fun CardSample() {
         ) {
             Card(modifier = Modifier.weight(0.33f), onClick = {}) {
                 Column(
-                    modifier = Modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier.padding(12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Skeleton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(100.dp),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
@@ -210,28 +222,31 @@ fun CardSample() {
 
             ElevatedCard(modifier = Modifier.weight(0.33f), onClick = {}) {
                 Column(
-                    modifier = Modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier.padding(12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Skeleton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(100.dp),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text(text = "Click me")
                 }
-
             }
 
             OutlinedCard(modifier = Modifier.weight(0.33f), onClick = {}) {
                 Column(
-                    modifier = Modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier.padding(12.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Skeleton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(100.dp),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
@@ -240,11 +255,6 @@ fun CardSample() {
             }
         }
 
-
-
         Spacer(modifier = Modifier.height(24.dp))
-
     }
-
 }
-

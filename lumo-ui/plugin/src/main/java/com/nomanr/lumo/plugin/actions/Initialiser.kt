@@ -7,14 +7,13 @@ import com.nomanr.lumo.utils.Logger
 import org.gradle.api.Project
 
 class Initialiser(project: Project, private val propertyLoader: PropertyLoader) {
-
     private val logger = Logger.getInstance()
     private val validator = ConfigurationValidator(project, logger)
     private val pluginDependencyProvider = PluginDependencyProvider()
 
     fun init() {
         try {
-            if(propertyLoader.hasPropertiesFile()) {
+            if (propertyLoader.hasPropertiesFile()) {
                 logger.error("Lumo UI plugin is already initialised. The config file can be found here: ${propertyLoader.configFilePath()}")
                 return
             }

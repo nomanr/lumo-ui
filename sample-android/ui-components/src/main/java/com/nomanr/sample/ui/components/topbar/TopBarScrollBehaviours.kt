@@ -14,7 +14,7 @@ import kotlin.math.abs
 
 class PinnedScrollBehavior(
     override val state: TopBarState,
-    val canScroll: () -> Boolean = { true }
+    val canScroll: () -> Boolean = { true },
 ) : TopBarScrollBehavior {
     override val isPinned: Boolean = true
     override val snapAnimationSpec: AnimationSpec<Float>? = null
@@ -24,7 +24,7 @@ class PinnedScrollBehavior(
             override fun onPostScroll(
                 consumed: Offset,
                 available: Offset,
-                source: NestedScrollSource
+                source: NestedScrollSource,
             ): Offset {
                 if (!canScroll()) return Offset.Zero
                 if (consumed.y == 0f && available.y > 0f) {
@@ -43,14 +43,14 @@ class EnterAlwaysScrollBehavior(
     override val state: TopBarState,
     override val snapAnimationSpec: AnimationSpec<Float>?,
     override val flingAnimationSpec: DecayAnimationSpec<Float>?,
-    val canScroll: () -> Boolean = { true }
+    val canScroll: () -> Boolean = { true },
 ) : TopBarScrollBehavior {
     override val isPinned: Boolean = false
     override var nestedScrollConnection =
         object : NestedScrollConnection {
             override fun onPreScroll(
                 available: Offset,
-                source: NestedScrollSource
+                source: NestedScrollSource,
             ): Offset {
                 if (!canScroll()) return Offset.Zero
                 val prevHeightOffset = state.heightOffset
@@ -67,7 +67,7 @@ class EnterAlwaysScrollBehavior(
             override fun onPostScroll(
                 consumed: Offset,
                 available: Offset,
-                source: NestedScrollSource
+                source: NestedScrollSource,
             ): Offset {
                 if (!canScroll()) return Offset.Zero
                 state.contentOffset += consumed.y
@@ -84,15 +84,16 @@ class EnterAlwaysScrollBehavior(
 
             override suspend fun onPostFling(
                 consumed: Velocity,
-                available: Velocity
+                available: Velocity,
             ): Velocity {
                 val superConsumed = super.onPostFling(consumed, available)
-                return superConsumed + settleBar(
-                    state,
-                    available.y,
-                    flingAnimationSpec,
-                    snapAnimationSpec
-                )
+                return superConsumed +
+                    settleBar(
+                        state,
+                        available.y,
+                        flingAnimationSpec,
+                        snapAnimationSpec,
+                    )
             }
         }
 }
@@ -101,14 +102,14 @@ class ExitUntilCollapsedScrollBehavior(
     override val state: TopBarState,
     override val snapAnimationSpec: AnimationSpec<Float>?,
     override val flingAnimationSpec: DecayAnimationSpec<Float>?,
-    val canScroll: () -> Boolean = { true }
+    val canScroll: () -> Boolean = { true },
 ) : TopBarScrollBehavior {
     override val isPinned: Boolean = false
     override var nestedScrollConnection =
         object : NestedScrollConnection {
             override fun onPreScroll(
                 available: Offset,
-                source: NestedScrollSource
+                source: NestedScrollSource,
             ): Offset {
                 // Don't intercept if scrolling down.
                 if (!canScroll() || available.y > 0f) return Offset.Zero
@@ -127,7 +128,7 @@ class ExitUntilCollapsedScrollBehavior(
             override fun onPostScroll(
                 consumed: Offset,
                 available: Offset,
-                source: NestedScrollSource
+                source: NestedScrollSource,
             ): Offset {
                 if (!canScroll()) return Offset.Zero
                 state.contentOffset += consumed.y
@@ -157,15 +158,16 @@ class ExitUntilCollapsedScrollBehavior(
 
             override suspend fun onPostFling(
                 consumed: Velocity,
-                available: Velocity
+                available: Velocity,
             ): Velocity {
                 val superConsumed = super.onPostFling(consumed, available)
-                return superConsumed + settleBar(
-                    state,
-                    available.y,
-                    flingAnimationSpec,
-                    snapAnimationSpec
-                )
+                return superConsumed +
+                    settleBar(
+                        state,
+                        available.y,
+                        flingAnimationSpec,
+                        snapAnimationSpec,
+                    )
             }
         }
 }
@@ -174,7 +176,7 @@ suspend fun settleBar(
     state: TopBarState,
     velocity: Float,
     flingAnimationSpec: DecayAnimationSpec<Float>?,
-    snapAnimationSpec: AnimationSpec<Float>?
+    snapAnimationSpec: AnimationSpec<Float>?,
 ): Velocity {
     // Check if the app bar is completely collapsed/expanded. If so, no need to settle the app bar,
     // and just return Zero Velocity.
@@ -214,7 +216,7 @@ suspend fun settleBar(
                 } else {
                     state.heightOffsetLimit
                 },
-                animationSpec = snapAnimationSpec
+                animationSpec = snapAnimationSpec,
             ) { state.heightOffset = value }
         }
     }
@@ -230,4 +232,3 @@ interface TopBarScrollBehavior {
     val flingAnimationSpec: DecayAnimationSpec<Float>?
     val nestedScrollConnection: NestedScrollConnection
 }
-

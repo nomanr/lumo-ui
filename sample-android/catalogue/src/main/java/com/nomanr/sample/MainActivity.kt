@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         installSplashScreen()
         setContent {
-            CatalogueAppProviders{
+            CatalogueAppProviders {
                 CatalogueApp()
             }
         }

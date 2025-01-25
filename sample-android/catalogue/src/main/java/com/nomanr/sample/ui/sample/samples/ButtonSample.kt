@@ -31,16 +31,16 @@ import com.nomanr.sample.ui.components.Button
 import com.nomanr.sample.ui.components.ButtonVariant
 import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.progress_indicators.CircularProgressIndicator
+import com.nomanr.sample.ui.components.progressindicators.CircularProgressIndicator
 
 @Composable
 fun ButtonSample() {
     Column(
-        modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .verticalScroll(rememberScrollState())
+        modifier =
+            Modifier
+                .padding(horizontal = 16.dp)
+                .verticalScroll(rememberScrollState()),
     ) {
-
         ButtonRealWorldExamples()
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -54,8 +54,6 @@ fun ButtonSample() {
         Spacer(modifier = Modifier.height(30.dp))
 
         DestructiveButtonSample()
-
-
     }
 }
 
@@ -63,19 +61,21 @@ fun ButtonSample() {
 @Composable
 private fun ButtonRealWorldExamples() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
-            text = "Examples", style = AppTheme.typography.h4
+            text = "Examples",
+            style = AppTheme.typography.h4,
         )
 
         FlowRow(
             modifier = Modifier.padding(top = 8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(24.dp)
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(variant = ButtonVariant.Primary) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -93,7 +93,8 @@ private fun ButtonRealWorldExamples() {
         }
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(variant = ButtonVariant.PrimaryElevated) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -110,29 +111,30 @@ private fun ButtonRealWorldExamples() {
             }
         }
 
-
         Button(
-            modifier = Modifier.fillMaxWidth(), variant = ButtonVariant.PrimaryOutlined
+            modifier = Modifier.fillMaxWidth(),
+            variant = ButtonVariant.PrimaryOutlined,
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(Icons.Default.PhotoCamera, contentDescription = "Photo")
                 Text("Take Photo", style = AppTheme.typography.button)
                 Icon(Icons.Default.ChevronRight, contentDescription = "Next")
-
             }
         }
 
-
         Button(
-            modifier = Modifier.fillMaxWidth(), variant = ButtonVariant.DestructiveOutlined, text = "Logout"
+            modifier = Modifier.fillMaxWidth(),
+            variant = ButtonVariant.DestructiveOutlined,
+            text = "Logout",
         )
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(variant = ButtonVariant.DestructiveGhost) {
                 Text("Cancel", style = AppTheme.typography.button)
@@ -144,16 +146,18 @@ private fun ButtonRealWorldExamples() {
         }
 
         Button(
-            modifier = Modifier.fillMaxWidth(), variant = ButtonVariant.Primary
+            modifier = Modifier.fillMaxWidth(),
+            variant = ButtonVariant.Primary,
         ) {
             Box(
-                modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterStart
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.CenterStart,
             ) {
                 Icon(Icons.Outlined.Facebook, contentDescription = "Photo")
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text("Login", style = AppTheme.typography.button)
                 }
@@ -161,7 +165,8 @@ private fun ButtonRealWorldExamples() {
         }
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(variant = ButtonVariant.SecondaryOutlined) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -176,20 +181,22 @@ private fun ButtonRealWorldExamples() {
             }
 
             Button(
-                modifier = Modifier, variant = ButtonVariant.SecondaryGhost
+                modifier = Modifier,
+                variant = ButtonVariant.SecondaryGhost,
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text("See All", style = AppTheme.typography.button)
                     Icon(Icons.Default.ChevronRight, contentDescription = "Next")
                 }
             }
-
         }
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(variant = ButtonVariant.Primary, enabled = false) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -204,7 +211,6 @@ private fun ButtonRealWorldExamples() {
                     CircularProgressIndicator(modifier = Modifier.size(24.dp))
                 }
             }
-
         }
 
         Button(
@@ -213,7 +219,6 @@ private fun ButtonRealWorldExamples() {
         ) {
             CircularProgressIndicator(modifier = Modifier.size(24.dp))
         }
-
     }
 }
 
@@ -221,9 +226,10 @@ private fun ButtonRealWorldExamples() {
 @Composable
 private fun PrimaryButtonSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
     ) {
         Text(text = "Primary Buttons", style = AppTheme.typography.h4)
 
@@ -232,14 +238,17 @@ private fun PrimaryButtonSample() {
         FlowRow(verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)) {
             Button(text = "Filled", variant = ButtonVariant.Primary, onClick = {})
             Button(
-                text = "Filled Disabled", variant = ButtonVariant.Primary, enabled = false
+                text = "Filled Disabled",
+                variant = ButtonVariant.Primary,
+                enabled = false,
             )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(text = "Outlined", variant = ButtonVariant.PrimaryOutlined, onClick = {})
             Button(text = "Outlined Disabled", variant = ButtonVariant.PrimaryOutlined, enabled = false)
@@ -247,7 +256,8 @@ private fun PrimaryButtonSample() {
 
         Spacer(modifier = Modifier.height(16.dp))
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(text = "Elevated", variant = ButtonVariant.PrimaryElevated, onClick = {})
             Button(text = "Elevated Disabled", variant = ButtonVariant.PrimaryElevated, enabled = false)
@@ -255,7 +265,8 @@ private fun PrimaryButtonSample() {
 
         Spacer(modifier = Modifier.height(16.dp))
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             Button(text = "Ghost", variant = ButtonVariant.PrimaryGhost, onClick = {})
             Button(text = "Ghost Disabled", variant = ButtonVariant.PrimaryGhost, enabled = false)
@@ -264,8 +275,6 @@ private fun PrimaryButtonSample() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(modifier = Modifier.fillMaxWidth(), text = "Full Width", variant = ButtonVariant.Primary, onClick = {})
-
-
     }
 }
 
@@ -273,9 +282,10 @@ private fun PrimaryButtonSample() {
 @Composable
 private fun SecondaryButtonSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
     ) {
         Text(text = "Secondary Buttons", style = AppTheme.typography.h4)
 
@@ -313,9 +323,10 @@ private fun SecondaryButtonSample() {
 @Composable
 private fun DestructiveButtonSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
     ) {
         Text(text = "Destructive Buttons", style = AppTheme.typography.h4)
 
@@ -348,4 +359,3 @@ private fun DestructiveButtonSample() {
         }
     }
 }
-

@@ -45,7 +45,7 @@ fun Text(
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
     onTextLayout: (TextLayoutResult) -> Unit = {},
-    style: TextStyle = LocalTextStyle.current
+    style: TextStyle = LocalTextStyle.current,
 ) {
     Text(
         text = AnnotatedString(text = text),
@@ -64,7 +64,7 @@ fun Text(
         maxLines = maxLines,
         minLines = minLines,
         onTextLayout = onTextLayout,
-        style = style
+        style = style,
     )
 }
 
@@ -87,21 +87,22 @@ internal fun Text(
     minLines: Int = 1,
     inlineContent: Map<String, InlineTextContent> = mapOf(),
     onTextLayout: (TextLayoutResult) -> Unit = {},
-    style: TextStyle = LocalTextStyle.current
+    style: TextStyle = LocalTextStyle.current,
 ) {
-    val mergedStyle = style.merge(
-        TextStyle(
-            color = color,
-            fontSize = fontSize,
-            fontWeight = fontWeight,
-            textAlign = textAlign,
-            lineHeight = lineHeight,
-            fontFamily = fontFamily,
-            textDecoration = textDecoration,
-            fontStyle = fontStyle,
-            letterSpacing = letterSpacing
+    val mergedStyle =
+        style.merge(
+            TextStyle(
+                color = color,
+                fontSize = fontSize,
+                fontWeight = fontWeight,
+                textAlign = textAlign,
+                lineHeight = lineHeight,
+                fontFamily = fontFamily,
+                textDecoration = textDecoration,
+                fontStyle = fontStyle,
+                letterSpacing = letterSpacing,
+            ),
         )
-    )
     BasicText(
         text,
         modifier,
@@ -111,10 +112,9 @@ internal fun Text(
         softWrap,
         maxLines,
         minLines,
-        inlineContent
+        inlineContent,
     )
 }
-
 
 @Preview
 @Composable
@@ -122,56 +122,57 @@ fun TypographySample() {
     val typography = LocalTypography.current
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
             text = "H1 Heading",
-            style = typography.h1
+            style = typography.h1,
         )
         Text(
             text = "H2 Heading",
-            style = typography.h2
+            style = typography.h2,
         )
         Text(
             text = "H3 Heading",
-            style = typography.h3
+            style = typography.h3,
         )
         Text(
             text = "H4 Heading",
-            style = typography.h4
+            style = typography.h4,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "This is body1 text.",
-            style = typography.body1
+            style = typography.body1,
         )
         Text(
             text = "This is body2 text.",
-            style = typography.body2
+            style = typography.body2,
         )
         Text(
             text = "Body3 text for fine print.",
-            style = typography.body3
+            style = typography.body3,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "Label1: Form Label",
-            style = typography.label1
+            style = typography.label1,
         )
         Text(
             text = "Label2: Secondary Info",
-            style = typography.label2
+            style = typography.label2,
         )
         Text(
             text = "Label3: Tiny Details",
-            style = typography.label3
+            style = typography.label3,
         )
 
         Spacer(modifier = Modifier.height(16.dp))

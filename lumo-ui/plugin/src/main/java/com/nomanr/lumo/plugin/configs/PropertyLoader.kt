@@ -8,7 +8,6 @@ import java.io.File
 import java.util.Properties
 
 class PropertyLoader(private val project: Project, private val logger: Logger = Logger.getInstance()) {
-
     fun loadProperties(): LumoConfig {
         val propertiesFile = File(project.rootDir, LUMO_PROPERTIES)
 
@@ -30,7 +29,7 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             themeName = properties.getProperty(PROPERTY_THEME_NAME).orEmpty(),
             componentsDir = properties.getProperty(PROPERTY_COMPONENTS_DIR).orEmpty(),
             packageName = properties.getProperty(PROPERTY_PACKAGE_NAME).orEmpty(),
-            kotlinMultiplatform = properties.getProperty(PROPERTY_KOTLIN_MULTIPLATFORM).toBoolean()
+            kotlinMultiplatform = properties.getProperty(PROPERTY_KOTLIN_MULTIPLATFORM).toBoolean(),
         )
     }
 
@@ -41,7 +40,8 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             throw LumoException("Lumo UI plugin is already initialised. The config file can be found here: ${configFilePath()}")
         }
 
-        val defaultProperties = """
+        val defaultProperties =
+            """
             # Lumo UI Plugin
             # This file is used to store configurations for the Lumo UI Plugin
             # Do not delete this file
@@ -51,7 +51,7 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             PackageName=<<component-files-package-name>>
             # Uncomment this line if you are using Kotlin Multiplatform
             # KotlinMultiplatform=false 
-        """.trimIndent()
+            """.trimIndent()
 
         propertiesFile.writeText(defaultProperties)
         logger.success("Default config file created at: ${configFilePath()}")

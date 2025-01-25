@@ -34,34 +34,40 @@ fun Accordion(
     headerContent: @Composable () -> Unit,
     bodyContent: @Composable () -> Unit,
 ) {
-
     val expanded = state.expanded
 
-    val clickableModifier = if (state.clickable) {
-        Modifier.clickable(
-            enabled = state.enabled,
-            interactionSource = interactionSource,
-            indication = ripple(),
-            onClick = { state.toggle() })
-    } else {
-        Modifier
-    }
+    val clickableModifier =
+        if (state.clickable) {
+            Modifier.clickable(
+                enabled = state.enabled,
+                interactionSource = interactionSource,
+                indication = ripple(),
+                onClick = { state.toggle() },
+            )
+        } else {
+            Modifier
+        }
 
     Column(modifier = modifier) {
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .semantics {
-                role = Role.Button
-                stateDescription = if (expanded) "Expanded" else "Collapsed"
-            }
-            .then(headerModifier)
-            .then(clickableModifier)) {
+        Box(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .semantics {
+                        role = Role.Button
+                        stateDescription = if (expanded) "Expanded" else "Collapsed"
+                    }
+                    .then(headerModifier)
+                    .then(clickableModifier),
+        ) {
             headerContent()
         }
 
         if (animate) {
             AnimatedVisibility(
-                visible = expanded, enter = expandVertically(), exit = shrinkVertically()
+                visible = expanded,
+                enter = expandVertically(),
+                exit = shrinkVertically(),
             ) {
                 val progress by transition.animateFloat(label = "accordion transition") { state ->
                     if (state == EnterExitState.Visible) 1f else 0f
@@ -81,17 +87,19 @@ fun Accordion(
 
 @Composable
 fun rememberAccordionState(
-    expanded: Boolean = false, enabled: Boolean = true, clickable: Boolean = true, onExpandedChange: ((Boolean) -> Unit)? = null
+    expanded: Boolean = false,
+    enabled: Boolean = true,
+    clickable: Boolean = true,
+    onExpandedChange: ((Boolean) -> Unit)? = null,
 ) = remember {
     AccordionState(expanded, enabled, clickable, onExpandedChange)
 }
-
 
 class AccordionState(
     expanded: Boolean = false,
     var enabled: Boolean = true,
     var clickable: Boolean = true,
-    var onExpandedChange: ((Boolean) -> Unit)? = null
+    var onExpandedChange: ((Boolean) -> Unit)? = null,
 ) {
     var expanded by mutableStateOf(expanded)
         private set
@@ -114,18 +122,17 @@ class AccordionState(
     }
 }
 
-
 @Composable
 fun rememberAccordionGroupState(
     count: Int,
-    allowMultipleOpen: Boolean = false
+    allowMultipleOpen: Boolean = false,
 ): AccordionGroupState {
     return remember { AccordionGroupState(count, allowMultipleOpen) }
 }
 
 class AccordionGroupState(
     count: Int,
-    private val allowMultipleOpen: Boolean
+    private val allowMultipleOpen: Boolean,
 ) {
     private val states = List(count) { AccordionState() }
     private var openedIndex by mutableIntStateOf(-1)

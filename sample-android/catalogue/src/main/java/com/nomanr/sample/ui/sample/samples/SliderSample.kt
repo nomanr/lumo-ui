@@ -30,11 +30,12 @@ import com.nomanr.sample.ui.components.Text
 @Composable
 fun SliderSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         SliderShowcase()
         Spacer(modifier = Modifier.height(24.dp))
@@ -61,7 +62,7 @@ private fun SliderShowcase() {
             value = slider1,
             onValueChange = { slider1 = it },
             valueRange = 0f..1f,
-            enabled = enabled
+            enabled = enabled,
         )
 
         SliderWithLabel(
@@ -69,7 +70,7 @@ private fun SliderShowcase() {
             value = slider2,
             onValueChange = { slider2 = it },
             valueRange = 1f..10f,
-            enabled = enabled
+            enabled = enabled,
         )
 
         SliderWithLabel(
@@ -78,7 +79,7 @@ private fun SliderShowcase() {
             onValueChange = { slider3 = it },
             valueRange = 1f..10f,
             steps = 8,
-            enabled = enabled
+            enabled = enabled,
         )
 
         SliderWithLabel(
@@ -87,11 +88,12 @@ private fun SliderShowcase() {
             onValueChange = { slider4 = it },
             valueRange = 0f..1f,
             enabled = enabled,
-            colors = SliderDefaults.colors(
-                thumbColor = AppTheme.colors.error,
-                activeTrackColor = AppTheme.colors.error,
-                inactiveTrackColor = AppTheme.colors.error.copy(alpha = 0.3f)
-            )
+            colors =
+                SliderDefaults.colors(
+                    thumbColor = AppTheme.colors.error,
+                    activeTrackColor = AppTheme.colors.error,
+                    inactiveTrackColor = AppTheme.colors.error.copy(alpha = 0.3f),
+                ),
         )
     }
 }
@@ -104,7 +106,7 @@ private fun SliderWithLabel(
     valueRange: ClosedFloatingPointRange<Float>,
     steps: Int = 0,
     enabled: Boolean,
-    colors: SliderColors = SliderDefaults.colors()
+    colors: SliderColors = SliderDefaults.colors(),
 ) {
     Column {
         Text(text = title, style = AppTheme.typography.h4, color = AppTheme.colors.primary)
@@ -115,15 +117,15 @@ private fun SliderWithLabel(
             steps = steps,
             enabled = enabled,
             colors = colors,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.End,
         ) {
             Text(
                 text = "%.2f".format(value),
-                style = AppTheme.typography.label3
+                style = AppTheme.typography.label3,
             )
         }
     }
@@ -142,39 +144,40 @@ private fun RangeSliderShowcase() {
         RangeSliderWithLabel(
             title = "Basic Range Slider",
             range = basicRange,
-            onValueChange = { basicRange = it }
+            onValueChange = { basicRange = it },
         )
 
         RangeSliderWithLabel(
             title = "Stepped Range Slider (5 steps)",
             range = steppedRange,
             steps = 4,
-            onValueChange = { steppedRange = it }
+            onValueChange = { steppedRange = it },
         )
 
         RangeSliderWithLabel(
             title = "Custom Range (0-100)",
             range = customRange,
             onValueChange = { customRange = it },
-            valueRange = 0f..100f
+            valueRange = 0f..100f,
         )
 
         RangeSliderWithLabel(
             title = "Disabled State",
             range = 0.3f..0.7f,
             onValueChange = {},
-            enabled = false
+            enabled = false,
         )
 
         RangeSliderWithLabel(
             title = "Custom Colors",
             range = customRangeSliderState,
             onValueChange = { customRangeSliderState = it },
-            colors = SliderDefaults.colors(
-                thumbColor = AppTheme.colors.error,
-                activeTrackColor = AppTheme.colors.error,
-                inactiveTrackColor = AppTheme.colors.error.copy(alpha = 0.3f)
-            )
+            colors =
+                SliderDefaults.colors(
+                    thumbColor = AppTheme.colors.error,
+                    activeTrackColor = AppTheme.colors.error,
+                    inactiveTrackColor = AppTheme.colors.error.copy(alpha = 0.3f),
+                ),
         )
 
         RangeSliderWithLabel(
@@ -185,7 +188,7 @@ private fun RangeSliderShowcase() {
                 isEditing = true
             },
             onValueChangeFinished = { isEditing = false },
-            valueRange = 0f..100f
+            valueRange = 0f..100f,
         )
     }
 }
@@ -199,7 +202,7 @@ private fun RangeSliderWithLabel(
     steps: Int = 0,
     enabled: Boolean = true,
     colors: SliderColors = SliderDefaults.colors(),
-    onValueChangeFinished: (() -> Unit)? = null
+    onValueChangeFinished: (() -> Unit)? = null,
 ) {
     Column {
         Text(text = title, style = AppTheme.typography.h4, color = AppTheme.colors.primary)
@@ -211,19 +214,19 @@ private fun RangeSliderWithLabel(
             enabled = enabled,
             colors = colors,
             onValueChangeFinished = onValueChangeFinished ?: {},
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 text = "Start: %.2f".format(range.start),
-                style = AppTheme.typography.label3
+                style = AppTheme.typography.label3,
             )
             Text(
                 text = "End: %.2f".format(range.endInclusive),
-                style = AppTheme.typography.label3
+                style = AppTheme.typography.label3,
             )
         }
     }

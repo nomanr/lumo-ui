@@ -16,14 +16,16 @@ import com.nomanr.sample.ui.foundation.ripple
 
 object AppTheme {
     val colors: Colors
-        @ReadOnlyComposable @Composable get() = LocalColors.current
+        @ReadOnlyComposable @Composable
+        get() = LocalColors.current
 
     val typography: Typography
-        @ReadOnlyComposable @Composable get() = LocalTypography.current
+        @ReadOnlyComposable @Composable
+        get() = LocalTypography.current
 
     val originalScaleTypography: Typography
-        @ReadOnlyComposable @Composable get() = LocalOriginalTypography.current
-
+        @ReadOnlyComposable @Composable
+        get() = LocalOriginalTypography.current
 }
 
 @Composable
@@ -35,9 +37,10 @@ fun AppTheme(
     val selectionColors = rememberTextSelectionColors(LightColors)
 
     val appConfigState = rememberAppConfigState()
-    val scaledTypography = remember(appConfigState.fontScale) {
-        scaledTypography(appConfigState.fontScale)
-    }
+    val scaledTypography =
+        remember(appConfigState.fontScale) {
+            scaledTypography(appConfigState.fontScale)
+        }
     val colors = if (isDarkTheme) appConfigState.colors.darkColors else appConfigState.colors.lightColors
 
     CompositionLocalProvider(
@@ -51,7 +54,7 @@ fun AppTheme(
         LocalAppConfigState provides appConfigState,
         LocalTextStyle provides scaledTypography.body1,
         LocalLayoutDirection provides appConfigState.layoutDirection,
-        content = content
+        content = content,
     )
 }
 

@@ -28,7 +28,7 @@ fun ModalBottomSheet(
     onDismissRequest: () -> Unit,
     sheetGesturesEnabled: Boolean = true,
     dragHandle: @Composable (() -> Unit)? = { BottomSheetDefaults.DragHandle() },
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     if (isVisible) {
         BasicModalBottomSheet(
@@ -40,39 +40,38 @@ fun ModalBottomSheet(
             scrimColor = AppTheme.colors.scrim,
             shape = BottomSheetDefaults.ModalBottomSheetShape,
             dragHandle = dragHandle,
-            content = content
+            content = content,
         )
     }
 }
 
 internal object BottomSheetDefaults {
-
     private val DragHandleHeight = 6.dp
     private val DragHandleWidth = 36.dp
     private val DragHandleShape = RoundedCornerShape(50)
     private val DragHandlePadding = 12.dp
-    val ModalBottomSheetShape = RoundedCornerShape(
-        topStart = 16.dp,
-        topEnd = 16.dp,
-    )
-
+    val ModalBottomSheetShape =
+        RoundedCornerShape(
+            topStart = 16.dp,
+            topEnd = 16.dp,
+        )
 
     @Composable
     fun DragHandle() {
         Box(
-            modifier = Modifier
-                .padding(DragHandlePadding)
-                .background(color = Color.Companion.Unspecified, shape = RoundedCornerShape(12.dp))
+            modifier =
+                Modifier
+                    .padding(DragHandlePadding)
+                    .background(color = Color.Companion.Unspecified, shape = RoundedCornerShape(12.dp)),
         ) {
             Spacer(
                 Modifier
                     .size(width = DragHandleWidth, height = DragHandleHeight)
-                    .background(color = AppTheme.colors.secondary, shape = DragHandleShape)
+                    .background(color = AppTheme.colors.secondary, shape = DragHandleShape),
             )
         }
     }
 }
-
 
 @Preview
 @Composable
@@ -81,10 +80,11 @@ fun ModalBottomSheetPreview() {
         Column {
             for (i in 0..10) {
                 Box(
-                    modifier = Modifier
-                        .height(40.dp)
-                        .fillMaxWidth()
-                        .background(color = if (i % 2 == 0) Color.Red else Color.Blue)
+                    modifier =
+                        Modifier
+                            .height(40.dp)
+                            .fillMaxWidth()
+                            .background(color = if (i % 2 == 0) Color.Red else Color.Blue),
                 )
             }
         }

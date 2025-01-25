@@ -41,39 +41,36 @@ import com.nomanr.sample.ui.sample.Samples
 
 @Composable
 fun HomeScreen(navigateToDemo: (Component) -> Unit, navigateToUpdateTheme: () -> Unit) {
-
     Scaffold(topBar = {
         HomeTopBar(navigateToUpdateTheme)
     }) { padding ->
         ComponentList(padding = padding, navigateToDemo)
     }
-
 }
-
 
 @Composable
 fun HomeTopBar(
-    navigateToUpdateTheme: () -> Unit
+    navigateToUpdateTheme: () -> Unit,
 ) {
     var isConfigModalVisible by remember {
         mutableStateOf(false)
     }
 
-
     TopBar(
         colors = TopBarDefaults.topBarColors(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Icon(
                 modifier = Modifier.height(26.dp),
                 painter = painterResource(id = R.drawable.logo_with_name),
-                contentDescription = "Logo"
+                contentDescription = "Logo",
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -92,7 +89,6 @@ fun HomeTopBar(
     ConfigModal(isVisible = isConfigModalVisible, onDismiss = {
         isConfigModalVisible = false
     })
-
 }
 
 @Composable
@@ -123,21 +119,27 @@ internal fun ComponentList(padding: PaddingValues, navigateToDemo: (Component) -
     }
 }
 
-
 @Composable
 internal fun ComponentListItem(name: String, onClick: () -> Unit) {
     val hasSample = remember { Samples.hasComponent(name) }
     OutlinedCard(modifier = Modifier.fillMaxSize(), onClick = onClick) {
         Column(
-            modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp), verticalArrangement = Arrangement.Center
+            modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp),
+            verticalArrangement = Arrangement.Center,
         ) {
             Text(
-                text = name, style = AppTheme.typography.label1, minLines = 2, maxLines = 2
+                text = name,
+                style = AppTheme.typography.label1,
+                minLines = 2,
+                maxLines = 2,
             )
 
             if (!hasSample) {
                 Text(
-                    text = "Coming Soon", style = AppTheme.typography.body2, textAlign = TextAlign.Center, color = Color.Red
+                    text = "Coming Soon",
+                    style = AppTheme.typography.body2,
+                    textAlign = TextAlign.Center,
+                    color = Color.Red,
                 )
             }
         }

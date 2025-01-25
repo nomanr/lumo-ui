@@ -41,34 +41,42 @@ fun ModalBottomSheetSample() {
     val state = rememberModalSheetState()
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-
         Spacer(modifier = Modifier)
 
-        Button(modifier = Modifier.fillMaxWidth(),
+        Button(
+            modifier = Modifier.fillMaxWidth(),
             text = "Simple Bottom Sheet",
             variant = ButtonVariant.PrimaryOutlined,
-            onClick = { state.showSimpleSheet = true })
+            onClick = { state.showSimpleSheet = true },
+        )
 
-        Button(modifier = Modifier.fillMaxWidth(),
+        Button(
+            modifier = Modifier.fillMaxWidth(),
             text = "Scrollable Content Bottom Sheet",
             variant = ButtonVariant.PrimaryOutlined,
-            onClick = { state.showScrollableSheet = true })
+            onClick = { state.showScrollableSheet = true },
+        )
 
-        Button(modifier = Modifier.fillMaxWidth(),
+        Button(
+            modifier = Modifier.fillMaxWidth(),
             text = "Custom Handle Bottom Sheet",
             variant = ButtonVariant.PrimaryOutlined,
-            onClick = { state.showCustomDragHandleSheet = true })
+            onClick = { state.showCustomDragHandleSheet = true },
+        )
 
-        Button(modifier = Modifier.fillMaxWidth(),
+        Button(
+            modifier = Modifier.fillMaxWidth(),
             text = "Sheet Progress",
             variant = ButtonVariant.PrimaryOutlined,
-            onClick = { state.showProgressSheet = true })
+            onClick = { state.showProgressSheet = true },
+        )
     }
 
     ModalBottomSheetSamples(state)
@@ -78,73 +86,83 @@ fun ModalBottomSheetSample() {
 private fun ModalBottomSheetSamples(state: ModalSheetState) {
     ModalBottomSheet(isVisible = state.showSimpleSheet, onDismissRequest = { state.showSimpleSheet = false }) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text("This is a simple bottom sheet.", style = AppTheme.typography.h4)
             Button(
                 text = "Close",
                 variant = ButtonVariant.Primary,
                 onClick = { state.showSimpleSheet = false },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
 
-    ModalBottomSheet(modifier = Modifier.padding(top = 100.dp),
+    ModalBottomSheet(
+        modifier = Modifier.padding(top = 100.dp),
         isVisible = state.showScrollableSheet,
-        onDismissRequest = { state.showScrollableSheet = false }) {
+        onDismissRequest = { state.showScrollableSheet = false },
+    ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             repeat(30) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(30.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(30.dp),
                 )
             }
             Button(
                 text = "Close",
                 variant = ButtonVariant.Primary,
                 onClick = { state.showScrollableSheet = false },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
 
-    ModalBottomSheet(isVisible = state.showCustomDragHandleSheet,
+    ModalBottomSheet(
+        isVisible = state.showCustomDragHandleSheet,
         onDismissRequest = { state.showCustomDragHandleSheet = false },
         dragHandle = {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-
-                ) {
+            ) {
                 ProgressBarDragHandle()
             }
-        }) {
+        },
+    ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             repeat(5) { index ->
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
             }
             Button(
                 text = "Close",
                 variant = ButtonVariant.Primary,
                 onClick = { state.showCustomDragHandleSheet = false },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
@@ -153,27 +171,28 @@ private fun ModalBottomSheetSamples(state: ModalSheetState) {
 
     val sheetProgress = sheetState.calculateSheetProgress()
 
-    ModalBottomSheet(sheetState = sheetState,
+    ModalBottomSheet(
+        sheetState = sheetState,
         isVisible = state.showProgressSheet,
         onDismissRequest = { state.showProgressSheet = false },
         dragHandle = {
             AnimateDragHandle(progress = sheetProgress)
-        }) {
-
+        },
+    ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
-
-
             Box(contentAlignment = Alignment.Center) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(30.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(30.dp),
                 )
 
                 Text("Progress $sheetProgress", style = AppTheme.typography.body2)
@@ -183,9 +202,10 @@ private fun ModalBottomSheetSamples(state: ModalSheetState) {
 
             repeat(50) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(30.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(30.dp),
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -198,29 +218,34 @@ private fun ModalBottomSheetSamples(state: ModalSheetState) {
 private fun ProgressBarDragHandle() {
     var progress by remember { androidx.compose.runtime.mutableFloatStateOf(0f) }
 
-    val animatedProgress = animateFloatAsState(
-        targetValue = progress, animationSpec = tween(durationMillis = 2000), label = "progressBarAnimation"
-    )
+    val animatedProgress =
+        animateFloatAsState(
+            targetValue = progress,
+            animationSpec = tween(durationMillis = 2000),
+            label = "progressBarAnimation",
+        )
 
     LaunchedEffect(Unit) {
         progress = 1f
     }
 
     Box(
-        modifier = Modifier
-            .width(56.dp)
-            .fillMaxWidth()
-            .padding(12.dp)
-            .height(6.dp)
-            .clip(RoundedCornerShape(50))
-            .background(AppTheme.colors.secondary)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(animatedProgress.value)
+        modifier =
+            Modifier
+                .width(56.dp)
+                .fillMaxWidth()
+                .padding(12.dp)
                 .height(6.dp)
                 .clip(RoundedCornerShape(50))
-                .background(AppTheme.colors.primary)
+                .background(AppTheme.colors.secondary),
+    ) {
+        Box(
+            modifier =
+                Modifier
+                    .fillMaxWidth(animatedProgress.value)
+                    .height(6.dp)
+                    .clip(RoundedCornerShape(50))
+                    .background(AppTheme.colors.primary),
         )
     }
 }
@@ -228,20 +253,22 @@ private fun ProgressBarDragHandle() {
 @Composable
 private fun AnimateDragHandle(progress: Float) {
     Box(
-        modifier = Modifier
-            .width(100.dp)
-            .fillMaxWidth()
-            .padding(12.dp)
-            .height(6.dp)
-            .clip(RoundedCornerShape(50))
-            .background(AppTheme.colors.secondary)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(progress)
+        modifier =
+            Modifier
+                .width(100.dp)
+                .fillMaxWidth()
+                .padding(12.dp)
                 .height(6.dp)
                 .clip(RoundedCornerShape(50))
-                .background(AppTheme.colors.primary)
+                .background(AppTheme.colors.secondary),
+    ) {
+        Box(
+            modifier =
+                Modifier
+                    .fillMaxWidth(progress)
+                    .height(6.dp)
+                    .clip(RoundedCornerShape(50))
+                    .background(AppTheme.colors.primary),
         )
     }
 }

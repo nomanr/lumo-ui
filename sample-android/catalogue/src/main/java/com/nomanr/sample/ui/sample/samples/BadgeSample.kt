@@ -43,7 +43,7 @@ import com.nomanr.sample.ui.components.topbar.TopBarDefaults
 
 @Composable
 fun BadgeSample(
-    navigateUp: (() -> Unit)? = null
+    navigateUp: (() -> Unit)? = null,
 ) {
     Scaffold(topBar = {
         BadgeSampleTopBar(
@@ -54,40 +54,42 @@ fun BadgeSample(
     }) { padding ->
 
         Column(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            modifier =
+                Modifier
+                    .padding(padding)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
-
             BadgeShowcase()
 
             BadgeExamples()
-
         }
     }
 }
 
 @Composable
 private fun BadgeSampleTopBar(
-    onBack: () -> Unit = {}
+    onBack: () -> Unit = {},
 ) {
     TopBar(
         colors = TopBarDefaults.topBarColors(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 IconButton(
-                    variant = IconButtonVariant.PrimaryGhost, onClick = onBack
+                    variant = IconButtonVariant.PrimaryGhost,
+                    onClick = onBack,
                 ) {
                     Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back")
                 }
@@ -96,7 +98,7 @@ private fun BadgeSampleTopBar(
             }
 
             IconButton(
-                variant = IconButtonVariant.PrimaryGhost
+                variant = IconButtonVariant.PrimaryGhost,
             ) {
                 BadgedBox(badge = {
                     Badge {
@@ -106,7 +108,6 @@ private fun BadgeSampleTopBar(
                     Icon(Icons.AutoMirrored.Filled.Chat, contentDescription = "Chat")
                 }
             }
-
         }
     }
 }
@@ -115,38 +116,43 @@ private fun BadgeSampleTopBar(
 @Composable
 private fun BadgeShowcase() {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Text(text = "Badges", style = AppTheme.typography.h4)
 
         Spacer(modifier = Modifier)
-        val colors = listOf(
-            AppTheme.colors.primary,
-            AppTheme.colors.secondary,
-            AppTheme.colors.error,
-            AppTheme.colors.success,
-            AppTheme.colors.tertiary,
-        )
+        val colors =
+            listOf(
+                AppTheme.colors.primary,
+                AppTheme.colors.secondary,
+                AppTheme.colors.error,
+                AppTheme.colors.success,
+                AppTheme.colors.tertiary,
+            )
 
         colors.forEach { color ->
             FlowRow(
-                verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-
                 Badge(containerColor = color) {
                     Text("BADGE", style = AppTheme.typography.label3)
                 }
 
                 Badge(containerColor = color) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(2.dp),
                     ) {
                         Box(
-                            modifier = Modifier
-                                .size(4.dp)
-                                .background(LocalContentColor.current, shape = CircleShape)
+                            modifier =
+                                Modifier
+                                    .size(4.dp)
+                                    .background(LocalContentColor.current, shape = CircleShape),
                         )
                         Text("BADGE", style = AppTheme.typography.label3)
                     }
@@ -154,12 +160,13 @@ private fun BadgeShowcase() {
 
                 Badge(containerColor = color) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(2.dp),
                     ) {
                         Icon(
                             modifier = Modifier.size(12.dp),
                             imageVector = Icons.Filled.Notifications,
-                            contentDescription = "Notifications"
+                            contentDescription = "Notifications",
                         )
                         Text("BADGE", style = AppTheme.typography.label3)
                     }
@@ -167,13 +174,14 @@ private fun BadgeShowcase() {
 
                 Badge(containerColor = color) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(2.dp),
                     ) {
                         Text("BADGE", style = AppTheme.typography.label3)
                         Icon(
                             modifier = Modifier.size(12.dp),
                             imageVector = Icons.Filled.Notifications,
-                            contentDescription = "Notifications"
+                            contentDescription = "Notifications",
                         )
                     }
                 }
@@ -182,10 +190,9 @@ private fun BadgeShowcase() {
                     Icon(
                         modifier = Modifier.size(12.dp),
                         imageVector = Icons.Filled.Notifications,
-                        contentDescription = "Notifications"
+                        contentDescription = "Notifications",
                     )
                 }
-
 
                 Badge(containerColor = color) {
                     Text("2", style = AppTheme.typography.label3)
@@ -199,11 +206,9 @@ private fun BadgeShowcase() {
                     Badge(containerColor = color)
                 }
             }
-
         }
     }
 }
-
 
 @Composable
 private fun BadgeExamples() {
@@ -216,17 +221,17 @@ private fun BadgeExamples() {
     MoviesExample()
 }
 
-
 @Composable
 private fun DummyNavigationBar() {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .background(AppTheme.colors.primary)
-            .padding(8.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(AppTheme.colors.primary)
+                .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
         CompositionLocalProvider(LocalContentColor provides AppTheme.colors.onPrimary) {
             IconButton {
@@ -251,21 +256,21 @@ private fun DummyNavigationBar() {
         }
     }
 
-
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .background(AppTheme.colors.primary)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(AppTheme.colors.primary)
+                .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
         CompositionLocalProvider(LocalContentColor provides AppTheme.colors.onPrimary) {
             Column(
                 modifier = Modifier.wrapContentHeight(),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Icon(Icons.Default.Home, contentDescription = "Home")
             }
@@ -274,9 +279,8 @@ private fun DummyNavigationBar() {
             Column(
                 modifier = Modifier.wrapContentHeight(),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-
                 Icon(Icons.AutoMirrored.Filled.Chat, contentDescription = "Messages")
                 Badge(containerColor = LocalContentColor.current)
             }
@@ -285,28 +289,28 @@ private fun DummyNavigationBar() {
             Column(
                 modifier = Modifier.wrapContentHeight(),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Icon(Icons.Default.Person, contentDescription = "Profile")
             }
         }
     }
 
-
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .background(AppTheme.colors.primary)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(AppTheme.colors.primary)
+                .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
         CompositionLocalProvider(LocalContentColor provides AppTheme.colors.onPrimary) {
             Column(
                 modifier = Modifier.wrapContentHeight(),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Icon(Icons.Default.Home, contentDescription = "Home")
                 Text("Home", style = AppTheme.typography.label3)
@@ -316,7 +320,7 @@ private fun DummyNavigationBar() {
             Column(
                 modifier = Modifier.wrapContentHeight(),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 BadgedBox(badge = {
                     Badge {
@@ -326,14 +330,13 @@ private fun DummyNavigationBar() {
                     Icon(Icons.AutoMirrored.Filled.Chat, contentDescription = "Messages")
                 }
                 Text("Messages", style = AppTheme.typography.label3)
-
             }
             Spacer(modifier = Modifier.size(8.dp))
 
             Column(
                 modifier = Modifier.wrapContentHeight(),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Icon(Icons.Default.Person, contentDescription = "Profile")
                 Text("Profile", style = AppTheme.typography.label3)
@@ -342,22 +345,23 @@ private fun DummyNavigationBar() {
     }
 }
 
-
 @Composable
 private fun MoviesExample() {
     ElevatedCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(top = 16.dp),
                 contentAlignment = Alignment.CenterStart,
             ) {
                 Text("Weekly Movies", style = AppTheme.typography.h4)
@@ -365,52 +369,59 @@ private fun MoviesExample() {
 
             HorizontalDivider()
 
-            val testNames = listOf(
-                "The Matrix",
-                "The Matrix Reloaded",
-                "The Matrix Revolutions",
-                "The Matrix Resurrections",
-            )
+            val testNames =
+                listOf(
+                    "The Matrix",
+                    "The Matrix Reloaded",
+                    "The Matrix Revolutions",
+                    "The Matrix Resurrections",
+                )
 
-            val testCast = listOf(
-                "Keanu Reeves, Laurence Fishburne",
-                "Keanu Reeves, Laurence Fishburne",
-                "Keanu Reeves, Laurence Fishburne",
-                "Keanu Reeves, Laurence Fishburne",
-            )
+            val testCast =
+                listOf(
+                    "Keanu Reeves, Laurence Fishburne",
+                    "Keanu Reeves, Laurence Fishburne",
+                    "Keanu Reeves, Laurence Fishburne",
+                    "Keanu Reeves, Laurence Fishburne",
+                )
 
-            val testBadges = listOf(
-                "New",
-                "Popular",
-                "Coming Soon",
-                "Now Playing",
-            )
+            val testBadges =
+                listOf(
+                    "New",
+                    "Popular",
+                    "Coming Soon",
+                    "Now Playing",
+                )
 
-            val testColors = listOf(
-                AppTheme.colors.primary,
-                AppTheme.colors.secondary,
-                AppTheme.colors.tertiary,
-                AppTheme.colors.success,
-            )
+            val testColors =
+                listOf(
+                    AppTheme.colors.primary,
+                    AppTheme.colors.secondary,
+                    AppTheme.colors.tertiary,
+                    AppTheme.colors.success,
+                )
 
             testNames.forEachIndexed { index, name ->
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .padding(bottom = 8.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                            .padding(bottom = 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Box(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .background(AppTheme.colors.surface, shape = CircleShape)
-                            .padding(8.dp),
+                        modifier =
+                            Modifier
+                                .size(48.dp)
+                                .background(AppTheme.colors.surface, shape = CircleShape)
+                                .padding(8.dp),
                     )
                     Spacer(modifier = Modifier.size(8.dp))
                     Column(
-                        modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
                     ) {
                         Text(name, style = AppTheme.typography.h4)
                         Text(testCast[index], style = AppTheme.typography.body2)
@@ -418,19 +429,15 @@ private fun MoviesExample() {
 
                     Box(modifier = Modifier.padding(start = 16.dp)) {
                         Badge(
-                            containerColor = testColors[index]
+                            containerColor = testColors[index],
                         ) {
                             Text(testBadges[index], style = AppTheme.typography.label3)
                         }
                     }
-
                 }
-
             }
 
             Spacer(modifier = Modifier)
-
-
         }
     }
 }

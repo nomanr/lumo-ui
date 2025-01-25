@@ -31,25 +31,22 @@ import com.nomanr.sample.ui.components.TooltipBox
 import com.nomanr.sample.ui.components.rememberTooltipState
 
 @Composable
-fun TooltipSample(
-
-) {
+fun TooltipSample() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
-
         Text("Long tap to show.", style = AppTheme.typography.h4)
 
         Spacer(modifier = Modifier.size(36.dp))
 
-
         Box(
-            modifier = Modifier.padding(top = 16.dp), contentAlignment = Alignment.Center
+            modifier = Modifier.padding(top = 16.dp),
+            contentAlignment = Alignment.Center,
         ) {
             TooltipBox(state = rememberTooltipState(initialIsVisible = true), tooltip = {
                 Tooltip { Text("Auto-dismisses", style = AppTheme.typography.label1) }
@@ -61,11 +58,12 @@ fun TooltipSample(
         }
 
         Box(
-            modifier = Modifier.padding(top = 42.dp), contentAlignment = Alignment.Center
+            modifier = Modifier.padding(top = 42.dp),
+            contentAlignment = Alignment.Center,
         ) {
             TooltipBox(state = rememberTooltipState(initialIsVisible = true), tooltip = {
                 Tooltip(
-                    caretSize = DpSize.Unspecified
+                    caretSize = DpSize.Unspecified,
                 ) { Text("Auto-dismisses", style = AppTheme.typography.label1) }
             }) {
                 Button {
@@ -74,26 +72,30 @@ fun TooltipSample(
             }
         }
 
-
-
         Box(
-            modifier = Modifier.padding(top = 42.dp), contentAlignment = Alignment.Center
+            modifier = Modifier.padding(top = 42.dp),
+            contentAlignment = Alignment.Center,
         ) {
-            TooltipBox(state = rememberTooltipState(
-                initialIsVisible = true, isPersistent = true
-            ), tooltip = {
-                Tooltip { Text("Dismiss on tap outside", style = AppTheme.typography.label1) }
-            }) {
+            TooltipBox(
+                state =
+                    rememberTooltipState(
+                        initialIsVisible = true,
+                        isPersistent = true,
+                    ),
+                tooltip = {
+                    Tooltip { Text("Dismiss on tap outside", style = AppTheme.typography.label1) }
+                },
+            ) {
                 IconButton {
                     Icon(Icons.Default.Favorite, contentDescription = "Favorite")
                 }
             }
         }
 
-
         val tooltipState = rememberTooltipState(true)
         Box(
-            modifier = Modifier.padding(top = 150.dp), contentAlignment = Alignment.Center
+            modifier = Modifier.padding(top = 150.dp),
+            contentAlignment = Alignment.Center,
         ) {
             TooltipBox(state = tooltipState, tooltip = {
                 Tooltip {
@@ -107,7 +109,7 @@ fun TooltipSample(
                             Icon(
                                 modifier = Modifier.clickable { tooltipState.dismiss() },
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Close"
+                                contentDescription = "Close",
                             )
                         }
                     }
@@ -118,6 +120,5 @@ fun TooltipSample(
                 }
             }
         }
-
     }
 }

@@ -25,11 +25,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.LocalContentColor
 import com.nomanr.sample.ui.foundation.ButtonElevation
-import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Button(
@@ -52,7 +52,7 @@ fun Button(
         onClick = onClick,
         contentPadding = contentPadding,
         interactionSource = interactionSource,
-        content = content
+        content = content,
     )
 }
 
@@ -68,13 +68,18 @@ internal fun ButtonComponent(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: (@Composable () -> Unit)? = null,
 ) {
-
     val containerColor = style.colors.containerColor(enabled).value
     val contentColor = style.colors.contentColor(enabled).value
     val borderColor = style.colors.borderColor(enabled).value
-    val borderStroke = if (borderColor != null) BorderStroke(
-        ButtonDefaults.OutlineHeight, borderColor
-    ) else null
+    val borderStroke =
+        if (borderColor != null) {
+            BorderStroke(
+                ButtonDefaults.OutlineHeight,
+                borderColor,
+            )
+        } else {
+            null
+        }
 
     val shadowElevation = style.elevation?.shadowElevation(enabled, interactionSource)?.value ?: 0.dp
 
@@ -83,24 +88,24 @@ internal fun ButtonComponent(
 
     Surface(
         onClick = onClick,
-        modifier = modifier
-            .defaultMinSize(minHeight = ButtonDefaults.MinHeight)
-            .semantics { role = Role.Button },
+        modifier =
+            modifier
+                .defaultMinSize(minHeight = ButtonDefaults.MinHeight)
+                .semantics { role = Role.Button },
         enabled = enabled,
         shape = style.shape,
         color = containerColor,
         contentColor = contentColor,
         border = borderStroke,
         shadowElevation = shadowElevation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     ) {
-
         DefaultButtonContent(
             text = text,
             loading = loading,
             contentColor = contentColor,
             content = content,
-            modifier = Modifier.padding(contentPadding)
+            modifier = Modifier.padding(contentPadding),
         )
     }
 }
@@ -111,16 +116,14 @@ private fun DefaultButtonContent(
     text: String? = null,
     loading: Boolean,
     contentColor: Color,
-    content: (@Composable () -> Unit)? = null
+    content: (@Composable () -> Unit)? = null,
 ) {
-
     if (text?.isEmpty() == false) {
         Row(
-            modifier, horizontalArrangement = Arrangement.Center,
+            modifier,
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
-
-            ) {
-
+        ) {
 //            if (!loading) {
 //                CircularProgressIndicator(
 //                    color = contentColor,
@@ -134,7 +137,7 @@ private fun DefaultButtonContent(
                 textAlign = TextAlign.Center,
                 style = AppTheme.typography.button,
                 overflow = TextOverflow.Clip,
-                color = contentColor
+                color = contentColor,
             )
         }
     } else if (content != null) {
@@ -189,209 +192,236 @@ internal object ButtonDefaults {
     private val ButtonVerticalPadding = 8.dp
     private val ButtonShape = RoundedCornerShape(12)
 
-
-    val contentPadding = PaddingValues(
-        start = ButtonHorizontalPadding,
-        top = ButtonVerticalPadding,
-        end = ButtonHorizontalPadding,
-        bottom = ButtonVerticalPadding
-    )
+    val contentPadding =
+        PaddingValues(
+            start = ButtonHorizontalPadding,
+            top = ButtonVerticalPadding,
+            end = ButtonHorizontalPadding,
+            bottom = ButtonVerticalPadding,
+        )
 
     private val filledShape = ButtonShape
     private val elevatedShape = ButtonShape
     private val outlinedShape = ButtonShape
 
     @Composable
-    fun buttonElevation() = ButtonElevation(
-        defaultElevation = 2.dp,
-        pressedElevation = 2.dp,
-        focusedElevation = 2.dp,
-        hoveredElevation = 2.dp,
-        disabledElevation = 0.dp
-    )
+    fun buttonElevation() =
+        ButtonElevation(
+            defaultElevation = 2.dp,
+            pressedElevation = 2.dp,
+            focusedElevation = 2.dp,
+            hoveredElevation = 2.dp,
+            disabledElevation = 0.dp,
+        )
 
     @Composable
-    fun primaryFilled() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.primary,
-            contentColor = AppTheme.colors.onPrimary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = filledShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun primaryFilled() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.primary,
+                    contentColor = AppTheme.colors.onPrimary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = filledShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun primaryElevated() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.primary,
-            contentColor = AppTheme.colors.onPrimary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = elevatedShape,
-        elevation = buttonElevation(),
-        contentPadding = contentPadding,
-    )
+    fun primaryElevated() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.primary,
+                    contentColor = AppTheme.colors.onPrimary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = elevatedShape,
+            elevation = buttonElevation(),
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun primaryOutlined() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
-            borderColor = AppTheme.colors.primary,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.disabled,
-        ),
-        shape = outlinedShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun primaryOutlined() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.primary,
+                    borderColor = AppTheme.colors.primary,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.disabled,
+                ),
+            shape = outlinedShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun primaryGhost() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
-            borderColor = AppTheme.colors.transparent,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.transparent,
-        ),
-        shape = filledShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun primaryGhost() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.primary,
+                    borderColor = AppTheme.colors.transparent,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.transparent,
+                ),
+            shape = filledShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun secondaryFilled() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.secondary,
-            contentColor = AppTheme.colors.onSecondary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = filledShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun secondaryFilled() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.secondary,
+                    contentColor = AppTheme.colors.onSecondary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = filledShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun secondaryElevated() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.secondary,
-            contentColor = AppTheme.colors.onSecondary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = elevatedShape,
-        elevation = buttonElevation(),
-        contentPadding = contentPadding,
-    )
+    fun secondaryElevated() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.secondary,
+                    contentColor = AppTheme.colors.onSecondary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = elevatedShape,
+            elevation = buttonElevation(),
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun secondaryOutlined() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
-            borderColor = AppTheme.colors.secondary,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.disabled,
-        ),
-        shape = outlinedShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun secondaryOutlined() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.primary,
+                    borderColor = AppTheme.colors.secondary,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.disabled,
+                ),
+            shape = outlinedShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun secondaryGhost() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
-            borderColor = AppTheme.colors.transparent,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.transparent,
-        ),
-        shape = filledShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun secondaryGhost() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.primary,
+                    borderColor = AppTheme.colors.transparent,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.transparent,
+                ),
+            shape = filledShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun destructiveFilled() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.error,
-            contentColor = AppTheme.colors.onError,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = filledShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun destructiveFilled() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.error,
+                    contentColor = AppTheme.colors.onError,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = filledShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun destructiveElevated() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.error,
-            contentColor = AppTheme.colors.onError,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = elevatedShape,
-        elevation = buttonElevation(),
-        contentPadding = contentPadding,
-    )
+    fun destructiveElevated() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.error,
+                    contentColor = AppTheme.colors.onError,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = elevatedShape,
+            elevation = buttonElevation(),
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun destructiveOutlined() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.error,
-            borderColor = AppTheme.colors.error,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.disabled,
-        ),
-        shape = outlinedShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun destructiveOutlined() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.error,
+                    borderColor = AppTheme.colors.error,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.disabled,
+                ),
+            shape = outlinedShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun destructiveGhost() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.error,
-            borderColor = AppTheme.colors.transparent,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.transparent,
-        ),
-        shape = filledShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun destructiveGhost() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.error,
+                    borderColor = AppTheme.colors.transparent,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.transparent,
+                ),
+            shape = filledShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun ghost() = ButtonStyle(
-        colors = ButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = LocalContentColor.current,
-            borderColor = AppTheme.colors.transparent,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.transparent,
-        ),
-        shape = filledShape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun ghost() =
+        ButtonStyle(
+            colors =
+                ButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = LocalContentColor.current,
+                    borderColor = AppTheme.colors.transparent,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.transparent,
+                ),
+            shape = filledShape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 }
 
 @Immutable
@@ -423,7 +453,6 @@ internal data class ButtonStyle(
     val contentPadding: PaddingValues,
 )
 
-
 @Composable
 @Preview
 fun ButtonPreview() {
@@ -432,7 +461,6 @@ fun ButtonPreview() {
         SecondaryButtonPreview()
         DestructiveButtonPreview()
     }
-
 }
 
 @Composable
@@ -440,10 +468,11 @@ fun ButtonPreview() {
 fun PrimaryButtonPreview() {
     AppTheme {
         Column(
-            modifier = Modifier
-                .background(AppTheme.colors.background)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .background(AppTheme.colors.background)
+                    .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(text = "Primary Buttons", style = AppTheme.typography.h2)
 
@@ -451,7 +480,9 @@ fun PrimaryButtonPreview() {
                 Button(text = "PrimaryFilled", variant = ButtonVariant.Primary, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.Primary, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.Primary,
+                    enabled = false,
                 )
             }
 
@@ -459,7 +490,9 @@ fun PrimaryButtonPreview() {
                 Button(text = "PrimaryOutlined", variant = ButtonVariant.PrimaryOutlined, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.PrimaryOutlined, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.PrimaryOutlined,
+                    enabled = false,
                 )
             }
 
@@ -467,7 +500,9 @@ fun PrimaryButtonPreview() {
                 Button(text = "PrimaryElevated", variant = ButtonVariant.PrimaryElevated, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.PrimaryElevated, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.PrimaryElevated,
+                    enabled = false,
                 )
             }
 
@@ -475,7 +510,9 @@ fun PrimaryButtonPreview() {
                 Button(text = "PrimaryGhost", variant = ButtonVariant.PrimaryGhost, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.PrimaryGhost, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.PrimaryGhost,
+                    enabled = false,
                 )
             }
         }
@@ -487,10 +524,11 @@ fun PrimaryButtonPreview() {
 fun SecondaryButtonPreview() {
     AppTheme {
         Column(
-            modifier = Modifier
-                .background(AppTheme.colors.background)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .background(AppTheme.colors.background)
+                    .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(text = "Secondary Buttons", style = AppTheme.typography.h2)
 
@@ -498,7 +536,9 @@ fun SecondaryButtonPreview() {
                 Button(text = "SecondaryFilled", variant = ButtonVariant.Secondary, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.Secondary, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.Secondary,
+                    enabled = false,
                 )
             }
 
@@ -506,7 +546,9 @@ fun SecondaryButtonPreview() {
                 Button(text = "SecondaryOutlined", variant = ButtonVariant.SecondaryOutlined, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.SecondaryOutlined, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.SecondaryOutlined,
+                    enabled = false,
                 )
             }
 
@@ -514,7 +556,9 @@ fun SecondaryButtonPreview() {
                 Button(text = "SecondaryElevated", variant = ButtonVariant.SecondaryElevated, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.SecondaryElevated, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.SecondaryElevated,
+                    enabled = false,
                 )
             }
 
@@ -522,7 +566,9 @@ fun SecondaryButtonPreview() {
                 Button(text = "SecondaryGhost", variant = ButtonVariant.SecondaryGhost, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.SecondaryGhost, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.SecondaryGhost,
+                    enabled = false,
                 )
             }
         }
@@ -534,10 +580,11 @@ fun SecondaryButtonPreview() {
 fun DestructiveButtonPreview() {
     AppTheme {
         Column(
-            modifier = Modifier
-                .background(AppTheme.colors.background)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .background(AppTheme.colors.background)
+                    .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(text = "Destructive Buttons", style = AppTheme.typography.h2)
 
@@ -545,7 +592,9 @@ fun DestructiveButtonPreview() {
                 Button(text = "DestructiveFilled", variant = ButtonVariant.Destructive, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.Destructive, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.Destructive,
+                    enabled = false,
                 )
             }
 
@@ -553,7 +602,9 @@ fun DestructiveButtonPreview() {
                 Button(text = "DestructiveOutlined", variant = ButtonVariant.DestructiveOutlined, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.DestructiveOutlined, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.DestructiveOutlined,
+                    enabled = false,
                 )
             }
 
@@ -561,7 +612,9 @@ fun DestructiveButtonPreview() {
                 Button(text = "DestructiveElevated", variant = ButtonVariant.DestructiveElevated, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.DestructiveElevated, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.DestructiveElevated,
+                    enabled = false,
                 )
             }
 
@@ -569,7 +622,9 @@ fun DestructiveButtonPreview() {
                 Button(text = "DestructiveGhost", variant = ButtonVariant.DestructiveGhost, onClick = {})
 
                 Button(
-                    text = "Disabled", variant = ButtonVariant.DestructiveGhost, enabled = false
+                    text = "Disabled",
+                    variant = ButtonVariant.DestructiveGhost,
+                    enabled = false,
                 )
             }
         }

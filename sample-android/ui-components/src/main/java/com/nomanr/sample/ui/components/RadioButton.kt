@@ -31,7 +31,6 @@ import com.nomanr.sample.ui.components.RadioButtonDefaults.RadioSelectedStrokeWi
 import com.nomanr.sample.ui.components.RadioButtonDefaults.RadioStrokeWidth
 import com.nomanr.sample.ui.foundation.ripple
 
-
 @Composable
 fun RadioButton(
     modifier: Modifier = Modifier,
@@ -40,43 +39,49 @@ fun RadioButton(
     enabled: Boolean = true,
     colors: RadioButtonColors = RadioButtonDefaults.colors(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable (() -> Unit)? = null
+    content: @Composable (() -> Unit)? = null,
 ) {
-    val strokeWidth = animateDpAsState(
-        targetValue = if (selected) RadioSelectedStrokeWidth else RadioStrokeWidth,
-        animationSpec = tween(durationMillis = RadioAnimationDuration),
-        label = "RadioButtonStrokeWidth"
-    )
+    val strokeWidth =
+        animateDpAsState(
+            targetValue = if (selected) RadioSelectedStrokeWidth else RadioStrokeWidth,
+            animationSpec = tween(durationMillis = RadioAnimationDuration),
+            label = "RadioButtonStrokeWidth",
+        )
     val radioColor = colors.radioColor(enabled, selected)
-    val selectableModifier = if (onClick != null) {
-        Modifier.selectable(
-            selected = selected,
-            onClick = onClick,
-            enabled = enabled,
-            role = Role.RadioButton,
-            interactionSource = interactionSource,
-            indication = ripple(
-                bounded = false, radius = MinimumInteractiveSize / 2
+    val selectableModifier =
+        if (onClick != null) {
+            Modifier.selectable(
+                selected = selected,
+                onClick = onClick,
+                enabled = enabled,
+                role = Role.RadioButton,
+                interactionSource = interactionSource,
+                indication =
+                    ripple(
+                        bounded = false,
+                        radius = MinimumInteractiveSize / 2,
+                    ),
             )
-        )
-    } else {
-        Modifier
-    }
+        } else {
+            Modifier
+        }
 
-    val clickableModifier = if (onClick != null && content != null) {
-        Modifier.clickable(
-            enabled = enabled,
-            role = Role.RadioButton,
-            interactionSource = interactionSource,
-            indication = null,
-            onClick = onClick
-        )
-    } else {
-        Modifier
-    }
+    val clickableModifier =
+        if (onClick != null && content != null) {
+            Modifier.clickable(
+                enabled = enabled,
+                role = Role.RadioButton,
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = onClick,
+            )
+        } else {
+            Modifier
+        }
 
     Row(
-        modifier = clickableModifier, verticalAlignment = Alignment.CenterVertically
+        modifier = clickableModifier,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Canvas(
             modifier
@@ -85,17 +90,17 @@ fun RadioButton(
                         Modifier.requiredSize(MinimumInteractiveSize)
                     } else {
                         Modifier
-                    }
+                    },
                 )
                 .then(selectableModifier)
                 .wrapContentSize(Alignment.Center)
                 .padding(RadioButtonPadding)
-                .requiredSize(RadioButtonIconSize)
+                .requiredSize(RadioButtonIconSize),
         ) {
             drawCircle(
                 radioColor.value,
                 radius = (RadioButtonIconSize / 2).toPx() - strokeWidth.value.toPx() / 2,
-                style = Stroke(strokeWidth.value.toPx())
+                style = Stroke(strokeWidth.value.toPx()),
             )
         }
         if (content != null) {
@@ -113,28 +118,32 @@ object RadioButtonDefaults {
     val RadioButtonIconSize = 20.dp
     val MinimumInteractiveSize = 44.dp
 
-
     @Composable
-    fun colors() = RadioButtonColors(
-        selectedColor = AppTheme.colors.primary,
-        unselectedColor = AppTheme.colors.primary,
-        disabledSelectedColor = AppTheme.colors.disabled,
-        disabledUnselectedColor = AppTheme.colors.disabled
-    )
+    fun colors() =
+        RadioButtonColors(
+            selectedColor = AppTheme.colors.primary,
+            unselectedColor = AppTheme.colors.primary,
+            disabledSelectedColor = AppTheme.colors.disabled,
+            disabledUnselectedColor = AppTheme.colors.disabled,
+        )
 }
 
 @Immutable
 data class RadioButtonColors(
-    val selectedColor: Color, val unselectedColor: Color, val disabledSelectedColor: Color, val disabledUnselectedColor: Color
+    val selectedColor: Color,
+    val unselectedColor: Color,
+    val disabledSelectedColor: Color,
+    val disabledUnselectedColor: Color,
 ) {
     @Composable
     internal fun radioColor(enabled: Boolean, selected: Boolean): State<Color> {
-        val target = when {
-            enabled && selected -> selectedColor
-            enabled && !selected -> unselectedColor
-            !enabled && selected -> disabledSelectedColor
-            else -> disabledUnselectedColor
-        }
+        val target =
+            when {
+                enabled && selected -> selectedColor
+                enabled && !selected -> unselectedColor
+                !enabled && selected -> disabledSelectedColor
+                else -> disabledUnselectedColor
+            }
 
         return if (enabled) {
             animateColorAsState(target, tween(durationMillis = RadioAnimationDuration), label = "radioColor")

@@ -21,29 +21,32 @@ import com.nomanr.sample.ui.components.topbar.TopBarScrollBehavior
 
 @Composable
 fun SampleScreenTopBar(
-    modifier: Modifier = Modifier, scrollBehavior: TopBarScrollBehavior? = null, title: String, onBack: () -> Unit = {}
+    modifier: Modifier = Modifier,
+    scrollBehavior: TopBarScrollBehavior? = null,
+    title: String,
+    onBack: () -> Unit = {},
 ) {
-
     TopBar(
         modifier = modifier,
         scrollBehavior = scrollBehavior,
         colors = TopBarDefaults.topBarColors(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             IconButton(
-                variant = IconButtonVariant.Ghost, onClick = onBack
+                variant = IconButtonVariant.Ghost,
+                onClick = onBack,
             ) {
                 Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "More Options")
             }
 
             Text(text = title, style = AppTheme.typography.h3)
-
         }
     }
 }

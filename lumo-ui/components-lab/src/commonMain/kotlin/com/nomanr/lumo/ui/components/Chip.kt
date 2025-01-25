@@ -24,13 +24,13 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.components.ChipDefaults.ChipIconHorizontalPadding
 import com.nomanr.lumo.ui.components.ChipDefaults.ChipIconSize
 import com.nomanr.lumo.ui.components.ChipDefaults.ChipRectShape
 import com.nomanr.lumo.ui.foundation.ButtonElevation
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Chip(
@@ -39,11 +39,11 @@ fun Chip(
     selected: Boolean = false,
     onClick: () -> Unit = {},
     contentPadding: PaddingValues = ChipDefaults.contentPadding,
-    shape : Shape = ChipRectShape,
+    shape: Shape = ChipRectShape,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
-    label: @Composable (() -> Unit)
+    label: @Composable (() -> Unit),
 ) {
     ChipComponent(
         modifier = modifier,
@@ -55,7 +55,7 @@ fun Chip(
         interactionSource = interactionSource,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
-        label = label
+        label = label,
     )
 }
 
@@ -66,11 +66,11 @@ fun ElevatedChip(
     selected: Boolean = false,
     onClick: () -> Unit = {},
     contentPadding: PaddingValues = ChipDefaults.contentPadding,
-    shape : Shape = ChipRectShape,
+    shape: Shape = ChipRectShape,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
-    label: @Composable (() -> Unit)
+    label: @Composable (() -> Unit),
 ) {
     ChipComponent(
         modifier = modifier,
@@ -82,7 +82,7 @@ fun ElevatedChip(
         interactionSource = interactionSource,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
-        label = label
+        label = label,
     )
 }
 
@@ -93,11 +93,11 @@ fun OutlinedChip(
     selected: Boolean = false,
     onClick: () -> Unit = {},
     contentPadding: PaddingValues = ChipDefaults.contentPadding,
-    shape : Shape = ChipRectShape,
+    shape: Shape = ChipRectShape,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
-    label: @Composable (() -> Unit)
+    label: @Composable (() -> Unit),
 ) {
     ChipComponent(
         modifier = modifier,
@@ -109,10 +109,9 @@ fun OutlinedChip(
         interactionSource = interactionSource,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
-        label = label
+        label = label,
     )
 }
-
 
 @Composable
 private fun ChipComponent(
@@ -127,13 +126,18 @@ private fun ChipComponent(
     trailingIcon: @Composable (() -> Unit)? = null,
     label: @Composable () -> Unit,
 ) {
-
     val containerColor = style.colors.containerColor(enabled, selected).value
     val contentColor = style.colors.contentColor(enabled, selected).value
     val borderColor = style.colors.borderColor(enabled, selected).value
-    val borderStroke = if (borderColor != null) BorderStroke(
-        ChipDefaults.ChipOutlineHeight, borderColor
-    ) else null
+    val borderStroke =
+        if (borderColor != null) {
+            BorderStroke(
+                ChipDefaults.ChipOutlineHeight,
+                borderColor,
+            )
+        } else {
+            null
+        }
 
     val shadowElevation = style.elevation?.shadowElevation(enabled, interactionSource)?.value ?: 0.dp
 
@@ -146,11 +150,13 @@ private fun ChipComponent(
         contentColor = contentColor,
         border = borderStroke,
         shadowElevation = shadowElevation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     ) {
-
         DefaultChipComponent(
-            modifier = Modifier.padding(contentPadding), leadingIcon = leadingIcon, trailingIcon = trailingIcon, label = label
+            modifier = Modifier.padding(contentPadding),
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            label = label,
         )
     }
 }
@@ -162,16 +168,16 @@ private fun DefaultChipComponent(
     trailingIcon: @Composable (() -> Unit)? = null,
     label: @Composable (() -> Unit),
 ) {
-
     Row(
-        modifier, verticalAlignment = Alignment.CenterVertically
+        modifier,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-
         leadingIcon?.let { icon ->
             Box(
-                modifier = Modifier
-                    .padding(end = ChipIconHorizontalPadding)
-                    .requiredSize(ChipIconSize)
+                modifier =
+                    Modifier
+                        .padding(end = ChipIconHorizontalPadding)
+                        .requiredSize(ChipIconSize),
             ) {
                 icon.invoke()
             }
@@ -181,9 +187,10 @@ private fun DefaultChipComponent(
 
         trailingIcon?.let { icon ->
             Box(
-                modifier = Modifier
-                    .padding(start = ChipIconHorizontalPadding)
-                    .requiredSize(ChipIconSize)
+                modifier =
+                    Modifier
+                        .padding(start = ChipIconHorizontalPadding)
+                        .requiredSize(ChipIconSize),
             ) {
                 icon.invoke()
             }
@@ -199,67 +206,77 @@ internal object ChipDefaults {
     val ChipIconHorizontalPadding = 6.dp
     val ChipIconSize = 16.dp
 
-    val contentPadding = PaddingValues(
-        start = ChipPaddingHorizontal, end = ChipPaddingHorizontal, top = ChipPaddingVertical, bottom = ChipPaddingVertical
-    )
+    val contentPadding =
+        PaddingValues(
+            start = ChipPaddingHorizontal,
+            end = ChipPaddingHorizontal,
+            top = ChipPaddingVertical,
+            bottom = ChipPaddingVertical,
+        )
 
     @Composable
-    fun chipElevation() = ButtonElevation(
-        defaultElevation = 4.dp,
-        pressedElevation = 4.dp,
-        focusedElevation = 4.dp,
-        hoveredElevation = 4.dp,
-        disabledElevation = 0.dp
-    )
+    fun chipElevation() =
+        ButtonElevation(
+            defaultElevation = 4.dp,
+            pressedElevation = 4.dp,
+            focusedElevation = 4.dp,
+            hoveredElevation = 4.dp,
+            disabledElevation = 0.dp,
+        )
 
     @Composable
-    fun primaryFilled(shape: Shape) = ChipStyle(
-        colors = ChipColors(
-            containerColor = AppTheme.colors.surface,
-            contentColor = AppTheme.colors.onSurface,
-            selectedContainerColor = AppTheme.colors.primary,
-            selectedContentColor = AppTheme.colors.onPrimary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
+    fun primaryFilled(shape: Shape) =
+        ChipStyle(
+            colors =
+                ChipColors(
+                    containerColor = AppTheme.colors.surface,
+                    contentColor = AppTheme.colors.onSurface,
+                    selectedContainerColor = AppTheme.colors.primary,
+                    selectedContentColor = AppTheme.colors.onPrimary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun primaryElevated(shape: Shape) = ChipStyle(
-        colors = ChipColors(
-            containerColor = AppTheme.colors.surface,
-            contentColor = AppTheme.colors.onSurface,
-            selectedContainerColor = AppTheme.colors.primary,
-            selectedContentColor = AppTheme.colors.onPrimary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = chipElevation(),
-        contentPadding = contentPadding,
-    )
+    fun primaryElevated(shape: Shape) =
+        ChipStyle(
+            colors =
+                ChipColors(
+                    containerColor = AppTheme.colors.surface,
+                    contentColor = AppTheme.colors.onSurface,
+                    selectedContainerColor = AppTheme.colors.primary,
+                    selectedContentColor = AppTheme.colors.onPrimary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = chipElevation(),
+            contentPadding = contentPadding,
+        )
 
     @Composable
-    fun primaryOutlined(shape: Shape) = ChipStyle(
-        colors = ChipColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
-            outlineColor = AppTheme.colors.primary,
-            selectedContainerColor = AppTheme.colors.primary,
-            selectedOutlineColor = AppTheme.colors.primary,
-            selectedContentColor = AppTheme.colors.onPrimary,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledOutlineColor = AppTheme.colors.disabled,
-        ),
-        shape = shape,
-        elevation = null,
-        contentPadding = contentPadding,
-    )
-
+    fun primaryOutlined(shape: Shape) =
+        ChipStyle(
+            colors =
+                ChipColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.primary,
+                    outlineColor = AppTheme.colors.primary,
+                    selectedContainerColor = AppTheme.colors.primary,
+                    selectedOutlineColor = AppTheme.colors.primary,
+                    selectedContentColor = AppTheme.colors.onPrimary,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledOutlineColor = AppTheme.colors.disabled,
+                ),
+            shape = shape,
+            elevation = null,
+            contentPadding = contentPadding,
+        )
 }
 
 @Immutable
@@ -275,31 +292,37 @@ internal data class ChipColors(
     val disabledOutlineColor: Color? = null,
 ) {
     @Composable
-    internal fun containerColor(enabled: Boolean, selected: Boolean) = rememberUpdatedState(
-        newValue = when {
-            !enabled -> disabledContainerColor
-            selected -> selectedContainerColor
-            else -> containerColor
-        }
-    )
+    internal fun containerColor(enabled: Boolean, selected: Boolean) =
+        rememberUpdatedState(
+            newValue =
+                when {
+                    !enabled -> disabledContainerColor
+                    selected -> selectedContainerColor
+                    else -> containerColor
+                },
+        )
 
     @Composable
-    internal fun contentColor(enabled: Boolean, selected: Boolean) = rememberUpdatedState(
-        newValue = when {
-            !enabled -> disabledContentColor
-            selected -> selectedContentColor
-            else -> contentColor
-        }
-    )
+    internal fun contentColor(enabled: Boolean, selected: Boolean) =
+        rememberUpdatedState(
+            newValue =
+                when {
+                    !enabled -> disabledContentColor
+                    selected -> selectedContentColor
+                    else -> contentColor
+                },
+        )
 
     @Composable
-    fun borderColor(enabled: Boolean, selected: Boolean) = rememberUpdatedState(
-        newValue = when {
-            !enabled -> disabledOutlineColor
-            selected -> selectedOutlineColor
-            else -> outlineColor
-        }
-    )
+    fun borderColor(enabled: Boolean, selected: Boolean) =
+        rememberUpdatedState(
+            newValue =
+                when {
+                    !enabled -> disabledOutlineColor
+                    selected -> selectedOutlineColor
+                    else -> outlineColor
+                },
+        )
 }
 
 @Immutable
@@ -318,26 +341,8 @@ fun PrimaryChipPreview() {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Chip {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                Chip(enabled = false) {
-
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                Chip{
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -346,7 +351,28 @@ fun PrimaryChipPreview() {
 
                 Chip(enabled = false) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Text("Chip", style = AppTheme.typography.label3)
+                    }
+                }
+
+                Chip {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        Text("Chip", style = AppTheme.typography.label3)
+                    }
+                }
+
+                Chip(enabled = false) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -356,7 +382,8 @@ fun PrimaryChipPreview() {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 ElevatedChip {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -365,7 +392,8 @@ fun PrimaryChipPreview() {
 
                 ElevatedChip(enabled = false) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -374,7 +402,8 @@ fun PrimaryChipPreview() {
 
                 ElevatedChip {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -382,7 +411,8 @@ fun PrimaryChipPreview() {
                 }
                 ElevatedChip(enabled = false) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -392,7 +422,8 @@ fun PrimaryChipPreview() {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedChip {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -401,7 +432,8 @@ fun PrimaryChipPreview() {
 
                 OutlinedChip(enabled = false) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -410,7 +442,8 @@ fun PrimaryChipPreview() {
 
                 OutlinedChip {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)
@@ -419,7 +452,8 @@ fun PrimaryChipPreview() {
 
                 OutlinedChip(enabled = false) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
                         Text("Chip", style = AppTheme.typography.label3)

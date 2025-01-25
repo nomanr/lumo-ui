@@ -37,20 +37,25 @@ fun Surface(
     contentColor: Color = contentColorFor(color),
     shadowElevation: Dp = 0.dp,
     border: BorderStroke? = null,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-
     CompositionLocalProvider(
-        LocalContentColor provides contentColor
+        LocalContentColor provides contentColor,
     ) {
-        Box(modifier = modifier
-            .surface(
-                shape = shape, backgroundColor = color, border = border, shadowElevation = shadowElevation
-            )
-            .semantics(mergeDescendants = false) {
-                isTraversalGroup = true
-            }
-            .pointerInput(Unit) {}, propagateMinConstraints = true
+        Box(
+            modifier =
+                modifier
+                    .surface(
+                        shape = shape,
+                        backgroundColor = color,
+                        border = border,
+                        shadowElevation = shadowElevation,
+                    )
+                    .semantics(mergeDescendants = false) {
+                        isTraversalGroup = true
+                    }
+                    .pointerInput(Unit) {},
+            propagateMinConstraints = true,
         ) {
             content()
         }
@@ -69,23 +74,27 @@ fun Surface(
     shadowElevation: Dp = 0.dp,
     border: BorderStroke? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-
     CompositionLocalProvider(
-        LocalContentColor provides contentColor
+        LocalContentColor provides contentColor,
     ) {
         Box(
-            modifier = modifier
-                .surface(
-                    shape = shape, backgroundColor = color, border = border, shadowElevation = shadowElevation
-                )
-                .clickable(
-                    interactionSource = interactionSource,
-                    indication = ripple(color = contentColor),
-                    enabled = enabled,
-                    onClick = onClick
-                ), propagateMinConstraints = true
+            modifier =
+                modifier
+                    .surface(
+                        shape = shape,
+                        backgroundColor = color,
+                        border = border,
+                        shadowElevation = shadowElevation,
+                    )
+                    .clickable(
+                        interactionSource = interactionSource,
+                        indication = ripple(color = contentColor),
+                        enabled = enabled,
+                        onClick = onClick,
+                    ),
+            propagateMinConstraints = true,
         ) {
             content()
         }
@@ -105,24 +114,28 @@ fun Surface(
     shadowElevation: Dp = 0.dp,
     border: BorderStroke? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-
     CompositionLocalProvider(
-        LocalContentColor provides contentColor
+        LocalContentColor provides contentColor,
     ) {
         Box(
-            modifier = modifier
-                .surface(
-                    shape = shape, backgroundColor = color, border = border, shadowElevation = shadowElevation
-                )
-                .selectable(
-                    selected = selected,
-                    interactionSource = interactionSource,
-                    indication = ripple(),
-                    enabled = enabled,
-                    onClick = onClick
-                ), propagateMinConstraints = true
+            modifier =
+                modifier
+                    .surface(
+                        shape = shape,
+                        backgroundColor = color,
+                        border = border,
+                        shadowElevation = shadowElevation,
+                    )
+                    .selectable(
+                        selected = selected,
+                        interactionSource = interactionSource,
+                        indication = ripple(),
+                        enabled = enabled,
+                        onClick = onClick,
+                    ),
+            propagateMinConstraints = true,
         ) {
             content()
         }
@@ -142,24 +155,28 @@ fun Surface(
     shadowElevation: Dp = 0.dp,
     border: BorderStroke? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-
     CompositionLocalProvider(
-        LocalContentColor provides contentColor
+        LocalContentColor provides contentColor,
     ) {
         Box(
-            modifier = modifier
-                .surface(
-                    shape = shape, backgroundColor = color, border = border, shadowElevation = shadowElevation
-                )
-                .toggleable(
-                    value = checked,
-                    interactionSource = interactionSource,
-                    indication = ripple(),
-                    enabled = enabled,
-                    onValueChange = onCheckedChange
-                ), propagateMinConstraints = true
+            modifier =
+                modifier
+                    .surface(
+                        shape = shape,
+                        backgroundColor = color,
+                        border = border,
+                        shadowElevation = shadowElevation,
+                    )
+                    .toggleable(
+                        value = checked,
+                        interactionSource = interactionSource,
+                        indication = ripple(),
+                        enabled = enabled,
+                        onValueChange = onCheckedChange,
+                    ),
+            propagateMinConstraints = true,
         ) {
             content()
         }
@@ -168,14 +185,17 @@ fun Surface(
 
 @Composable
 private fun Modifier.surface(
-    shape: Shape, backgroundColor: Color, border: BorderStroke?, shadowElevation: Dp
+    shape: Shape,
+    backgroundColor: Color,
+    border: BorderStroke?,
+    shadowElevation: Dp,
 ) = this
     .shadow(
         ambientColor = {{themeName}}.colors.elevation,
         spotColor = {{themeName}}.colors.elevation,
         elevation = shadowElevation,
         shape = shape,
-        clip = false
+        clip = false,
     )
     .then(if (border != null) Modifier.border(border, shape) else Modifier)
     .background(color = backgroundColor, shape = shape)

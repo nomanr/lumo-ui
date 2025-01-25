@@ -4,5 +4,5 @@ data class LumoConfig(
     val themeName: String,
     val componentsDir: String,
     val packageName: String,
-    val kotlinMultiplatform: Boolean = false
+    val kotlinMultiplatform: Boolean = false,
 )

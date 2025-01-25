@@ -7,14 +7,14 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun rememberCatalogueAppState(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
 ): CatalogueAppState {
     return CatalogueAppState(
-        navController = navController
+        navController = navController,
     )
 }
 
 @Stable
-class CatalogueAppState (
+class CatalogueAppState(
     val navController: NavHostController,
 )

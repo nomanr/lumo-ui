@@ -26,13 +26,12 @@ class CardElevation internal constructor(
     private val focusedElevation: Dp,
     private val hoveredElevation: Dp,
     private val draggedElevation: Dp,
-    private val disabledElevation: Dp
+    private val disabledElevation: Dp,
 ) {
-
     @Composable
     internal fun shadowElevation(
         enabled: Boolean,
-        interactionSource: InteractionSource?
+        interactionSource: InteractionSource?,
     ): State<Dp> {
         if (interactionSource == null) {
             return remember { mutableStateOf(defaultElevation) }
@@ -43,7 +42,7 @@ class CardElevation internal constructor(
     @Composable
     private fun animateElevation(
         enabled: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Dp> {
         val interactions = remember { mutableStateListOf<Interaction>() }
         LaunchedEffect(interactionSource) {
@@ -111,17 +110,18 @@ class CardElevation internal constructor(
 
         LaunchedEffect(target) {
             if (enabled) {
-                val lastInteraction = when (animatable.targetValue) {
-                    pressedElevation -> PressInteraction.Press(Offset.Zero)
-                    hoveredElevation -> HoverInteraction.Enter()
-                    focusedElevation -> FocusInteraction.Focus()
-                    draggedElevation -> DragInteraction.Start()
-                    else -> null
-                }
+                val lastInteraction =
+                    when (animatable.targetValue) {
+                        pressedElevation -> PressInteraction.Press(Offset.Zero)
+                        hoveredElevation -> HoverInteraction.Enter()
+                        focusedElevation -> FocusInteraction.Focus()
+                        draggedElevation -> DragInteraction.Start()
+                        else -> null
+                    }
                 animatable.animateElevation(
                     from = lastInteraction,
                     to = interaction,
-                    target = target
+                    target = target,
                 )
             } else {
                 // No transition when moving to a disabled state.

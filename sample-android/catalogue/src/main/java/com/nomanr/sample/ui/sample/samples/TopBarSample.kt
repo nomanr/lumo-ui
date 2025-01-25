@@ -57,13 +57,10 @@ import com.nomanr.sample.ui.foundation.systemBarsForVisualComponents
 import com.nomanr.sample.ui.sample.components.SampleScreenTopBar
 import kotlinx.serialization.Serializable
 
-
 @Composable
 fun TopBarSample(navigateUp: (() -> Unit)? = null) {
-
     val navController = rememberNavController()
     var topbarColor by remember { mutableStateOf(Color.Unspecified) }
-
 
     NavHost(navController = navController, startDestination = TopbarNavRoute.InitialStateSample) {
         composable<TopbarNavRoute.InitialStateSample> {
@@ -118,78 +115,87 @@ fun TopBarSample(navigateUp: (() -> Unit)? = null) {
     }
 
     HandleSystemBars(topBarColor = topbarColor)
-
 }
 
 @Composable
 private fun InitialStateSample(
-    onClick: (navRoute: TopbarNavRoute) -> Unit, navigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit
+    onClick: (navRoute: TopbarNavRoute) -> Unit,
+    navigateUp: () -> Unit,
+    onChangeTopBarColor: (Color) -> Unit,
 ) {
-
     val colors = LocalColors.current
 
     LaunchedEffect(colors) { onChangeTopBarColor(colors.background) }
 
     Scaffold(topBar = {
         SampleScreenTopBar(title = "TopBar Sample", onBack = navigateUp)
-
     }) { padding ->
         Column(
-            modifier = Modifier
-                .padding(padding)
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp, vertical = 60.dp), verticalArrangement = Arrangement.Center
+            modifier =
+                Modifier
+                    .padding(padding)
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 16.dp, vertical = 60.dp),
+            verticalArrangement = Arrangement.Center,
         ) {
-            Button(modifier = Modifier.fillMaxWidth(),
+            Button(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Example with insets",
                 variant = ButtonVariant.PrimaryOutlined,
                 onClick = {
                     onClick(TopbarNavRoute.WithInsetsSample)
-                })
+                },
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Button(modifier = Modifier.fillMaxWidth(),
+            Button(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Example without insets",
                 variant = ButtonVariant.PrimaryOutlined,
                 onClick = {
                     onClick(TopbarNavRoute.WithoutInsetsSample)
-                })
+                },
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Button(modifier = Modifier.fillMaxWidth(),
+            Button(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Change color on scroll",
                 variant = ButtonVariant.PrimaryOutlined,
                 onClick = {
                     onClick(TopbarNavRoute.ChangeColorOnScrollSample)
-                })
+                },
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Button(modifier = Modifier.fillMaxWidth(),
+            Button(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Enter always scroll behavior",
                 variant = ButtonVariant.PrimaryOutlined,
                 onClick = {
                     onClick(TopbarNavRoute.EnterAlwaysScrollBehaviorSample)
-                })
+                },
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Button(modifier = Modifier.fillMaxWidth(),
+            Button(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Exit until collapsed scroll behavior",
                 variant = ButtonVariant.PrimaryOutlined,
                 onClick = {
                     onClick(TopbarNavRoute.ExitUntilCollapsedScrollBehaviorSample)
-                })
+                },
+            )
         }
     }
 }
 
-
 @Composable
 private fun WithInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
-
     val colors = LocalColors.current
     val containerColor = colors.primary
     val scrolledContainerColor = colors.primary
@@ -198,24 +204,27 @@ private fun WithInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Col
 
     Scaffold(topBar = {
         TopBar(
-            colors = TopBarColors(
-                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
-            ),
+            colors =
+                TopBarColors(
+                    containerColor = containerColor,
+                    scrolledContainerColor = scrolledContainerColor,
+                ),
         ) {
             Box(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 contentAlignment = Alignment.Center,
-
-                ) {
+            ) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(start = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         IconButton(variant = IconButtonVariant.Ghost, onClick = onNavigateUp) {
                             Icon(
@@ -225,7 +234,9 @@ private fun WithInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Col
                         }
 
                         Text(
-                            text = "Hello.", style = AppTheme.typography.h3, textAlign = TextAlign.Center
+                            text = "Hello.",
+                            style = AppTheme.typography.h3,
+                            textAlign = TextAlign.Center,
                         )
                     }
 
@@ -237,26 +248,29 @@ private fun WithInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Col
         }
     }) { padding ->
         LazyColumn(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+            modifier =
+                Modifier
+                    .padding(padding)
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
         ) {
             item { Spacer(modifier = Modifier.height(16.dp)) }
             repeat(30) { index ->
                 item {
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
                     ) {
                         if (index == 0) {
                             Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .defaultMinSize(minHeight = 60.dp)
-                                    .padding(horizontal = 16.dp),
-                                contentAlignment = Alignment.Center
+                                modifier =
+                                    Modifier
+                                        .fillMaxSize()
+                                        .defaultMinSize(minHeight = 60.dp)
+                                        .padding(horizontal = 16.dp),
+                                contentAlignment = Alignment.Center,
                             ) {
                                 Text(text = "With horizontal + top insets", maxLines = 1)
                             }
@@ -268,18 +282,15 @@ private fun WithInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Col
             }
         }
     }
-
 }
 
 @Composable
 private fun WithoutInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
-
     val colors = LocalColors.current
     val containerColor = colors.primary
     val scrolledContainerColor = colors.primary
 
     LaunchedEffect(colors) { onChangeTopBarColor(colors.white) }
-
 
     val activity = LocalContext.current as ComponentActivity
 
@@ -293,19 +304,24 @@ private fun WithoutInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (
 
     Scaffold(topBar = {
         TopBar(
-            colors = TopBarColors(
-                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
-            ), windowInsets = WindowInsets.systemBarsForVisualComponents.only(
-                WindowInsetsSides.Horizontal
-            )
+            colors =
+                TopBarColors(
+                    containerColor = containerColor,
+                    scrolledContainerColor = scrolledContainerColor,
+                ),
+            windowInsets =
+                WindowInsets.systemBarsForVisualComponents.only(
+                    WindowInsetsSides.Horizontal,
+                ),
         ) {
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     IconButton(variant = IconButtonVariant.Ghost, onClick = onNavigateUp) {
                         Icon(
@@ -322,33 +338,38 @@ private fun WithoutInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (
                     }
                 }
                 Text(
-                    text = "Hello.", style = AppTheme.typography.h3, textAlign = TextAlign.Center
+                    text = "Hello.",
+                    style = AppTheme.typography.h3,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
     }) { padding ->
 
         LazyColumn(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+            modifier =
+                Modifier
+                    .padding(padding)
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
         ) {
             item { Spacer(modifier = Modifier.height(16.dp)) }
             repeat(30) { index ->
                 item {
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
                     ) {
                         if (index == 0) {
                             Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .defaultMinSize(minHeight = 60.dp)
-                                    .padding(horizontal = 16.dp),
-                                contentAlignment = Alignment.Center
+                                modifier =
+                                    Modifier
+                                        .fillMaxSize()
+                                        .defaultMinSize(minHeight = 60.dp)
+                                        .padding(horizontal = 16.dp),
+                                contentAlignment = Alignment.Center,
                             ) {
                                 Text(text = "With only horizontal insets", maxLines = 1)
                             }
@@ -360,7 +381,6 @@ private fun WithoutInsetsSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (
             }
         }
     }
-
 }
 
 @Composable
@@ -370,7 +390,6 @@ private fun ChangeColorOnScrollSample(onNavigateUp: () -> Unit, onChangeTopBarCo
     val colors = LocalColors.current
     val containerColor = colors.background
     val scrolledContainerColor = colors.primary
-
 
     LaunchedEffect(colors, overlappedFraction) {
         if (overlappedFraction > 0.5f) {
@@ -382,17 +401,21 @@ private fun ChangeColorOnScrollSample(onNavigateUp: () -> Unit, onChangeTopBarCo
 
     Scaffold(topBar = {
         TopBar(
-            scrollBehavior = scrollBehavior, colors = TopBarColors(
-                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
-            )
+            scrollBehavior = scrollBehavior,
+            colors =
+                TopBarColors(
+                    containerColor = containerColor,
+                    scrolledContainerColor = scrolledContainerColor,
+                ),
         ) {
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     IconButton(variant = IconButtonVariant.Ghost, onClick = onNavigateUp) {
                         Icon(
@@ -409,34 +432,38 @@ private fun ChangeColorOnScrollSample(onNavigateUp: () -> Unit, onChangeTopBarCo
                     }
                 }
                 Text(
-                    text = "Hello.", style = AppTheme.typography.h3, textAlign = TextAlign.Center
+                    text = "Hello.",
+                    style = AppTheme.typography.h3,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
     }) { padding ->
         LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-                .padding(horizontal = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    .padding(horizontal = 16.dp),
             contentPadding = padding,
-
-            ) {
+        ) {
             item { Spacer(modifier = Modifier.height(16.dp)) }
             repeat(30) { index ->
                 item {
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
                     ) {
                         if (index == 0) {
                             Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .defaultMinSize(minHeight = 60.dp)
-                                    .padding(horizontal = 16.dp),
-                                contentAlignment = Alignment.Center
+                                modifier =
+                                    Modifier
+                                        .fillMaxSize()
+                                        .defaultMinSize(minHeight = 60.dp)
+                                        .padding(horizontal = 16.dp),
+                                contentAlignment = Alignment.Center,
                             ) {
                                 Text(text = "Changes color with scroll", maxLines = 1)
                             }
@@ -450,7 +477,6 @@ private fun ChangeColorOnScrollSample(onNavigateUp: () -> Unit, onChangeTopBarCo
     }
 }
 
-
 @Composable
 private fun EnterAlwaysScrollBehaviorSample(onNavigateUp: () -> Unit, onChangeTopBarColor: (Color) -> Unit) {
     val colors = LocalColors.current
@@ -462,16 +488,20 @@ private fun EnterAlwaysScrollBehaviorSample(onNavigateUp: () -> Unit, onChangeTo
 
     Scaffold(topBar = {
         TopBar(
-            colors = TopBarColors(
-                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
-            ), scrollBehavior = scrollBehavior
+            colors =
+                TopBarColors(
+                    containerColor = containerColor,
+                    scrolledContainerColor = scrolledContainerColor,
+                ),
+            scrollBehavior = scrollBehavior,
         ) {
             Row(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .fillMaxSize(),
+                modifier =
+                    Modifier
+                        .padding(horizontal = 16.dp)
+                        .fillMaxSize(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 IconButton(variant = IconButtonVariant.Ghost, onClick = onNavigateUp) {
                     Icon(
@@ -481,35 +511,39 @@ private fun EnterAlwaysScrollBehaviorSample(onNavigateUp: () -> Unit, onChangeTo
                 }
 
                 Text(
-                    text = "topbar", style = AppTheme.typography.h3, textAlign = TextAlign.Center
+                    text = "topbar",
+                    style = AppTheme.typography.h3,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
     }) { padding ->
         LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-                .padding(horizontal = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    .padding(horizontal = 16.dp),
             contentPadding = padding,
-
-            ) {
+        ) {
             item { Spacer(modifier = Modifier.height(16.dp)) }
 
             repeat(30) { index ->
                 item {
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
                     ) {
                         if (index == 0) {
                             Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .defaultMinSize(minHeight = 60.dp)
-                                    .padding(horizontal = 16.dp),
-                                contentAlignment = Alignment.Center
+                                modifier =
+                                    Modifier
+                                        .fillMaxSize()
+                                        .defaultMinSize(minHeight = 60.dp)
+                                        .padding(horizontal = 16.dp),
+                                contentAlignment = Alignment.Center,
                             ) {
                                 Text(text = "Appears as soon as the scroll starts", maxLines = 1)
                             }
@@ -521,7 +555,6 @@ private fun EnterAlwaysScrollBehaviorSample(onNavigateUp: () -> Unit, onChangeTo
             }
         }
     }
-
 }
 
 @Composable
@@ -531,21 +564,24 @@ private fun ExitUntilCollapsedScrollBehaviorSample(onNavigateUp: () -> Unit, onC
     val scrolledContainerColor = colors.primary
     val scrollBehavior = TopBarDefaults.exitUntilCollapsedScrollBehavior()
 
-
     LaunchedEffect(Unit) { onChangeTopBarColor(containerColor) }
 
     Scaffold(topBar = {
         TopBar(
-            colors = TopBarColors(
-                containerColor = containerColor, scrolledContainerColor = scrolledContainerColor
-            ), scrollBehavior = scrollBehavior
+            colors =
+                TopBarColors(
+                    containerColor = containerColor,
+                    scrolledContainerColor = scrolledContainerColor,
+                ),
+            scrollBehavior = scrollBehavior,
         ) {
             Row(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .fillMaxSize(),
+                modifier =
+                    Modifier
+                        .padding(horizontal = 16.dp)
+                        .fillMaxSize(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 IconButton(variant = IconButtonVariant.Ghost, onClick = onNavigateUp) {
                     Icon(
@@ -554,35 +590,39 @@ private fun ExitUntilCollapsedScrollBehaviorSample(onNavigateUp: () -> Unit, onC
                     )
                 }
                 Text(
-                    text = "topbar", style = AppTheme.typography.h3, textAlign = TextAlign.Center
+                    text = "topbar",
+                    style = AppTheme.typography.h3,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
     }) { padding ->
         LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-                .padding(horizontal = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    .padding(horizontal = 16.dp),
             contentPadding = padding,
-
-            ) {
+        ) {
             item { Spacer(modifier = Modifier.height(16.dp)) }
 
             repeat(30) { index ->
                 item {
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 8.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 8.dp),
                     ) {
                         if (index == 0) {
                             Box(
-                                modifier = Modifier
-                                    .padding(horizontal = 16.dp)
-                                    .defaultMinSize(minHeight = 60.dp)
-                                    .fillMaxSize(),
-                                contentAlignment = Alignment.Center
+                                modifier =
+                                    Modifier
+                                        .padding(horizontal = 16.dp)
+                                        .defaultMinSize(minHeight = 60.dp)
+                                        .fillMaxSize(),
+                                contentAlignment = Alignment.Center,
                             ) {
                                 Text(text = "Appears after scrolling finishes upward.")
                             }
@@ -593,7 +633,6 @@ private fun ExitUntilCollapsedScrollBehaviorSample(onNavigateUp: () -> Unit, onC
                 }
             }
         }
-
     }
 }
 
@@ -604,11 +643,8 @@ fun HandleSystemBars(topBarColor: Color) {
 
     systemBarColors = systemBarColors.copy(statusBarColor = topBarColor)
 
-
-
     SystemBars(colors = systemBarColors)
 }
-
 
 private sealed class TopbarNavRoute {
     @Serializable
@@ -628,5 +664,4 @@ private sealed class TopbarNavRoute {
 
     @Serializable
     data object ExitUntilCollapsedScrollBehaviorSample : TopbarNavRoute()
-
 }

@@ -21,7 +21,9 @@ fun rememberAppConfigState(): AppConfigState {
 
     return remember {
         AppConfigState(
-            systemFontScale = configurations.fontScale, systemLayoutDirection = layoutDirection, defaultColors = colors
+            systemFontScale = configurations.fontScale,
+            systemLayoutDirection = layoutDirection,
+            defaultColors = colors,
         )
     }
 }
@@ -34,7 +36,6 @@ class AppConfigState(val systemFontScale: Float, val systemLayoutDirection: Layo
 
     var colors by mutableStateOf(defaultColors)
         private set
-
 
     fun updateFontScale(newScale: Float) {
         fontScale = newScale
@@ -57,6 +58,7 @@ class AppConfigState(val systemFontScale: Float, val systemLayoutDirection: Layo
     }
 }
 
-val LocalAppConfigState = staticCompositionLocalOf<AppConfigState> {
-    error("No AppConfigState provided")
-}
+val LocalAppConfigState =
+    staticCompositionLocalOf<AppConfigState> {
+        error("No AppConfigState provided")
+    }

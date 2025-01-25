@@ -21,9 +21,10 @@ import com.nomanr.sample.ui.components.VerticalDivider
 @Composable
 fun DividerSample() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
         Text(text = "Two type of dividers are available: \n- Horizontal\n- Vertical", style = AppTheme.typography.h4)
 
@@ -31,24 +32,27 @@ fun DividerSample() {
 
         HorizontalDivider()
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(IntrinsicSize.Min), horizontalArrangement = Arrangement.SpaceBetween
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min),
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                modifier = Modifier.padding(16.dp), text = "Start"
+                modifier = Modifier.padding(16.dp),
+                text = "Start",
             )
             VerticalDivider(
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier.fillMaxHeight(),
             )
             Text(
-                modifier = Modifier.padding(16.dp), text = "End"
+                modifier = Modifier.padding(16.dp),
+                text = "End",
             )
         }
         HorizontalDivider()
 
         Spacer(modifier = Modifier.height(24.dp))
-
 
         Text(text = "Different thickness", style = AppTheme.typography.label1)
 
@@ -56,23 +60,25 @@ fun DividerSample() {
 
         HorizontalDivider(thickness = 4.dp)
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(IntrinsicSize.Min), horizontalArrangement = Arrangement.SpaceBetween
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min),
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                modifier = Modifier.padding(16.dp), text = "Start"
+                modifier = Modifier.padding(16.dp),
+                text = "Start",
             )
             VerticalDivider(
                 modifier = Modifier.fillMaxHeight(),
-                thickness = 4.dp
+                thickness = 4.dp,
             )
             Text(
-                modifier = Modifier.padding(16.dp), text = "End"
+                modifier = Modifier.padding(16.dp),
+                text = "End",
             )
         }
         HorizontalDivider(thickness = 4.dp)
-
-
     }
 }

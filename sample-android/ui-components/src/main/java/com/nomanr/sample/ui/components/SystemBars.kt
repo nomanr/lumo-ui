@@ -19,7 +19,6 @@ fun SystemBars(colors: SystemBarColor) {
     val isStatusBarContentLight = shouldUseLightSystemBarIcons(colors.statusBarColor)
     val isNavigationBarContentLight = shouldUseLightSystemBarIcons(colors.navigationBarColor)
 
-
     // Since we are applying the status bar with edge-to-edge configuration,
     // the background and top bar colors will extend and cover the system bars.
     // The system bars themselves will be transparent, and we will only change
@@ -30,26 +29,28 @@ fun SystemBars(colors: SystemBarColor) {
 
     LaunchedEffect(isStatusBarContentLight, isNavigationBarContentLight) {
         context.enableEdgeToEdge(
-            statusBarStyle = if (isStatusBarContentLight) {
-                SystemBarStyle.dark(
-                    transparent
-                )
-            } else {
-                SystemBarStyle.light(
-                    transparent,
-                    transparent
-                )
-            },
-            navigationBarStyle = if (isNavigationBarContentLight) {
-                SystemBarStyle.dark(
-                    transparent
-                )
-            } else {
-                SystemBarStyle.light(
-                    transparent,
-                    transparent
-                )
-            }
+            statusBarStyle =
+                if (isStatusBarContentLight) {
+                    SystemBarStyle.dark(
+                        transparent,
+                    )
+                } else {
+                    SystemBarStyle.light(
+                        transparent,
+                        transparent,
+                    )
+                },
+            navigationBarStyle =
+                if (isNavigationBarContentLight) {
+                    SystemBarStyle.dark(
+                        transparent,
+                    )
+                } else {
+                    SystemBarStyle.light(
+                        transparent,
+                        transparent,
+                    )
+                },
         )
     }
 }
@@ -57,15 +58,16 @@ fun SystemBars(colors: SystemBarColor) {
 @Immutable
 data class SystemBarColor(
     val statusBarColor: Color,
-    val navigationBarColor: Color
+    val navigationBarColor: Color,
 )
 
 object SystemBarsDefaults {
     @Composable
-    fun defaultColors() = SystemBarColor(
-        statusBarColor = AppTheme.colors.primary,
-        navigationBarColor = AppTheme.colors.background
-    )
+    fun defaultColors() =
+        SystemBarColor(
+            statusBarColor = AppTheme.colors.primary,
+            navigationBarColor = AppTheme.colors.background,
+        )
 
     @Composable
     fun colors(isStatusContentBarDark: Boolean, isNavigationContentBarDark: Boolean): SystemBarColor {

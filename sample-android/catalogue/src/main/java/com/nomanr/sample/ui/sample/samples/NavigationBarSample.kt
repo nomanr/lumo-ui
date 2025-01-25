@@ -61,38 +61,40 @@ fun NavigationBarSample(navigateUp: (() -> Unit)?) {
         }
     }) { padding ->
         Column(
-            modifier = Modifier
-                .padding(padding)
-                .padding(horizontal = 16.dp)
-                .fillMaxWidth()
+            modifier =
+                Modifier
+                    .padding(padding)
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth(),
         ) {
-
             when (selectedScreen) {
-                "Home" -> NavigationBarSampleHomeScreen(showLabels, onChangeShowLabel = {
-                    showLabels = it
-                }, items, onChangeItems = {
-                    items = it
-                })
+                "Home" ->
+                    NavigationBarSampleHomeScreen(showLabels, onChangeShowLabel = {
+                        showLabels = it
+                    }, items, onChangeItems = {
+                        items = it
+                    })
 
                 "Search" -> NavigationBarSampleSearchScreen()
                 else -> NavigationBarSampleProfileScreen()
             }
-
-
         }
     }
 }
 
 @Composable
 private fun NavigationBarShowcase(showLabels: Boolean, items: Int, selectedScreen: String, onSelect: (String) -> Unit) {
-    val screens = mutableListOf(
-        listOf("Home", Icons.Default.Home), listOf("Search", Icons.Default.Search), listOf("Profile", Icons.Default.Person),
-    )
+    val screens =
+        mutableListOf(
+            listOf("Home", Icons.Default.Home),
+            listOf("Search", Icons.Default.Search),
+            listOf("Profile", Icons.Default.Person),
+        )
 
     if (items == 4) {
-        screens.add( listOf("Settings", Icons.Default.Settings))
+        screens.add(listOf("Settings", Icons.Default.Settings))
     } else if (items == 5) {
-        screens.add( listOf("Settings", Icons.Default.Settings))
+        screens.add(listOf("Settings", Icons.Default.Settings))
         screens.add(listOf("Chat", Icons.AutoMirrored.Default.Chat))
     }
 
@@ -108,9 +110,10 @@ private fun NavigationBarShowcase(showLabels: Boolean, items: Int, selectedScree
                     onClick = {
                         onSelect(label)
                     },
-                    label = composableOrNull(showLabels) {
-                        Text(text = label, style = AppTheme.typography.label2, maxLines = 1)
-                    },
+                    label =
+                        composableOrNull(showLabels) {
+                            Text(text = label, style = AppTheme.typography.label2, maxLines = 1)
+                        },
                     icon = {
                         Icon(icon as ImageVector, contentDescription = "nav bar item")
                     },
@@ -120,21 +123,24 @@ private fun NavigationBarShowcase(showLabels: Boolean, items: Int, selectedScree
     }
 }
 
-
 @Composable
 private fun NavigationBarSampleHomeScreen(
-    showLabel: Boolean, onChangeShowLabel: (Boolean) -> Unit, items: Int, onChangeItems: (Int) -> Unit
+    showLabel: Boolean,
+    onChangeShowLabel: (Boolean) -> Unit,
+    items: Int,
+    onChangeItems: (Int) -> Unit,
 ) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedCard {
             Column(
-                modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text("Show labels", style = AppTheme.typography.label2)
                     Checkbox(checked = showLabel, onCheckedChange = {
@@ -144,7 +150,7 @@ private fun NavigationBarSampleHomeScreen(
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text("Items")
                     Row {
@@ -173,7 +179,6 @@ private fun NavigationBarSampleHomeScreen(
         SampleViewExample4()
         Spacer(modifier = Modifier.height(16.dp))
     }
-
 }
 
 @Composable
@@ -204,27 +209,29 @@ private fun NavigationBarSampleProfileScreen() {
 
 @Composable
 private fun SampleViewExample1() {
-
     OutlinedCard(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Skeleton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(180.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(180.dp),
             )
             Spacer(modifier = Modifier.height(12.dp))
             Skeleton(
-                modifier = Modifier
-                    .width(260.dp)
-                    .height(24.dp)
+                modifier =
+                    Modifier
+                        .width(260.dp)
+                        .height(24.dp),
             )
             Spacer(modifier = Modifier.height(12.dp))
             Skeleton(
-                modifier = Modifier
-                    .width(180.dp)
-                    .height(24.dp)
+                modifier =
+                    Modifier
+                        .width(180.dp)
+                        .height(24.dp),
             )
         }
     }
@@ -236,51 +243,55 @@ private fun SampleViewExample2() {
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Card(
-            modifier = Modifier.weight(0.48f)
+            modifier = Modifier.weight(0.48f),
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(100.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Skeleton(
-                    modifier = Modifier
-                        .width(260.dp)
-                        .height(24.dp)
+                    modifier =
+                        Modifier
+                            .width(260.dp)
+                            .height(24.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Skeleton(
-                    modifier = Modifier
-                        .width(180.dp)
-                        .height(24.dp)
+                    modifier =
+                        Modifier
+                            .width(180.dp)
+                            .height(24.dp),
                 )
-
             }
-
         }
 
         ElevatedCard(
-            modifier = Modifier.weight(0.48f)
+            modifier = Modifier.weight(0.48f),
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(100.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Skeleton(
-                    modifier = Modifier
-                        .width(260.dp)
-                        .height(24.dp)
+                    modifier =
+                        Modifier
+                            .width(260.dp)
+                            .height(24.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Skeleton(
-                    modifier = Modifier
-                        .width(180.dp)
-                        .height(24.dp)
+                    modifier =
+                        Modifier
+                            .width(180.dp)
+                            .height(24.dp),
                 )
             }
         }
@@ -290,15 +301,16 @@ private fun SampleViewExample2() {
 @Composable
 private fun SampleViewExample3() {
     OutlinedCard(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(32.dp)
-                .defaultMinSize(minHeight = 80.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(32.dp)
+                    .defaultMinSize(minHeight = 80.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(modifier = Modifier.weight(0.75f)) {
                 Text(text = "Hello.", style = AppTheme.typography.h4)
@@ -306,24 +318,26 @@ private fun SampleViewExample3() {
 
             Box(modifier = Modifier.weight(0.25f)) {
                 Skeleton(
-                    modifier = Modifier
-                        .width(56.dp)
-                        .height(56.dp)
+                    modifier =
+                        Modifier
+                            .width(56.dp)
+                            .height(56.dp),
                 )
             }
         }
     }
 
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(32.dp)
-                .defaultMinSize(minHeight = 80.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(32.dp)
+                    .defaultMinSize(minHeight = 80.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(modifier = Modifier.weight(0.75f)) {
                 Text(text = "Hello.", style = AppTheme.typography.h4)
@@ -331,24 +345,26 @@ private fun SampleViewExample3() {
 
             Box(modifier = Modifier.weight(0.25f)) {
                 Skeleton(
-                    modifier = Modifier
-                        .width(56.dp)
-                        .height(56.dp)
+                    modifier =
+                        Modifier
+                            .width(56.dp)
+                            .height(56.dp),
                 )
             }
         }
     }
 
     ElevatedCard(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(32.dp)
-                .defaultMinSize(minHeight = 80.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(32.dp)
+                    .defaultMinSize(minHeight = 80.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(modifier = Modifier.weight(0.75f)) {
                 Text(text = "Hello.", style = AppTheme.typography.h4)
@@ -356,14 +372,14 @@ private fun SampleViewExample3() {
 
             Box(modifier = Modifier.weight(0.25f)) {
                 Skeleton(
-                    modifier = Modifier
-                        .width(56.dp)
-                        .height(56.dp)
+                    modifier =
+                        Modifier
+                            .width(56.dp)
+                            .height(56.dp),
                 )
             }
         }
     }
-
 }
 
 @Composable
@@ -373,12 +389,14 @@ private fun SampleViewExample4() {
     ) {
         Card(modifier = Modifier.weight(0.33f), onClick = {}) {
             Column(
-                modifier = Modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.padding(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(100.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
 
@@ -388,28 +406,31 @@ private fun SampleViewExample4() {
 
         ElevatedCard(modifier = Modifier.weight(0.33f), onClick = {}) {
             Column(
-                modifier = Modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.padding(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(100.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(text = "Click me")
             }
-
         }
 
         OutlinedCard(modifier = Modifier.weight(0.33f), onClick = {}) {
             Column(
-                modifier = Modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.padding(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(100.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
 
@@ -418,5 +439,3 @@ private fun SampleViewExample4() {
         }
     }
 }
-
-

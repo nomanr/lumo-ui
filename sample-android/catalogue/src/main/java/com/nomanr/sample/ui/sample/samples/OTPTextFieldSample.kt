@@ -27,21 +27,21 @@ import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.components.Checkbox
 import com.nomanr.sample.ui.components.RadioButton
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.otp_textfield.OTPTextField
-import com.nomanr.sample.ui.components.otp_textfield.OutlinedOTPTextField
-import com.nomanr.sample.ui.components.otp_textfield.UnderlinedOTPTextField
-import com.nomanr.sample.ui.components.otp_textfield.rememberOtpState
+import com.nomanr.sample.ui.components.otptextfield.OTPTextField
+import com.nomanr.sample.ui.components.otptextfield.OutlinedOTPTextField
+import com.nomanr.sample.ui.components.otptextfield.UnderlinedOTPTextField
+import com.nomanr.sample.ui.components.otptextfield.rememberOtpState
 
 @Composable
 fun OTPTextFieldSample() {
     Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
-            .padding(16.dp)
-            .imePadding()
+        modifier =
+            Modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
+                .padding(16.dp)
+                .imePadding(),
     ) {
-
         OTPTextFieldInteractiveSample()
 
         OTPTextFieldExamples()
@@ -59,28 +59,29 @@ fun OTPTextFieldInteractiveSample() {
     var readOnly by remember { mutableStateOf(false) }
     var otpLength by remember { mutableIntStateOf(6) }
 
-
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
-
-
         Text("OTPTextField Demo", style = AppTheme.typography.h4)
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp),
         ) {
             RenderOTPTextField(
-                type = textFieldType, isError = errorEnabled, enabled = !disabled, readOnly = readOnly, length = otpLength
+                type = textFieldType,
+                isError = errorEnabled,
+                enabled = !disabled,
+                readOnly = readOnly,
+                length = otpLength,
             )
         }
 
         Spacer(modifier = Modifier.height(24.dp))
-
 
         Text("OTPTextField Type", style = AppTheme.typography.h4)
 
@@ -113,11 +114,10 @@ fun OTPTextFieldInteractiveSample() {
             }
         }
 
-
-
         FlowRow(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Checkbox(checked = errorEnabled, onCheckedChange = {
                     errorEnabled = it
@@ -127,7 +127,8 @@ fun OTPTextFieldInteractiveSample() {
             }
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Checkbox(checked = disabled, onCheckedChange = {
                     disabled = it
@@ -137,28 +138,26 @@ fun OTPTextFieldInteractiveSample() {
             }
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Checkbox(checked = readOnly, onCheckedChange = {
                     readOnly = it
                 })
                 Text(text = "Readonly", style = AppTheme.typography.body2)
             }
-
         }
-
     }
 }
-
 
 @Composable
 private fun OTPTextFieldExamples() {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 24.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(top = 24.dp),
     ) {
-
         Text(text = "Verify your number", style = AppTheme.typography.h2)
         Text(text = "Enter the code we've sent by text to +44-000-000-0000.", style = AppTheme.typography.label1)
 
@@ -166,15 +165,16 @@ private fun OTPTextFieldExamples() {
         Text(text = "Code", style = AppTheme.typography.label2)
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth(0.7f)
-                .padding(top = 4.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth(0.7f)
+                    .padding(top = 4.dp),
         ) {
             OTPTextField(
-                modifier = Modifier.fillMaxWidth(), autoFocus = false
+                modifier = Modifier.fillMaxWidth(),
+                autoFocus = false,
             )
         }
-
 
         Spacer(modifier = Modifier.height(50.dp))
         Text(text = "Enter the 4-digit code just sent to 44-000-000-0000.", style = AppTheme.typography.label1)
@@ -182,18 +182,22 @@ private fun OTPTextFieldExamples() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth(0.6f)
-                .padding(top = 4.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth(0.6f)
+                    .padding(top = 4.dp),
         ) {
             OutlinedOTPTextField(
-                state = rememberOtpState(4), modifier = Modifier.fillMaxWidth(), autoFocus = false
+                state = rememberOtpState(4),
+                modifier = Modifier.fillMaxWidth(),
+                autoFocus = false,
             )
         }
 
         Spacer(modifier = Modifier.height(50.dp))
         Column(
-            modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(text = "Verify your number", style = AppTheme.typography.h1)
 
@@ -201,24 +205,28 @@ private fun OTPTextFieldExamples() {
                 modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
                 text = "All done! We've sent your code to (***)***-0000",
                 style = AppTheme.typography.body3,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
 
             Text(
-                text = "Enter your code below.", style = AppTheme.typography.body3, textAlign = TextAlign.Center
+                text = "Enter your code below.",
+                style = AppTheme.typography.body3,
+                textAlign = TextAlign.Center,
             )
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(top = 4.dp),
             ) {
                 UnderlinedOTPTextField(
-                    modifier = Modifier.fillMaxWidth(), autoFocus = false, textStyle = AppTheme.typography.h1
+                    modifier = Modifier.fillMaxWidth(),
+                    autoFocus = false,
+                    textStyle = AppTheme.typography.h1,
                 )
             }
         }
-
     }
 }
 
@@ -232,31 +240,31 @@ private fun RenderOTPTextField(
     length: Int = 6,
 ) {
     when (type) {
-        "TextField" -> OTPTextField(
-            state = rememberOtpState(length),
-            modifier = modifier.fillMaxWidth(),
-            isError = isError,
-            enabled = enabled,
-            readOnly = readOnly,
-        )
+        "TextField" ->
+            OTPTextField(
+                state = rememberOtpState(length),
+                modifier = modifier.fillMaxWidth(),
+                isError = isError,
+                enabled = enabled,
+                readOnly = readOnly,
+            )
 
-        "OutlinedTextField" -> OutlinedOTPTextField(
-            state = rememberOtpState(length),
-            modifier = modifier.fillMaxWidth(),
-            isError = isError,
-            enabled = enabled,
-            readOnly = readOnly,
-        )
+        "OutlinedTextField" ->
+            OutlinedOTPTextField(
+                state = rememberOtpState(length),
+                modifier = modifier.fillMaxWidth(),
+                isError = isError,
+                enabled = enabled,
+                readOnly = readOnly,
+            )
 
-        "UnderlinedTextField" -> UnderlinedOTPTextField(
-            state = rememberOtpState(length),
-            modifier = modifier.fillMaxWidth(),
-            isError = isError,
-            enabled = enabled,
-            readOnly = readOnly,
-        )
+        "UnderlinedTextField" ->
+            UnderlinedOTPTextField(
+                state = rememberOtpState(length),
+                modifier = modifier.fillMaxWidth(),
+                isError = isError,
+                enabled = enabled,
+                readOnly = readOnly,
+            )
     }
-
-
 }
-

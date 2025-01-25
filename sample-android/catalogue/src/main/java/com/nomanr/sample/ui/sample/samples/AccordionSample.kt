@@ -34,13 +34,13 @@ import com.nomanr.sample.ui.sample.components.Skeleton
 @Composable
 fun AccordionSample() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-
         Spacer(modifier = Modifier.height(16.dp))
 
         ExpandClickingHeader()
@@ -50,7 +50,6 @@ fun AccordionSample() {
         OnlyOneShouldOpenAtATime()
 
         Spacer(modifier = Modifier.height(16.dp))
-
     }
 }
 
@@ -59,23 +58,27 @@ private fun ExpandClickingHeader() {
     ElevatedCard(modifier = Modifier.padding(0.dp)) {
         Accordion(headerContent = {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
-                    modifier = Modifier.weight(0.8f)
+                    modifier = Modifier.weight(0.8f),
                 ) {
                     Text(
-                        text = "Click the header to expand and collapse", style = AppTheme.typography.body1
+                        text = "Click the header to expand and collapse",
+                        style = AppTheme.typography.body1,
                     )
                 }
                 Box(
-                    modifier = Modifier
-                        .size(44.dp)
-                        .weight(0.2f), contentAlignment = Alignment.CenterEnd
+                    modifier =
+                        Modifier
+                            .size(44.dp)
+                            .weight(0.2f),
+                    contentAlignment = Alignment.CenterEnd,
                 ) {
                     Icon(imageVector = Icons.Outlined.KeyboardArrowDown, contentDescription = "Expand")
                 }
@@ -83,25 +86,28 @@ private fun ExpandClickingHeader() {
         }, bodyContent = {
             HorizontalDivider()
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
             }
         })
     }
 }
-
 
 @Composable
 private fun ExpandClickingArrow() {
@@ -109,19 +115,20 @@ private fun ExpandClickingArrow() {
 
     ElevatedCard(modifier = Modifier.padding(0.dp)) {
         Accordion(state = state, headerContent = {
-
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
-                    modifier = Modifier.weight(0.8f)
+                    modifier = Modifier.weight(0.8f),
                 ) {
                     Text(
-                        text = "Click the dropdown button to expand and collapse", style = AppTheme.typography.body1
+                        text = "Click the dropdown button to expand and collapse",
+                        style = AppTheme.typography.body1,
                     )
                 }
                 Box(modifier = Modifier.weight(0.2f), contentAlignment = Alignment.CenterEnd) {
@@ -135,19 +142,23 @@ private fun ExpandClickingArrow() {
         }, bodyContent = {
             HorizontalDivider()
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
             }
         })
@@ -160,19 +171,20 @@ private fun AnimateArrowWithExpandCollapse() {
 
     ElevatedCard(modifier = Modifier.padding(0.dp)) {
         Accordion(state = state, headerContent = {
-
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
-                    modifier = Modifier.weight(0.8f)
+                    modifier = Modifier.weight(0.8f),
                 ) {
                     Text(
-                        text = "Animate the button with accordion expanding and collapsing", style = AppTheme.typography.body1
+                        text = "Animate the button with accordion expanding and collapsing",
+                        style = AppTheme.typography.body1,
                     )
                 }
                 Box(modifier = Modifier.weight(0.2f), contentAlignment = Alignment.CenterEnd) {
@@ -182,7 +194,7 @@ private fun AnimateArrowWithExpandCollapse() {
                         Icon(
                             modifier = Modifier.rotate(state.animationProgress * 180),
                             imageVector = Icons.Outlined.KeyboardArrowDown,
-                            contentDescription = "Expand"
+                            contentDescription = "Expand",
                         )
                     }
                 }
@@ -190,19 +202,23 @@ private fun AnimateArrowWithExpandCollapse() {
         }, bodyContent = {
             HorizontalDivider()
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
             }
         })
@@ -214,46 +230,54 @@ private fun NoAnimation() {
     ElevatedCard(modifier = Modifier.padding(0.dp)) {
         Accordion(animate = false, headerContent = {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
-                    modifier = Modifier.weight(0.8f)
+                    modifier = Modifier.weight(0.8f),
                 ) {
                     Text(
-                        text = "No animation", style = AppTheme.typography.body1
+                        text = "No animation",
+                        style = AppTheme.typography.body1,
                     )
                 }
                 Box(
-                    modifier = Modifier
-                        .size(44.dp)
-                        .weight(0.2f), contentAlignment = Alignment.CenterEnd
+                    modifier =
+                        Modifier
+                            .size(44.dp)
+                            .weight(0.2f),
+                    contentAlignment = Alignment.CenterEnd,
                 ) {
                     Icon(
-
-                        imageVector = Icons.Outlined.KeyboardArrowDown, contentDescription = "Expand"
+                        imageVector = Icons.Outlined.KeyboardArrowDown,
+                        contentDescription = "Expand",
                     )
                 }
             }
         }, bodyContent = {
             HorizontalDivider()
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 )
             }
         })
@@ -265,7 +289,6 @@ private fun OnlyOneShouldOpenAtATime() {
     val accordionGroupState = rememberAccordionGroupState(count = accordionTexts.size)
 
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-
         Text(text = "Only one should open at a time", style = AppTheme.typography.h4)
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -276,43 +299,48 @@ private fun OnlyOneShouldOpenAtATime() {
 
             ElevatedCard(modifier = Modifier.padding(0.dp)) {
                 Accordion(state = state, headerContent = {
-
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Box(
-                            modifier = Modifier.weight(0.8f)
+                            modifier = Modifier.weight(0.8f),
                         ) {
                             Text(
-                                text = text.first, style = AppTheme.typography.body1
+                                text = text.first,
+                                style = AppTheme.typography.body1,
                             )
                         }
                         Box(
-                            modifier = Modifier
-                                .size(44.dp)
-                                .weight(0.2f), contentAlignment = Alignment.CenterEnd
+                            modifier =
+                                Modifier
+                                    .size(44.dp)
+                                    .weight(0.2f),
+                            contentAlignment = Alignment.CenterEnd,
                         ) {
-
                             Icon(
                                 modifier = Modifier.rotate(state.animationProgress * 180),
                                 imageVector = Icons.Outlined.KeyboardArrowDown,
-                                contentDescription = "Expand"
+                                contentDescription = "Expand",
                             )
                         }
                     }
                 }, bodyContent = {
                     HorizontalDivider()
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
                     ) {
                         Text(
-                            text = text.second, style = AppTheme.typography.body1
+                            text = text.second,
+                            style = AppTheme.typography.body1,
                         )
                     }
                 })
@@ -321,11 +349,13 @@ private fun OnlyOneShouldOpenAtATime() {
     }
 }
 
-
-private val accordionTexts = listOf(
-    "How to use animationProgress in Accordion?" to "The animationProgress property lets you synchronize custom animations with the Accordion's expand and collapse transitions. Use it to animate opacity, size, or other visuals dynamically based on the transition state.",
-
-    "What can you customize in Accordion?" to "You can customize headers, body content, animations, clickable behavior, and enable or disable state transitions for the Accordion component.",
-
-    "How does the Accordion handle state?" to "The Accordion uses an AccordionState object to manage its expanded state, animation progress, and clickable or enabled properties."
-)
+private val accordionTexts =
+    listOf(
+        "How to use animationProgress in Accordion?" to "The animationProgress property lets you synchronize custom animations with " +
+            "the Accordion's expand and collapse transitions. Use it to animate opacity, size, or other visuals dynamically based " +
+            "on the transition state.",
+        "What can you customize in Accordion?" to "You can customize headers, body content, animations, clickable behavior, and enable " +
+            "or disable state transitions for the Accordion component.",
+        "How does the Accordion handle state?" to "The Accordion uses an AccordionState object to manage its expanded state, animation " +
+            "progress, and clickable or enabled properties.",
+    )

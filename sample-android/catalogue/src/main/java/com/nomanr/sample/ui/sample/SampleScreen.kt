@@ -21,16 +21,16 @@ fun SampleScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
         return
     }
 
-
     Scaffold(topBar = {
         SampleScreenTopBar(title = component.label, onBack = {
             navigateUp()
         })
     }) { padding ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(padding),
         ) {
             if (sample != null) {
                 sample(navigateUp)
@@ -42,4 +42,3 @@ fun SampleScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
         }
     }
 }
-

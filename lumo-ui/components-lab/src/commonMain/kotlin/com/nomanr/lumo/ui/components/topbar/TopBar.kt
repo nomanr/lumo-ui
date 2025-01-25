@@ -48,7 +48,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.LocalContentColor
@@ -57,6 +56,7 @@ import com.nomanr.lumo.ui.components.Text
 import com.nomanr.lumo.ui.components.topbar.TopBarDefaults.TopBarHeight
 import com.nomanr.lumo.ui.contentColorFor
 import com.nomanr.lumo.ui.foundation.systemBarsForVisualComponents
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TopBar(
@@ -64,18 +64,21 @@ fun TopBar(
     scrollBehavior: TopBarScrollBehavior? = null,
     colors: TopBarColors = TopBarDefaults.topBarColors(),
     windowInsets: WindowInsets? = TopBarDefaults.windowInsets,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-
     TopBarLayout(
-        modifier = modifier, scrollBehavior = scrollBehavior, colors = colors, windowInsets = windowInsets
+        modifier = modifier,
+        scrollBehavior = scrollBehavior,
+        colors = colors,
+        windowInsets = windowInsets,
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(TopBarHeight),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(TopBarHeight),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
         ) {
             content()
         }
@@ -90,7 +93,6 @@ internal fun TopBarLayout(
     scrollBehavior: TopBarScrollBehavior? = null,
     content: @Composable () -> Unit,
 ) {
-
     val height = remember { mutableIntStateOf(0) }
 
     val density = LocalDensity.current
@@ -117,32 +119,43 @@ internal fun TopBarLayout(
         label = "animate content color",
     )
 
-    val topBarDragModifier = if (scrollBehavior != null && !scrollBehavior.isPinned) {
-        Modifier.draggable(orientation = Orientation.Vertical, state = rememberDraggableState {
-            scrollBehavior.state.heightOffset += it
-        }, onDragStopped = { velocity ->
-            settleBar(
-                scrollBehavior.state, velocity, scrollBehavior.flingAnimationSpec, scrollBehavior.snapAnimationSpec
+    val topBarDragModifier =
+        if (scrollBehavior != null && !scrollBehavior.isPinned) {
+            Modifier.draggable(
+                orientation = Orientation.Vertical,
+                state =
+                    rememberDraggableState {
+                        scrollBehavior.state.heightOffset += it
+                    },
+                onDragStopped = { velocity ->
+                    settleBar(
+                        scrollBehavior.state,
+                        velocity,
+                        scrollBehavior.flingAnimationSpec,
+                        scrollBehavior.snapAnimationSpec,
+                    )
+                },
             )
-        })
-    } else {
-        Modifier
-    }
+        } else {
+            Modifier
+        }
 
     // calculating based on scrolling behaviour
     val dynamicHeight = height.intValue + (scrollBehavior?.state?.heightOffset ?: 0).toInt()
 
-
     Surface(modifier = modifier.then(topBarDragModifier), color = topBarContainerColor) {
         CompositionLocalProvider(LocalContentColor provides topBarContentColor) {
             Layout(
-                content = content, modifier = Modifier
-                    .padding(windowInsetsPaddingValues)
-                    .clipToBounds()
+                content = content,
+                modifier =
+                    Modifier
+                        .padding(windowInsetsPaddingValues)
+                        .clipToBounds(),
             ) { measurables, constraints ->
-                val placeables = measurables.map { measurable ->
-                    measurable.measure(constraints)
-                }
+                val placeables =
+                    measurables.map { measurable ->
+                        measurable.measure(constraints)
+                    }
 
                 if (placeables.isEmpty() || placeables.size > 1) {
                     throw IllegalStateException("TopBar expects one child!")
@@ -166,19 +179,22 @@ object TopBarDefaults {
     fun topBarColors(
         containerColor: Color = AppTheme.colors.background,
         scrolledContainerColor: Color = AppTheme.colors.background,
-    ): TopBarColors = TopBarColors(
-        containerColor,
-        scrolledContainerColor,
-    )
+    ): TopBarColors =
+        TopBarColors(
+            containerColor,
+            scrolledContainerColor,
+        )
 
     val windowInsets: WindowInsets
-        @Composable get() = WindowInsets.systemBarsForVisualComponents.only(
-            WindowInsetsSides.Horizontal + WindowInsetsSides.Top
-        )
+        @Composable get() =
+            WindowInsets.systemBarsForVisualComponents.only(
+                WindowInsetsSides.Horizontal + WindowInsetsSides.Top,
+            )
 
     @Composable
     fun pinnedScrollBehavior(
-        state: TopBarState = rememberTopBarState(), canScroll: () -> Boolean = { true }
+        state: TopBarState = rememberTopBarState(),
+        canScroll: () -> Boolean = { true },
     ): TopBarScrollBehavior = PinnedScrollBehavior(state = state, canScroll = canScroll)
 
     @Composable
@@ -186,79 +202,104 @@ object TopBarDefaults {
         state: TopBarState = rememberTopBarState(),
         canScroll: () -> Boolean = { true },
         snapAnimationSpec: AnimationSpec<Float>? = spring(stiffness = Spring.StiffnessMediumLow),
-        flingAnimationSpec: DecayAnimationSpec<Float>? = rememberSplineBasedDecay()
-    ): TopBarScrollBehavior = EnterAlwaysScrollBehavior(
-        state = state, snapAnimationSpec = snapAnimationSpec, flingAnimationSpec = flingAnimationSpec, canScroll = canScroll
-    )
+        flingAnimationSpec: DecayAnimationSpec<Float>? = rememberSplineBasedDecay(),
+    ): TopBarScrollBehavior =
+        EnterAlwaysScrollBehavior(
+            state = state,
+            snapAnimationSpec = snapAnimationSpec,
+            flingAnimationSpec = flingAnimationSpec,
+            canScroll = canScroll,
+        )
 
     @Composable
     fun exitUntilCollapsedScrollBehavior(
         state: TopBarState = rememberTopBarState(),
         canScroll: () -> Boolean = { true },
         snapAnimationSpec: AnimationSpec<Float>? = spring(stiffness = Spring.StiffnessMediumLow),
-        flingAnimationSpec: DecayAnimationSpec<Float>? = rememberSplineBasedDecay()
-    ): TopBarScrollBehavior = ExitUntilCollapsedScrollBehavior(
-        state = state, snapAnimationSpec = snapAnimationSpec, flingAnimationSpec = flingAnimationSpec, canScroll = canScroll
-    )
+        flingAnimationSpec: DecayAnimationSpec<Float>? = rememberSplineBasedDecay(),
+    ): TopBarScrollBehavior =
+        ExitUntilCollapsedScrollBehavior(
+            state = state,
+            snapAnimationSpec = snapAnimationSpec,
+            flingAnimationSpec = flingAnimationSpec,
+            canScroll = canScroll,
+        )
 }
 
 @Composable
 fun rememberTopBarState(
-    initialHeightOffsetLimit: Float = -Float.MAX_VALUE, initialHeightOffset: Float = 0f, initialContentOffset: Float = 0f
+    initialHeightOffsetLimit: Float = -Float.MAX_VALUE,
+    initialHeightOffset: Float = 0f,
+    initialContentOffset: Float = 0f,
 ): TopBarState {
     return rememberSaveable(saver = TopBarState.Saver) {
         TopBarState(
-            initialHeightOffsetLimit, initialHeightOffset, initialContentOffset
+            initialHeightOffsetLimit,
+            initialHeightOffset,
+            initialContentOffset,
         )
     }
 }
 
 @Stable
 class TopBarState(
-    initialHeightOffsetLimit: Float, initialHeightOffset: Float, initialContentOffset: Float
+    initialHeightOffsetLimit: Float,
+    initialHeightOffset: Float,
+    initialContentOffset: Float,
 ) {
-
     var heightOffsetLimit by mutableFloatStateOf(initialHeightOffsetLimit)
 
     var heightOffset: Float
         get() = _heightOffset.floatValue
         set(newOffset) {
-            _heightOffset.floatValue = newOffset.coerceIn(
-                minimumValue = heightOffsetLimit, maximumValue = 0f
-            )
+            _heightOffset.floatValue =
+                newOffset.coerceIn(
+                    minimumValue = heightOffsetLimit,
+                    maximumValue = 0f,
+                )
         }
 
     var contentOffset by mutableStateOf(initialContentOffset)
 
     val collapsedFraction: Float
-        get() = if (heightOffsetLimit != 0f) {
-            heightOffset / heightOffsetLimit
-        } else {
-            0f
-        }
+        get() =
+            if (heightOffsetLimit != 0f) {
+                heightOffset / heightOffsetLimit
+            } else {
+                0f
+            }
 
     val overlappedFraction: Float
-        get() = if (heightOffsetLimit != 0f) {
-            1 - ((heightOffsetLimit - contentOffset).coerceIn(
-                minimumValue = heightOffsetLimit, maximumValue = 0f
-            ) / heightOffsetLimit)
-        } else {
-            0f
-        }
+        get() =
+            if (heightOffsetLimit != 0f) {
+                1 - (
+                    (heightOffsetLimit - contentOffset).coerceIn(
+                        minimumValue = heightOffsetLimit,
+                        maximumValue = 0f,
+                    ) / heightOffsetLimit
+                )
+            } else {
+                0f
+            }
 
     companion object {
         /**
          * The default [Saver] implementation for [TopBarState].
          */
-        val Saver: Saver<TopBarState, *> = listSaver(save = {
-            listOf(
-                it.heightOffsetLimit, it.heightOffset, it.contentOffset
-            )
-        }, restore = {
-            TopBarState(
-                initialHeightOffsetLimit = it[0], initialHeightOffset = it[1], initialContentOffset = it[2]
-            )
-        })
+        val Saver: Saver<TopBarState, *> =
+            listSaver(save = {
+                listOf(
+                    it.heightOffsetLimit,
+                    it.heightOffset,
+                    it.contentOffset,
+                )
+            }, restore = {
+                TopBarState(
+                    initialHeightOffsetLimit = it[0],
+                    initialHeightOffset = it[1],
+                    initialContentOffset = it[2],
+                )
+            })
     }
 
     private var _heightOffset = mutableFloatStateOf(initialHeightOffset)
@@ -269,11 +310,12 @@ data class TopBarColors(
     val containerColor: Color,
     val scrolledContainerColor: Color,
 ) {
-
     @Composable
     internal fun containerColor(colorTransitionFraction: Float): Color {
         return lerp(
-            containerColor, scrolledContainerColor, FastOutLinearInEasing.transform(colorTransitionFraction)
+            containerColor,
+            scrolledContainerColor,
+            FastOutLinearInEasing.transform(colorTransitionFraction),
         )
     }
 
@@ -282,40 +324,41 @@ data class TopBarColors(
         return lerp(
             contentColorFor(color = containerColor),
             contentColorFor(color = scrolledContainerColor),
-            FastOutLinearInEasing.transform(colorTransitionFraction)
+            FastOutLinearInEasing.transform(colorTransitionFraction),
         )
     }
-
 }
-
 
 @Composable
 @Preview
 fun TopBarSamples() {
     val icon = @Composable {
         Box(
-            modifier = Modifier
-                .size(24.dp)
-                .background(Color.White, shape = RoundedCornerShape(6.dp))
+            modifier =
+                Modifier
+                    .size(24.dp)
+                    .background(Color.White, shape = RoundedCornerShape(6.dp)),
         )
     }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
-
         Text("Sample 1: Title Centered", style = AppTheme.typography.label1)
 
         Spacer(modifier = Modifier.width(16.dp))
 
         TopBar(
-            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black)
+            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black),
         ) {
             Box(
-                modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    text = "Title", style = AppTheme.typography.h3, color = Color.White
+                    text = "Title",
+                    style = AppTheme.typography.h3,
+                    color = Color.White,
                 )
             }
         }
@@ -325,20 +368,23 @@ fun TopBarSamples() {
         Spacer(modifier = Modifier.width(16.dp))
 
         TopBar(
-            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black)
+            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black),
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-
                 icon()
 
                 Spacer(modifier = Modifier.weight(1f))
 
                 Text(
-                    text = "Title", style = AppTheme.typography.h3, color = Color.White
+                    text = "Title",
+                    style = AppTheme.typography.h3,
+                    color = Color.White,
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
@@ -350,23 +396,22 @@ fun TopBarSamples() {
 
         Text("Sample 3: Logo and Title Left", style = AppTheme.typography.label1)
         TopBar(
-            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black)
+            colors = TopBarDefaults.topBarColors().copy(containerColor = Color.Black),
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 16.dp), verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-
                 icon()
 
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "Title", style = AppTheme.typography.h3, color = Color.White
+                    text = "Title",
+                    style = AppTheme.typography.h3,
+                    color = Color.White,
                 )
             }
         }
     }
 }
-
-
-

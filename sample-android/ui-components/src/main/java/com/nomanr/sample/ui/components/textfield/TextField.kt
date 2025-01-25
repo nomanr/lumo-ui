@@ -70,18 +70,20 @@ fun TextField(
     colors: TextFieldColors = TextFieldDefaults.colors(),
     cursorBrush: Brush = SolidColor(colors.cursorColor(isError).value),
 ) {
-
-    val textColor = textStyle.color.takeOrElse {
-        colors.textColor(enabled, isError, interactionSource).value
-    }
+    val textColor =
+        textStyle.color.takeOrElse {
+            colors.textColor(enabled, isError, interactionSource).value
+        }
     val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        BasicTextField(modifier = modifier
-            .defaultMinSize(
-                minHeight = TextFieldDefaults.MinHeight
-            )
-            .fillMaxWidth(),
+        BasicTextField(
+            modifier =
+                modifier
+                    .defaultMinSize(
+                        minHeight = TextFieldDefaults.MinHeight,
+                    )
+                    .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -112,9 +114,10 @@ fun TextField(
                     isError = isError,
                     interactionSource = interactionSource,
                     colors = TextFieldDefaults.colors(),
-                    shape = shape
+                    shape = shape,
                 )
-            })
+            },
+        )
     }
 }
 
@@ -146,17 +149,20 @@ fun TextField(
     colors: TextFieldColors = TextFieldDefaults.colors(),
     cursorBrush: Brush = SolidColor(colors.cursorColor(isError).value),
 ) {
-    val textColor = textStyle.color.takeOrElse {
-        colors.textColor(enabled, isError, interactionSource).value
-    }
+    val textColor =
+        textStyle.color.takeOrElse {
+            colors.textColor(enabled, isError, interactionSource).value
+        }
     val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        BasicTextField(modifier = modifier
-            .defaultMinSize(
-                minHeight = TextFieldDefaults.MinHeight
-            )
-            .fillMaxWidth(),
+        BasicTextField(
+            modifier =
+                modifier
+                    .defaultMinSize(
+                        minHeight = TextFieldDefaults.MinHeight,
+                    )
+                    .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -187,9 +193,10 @@ fun TextField(
                     isError = isError,
                     interactionSource = interactionSource,
                     colors = TextFieldDefaults.colors(),
-                    shape = shape
+                    shape = shape,
                 )
-            })
+            },
+        )
     }
 }
 
@@ -202,7 +209,7 @@ internal object TextFieldDefaults {
         start: Dp = TextFieldHorizontalPadding,
         end: Dp = TextFieldHorizontalPadding,
         top: Dp = TextFieldVerticalPadding,
-        bottom: Dp = TextFieldVerticalPadding
+        bottom: Dp = TextFieldVerticalPadding,
     ): PaddingValues = PaddingValues(start, top, end, bottom)
 
     private fun labelPadding(
@@ -235,7 +242,6 @@ internal object TextFieldDefaults {
         bottom: Dp = 0.dp,
     ): PaddingValues = PaddingValues(start, top, end, bottom)
 
-
     @Composable
     fun containerBorderThickness(
         interactionSource: InteractionSource,
@@ -264,7 +270,7 @@ internal object TextFieldDefaults {
         colors: TextFieldColors = colors(),
         container: @Composable () -> Unit = {
             ContainerBox(enabled, isError, interactionSource, colors, shape)
-        }
+        },
     ) {
         CommonDecorationBox(
             value = value,
@@ -286,7 +292,7 @@ internal object TextFieldDefaults {
             supportingTextPadding = supportingTextPadding(),
             leadingIconPadding = leadingIconPadding(),
             trailingIconPadding = trailingIconPadding(),
-            container = container
+            container = container,
         )
     }
 
@@ -302,7 +308,7 @@ internal object TextFieldDefaults {
         Box(
             Modifier
                 .background(colors.containerColor(enabled, isError, interactionSource).value, shape)
-                .containerOutline(enabled, isError, interactionSource, colors, borderThickness, shape)
+                .containerOutline(enabled, isError, interactionSource, colors, borderThickness, shape),
         )
     }
 

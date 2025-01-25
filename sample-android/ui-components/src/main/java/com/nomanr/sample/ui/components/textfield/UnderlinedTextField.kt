@@ -66,18 +66,20 @@ fun UnderlinedTextField(
     colors: TextFieldColors = UnderlinedTextFieldDefaults.colors(),
     cursorBrush: Brush = SolidColor(colors.cursorColor(isError).value),
 ) {
-
-    val textColor = textStyle.color.takeOrElse {
-        colors.textColor(enabled, isError, interactionSource).value
-    }
+    val textColor =
+        textStyle.color.takeOrElse {
+            colors.textColor(enabled, isError, interactionSource).value
+        }
     val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        BasicTextField(modifier = modifier
-            .defaultMinSize(
-                minHeight = UnderlinedTextFieldDefaults.MinHeight
-            )
-            .fillMaxWidth(),
+        BasicTextField(
+            modifier =
+                modifier
+                    .defaultMinSize(
+                        minHeight = UnderlinedTextFieldDefaults.MinHeight,
+                    )
+                    .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -109,7 +111,8 @@ fun UnderlinedTextField(
                     interactionSource = interactionSource,
                     colors = UnderlinedTextFieldDefaults.colors(),
                 )
-            })
+            },
+        )
     }
 }
 
@@ -140,17 +143,20 @@ fun UnderlinedTextField(
     colors: TextFieldColors = UnderlinedTextFieldDefaults.colors(),
     cursorBrush: Brush = SolidColor(colors.cursorColor(isError).value),
 ) {
-    val textColor = textStyle.color.takeOrElse {
-        colors.textColor(enabled, isError, interactionSource).value
-    }
+    val textColor =
+        textStyle.color.takeOrElse {
+            colors.textColor(enabled, isError, interactionSource).value
+        }
     val mergedTextStyle = textStyle.merge(TextStyle(color = textColor))
 
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
-        BasicTextField(modifier = modifier
-            .defaultMinSize(
-                minHeight = UnderlinedTextFieldDefaults.MinHeight
-            )
-            .fillMaxWidth(),
+        BasicTextField(
+            modifier =
+                modifier
+                    .defaultMinSize(
+                        minHeight = UnderlinedTextFieldDefaults.MinHeight,
+                    )
+                    .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -182,7 +188,8 @@ fun UnderlinedTextField(
                     interactionSource = interactionSource,
                     colors = UnderlinedTextFieldDefaults.colors(),
                 )
-            })
+            },
+        )
     }
 }
 
@@ -191,7 +198,10 @@ internal object UnderlinedTextFieldDefaults {
     val MinHeight = TextFieldMinHeight
 
     private fun contentPadding(
-        start: Dp = 0.dp, end: Dp = 0.dp, top: Dp = TextFieldVerticalPadding, bottom: Dp = TextFieldVerticalPadding
+        start: Dp = 0.dp,
+        end: Dp = 0.dp,
+        top: Dp = TextFieldVerticalPadding,
+        bottom: Dp = TextFieldVerticalPadding,
     ): PaddingValues = PaddingValues(start, top, end, bottom)
 
     private fun labelPadding(
@@ -251,7 +261,7 @@ internal object UnderlinedTextFieldDefaults {
         colors: TextFieldColors = colors(),
         container: @Composable () -> Unit = {
             ContainerBox(enabled, isError, interactionSource, colors)
-        }
+        },
     ) {
         CommonDecorationBox(
             value = value,
@@ -288,7 +298,7 @@ internal object UnderlinedTextFieldDefaults {
         Box(
             Modifier
                 .background(colors.containerColor(enabled, isError, interactionSource).value)
-                .containerUnderline(enabled, isError, interactionSource, colors, borderThickness)
+                .containerUnderline(enabled, isError, interactionSource, colors, borderThickness),
         )
     }
 

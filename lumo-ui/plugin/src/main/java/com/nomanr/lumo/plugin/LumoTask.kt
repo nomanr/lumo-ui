@@ -4,7 +4,7 @@ import com.nomanr.lumo.exceptions.LumoException
 import com.nomanr.lumo.plugin.actions.GenerateComponent
 import com.nomanr.lumo.plugin.actions.Initialiser
 import com.nomanr.lumo.plugin.configs.PropertyLoader
-import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents
 import com.nomanr.lumo.provider.PluginDependencyProvider
 import com.nomanr.lumo.utils.Logger
 import org.gradle.api.DefaultTask
@@ -24,7 +24,7 @@ abstract class LumoTask : DefaultTask() {
 
     @set:Option(
         option = "required-deps",
-        description = "Returns the required dependencies to be added to the build.gradle.kts file"
+        description = "Returns the required dependencies to be added to the build.gradle.kts file",
     )
     @get:Input
     var requiredDeps: Boolean = false
@@ -99,7 +99,8 @@ abstract class LumoTask : DefaultTask() {
     }
 
     private fun printHelpMessage() {
-        val helpMessage = """
+        val helpMessage =
+            """
             |Usage: ./gradlew lumo --option <value>
             |
             |Options:
@@ -109,9 +110,8 @@ abstract class LumoTask : DefaultTask() {
             |  --add <component>       Add a new Lumo UI Component
             |  --plugin-help           Display this help message
             |
-        """.trimMargin()
+            """.trimMargin()
 
         logger.info(helpMessage)
     }
 }
-

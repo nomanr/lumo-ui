@@ -1,6 +1,5 @@
 package com.nomanr.sample.ui.sample.samples
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,17 +33,17 @@ import com.nomanr.sample.ui.components.Icon
 import com.nomanr.sample.ui.components.IconButton
 import com.nomanr.sample.ui.components.IconButtonVariant
 import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.progress_indicators.CircularProgressIndicator
+import com.nomanr.sample.ui.components.progressindicators.CircularProgressIndicator
 import com.nomanr.sample.ui.contentColorFor
 
 @Composable
 fun IconButtonSample() {
     Column(
-        modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .verticalScroll(rememberScrollState())
+        modifier =
+            Modifier
+                .padding(horizontal = 16.dp)
+                .verticalScroll(rememberScrollState()),
     ) {
-
         RealWorldIconButtonExamples()
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -64,7 +63,6 @@ fun IconButtonSample() {
         GhostIconButtonSample()
 
         Spacer(modifier = Modifier.height(30.dp))
-
     }
 }
 
@@ -72,17 +70,18 @@ fun IconButtonSample() {
 @Composable
 private fun RealWorldIconButtonExamples() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "Icon Button Examples", style = AppTheme.typography.h4)
 
         FlowRow(
             modifier = Modifier.padding(top = 8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             IconButton(variant = IconButtonVariant.Primary) {
                 Icon(Icons.Default.Star, contentDescription = "Favorite")
@@ -98,7 +97,8 @@ private fun RealWorldIconButtonExamples() {
         }
 
         Row(
-            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             IconButton(variant = IconButtonVariant.PrimaryElevated) {
                 Icon(Icons.Default.Email, contentDescription = "Email")
@@ -113,7 +113,8 @@ private fun RealWorldIconButtonExamples() {
         }
 
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             IconButton(variant = IconButtonVariant.Primary, shape = CircleShape) {
                 Icon(Icons.Default.PhotoCamera, contentDescription = "Circle Icon")
@@ -129,10 +130,7 @@ private fun RealWorldIconButtonExamples() {
             IconButton(variant = IconButtonVariant.PrimaryGhost, shape = RoundedCornerShape(0.dp)) {
                 Icon(Icons.Default.PhotoCamera, contentDescription = "Square Icon")
             }
-
         }
-
-
     }
 }
 
@@ -140,15 +138,17 @@ private fun RealWorldIconButtonExamples() {
 @Composable
 private fun PrimaryIconButtonSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "Primary Icon Buttons", style = AppTheme.typography.h4)
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             IconButton(variant = IconButtonVariant.Primary) {
                 Icon(Icons.Default.Star, contentDescription = "PrimaryFilled")
@@ -178,15 +178,17 @@ private fun PrimaryIconButtonSample() {
 @Composable
 private fun SecondaryIconButtonSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "Secondary Icon Buttons", style = AppTheme.typography.h4)
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             IconButton(variant = IconButtonVariant.Secondary) {
                 Icon(Icons.Default.Email, contentDescription = "SecondaryFilled")
@@ -215,15 +217,17 @@ private fun SecondaryIconButtonSample() {
 @Composable
 private fun DestructiveIconButtonSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "Destructive Icon Buttons", style = AppTheme.typography.h4)
 
         FlowRow(
-            verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             IconButton(variant = IconButtonVariant.Destructive) {
                 Icon(Icons.Default.Delete, contentDescription = "DestructiveFilled")
@@ -251,32 +255,34 @@ private fun DestructiveIconButtonSample() {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun GhostIconButtonSample() {
-
-    val backgroundColors = listOf(
-        AppTheme.colors.primary,
-        AppTheme.colors.secondary,
-        AppTheme.colors.error,
-        AppTheme.colors.success,
-        AppTheme.colors.background,
-        AppTheme.colors.surface,
-        AppTheme.colors.tertiary,
-        AppTheme.colors.disabled
-    )
+    val backgroundColors =
+        listOf(
+            AppTheme.colors.primary,
+            AppTheme.colors.secondary,
+            AppTheme.colors.error,
+            AppTheme.colors.success,
+            AppTheme.colors.background,
+            AppTheme.colors.surface,
+            AppTheme.colors.tertiary,
+            AppTheme.colors.disabled,
+        )
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "Ghost Icon Buttons - content color based on the container color", style = AppTheme.typography.h4)
 
         FlowRow {
             backgroundColors.forEach { color ->
                 Box(
-                    modifier = Modifier
-                        .size(75.dp)
-                        .background(color),
-                    contentAlignment = Alignment.Center
+                    modifier =
+                        Modifier
+                            .size(75.dp)
+                            .background(color),
+                    contentAlignment = Alignment.Center,
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = color)) {
                         IconButton(variant = IconButtonVariant.Ghost) {

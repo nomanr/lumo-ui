@@ -21,7 +21,7 @@ fun HorizontalDivider(
 ) = Canvas(
     modifier
         .fillMaxWidth()
-        .height(thickness)
+        .height(thickness),
 ) {
     drawLine(
         color = color,
@@ -39,7 +39,7 @@ fun VerticalDivider(
 ) = Canvas(
     modifier
         .fillMaxHeight()
-        .width(thickness)
+        .width(thickness),
 ) {
     drawLine(
         color = color,

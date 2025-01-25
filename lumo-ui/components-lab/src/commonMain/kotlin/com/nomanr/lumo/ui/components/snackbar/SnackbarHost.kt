@@ -46,26 +46,35 @@ interface SnackbarVisuals {
 @Stable
 interface SnackbarData {
     val visuals: SnackbarVisuals
+
     fun performAction()
+
     fun dismiss()
 }
 
 enum class SnackbarResult {
-    Dismissed, ActionPerformed
+    Dismissed,
+    ActionPerformed,
 }
 
 enum class SnackbarDuration {
-    Short, Long, Indefinite
+    Short,
+    Long,
+    Indefinite,
 }
 
 internal fun SnackbarDuration.toMillis(hasAction: Boolean, accessibilityManager: AccessibilityManager?): Long {
-    val original = when (this) {
-        SnackbarDuration.Indefinite -> Long.MAX_VALUE
-        SnackbarDuration.Long -> 10000L
-        SnackbarDuration.Short -> 4000L
-    }
+    val original =
+        when (this) {
+            SnackbarDuration.Indefinite -> Long.MAX_VALUE
+            SnackbarDuration.Long -> 10000L
+            SnackbarDuration.Short -> 4000L
+        }
     return accessibilityManager?.calculateRecommendedTimeoutMillis(
-        original, containsIcons = true, containsText = true, containsControls = hasAction
+        original,
+        containsIcons = true,
+        containsText = true,
+        containsControls = hasAction,
     ) ?: original
 }
 
@@ -79,26 +88,28 @@ class SnackbarHostState {
         message: String,
         actionLabel: String? = null,
         withDismissAction: Boolean = false,
-        duration: SnackbarDuration = if (actionLabel == null) SnackbarDuration.Short else SnackbarDuration.Indefinite
-    ): SnackbarResult = showSnackbar(
-        SnackbarVisualsImpl(message, actionLabel, withDismissAction, duration)
-    )
+        duration: SnackbarDuration = if (actionLabel == null) SnackbarDuration.Short else SnackbarDuration.Indefinite,
+    ): SnackbarResult =
+        showSnackbar(
+            SnackbarVisualsImpl(message, actionLabel, withDismissAction, duration),
+        )
 
-    suspend fun showSnackbar(visuals: SnackbarVisuals): SnackbarResult = mutex.withLock {
-        try {
-            return suspendCancellableCoroutine { continuation ->
-                currentSnackbarData = SnackbarDataImpl(visuals, continuation)
+    suspend fun showSnackbar(visuals: SnackbarVisuals): SnackbarResult =
+        mutex.withLock {
+            try {
+                return suspendCancellableCoroutine { continuation ->
+                    currentSnackbarData = SnackbarDataImpl(visuals, continuation)
+                }
+            } finally {
+                currentSnackbarData = null
             }
-        } finally {
-            currentSnackbarData = null
         }
-    }
 
     private class SnackbarVisualsImpl(
         override val message: String,
         override val actionLabel: String?,
         override val withDismissAction: Boolean,
-        override val duration: SnackbarDuration
+        override val duration: SnackbarDuration,
     ) : SnackbarVisuals {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -121,7 +132,7 @@ class SnackbarHostState {
 
     private class SnackbarDataImpl(
         override val visuals: SnackbarVisuals,
-        private val continuation: CancellableContinuation<SnackbarResult>
+        private val continuation: CancellableContinuation<SnackbarResult>,
     ) : SnackbarData {
         override fun performAction() {
             if (continuation.isActive) continuation.resume(SnackbarResult.ActionPerformed)
@@ -151,15 +162,17 @@ class SnackbarHostState {
 fun SnackbarHost(
     hostState: SnackbarHostState,
     modifier: Modifier = Modifier,
-    snackbar: @Composable (SnackbarData) -> Unit = { Snackbar(it) }
+    snackbar: @Composable (SnackbarData) -> Unit = { Snackbar(it) },
 ) {
     val currentSnackbarData = hostState.currentSnackbarData
     val accessibilityManager = LocalAccessibilityManager.current
     LaunchedEffect(currentSnackbarData) {
         if (currentSnackbarData != null) {
-            val duration = currentSnackbarData.visuals.duration.toMillis(
-                currentSnackbarData.visuals.actionLabel != null, accessibilityManager
-            )
+            val duration =
+                currentSnackbarData.visuals.duration.toMillis(
+                    currentSnackbarData.visuals.actionLabel != null,
+                    accessibilityManager,
+                )
             delay(duration)
             currentSnackbarData.dismiss()
         }
@@ -171,7 +184,7 @@ fun SnackbarHost(
 private fun FadeInFadeOutWithScale(
     current: SnackbarData?,
     modifier: Modifier = Modifier,
-    content: @Composable (SnackbarData) -> Unit
+    content: @Composable (SnackbarData) -> Unit,
 ) {
     val state = remember { FadeInFadeOutState<SnackbarData?>() }
     if (current != state.current) {
@@ -182,24 +195,28 @@ private fun FadeInFadeOutWithScale(
         keys.fastFilterNotNull().fastMapTo(state.items) { key ->
             FadeInFadeOutAnimationItem(key) { children ->
                 val isVisible = key == current
-                val opacity = animatedOpacity(
-                    animation = spring(stiffness = 400f),
-                    visible = isVisible,
-                    onAnimationFinish = {
-                        if (key != state.current) {
-                            state.items.removeAll { it.key == key }
-                            state.scope?.invalidate()
-                        }
-                    }
-                )
+                val opacity =
+                    animatedOpacity(
+                        animation = spring(stiffness = 400f),
+                        visible = isVisible,
+                        onAnimationFinish = {
+                            if (key != state.current) {
+                                state.items.removeAll { it.key == key }
+                                state.scope?.invalidate()
+                            }
+                        },
+                    )
                 val scale = animatedScale(animation = spring(stiffness = 400f), visible = isVisible)
                 Box(
                     Modifier.graphicsLayer(scaleX = scale.value, scaleY = scale.value, alpha = opacity.value)
                         .semantics {
                             liveRegion = LiveRegionMode.Polite
-                            dismiss { key.dismiss(); true }
+                            dismiss {
+                                key.dismiss()
+                                true
+                            }
                             paneTitle = "SnackBar"
-                        }
+                        },
                 ) {
                     children()
                 }
@@ -219,14 +236,15 @@ private class FadeInFadeOutState<T> {
 }
 
 private data class FadeInFadeOutAnimationItem<T>(
-    val key: T, val transition: @Composable (content: @Composable () -> Unit) -> Unit
+    val key: T,
+    val transition: @Composable (content: @Composable () -> Unit) -> Unit,
 )
 
 @Composable
 private fun animatedOpacity(
     animation: AnimationSpec<Float>,
     visible: Boolean,
-    onAnimationFinish: () -> Unit = {}
+    onAnimationFinish: () -> Unit = {},
 ): State<Float> {
     val alpha = remember { Animatable(if (!visible) 1f else 0f) }
     LaunchedEffect(visible) {
@@ -250,4 +268,3 @@ fun rememberSnackbarHost(): SnackbarHostState {
     val snackBarHost = remember { SnackbarHostState() }
     return snackBarHost
 }
-

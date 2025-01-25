@@ -2,16 +2,17 @@ package com.nomanr.lumo.plugin.template
 
 import com.nomanr.lumo.exceptions.LumoException
 import com.nomanr.lumo.plugin.configs.LumoConfig
-import com.nomanr.lumo.plugin.template.template_registry.MultiplatformSourceSet
-import com.nomanr.lumo.plugin.template.template_registry.SupportedComponents
-import com.nomanr.lumo.plugin.template.template_registry.Template
-import com.nomanr.lumo.plugin.template.template_registry.TemplateProvider
+import com.nomanr.lumo.plugin.template.templateregistry.MultiplatformSourceSet
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents
+import com.nomanr.lumo.plugin.template.templateregistry.Template
+import com.nomanr.lumo.plugin.template.templateregistry.TemplateProvider
 import com.nomanr.lumo.utils.LinkFormatter
 import com.nomanr.lumo.utils.Logger
 import java.io.File
 
 class ComponentGenerator(
-    private val rootDir: File, private val config: LumoConfig
+    private val rootDir: File,
+    private val config: LumoConfig,
 ) {
     private val logger = Logger.getInstance()
     private val outputDir = File(config.componentsDir)
@@ -65,7 +66,6 @@ class ComponentGenerator(
                     generateTemplate(dependencyPath, dependencyOutputFile, templateSourceDir)
                     successFullyGeneratedSupportingFiles.add(dependencyOutputFile)
 
-
                     if (!template.requirements.isNullOrEmpty()) {
                         otherSuccessMessages.add(template.requirements)
                     }
@@ -83,7 +83,8 @@ class ComponentGenerator(
     }
 
     private fun generatePlatformSpecificFiles(
-        template: Template, templateSourceDir: String
+        template: Template,
+        templateSourceDir: String,
     ) {
         template.platformSpecificFiles.forEach { (sourceSet, files) ->
             val platformOutputDir =
@@ -133,8 +134,9 @@ class ComponentGenerator(
     ) {
         val resourcePath = "$templateSourceDir/$templateFileName"
         logger.error(resourcePath)
-        val resource = javaClass.classLoader.getResource(resourcePath)
-            ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
+        val resource =
+            javaClass.classLoader.getResource(resourcePath)
+                ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
 
         val templateContent = resource.readText()
 
@@ -158,9 +160,6 @@ class ComponentGenerator(
             successFullyGeneratedSupportingFiles.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
         val otherSuccessMessages = otherSuccessMessages.joinToString("\n")
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
-
-
-
 
         if (failedToGenerate.isNotEmpty()) {
             logger.warn("Failed to generate some files as they already exist:")
@@ -193,7 +192,7 @@ class ComponentGenerator(
             logger.warn("Failed to Generate: $totalFailed")
         }
 
-        if(totalGenerated > 0) {
+        if (totalGenerated > 0) {
             logger.info("Scroll up to see the generated files.")
         }
     }

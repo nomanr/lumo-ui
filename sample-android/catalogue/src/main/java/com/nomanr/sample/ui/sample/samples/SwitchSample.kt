@@ -38,37 +38,36 @@ import com.nomanr.sample.ui.components.card.OutlinedCard
 @Composable
 fun SwitchSample() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        horizontalAlignment = Alignment.Start
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        horizontalAlignment = Alignment.Start,
     ) {
-
         SwitchShowcase()
 
         Spacer(modifier = Modifier.height(24.dp))
 
         SwitchExamples()
-
     }
-
 }
 
 @Composable
 private fun SwitchShowcase() {
-    val checked = remember {
-        mutableStateOf(false)
-    }
+    val checked =
+        remember {
+            mutableStateOf(false)
+        }
 
     Text(text = "Switch", style = AppTheme.typography.h4)
 
     Column(
-        modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Switch(checked = checked.value, onCheckedChange = {
                 checked.value = it
@@ -78,24 +77,26 @@ private fun SwitchShowcase() {
             })
         }
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Switch(checked = checked.value, thumbContent = {
                 Box(
-                    modifier = Modifier
-                        .size(5.dp)
-                        .clip(CircleShape)
-                        .background(LocalContentColor.current)
+                    modifier =
+                        Modifier
+                            .size(5.dp)
+                            .clip(CircleShape)
+                            .background(LocalContentColor.current),
                 )
             }, onCheckedChange = {
                 checked.value = it
             })
             Switch(checked = checked.value, enabled = false, thumbContent = {
                 Box(
-                    modifier = Modifier
-                        .size(5.dp)
-                        .clip(CircleShape)
-                        .background(LocalContentColor.current)
+                    modifier =
+                        Modifier
+                            .size(5.dp)
+                            .clip(CircleShape)
+                            .background(LocalContentColor.current),
                 )
             }, onCheckedChange = {
                 checked.value = it
@@ -103,38 +104,38 @@ private fun SwitchShowcase() {
         }
 
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Switch(checked = checked.value, thumbContent = {
                 Icon(
-                    modifier = Modifier.size(12.dp), imageVector = Icons.Default.Check, contentDescription = "Checked"
+                    modifier = Modifier.size(12.dp),
+                    imageVector = Icons.Default.Check,
+                    contentDescription = "Checked",
                 )
             }, onCheckedChange = {
                 checked.value = it
             })
             Switch(checked = checked.value, enabled = false, thumbContent = {
                 Icon(
-                    modifier = Modifier.size(12.dp), imageVector = Icons.Default.Check, contentDescription = "Checked"
+                    modifier = Modifier.size(12.dp),
+                    imageVector = Icons.Default.Check,
+                    contentDescription = "Checked",
                 )
             }, onCheckedChange = {
                 checked.value = it
             })
         }
-
     }
 }
 
 @Composable
 private fun SwitchExamples() {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-
         SwitchExampleWithOutline()
 
         SwitchDifficultyExample()
-
     }
 }
-
 
 @Composable
 private fun SwitchExampleWithOutline() {
@@ -144,31 +145,34 @@ private fun SwitchExampleWithOutline() {
     val selectedBorder = BorderStroke(3.dp, AppTheme.colors.primary)
 
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedCard(border = if (checkedState1) selectedBorder else CardDefaults.outlinedCardBorder(),
-            onClick = { checkedState1 = !checkedState1 }
-
+        OutlinedCard(
+            border = if (checkedState1) selectedBorder else CardDefaults.outlinedCardBorder(),
+            onClick = { checkedState1 = !checkedState1 },
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(modifier = Modifier.padding(end = 12.dp), text = "Weekly Discount", style = AppTheme.typography.h4)
                 Switch(checked = checkedState1, onCheckedChange = { checkedState1 = it })
             }
         }
 
-
-        OutlinedCard(border = if (checkedState2) selectedBorder else CardDefaults.outlinedCardBorder(),
-            onClick = { checkedState2 = !checkedState2 }) {
+        OutlinedCard(
+            border = if (checkedState2) selectedBorder else CardDefaults.outlinedCardBorder(),
+            onClick = { checkedState2 = !checkedState2 },
+        ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(modifier = Modifier.padding(end = 12.dp), text = "Monthly Discount", style = AppTheme.typography.h4)
                 Switch(checked = checkedState2, onCheckedChange = { checkedState2 = it })
@@ -176,7 +180,6 @@ private fun SwitchExampleWithOutline() {
         }
     }
 }
-
 
 @Composable
 private fun SwitchDifficultyExample() {
@@ -187,11 +190,12 @@ private fun SwitchDifficultyExample() {
     OutlinedCard {
         Column {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(text = "Difficulty", style = AppTheme.typography.h4)
             }
@@ -202,7 +206,7 @@ private fun SwitchDifficultyExample() {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Easy")
                     Switch(checked = easy, onCheckedChange = { easy = it })
@@ -213,7 +217,7 @@ private fun SwitchDifficultyExample() {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Medium")
                     Switch(checked = medium, onCheckedChange = { medium = it })
@@ -224,7 +228,7 @@ private fun SwitchDifficultyExample() {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Hard")
                     Switch(checked = hard, onCheckedChange = { hard = it })

@@ -13,10 +13,12 @@ import com.nomanr.lumo.ui.foundation.ripple
 
 object AppTheme {
     val colors: Colors
-        @ReadOnlyComposable @Composable get() = LocalColors.current
+        @ReadOnlyComposable @Composable
+        get() = LocalColors.current
 
     val typography: Typography
-        @ReadOnlyComposable @Composable get() = LocalTypography.current
+        @ReadOnlyComposable @Composable
+        get() = LocalTypography.current
 }
 
 @Composable
@@ -36,7 +38,7 @@ fun AppTheme(
         LocalTextSelectionColors provides selectionColors,
         LocalContentColor provides colors.contentColorFor(colors.background),
         LocalTextStyle provides typography.body1,
-        content = content
+        content = content,
     )
 }
 

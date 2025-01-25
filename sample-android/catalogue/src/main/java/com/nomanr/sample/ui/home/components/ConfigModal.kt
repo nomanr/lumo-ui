@@ -35,15 +35,15 @@ fun ConfigModal(isVisible: Boolean, onDismiss: () -> Unit) {
 
     CompositionLocalProvider(
         LocalTypography provides AppTheme.originalScaleTypography,
-        LocalLayoutDirection provides appConfigState.systemLayoutDirection
+        LocalLayoutDirection provides appConfigState.systemLayoutDirection,
     ) {
         ModalBottomSheet(isVisible = isVisible, onDismissRequest = onDismiss) {
             Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .padding(16.dp)
+                modifier =
+                    Modifier
+                        .verticalScroll(rememberScrollState())
+                        .padding(16.dp),
             ) {
-
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Text("Configurations", style = AppTheme.typography.h2)
                 }
@@ -59,8 +59,6 @@ fun ConfigModal(isVisible: Boolean, onDismiss: () -> Unit) {
                 ConfigSection("Font Scale") {
                     FontScale()
                 }
-
-
             }
         }
     }
@@ -112,34 +110,28 @@ fun FontScale() {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
         ) {
-
-
             Slider(
                 modifier = Modifier.weight(0.8f),
                 value = appConfigState.fontScale,
                 valueRange = (appConfigState.systemFontScale)..2.5f,
                 onValueChange = { appConfigState.updateFontScale(it) },
-                enabled = !isSystemFontScale
+                enabled = !isSystemFontScale,
             )
 
             Box(modifier = Modifier.weight(0.2f), contentAlignment = Alignment.Center) {
                 Text("%.2f".format(appConfigState.fontScale), style = AppTheme.typography.label2)
             }
-
         }
     }
 }
 
-
 @Composable
 fun ConfigSection(title: String, content: @Composable () -> Unit) {
-
     Text(title, style = AppTheme.typography.label1)
 
     Spacer(modifier = Modifier.height(8.dp))
 
     content()
 }
-

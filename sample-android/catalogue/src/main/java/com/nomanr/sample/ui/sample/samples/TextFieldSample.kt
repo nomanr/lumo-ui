@@ -41,13 +41,13 @@ import com.nomanr.sample.ui.components.textfield.UnderlinedTextField
 @Composable
 fun TextFieldSample() {
     Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
-            .padding(16.dp)
-            .imePadding()
+        modifier =
+            Modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
+                .padding(16.dp)
+                .imePadding(),
     ) {
-
         InteractiveSample()
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -66,52 +66,62 @@ private fun TextFieldExamples() {
     var phone7 by remember { mutableStateOf("1234567890") }
 
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "Simple TextField", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "Simple TextField",
+            style = AppTheme.typography.h4,
         )
 
-        TextField(value = phone1,
+        TextField(
+            value = phone1,
             onValueChange = { if (it.isDigitsOnly()) phone1 = it },
             label = { Text("Phone") },
             placeholder = { Text("000-000-0000") },
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "TextField with a supporting text", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "TextField with a supporting text",
+            style = AppTheme.typography.h4,
         )
 
-
-        OutlinedTextField(value = phone2,
+        OutlinedTextField(
+            value = phone2,
             onValueChange = { if (it.isDigitsOnly()) phone2 = it },
             label = { Text("Phone") },
             placeholder = { Text("000-000-0000") },
             supportingText = { Text("Enter your phone number") },
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "And with a prefix", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "And with a prefix",
+            style = AppTheme.typography.h4,
         )
 
-        UnderlinedTextField(value = phone3,
+        UnderlinedTextField(
+            value = phone3,
             onValueChange = { if (it.isDigitsOnly()) phone3 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
             placeholder = { Text("000-000-0000") },
             supportingText = { Text("Enter your phone number") },
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "And with a suffix", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "And with a suffix",
+            style = AppTheme.typography.h4,
         )
 
-        TextField(value = phone4,
+        TextField(
+            value = phone4,
             onValueChange = { if (it.isDigitsOnly()) phone4 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -119,14 +129,17 @@ private fun TextFieldExamples() {
             placeholder = { Text("000-000-0000") },
             supportingText = { Text("Enter your phone number") },
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "And with a leading icon", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "And with a leading icon",
+            style = AppTheme.typography.h4,
         )
 
-        TextField(value = phone5,
+        TextField(
+            value = phone5,
             onValueChange = { if (it.isDigitsOnly()) phone5 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -137,14 +150,17 @@ private fun TextFieldExamples() {
             placeholder = { Text("000-000-0000") },
             supportingText = { Text("Enter your phone number") },
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "And with a trailing icon", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "And with a trailing icon",
+            style = AppTheme.typography.h4,
         )
 
-        TextField(value = phone6,
+        TextField(
+            value = phone6,
             onValueChange = { if (it.isDigitsOnly()) phone6 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -162,14 +178,17 @@ private fun TextFieldExamples() {
             placeholder = { Text("000-000-0000") },
             supportingText = { Text("Enter your phone number") },
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "And with an error", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "And with an error",
+            style = AppTheme.typography.h4,
         )
 
-        TextField(value = phone6,
+        TextField(
+            value = phone6,
             onValueChange = { if (it.isDigitsOnly()) phone6 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -188,14 +207,17 @@ private fun TextFieldExamples() {
             supportingText = { Text("Enter your phone number") },
             isError = phone6.length < 10,
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "And read-only", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "And read-only",
+            style = AppTheme.typography.h4,
         )
 
-        TextField(value = phone7,
+        TextField(
+            value = phone7,
             onValueChange = { if (it.isDigitsOnly()) phone7 = it },
             label = { Text("Phone") },
             prefix = { Text("+44") },
@@ -214,13 +236,14 @@ private fun TextFieldExamples() {
             supportingText = { Text("Enter your phone number") },
             readOnly = true,
             maxLines = 1,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         )
 
         Text(
-            modifier = Modifier.padding(top = 16.dp), text = "A date of birth example", style = AppTheme.typography.h4
+            modifier = Modifier.padding(top = 16.dp),
+            text = "A date of birth example",
+            style = AppTheme.typography.h4,
         )
-
 
         var day by remember { mutableStateOf("") }
         var month by remember { mutableStateOf("") }
@@ -229,9 +252,10 @@ private fun TextFieldExamples() {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            OutlinedTextField(modifier = Modifier.weight(1f),
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
                 value = day,
                 onValueChange = {
                     day = it
@@ -239,9 +263,10 @@ private fun TextFieldExamples() {
                 label = { Text("Day") },
                 placeholder = { Text("DD") },
                 supportingText = { Text("DD", style = AppTheme.typography.label2) },
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             )
-            OutlinedTextField(modifier = Modifier.weight(1f),
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
                 value = month,
                 onValueChange = {
                     month = it
@@ -249,9 +274,10 @@ private fun TextFieldExamples() {
                 label = { Text("Month") },
                 placeholder = { Text("MM") },
                 supportingText = { Text("MM", style = AppTheme.typography.label2) },
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             )
-            OutlinedTextField(modifier = Modifier.weight(1f),
+            OutlinedTextField(
+                modifier = Modifier.weight(1f),
                 value = year,
                 onValueChange = {
                     year = it
@@ -259,11 +285,9 @@ private fun TextFieldExamples() {
                 label = { Text("Year") },
                 placeholder = { Text("YYYY") },
                 supportingText = { Text("YYYY", style = AppTheme.typography.label2) },
-                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             )
         }
-
-
     }
 }
 
@@ -281,12 +305,9 @@ private fun InteractiveSample() {
     var disabled by remember { mutableStateOf(false) }
     var readOnly by remember { mutableStateOf(false) }
 
-
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
-
-
         Text("TextField Demo", style = AppTheme.typography.h4)
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -302,20 +323,25 @@ private fun InteractiveSample() {
             isError = errorEnabled,
             enabled = !disabled,
             readOnly = readOnly,
-            leadingIcon = if (leadingIconEnabled) {
-                { Icon(Icons.Filled.Phone, contentDescription = "Phone Icon") }
-            } else null,
-            trailingIcon = if (trailingIconEnabled) {
-                if (phone.length >= 10) {
-                    { Icon(Icons.Outlined.Check, contentDescription = "Phone Icon", tint = Color.Green) }
+            leadingIcon =
+                if (leadingIconEnabled) {
+                    { Icon(Icons.Filled.Phone, contentDescription = "Phone Icon") }
                 } else {
-                    { Icon(Icons.Outlined.Close, contentDescription = "Phone Icon", tint = Color.Red) }
-                }
-            } else null,
+                    null
+                },
+            trailingIcon =
+                if (trailingIconEnabled) {
+                    if (phone.length >= 10) {
+                        { Icon(Icons.Outlined.Check, contentDescription = "Phone Icon", tint = Color.Green) }
+                    } else {
+                        { Icon(Icons.Outlined.Close, contentDescription = "Phone Icon", tint = Color.Red) }
+                    }
+                } else {
+                    null
+                },
         )
 
         Spacer(modifier = Modifier.height(24.dp))
-
 
         Text("TextField Type", style = AppTheme.typography.h4)
 
@@ -372,71 +398,85 @@ private fun RenderTextField(
     trailingIcon: @Composable (() -> Unit)? = null,
 ) {
     when (type) {
-        "TextField" -> TextField(value = value,
-            onValueChange = onValueChange,
-            maxLines = 1,
-            modifier = modifier.fillMaxWidth(),
-            label = if (label.isNotEmpty()) {
-                { Text(label) }
-            } else null,
-            supportingText = supportingText?.let { { Text(it) } },
-            prefix = prefix?.let { { Text(it) } },
-            suffix = suffix?.let { { Text(it, style = AppTheme.typography.body2) } },
-            leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            isError = isError,
-            enabled = enabled,
-            readOnly = readOnly,
-            placeholder = { Text("Enter your phone number") },
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
-        )
+        "TextField" ->
+            TextField(
+                value = value,
+                onValueChange = onValueChange,
+                maxLines = 1,
+                modifier = modifier.fillMaxWidth(),
+                label =
+                    if (label.isNotEmpty()) {
+                        { Text(label) }
+                    } else {
+                        null
+                    },
+                supportingText = supportingText?.let { { Text(it) } },
+                prefix = prefix?.let { { Text(it) } },
+                suffix = suffix?.let { { Text(it, style = AppTheme.typography.body2) } },
+                leadingIcon = leadingIcon,
+                trailingIcon = trailingIcon,
+                isError = isError,
+                enabled = enabled,
+                readOnly = readOnly,
+                placeholder = { Text("Enter your phone number") },
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            )
 
-        "OutlinedTextField" -> OutlinedTextField(value = value,
-            onValueChange = onValueChange,
-            modifier = modifier.fillMaxWidth(),
-            maxLines = 1,
-            label = if (label.isNotEmpty()) {
-                { Text(label) }
-            } else null,
-            supportingText = supportingText?.let { { Text(it) } },
-            prefix = prefix?.let { { Text(it) } },
-            suffix = suffix?.let { { Text(it, style = AppTheme.typography.body2) } },
-            leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            isError = isError,
-            enabled = enabled,
-            readOnly = readOnly,
-            placeholder = { Text("Enter your phone number") },
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
-        )
+        "OutlinedTextField" ->
+            OutlinedTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier.fillMaxWidth(),
+                maxLines = 1,
+                label =
+                    if (label.isNotEmpty()) {
+                        { Text(label) }
+                    } else {
+                        null
+                    },
+                supportingText = supportingText?.let { { Text(it) } },
+                prefix = prefix?.let { { Text(it) } },
+                suffix = suffix?.let { { Text(it, style = AppTheme.typography.body2) } },
+                leadingIcon = leadingIcon,
+                trailingIcon = trailingIcon,
+                isError = isError,
+                enabled = enabled,
+                readOnly = readOnly,
+                placeholder = { Text("Enter your phone number") },
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            )
 
-        "UnderlinedTextField" -> UnderlinedTextField(value = value,
-            onValueChange = onValueChange,
-            modifier = modifier.fillMaxWidth(),
-            maxLines = 1,
-            label = if (label.isNotEmpty()) {
-                { Text(label) }
-            } else null,
-            supportingText = supportingText?.let { { Text(it) } },
-            prefix = prefix?.let { { Text(it) } },
-            suffix = suffix?.let { { Text(it, style = AppTheme.typography.body2) } },
-            leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            isError = isError,
-            enabled = enabled,
-            readOnly = readOnly,
-            placeholder = { Text("Enter your phone number") },
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
-        )
+        "UnderlinedTextField" ->
+            UnderlinedTextField(
+                value = value,
+                onValueChange = onValueChange,
+                modifier = modifier.fillMaxWidth(),
+                maxLines = 1,
+                label =
+                    if (label.isNotEmpty()) {
+                        { Text(label) }
+                    } else {
+                        null
+                    },
+                supportingText = supportingText?.let { { Text(it) } },
+                prefix = prefix?.let { { Text(it) } },
+                suffix = suffix?.let { { Text(it, style = AppTheme.typography.body2) } },
+                leadingIcon = leadingIcon,
+                trailingIcon = trailingIcon,
+                isError = isError,
+                enabled = enabled,
+                readOnly = readOnly,
+                placeholder = { Text("Enter your phone number") },
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            )
     }
-
-
 }
 
 @Composable
 private fun TextFieldToggleOptions(label: String, state: Boolean, onStateChange: (Boolean) -> Unit) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Checkbox(checked = state, onCheckedChange = onStateChange)
         Text(text = label, style = AppTheme.typography.body2)

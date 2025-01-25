@@ -6,7 +6,7 @@ import com.nomanr.sample.ui.navigation.CatalogueAppNavHost
 
 @Composable
 fun CatalogueApp(
-    appState: CatalogueAppState = rememberCatalogueAppState()
+    appState: CatalogueAppState = rememberCatalogueAppState(),
 ) {
     Scaffold {
         CatalogueAppNavHost(

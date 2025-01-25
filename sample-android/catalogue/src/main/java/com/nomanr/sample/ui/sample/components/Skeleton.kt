@@ -12,8 +12,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Skeleton(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
-            .clip(RoundedCornerShape(8.dp))
-            .background(Color.LightGray)
+        modifier =
+            modifier
+                .clip(RoundedCornerShape(8.dp))
+                .background(Color.LightGray),
     )
 }

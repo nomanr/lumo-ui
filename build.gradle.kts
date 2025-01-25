@@ -31,17 +31,21 @@ subprojects {
         kotlin {
             target("**/*.kt")
             targetExclude("${layout.buildDirectory}/**/*.kt")
-            targetExclude("bin/**/*.kt")
 
-            ktlint("0.48.0").editorConfigOverride(
-                mapOf(
-                    "ktlint_standard_no-wildcard-imports" to "disabled",
-                    "ktlint_standard_max-line-length" to "100",
-                    "android" to "true"
-                )
-            )
+            ktlint()
+            suppressLintsFor {
+                step = "ktlint"
+                shortCode = "standard:function-naming"
+            }
+            suppressLintsFor {
+                step = "ktlint"
+                shortCode = "standard:property-naming"
+            }
+        }
 
-
+        kotlinGradle {
+            target("*.gradle.kts")
+            ktlint()
         }
     }
 

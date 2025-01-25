@@ -29,11 +29,12 @@ import com.nomanr.sample.ui.components.card.OutlinedCard
 @Composable
 fun RadioButtonSample() {
     Column(
-        modifier = Modifier
-            .background(AppTheme.colors.background)
-            .padding(16.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .background(AppTheme.colors.background)
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         RadioButtonShowcase()
 
@@ -46,9 +47,8 @@ fun RadioButtonSample() {
 @Composable
 private fun RadioButtonShowcase() {
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-
         var radioState1 by remember { mutableIntStateOf(2) }
 
         Text(text = "RadioButton", style = AppTheme.typography.h4)
@@ -78,14 +78,12 @@ private fun RadioButtonShowcase() {
                 Text(text = "Second", style = AppTheme.typography.label1)
             }
         }
-
     }
 }
 
 @Composable
 private fun RadioButtonExamples() {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-
         RadioButtonExampleWithOutline()
 
         RadioButtonDifficultyExample()
@@ -94,7 +92,6 @@ private fun RadioButtonExamples() {
     }
 }
 
-
 @Composable
 private fun RadioButtonExampleWithOutline() {
     var selectedState by remember { mutableIntStateOf(1) }
@@ -102,30 +99,34 @@ private fun RadioButtonExampleWithOutline() {
     val selectedBorder = BorderStroke(3.dp, AppTheme.colors.primary)
 
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedCard(border = if (selectedState == 1) selectedBorder else CardDefaults.outlinedCardBorder(),
-            onClick = { selectedState = 1 }
-
+        OutlinedCard(
+            border = if (selectedState == 1) selectedBorder else CardDefaults.outlinedCardBorder(),
+            onClick = { selectedState = 1 },
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(modifier = Modifier.padding(end = 12.dp), text = "Weekly Discount", style = AppTheme.typography.h4)
                 RadioButton(selected = selectedState == 1)
             }
         }
 
-        OutlinedCard(border = if (selectedState == 2) selectedBorder else CardDefaults.outlinedCardBorder(),
-            onClick = { selectedState = 2 }) {
+        OutlinedCard(
+            border = if (selectedState == 2) selectedBorder else CardDefaults.outlinedCardBorder(),
+            onClick = { selectedState = 2 },
+        ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(modifier = Modifier.padding(end = 12.dp), text = "Monthly Discount", style = AppTheme.typography.h4)
                 RadioButton(selected = selectedState == 2)
@@ -134,18 +135,18 @@ private fun RadioButtonExampleWithOutline() {
     }
 }
 
-
 @Composable
 private fun RadioButtonDifficultyExample() {
     var difficulty by remember { mutableIntStateOf(1) }
     OutlinedCard {
         Column {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(text = "Difficulty", style = AppTheme.typography.h4)
             }
@@ -156,17 +157,16 @@ private fun RadioButtonDifficultyExample() {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Easy")
                     RadioButton(selected = difficulty == 1, onClick = { difficulty = 1 })
                 }
 
-
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Medium")
                     RadioButton(selected = difficulty == 2, onClick = { difficulty = 2 })
@@ -175,7 +175,7 @@ private fun RadioButtonDifficultyExample() {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Hard")
                     RadioButton(selected = difficulty == 3, onClick = { difficulty = 3 })
@@ -192,11 +192,12 @@ private fun RadioButtonGenderExample() {
     OutlinedCard {
         Column {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(text = "Gender", style = AppTheme.typography.h4)
             }

@@ -1,6 +1,5 @@
 package com.nomanr.lumo.ui.components
 
-
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -60,18 +59,21 @@ fun NavigationBar(
     containerColor: Color = NavigationBarDefaults.containerColor,
     contentColor: Color = contentColorFor(containerColor),
     windowInsets: WindowInsets = NavigationBarDefaults.windowInsets,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     Surface(
-        color = containerColor, contentColor = contentColor, modifier = modifier
+        color = containerColor,
+        contentColor = contentColor,
+        modifier = modifier,
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .windowInsetsPadding(windowInsets)
-                .height(NavigationBarHeight)
-                .selectableGroup(),
-            content = content
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .windowInsetsPadding(windowInsets)
+                    .height(NavigationBarHeight)
+                    .selectableGroup(),
+            content = content,
         )
     }
 }
@@ -87,7 +89,7 @@ fun RowScope.NavigationBarItem(
     alwaysShowLabel: Boolean = true,
     colors: NavigationBarItemColors = NavigationBarItemDefaults.colors(),
     textStyle: TextStyle = NavigationBarItemDefaults.textStyle(),
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     val styledIcon = @Composable {
         val iconColor by colors.iconColor(selected = selected, enabled = enabled)
@@ -97,14 +99,15 @@ fun RowScope.NavigationBarItem(
         }
     }
 
-    val styledLabel: @Composable (() -> Unit)? = label?.let {
-        @Composable {
-            val textColor by colors.textColor(selected = selected, enabled = enabled)
-            CompositionLocalProvider(LocalContentColor provides textColor) {
-                ProvideTextStyle(textStyle, content = label)
+    val styledLabel: @Composable (() -> Unit)? =
+        label?.let {
+            @Composable {
+                val textColor by colors.textColor(selected = selected, enabled = enabled)
+                CompositionLocalProvider(LocalContentColor provides textColor) {
+                    ProvideTextStyle(textStyle, content = label)
+                }
             }
         }
-    }
 
     var itemWidth by remember { mutableIntStateOf(0) }
 
@@ -118,7 +121,6 @@ fun RowScope.NavigationBarItem(
                 interactionSource = interactionSource,
                 indication = null,
             )
-
             .semantics {
                 role = Role.Tab
             }
@@ -127,18 +129,17 @@ fun RowScope.NavigationBarItem(
                 itemWidth = it.width
             },
         contentAlignment = Alignment.Center,
-
-        ) {
+    ) {
         val animationProgress: Float by animateFloatAsState(
             targetValue = if (selected) 1f else 0f,
-            animationSpec = tween(ItemAnimationDurationMillis)
+            animationSpec = tween(ItemAnimationDurationMillis),
         )
 
         NavigationBarItemBaselineLayout(
             icon = styledIcon,
             label = styledLabel,
             alwaysShowLabel = alwaysShowLabel,
-            animationProgress = animationProgress
+            animationProgress = animationProgress,
         )
     }
 }
@@ -158,18 +159,19 @@ private fun NavigationBarItemBaselineLayout(
                 Modifier
                     .layoutId(LabelLayoutIdTag)
                     .alpha(if (alwaysShowLabel) 1f else animationProgress)
-                    .padding(horizontal = NavigationBarItemHorizontalPadding / 2)
+                    .padding(horizontal = NavigationBarItemHorizontalPadding / 2),
             ) { label() }
         }
     }) { measurables, constraints ->
         val iconPlaceable =
             measurables.first { it.layoutId == IconLayoutIdTag }.measure(constraints)
 
-        val labelPlaceable = label?.let {
-            measurables.first { it.layoutId == LabelLayoutIdTag }.measure(
-                constraints.copy(minHeight = 0)
-            )
-        }
+        val labelPlaceable =
+            label?.let {
+                measurables.first { it.layoutId == LabelLayoutIdTag }.measure(
+                    constraints.copy(minHeight = 0),
+                )
+            }
 
         if (label == null) {
             placeIcon(iconPlaceable, constraints)
@@ -179,7 +181,7 @@ private fun NavigationBarItemBaselineLayout(
                 iconPlaceable,
                 constraints,
                 alwaysShowLabel,
-                animationProgress
+                animationProgress,
             )
         }
     }
@@ -187,7 +189,7 @@ private fun NavigationBarItemBaselineLayout(
 
 private fun MeasureScope.placeIcon(
     iconPlaceable: Placeable,
-    constraints: Constraints
+    constraints: Constraints,
 ): MeasureResult {
     val width = constraints.maxWidth
     val height = constraints.maxHeight
@@ -226,7 +228,6 @@ private fun MeasureScope.placeLabelAndIcon(
     val iconX = (containerWidth - iconPlaceable.width) / 2
 
     return layout(containerWidth, height) {
-
         if (alwaysShowLabel || animationProgress != 0f) {
             labelPlaceable.placeRelative(labelX, labelY + offset)
         }
@@ -239,16 +240,16 @@ internal object NavigationBarDefaults {
     val containerColor: Color @Composable get() = AppTheme.colors.background
 
     val windowInsets: WindowInsets
-        @Composable get() = WindowInsets.systemBarsForVisualComponents.only(
-            WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom
-        )
+        @Composable get() =
+            WindowInsets.systemBarsForVisualComponents.only(
+                WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom,
+            )
 }
 
 object NavigationBarItemDefaults {
     internal val NavigationBarItemHorizontalPadding: Dp = 8.dp
     internal val NavigationBarItemVerticalPadding: Dp = 18.dp
     internal const val ItemAnimationDurationMillis: Int = 100
-
 
     @Composable
     fun colors(
@@ -258,14 +259,15 @@ object NavigationBarItemDefaults {
         unselectedTextColor: Color = AppTheme.colors.onBackground.copy(alpha = 0.65f),
         disabledIconColor: Color = AppTheme.colors.onBackground.copy(alpha = 0.3f),
         disabledTextColor: Color = AppTheme.colors.onBackground.copy(alpha = 0.3f),
-    ): NavigationBarItemColors = NavigationBarItemColors(
-        selectedIconColor = selectedIconColor,
-        selectedTextColor = selectedTextColor,
-        unselectedIconColor = unselectedIconColor,
-        unselectedTextColor = unselectedTextColor,
-        disabledIconColor = disabledIconColor,
-        disabledTextColor = disabledTextColor,
-    )
+    ): NavigationBarItemColors =
+        NavigationBarItemColors(
+            selectedIconColor = selectedIconColor,
+            selectedTextColor = selectedTextColor,
+            unselectedIconColor = unselectedIconColor,
+            unselectedTextColor = unselectedTextColor,
+            disabledIconColor = disabledIconColor,
+            disabledTextColor = disabledTextColor,
+        )
 
     @Composable
     fun textStyle(): TextStyle = AppTheme.typography.label2
@@ -282,29 +284,34 @@ data class NavigationBarItemColors internal constructor(
 ) {
     @Composable
     internal fun iconColor(selected: Boolean, enabled: Boolean): State<Color> {
-        val targetValue = when {
-            !enabled -> disabledIconColor
-            selected -> selectedIconColor
-            else -> unselectedIconColor
-        }
+        val targetValue =
+            when {
+                !enabled -> disabledIconColor
+                selected -> selectedIconColor
+                else -> unselectedIconColor
+            }
         return animateColorAsState(
-            targetValue = targetValue, animationSpec = tween(NavigationBarItemDefaults.ItemAnimationDurationMillis), label = "icon-color"
+            targetValue = targetValue,
+            animationSpec = tween(NavigationBarItemDefaults.ItemAnimationDurationMillis),
+            label = "icon-color",
         )
     }
 
     @Composable
     internal fun textColor(selected: Boolean, enabled: Boolean): State<Color> {
-        val targetValue = when {
-            !enabled -> disabledTextColor
-            selected -> selectedTextColor
-            else -> unselectedTextColor
-        }
+        val targetValue =
+            when {
+                !enabled -> disabledTextColor
+                selected -> selectedTextColor
+                else -> unselectedTextColor
+            }
         return animateColorAsState(
-            targetValue = targetValue, animationSpec = tween(NavigationBarItemDefaults.ItemAnimationDurationMillis), label = "text-color"
+            targetValue = targetValue,
+            animationSpec = tween(NavigationBarItemDefaults.ItemAnimationDurationMillis),
+            label = "text-color",
         )
     }
-
 }
-private const val IconLayoutIdTag: String = "icon"
-private  const val LabelLayoutIdTag: String = "label"
 
+private const val IconLayoutIdTag: String = "icon"
+private const val LabelLayoutIdTag: String = "label"

@@ -55,30 +55,34 @@ fun Snackbar(
     dismissActionContentColor: Color = SnackbarDefaults.dismissActionContentColor,
 ) {
     val actionLabel = snackbarData.visuals.actionLabel
-    val actionComposable: (@Composable () -> Unit)? = if (actionLabel != null) {
-        @Composable {
-            CompositionLocalProvider(LocalContentColor provides actionColor) {
-                SnackbarDefaults.ActionButton(actionLabel) {
-                    snackbarData.performAction()
+    val actionComposable: (@Composable () -> Unit)? =
+        if (actionLabel != null) {
+            @Composable {
+                CompositionLocalProvider(LocalContentColor provides actionColor) {
+                    SnackbarDefaults.ActionButton(actionLabel) {
+                        snackbarData.performAction()
+                    }
                 }
             }
+        } else {
+            null
         }
-    } else {
-        null
-    }
-    val dismissActionComposable: (@Composable () -> Unit)? = if (snackbarData.visuals.withDismissAction) {
-        @Composable {
-            IconButton(
-                variant = IconButtonVariant.Ghost,
-                modifier = Modifier.padding(end = 8.dp),
-                onClick = { snackbarData.dismiss() }) {
-                Icon(imageVector = Icons.Default.Close, contentDescription = "Close")
+    val dismissActionComposable: (@Composable () -> Unit)? =
+        if (snackbarData.visuals.withDismissAction) {
+            @Composable {
+                IconButton(
+                    variant = IconButtonVariant.Ghost,
+                    modifier = Modifier.padding(end = 8.dp),
+                    onClick = { snackbarData.dismiss() },
+                ) {
+                    Icon(imageVector = Icons.Default.Close, contentDescription = "Close")
+                }
             }
+        } else {
+            null
         }
-    } else {
-        null
-    }
-    Snackbar(modifier = modifier.padding(12.dp),
+    Snackbar(
+        modifier = modifier.padding(12.dp),
         action = actionComposable,
         dismissAction = dismissActionComposable,
         shape = shape,
@@ -86,7 +90,8 @@ fun Snackbar(
         contentColor = contentColor,
         actionContentColor = actionContentColor,
         dismissActionContentColor = dismissActionContentColor,
-        content = { Text(snackbarData.visuals.message, style = AppTheme.typography.body2) })
+        content = { Text(snackbarData.visuals.message, style = AppTheme.typography.body2) },
+    )
 }
 
 @Composable
@@ -99,14 +104,14 @@ fun Snackbar(
     contentColor: Color = SnackbarDefaults.contentColor,
     actionContentColor: Color = SnackbarDefaults.actionContentColor,
     dismissActionContentColor: Color = SnackbarDefaults.dismissActionContentColor,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Surface(
         modifier = modifier,
         shape = shape,
         color = containerColor,
         contentColor = contentColor,
-        shadowElevation = ContainerElevation
+        shadowElevation = ContainerElevation,
     ) {
         val textStyle = AppTheme.typography.body1
         val actionTextStyle = AppTheme.typography.h4
@@ -130,7 +135,7 @@ private fun SnackbarLayout(
     dismissAction: @Composable (() -> Unit)?,
     actionTextStyle: TextStyle,
     actionTextColor: Color,
-    dismissActionColor: Color
+    dismissActionColor: Color,
 ) {
     val textTag = "text"
     val actionTag = "action"
@@ -141,25 +146,31 @@ private fun SnackbarLayout(
             Box(
                 Modifier
                     .layoutId(textTag)
-                    .padding(vertical = SnackbarVerticalPadding)
+                    .padding(vertical = SnackbarVerticalPadding),
             ) { text() }
             if (action != null) {
                 Box(Modifier.layoutId(actionTag)) {
                     CompositionLocalProvider(
-                        LocalContentColor provides actionTextColor, LocalTextStyle provides actionTextStyle, content = action
+                        LocalContentColor provides actionTextColor,
+                        LocalTextStyle provides actionTextStyle,
+                        content = action,
                     )
                 }
             }
             if (dismissAction != null) {
                 Box(Modifier.layoutId(dismissActionTag)) {
                     CompositionLocalProvider(
-                        LocalContentColor provides dismissActionColor, content = dismissAction
+                        LocalContentColor provides dismissActionColor,
+                        content = dismissAction,
                     )
                 }
             }
-        }, modifier = Modifier.padding(
-            start = HorizontalSpacing, end = if (dismissAction == null) HorizontalSpacingButtonSide else 0.dp
-        )
+        },
+        modifier =
+            Modifier.padding(
+                start = HorizontalSpacing,
+                end = if (dismissAction == null) HorizontalSpacingButtonSide else 0.dp,
+            ),
     ) { measurables, constraints ->
         val containerWidth = min(constraints.maxWidth, ContainerMaxWidth.roundToPx())
         val actionButtonPlaceable = measurables.fastFirstOrNull { it.layoutId == actionTag }?.measure(constraints)
@@ -189,34 +200,37 @@ private fun SnackbarLayout(
             val contentHeight = max(actionButtonHeight, dismissButtonHeight)
             containerHeight = max(minContainerHeight, contentHeight)
             textPlaceY = (containerHeight - textPlaceable.height) / 2
-            actionButtonPlaceY = if (actionButtonPlaceable != null) {
-                actionButtonPlaceable[FirstBaseline].let {
-                    if (it != AlignmentLine.Unspecified) {
-                        textPlaceY + firstTextBaseline - it
-                    } else {
-                        0
+            actionButtonPlaceY =
+                if (actionButtonPlaceable != null) {
+                    actionButtonPlaceable[FirstBaseline].let {
+                        if (it != AlignmentLine.Unspecified) {
+                            textPlaceY + firstTextBaseline - it
+                        } else {
+                            0
+                        }
                     }
+                } else {
+                    0
                 }
-            } else {
-                0
-            }
         } else {
             val baselineOffset = HeightToFirstLine.roundToPx()
             textPlaceY = baselineOffset - firstTextBaseline
             val minContainerHeight = TwoLinesContainerHeight.roundToPx()
             val contentHeight = textPlaceY + textPlaceable.height
             containerHeight = max(minContainerHeight, contentHeight)
-            actionButtonPlaceY = if (actionButtonPlaceable != null) {
-                (containerHeight - actionButtonPlaceable.height) / 2
+            actionButtonPlaceY =
+                if (actionButtonPlaceable != null) {
+                    (containerHeight - actionButtonPlaceable.height) / 2
+                } else {
+                    0
+                }
+        }
+        val dismissButtonPlaceY =
+            if (dismissButtonPlaceable != null) {
+                (containerHeight - dismissButtonPlaceable.height) / 2
             } else {
                 0
             }
-        }
-        val dismissButtonPlaceY = if (dismissButtonPlaceable != null) {
-            (containerHeight - dismissButtonPlaceable.height) / 2
-        } else {
-            0
-        }
 
         layout(containerWidth, containerHeight) {
             textPlaceable.placeRelative(0, textPlaceY)
@@ -258,17 +272,18 @@ internal object SnackbarDefaults {
 
     @Composable
     fun ActionButton(
-        text: String, onClick: () -> Unit
+        text: String,
+        onClick: () -> Unit,
     ) {
         Box(
             Modifier
                 .defaultMinSize(44.dp)
                 .clip(RoundedCornerShape(4.dp))
                 .clickable(onClick = onClick)
-                .padding(8.dp), contentAlignment = Alignment.Center
+                .padding(8.dp),
+            contentAlignment = Alignment.Center,
         ) {
             Text(text = text, style = AppTheme.typography.button)
         }
     }
 }
-

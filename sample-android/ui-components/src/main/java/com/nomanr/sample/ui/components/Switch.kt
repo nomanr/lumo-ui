@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.nomanr.sample.ui.AppTheme
@@ -46,7 +47,6 @@ import com.nomanr.sample.ui.components.SwitchDefaults.UncheckedThumbSize
 import com.nomanr.sample.ui.foundation.ripple
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import androidx.compose.ui.tooling.preview.Preview
 import kotlin.math.roundToInt
 
 @Composable
@@ -57,31 +57,33 @@ fun Switch(
     thumbContent: (@Composable () -> Unit)? = null,
     enabled: Boolean = true,
     colors: SwitchColors = SwitchDefaults.colors(),
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
     val scope = rememberCoroutineScope()
     val pressed by interactionSource.collectIsPressedAsState()
 
-    val animationState = remember {
-        SwitchAnimationState(checked, pressed)
-    }
+    val animationState =
+        remember {
+            SwitchAnimationState(checked, pressed)
+        }
 
     LaunchedEffect(checked, pressed) {
         animationState.animateTo(checked, pressed, scope)
     }
 
-    val toggleableModifier = if (onCheckedChange != null) {
-        Modifier.toggleable(
-            value = checked,
-            onValueChange = onCheckedChange,
-            enabled = enabled,
-            role = Role.Switch,
-            interactionSource = interactionSource,
-            indication = null
-        )
-    } else {
-        Modifier
-    }
+    val toggleableModifier =
+        if (onCheckedChange != null) {
+            Modifier.toggleable(
+                value = checked,
+                onValueChange = onCheckedChange,
+                enabled = enabled,
+                role = Role.Switch,
+                interactionSource = interactionSource,
+                indication = null,
+            )
+        } else {
+            Modifier
+        }
 
     SwitchComponent(
         modifier = modifier.then(toggleableModifier),
@@ -91,7 +93,7 @@ fun Switch(
         interactionSource = interactionSource,
         thumbContent = thumbContent,
         thumbPosition = animationState.thumbPosition.value,
-        thumbSizeOffset = animationState.thumbSizeOffset.value
+        thumbSizeOffset = animationState.thumbSizeOffset.value,
     )
 }
 
@@ -104,24 +106,24 @@ private fun SwitchComponent(
     interactionSource: InteractionSource,
     thumbContent: (@Composable () -> Unit)?,
     thumbPosition: Float,
-    thumbSizeOffset: Float
+    thumbSizeOffset: Float,
 ) {
     val borderColor = colors.borderColor(enabled = enabled, checked = checked)
 
     Box(
-        modifier = modifier
-            .size(SwitchWidth, SwitchHeight)
-            .background(
-                color = colors.trackColor(enabled, checked),
-                shape = TrackShape
-            )
-            .border(
-                width = TrackBorderWidth,
-                color = borderColor,
-                shape = TrackShape
-            )
+        modifier =
+            modifier
+                .size(SwitchWidth, SwitchHeight)
+                .background(
+                    color = colors.trackColor(enabled, checked),
+                    shape = TrackShape,
+                )
+                .border(
+                    width = TrackBorderWidth,
+                    color = borderColor,
+                    shape = TrackShape,
+                ),
     ) {
-
         val checkedThumbSize = UncheckedThumbSize + ThumbSizeStateOffset * thumbPosition
         val uncheckedThumbSize =
             UncheckedThumbSize + ThumbSizeStateOffset * if (thumbPosition == 0f) thumbSizeOffset else thumbPosition
@@ -130,40 +132,42 @@ private fun SwitchComponent(
         val verticalPadding = (SwitchHeight - ThumbSize) / 2
 
         Box(
-            modifier = Modifier
-                .align(Alignment.CenterStart)
-                .size(thumbSize)
-                .offset {
-                    val trackWidth = SwitchWidth.toPx()
-                    val currentThumbSize = thumbSize.toPx()
-                    val maxThumbSize = ThumbSize.toPx()
-                    val padding = verticalPadding.toPx()
+            modifier =
+                Modifier
+                    .align(Alignment.CenterStart)
+                    .size(thumbSize)
+                    .offset {
+                        val trackWidth = SwitchWidth.toPx()
+                        val currentThumbSize = thumbSize.toPx()
+                        val maxThumbSize = ThumbSize.toPx()
+                        val padding = verticalPadding.toPx()
 
-                    val totalMovableDistance = trackWidth - maxThumbSize - (padding * 2)
-                    val sizeDifference = (maxThumbSize - currentThumbSize) / 2
+                        val totalMovableDistance = trackWidth - maxThumbSize - (padding * 2)
+                        val sizeDifference = (maxThumbSize - currentThumbSize) / 2
 
-                    IntOffset(
-                        x = (padding + sizeDifference + (totalMovableDistance * thumbPosition)).roundToInt(),
-                        y = 0
-                    )
-                }
-                .drawBehind {
-                    drawCircle(
-                        color = colors.thumbColor(enabled, checked)
-                    )
-                }
-                .indication(
-                    interactionSource = interactionSource,
-                    indication = ripple(
-                        bounded = false,
-                        radius = RippleRadius
-                    )
-                ),
-            contentAlignment = Alignment.Center
+                        IntOffset(
+                            x = (padding + sizeDifference + (totalMovableDistance * thumbPosition)).roundToInt(),
+                            y = 0,
+                        )
+                    }
+                    .drawBehind {
+                        drawCircle(
+                            color = colors.thumbColor(enabled, checked),
+                        )
+                    }
+                    .indication(
+                        interactionSource = interactionSource,
+                        indication =
+                            ripple(
+                                bounded = false,
+                                radius = RippleRadius,
+                            ),
+                    ),
+            contentAlignment = Alignment.Center,
         ) {
             if (thumbContent != null) {
                 CompositionLocalProvider(
-                    LocalContentColor provides colors.iconColor(enabled, checked)
+                    LocalContentColor provides colors.iconColor(enabled, checked),
                 ) {
                     thumbContent()
                 }
@@ -199,25 +203,26 @@ object SwitchDefaults {
         disabledUncheckedThumbColor: Color = AppTheme.colors.disabled,
         disabledUncheckedTrackColor: Color = AppTheme.colors.transparent,
         disabledUncheckedBorderColor: Color = AppTheme.colors.disabled,
-        disabledUncheckedIconColor: Color = AppTheme.colors.onDisabled
-    ): SwitchColors = SwitchColors(
-        checkedThumbColor = checkedThumbColor,
-        checkedTrackColor = checkedTrackColor,
-        checkedBorderColor = checkedBorderColor,
-        checkedIconColor = checkedIconColor,
-        uncheckedThumbColor = uncheckedThumbColor,
-        uncheckedTrackColor = uncheckedTrackColor,
-        uncheckedBorderColor = uncheckedBorderColor,
-        uncheckedIconColor = uncheckedIconColor,
-        disabledCheckedThumbColor = disabledCheckedThumbColor,
-        disabledCheckedTrackColor = disabledCheckedTrackColor,
-        disabledCheckedBorderColor = disabledCheckedBorderColor,
-        disabledCheckedIconColor = disabledCheckedIconColor,
-        disabledUncheckedThumbColor = disabledUncheckedThumbColor,
-        disabledUncheckedTrackColor = disabledUncheckedTrackColor,
-        disabledUncheckedBorderColor = disabledUncheckedBorderColor,
-        disabledUncheckedIconColor = disabledUncheckedIconColor
-    )
+        disabledUncheckedIconColor: Color = AppTheme.colors.onDisabled,
+    ): SwitchColors =
+        SwitchColors(
+            checkedThumbColor = checkedThumbColor,
+            checkedTrackColor = checkedTrackColor,
+            checkedBorderColor = checkedBorderColor,
+            checkedIconColor = checkedIconColor,
+            uncheckedThumbColor = uncheckedThumbColor,
+            uncheckedTrackColor = uncheckedTrackColor,
+            uncheckedBorderColor = uncheckedBorderColor,
+            uncheckedIconColor = uncheckedIconColor,
+            disabledCheckedThumbColor = disabledCheckedThumbColor,
+            disabledCheckedTrackColor = disabledCheckedTrackColor,
+            disabledCheckedBorderColor = disabledCheckedBorderColor,
+            disabledCheckedIconColor = disabledCheckedIconColor,
+            disabledUncheckedThumbColor = disabledUncheckedThumbColor,
+            disabledUncheckedTrackColor = disabledUncheckedTrackColor,
+            disabledUncheckedBorderColor = disabledUncheckedBorderColor,
+            disabledUncheckedIconColor = disabledUncheckedIconColor,
+        )
 }
 
 @Stable
@@ -237,7 +242,7 @@ class SwitchColors(
     private val disabledUncheckedThumbColor: Color,
     private val disabledUncheckedTrackColor: Color,
     private val disabledUncheckedBorderColor: Color,
-    private val disabledUncheckedIconColor: Color
+    private val disabledUncheckedIconColor: Color,
 ) {
     @Stable
     internal fun thumbColor(enabled: Boolean, checked: Boolean): Color =
@@ -279,7 +284,7 @@ class SwitchColors(
 @Stable
 private class SwitchAnimationState(
     initialChecked: Boolean,
-    initialPressed: Boolean
+    initialPressed: Boolean,
 ) {
     var checked by mutableStateOf(initialChecked)
     var pressed by mutableStateOf(initialPressed)
@@ -287,15 +292,16 @@ private class SwitchAnimationState(
     val thumbPosition = Animatable(if (checked) 1f else 0f)
     val thumbSizeOffset = Animatable(0f)
 
-    val animationSpec = tween<Float>(
-        durationMillis = 100,
-        easing = FastOutSlowInEasing
-    )
+    val animationSpec =
+        tween<Float>(
+            durationMillis = 100,
+            easing = FastOutSlowInEasing,
+        )
 
     suspend fun animateTo(
         targetChecked: Boolean,
         targetPressed: Boolean,
-        scope: CoroutineScope
+        scope: CoroutineScope,
     ) {
         checked = targetChecked
         pressed = targetPressed
@@ -303,42 +309,41 @@ private class SwitchAnimationState(
         scope.launch {
             thumbPosition.animateTo(
                 targetValue = if (targetChecked) 1f else 0f,
-                animationSpec = animationSpec
+                animationSpec = animationSpec,
             )
         }
         scope.launch {
             thumbSizeOffset.animateTo(
                 targetValue = if (targetPressed) 1f else 0f,
-                animationSpec = animationSpec
+                animationSpec = animationSpec,
             )
         }
     }
 }
-
 
 @Preview
 @Composable
 private fun SwitchPreview() {
     AppTheme {
         Column(modifier = Modifier.padding(16.dp)) {
-
-            val value = remember {
-                mutableStateOf(false)
-            }
+            val value =
+                remember {
+                    mutableStateOf(false)
+                }
 
             Spacer(modifier = Modifier.size(16.dp))
             Switch(
                 checked = value.value,
                 onCheckedChange = {
                     value.value = it
-                }
+                },
             )
             Spacer(modifier = Modifier.size(16.dp))
             Switch(
                 checked = value.value,
                 onCheckedChange = {
                     value.value = it
-                }
+                },
             )
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -346,7 +351,7 @@ private fun SwitchPreview() {
                 checked = true,
                 onCheckedChange = {
                     value.value = it
-                }
+                },
             )
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -354,7 +359,7 @@ private fun SwitchPreview() {
                 checked = false,
                 onCheckedChange = {
                     value.value = it
-                }
+                },
             )
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -363,7 +368,7 @@ private fun SwitchPreview() {
                 enabled = false,
                 onCheckedChange = {
                     value.value = it
-                }
+                },
             )
             Spacer(modifier = Modifier.size(16.dp))
 
@@ -372,10 +377,9 @@ private fun SwitchPreview() {
                 enabled = false,
                 onCheckedChange = {
                     value.value = it
-                }
+                },
             )
             Spacer(modifier = Modifier.size(16.dp))
-
         }
     }
 }

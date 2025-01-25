@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -7,7 +6,6 @@ plugins {
     id("com.android.library")
     kotlin("multiplatform")
 }
-
 
 kotlin {
 // TODO: Uncomment this block to enable all the targets
@@ -40,7 +38,7 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "lumo-ui"
@@ -52,8 +50,9 @@ kotlin {
             implementation(compose.components.resources)
             api(compose.runtime)
             api(compose.foundation)
-//            api(compose.material)
-            api(libs.androidx.compose.ripple)
+            // Todo - get rid of this at somepoint and use ripple from androidx
+            api(compose.material)
+//            api(libs.androidx.compose.ripple)
             api(compose.materialIconsExtended)
             api(compose.ui)
             api(compose.components.resources)

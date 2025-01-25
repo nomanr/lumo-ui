@@ -36,29 +36,26 @@ import java.util.Objects.isNull
 
 @Composable
 fun ChipSample() {
-
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        horizontalAlignment = Alignment.Start
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        horizontalAlignment = Alignment.Start,
     ) {
         ChipShowcase()
         ChipExamples()
     }
-
 }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ChipShowcase() {
-
     Column(modifier = Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text(text = "Chip", style = AppTheme.typography.h4)
 
         Spacer(modifier = Modifier)
-
 
         val shapes = listOf(RoundedCornerShape(4.dp), CircleShape)
 
@@ -66,7 +63,7 @@ private fun ChipShowcase() {
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Chip(shape = shape) {
                     Text(text = "Normal", style = AppTheme.typography.label3)
@@ -82,7 +79,7 @@ private fun ChipShowcase() {
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 ElevatedChip(shape = shape) {
                     Text(text = "Normal", style = AppTheme.typography.label3)
@@ -98,7 +95,7 @@ private fun ChipShowcase() {
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 OutlinedChip(shape = shape) {
                     Text(text = "Normal", style = AppTheme.typography.label3)
@@ -112,37 +109,55 @@ private fun ChipShowcase() {
             }
         }
 
-        val pairs = listOf(
-            Pair(Icons.Default.Favorite, null),
-            Pair(null, Icons.Default.Close),
-            Pair(Icons.Default.Favorite, Icons.Default.Close),
-        )
+        val pairs =
+            listOf(
+                Pair(Icons.Default.Favorite, null),
+                Pair(null, Icons.Default.Close),
+                Pair(Icons.Default.Favorite, Icons.Default.Close),
+            )
 
         pairs.forEach { pair ->
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Chip(leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                Chip(
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
-                Chip(selected = true, leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                Chip(
+                    selected = true,
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
-                Chip(enabled = false, leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                Chip(
+                    enabled = false,
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
             }
@@ -150,27 +165,44 @@ private fun ChipShowcase() {
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                ElevatedChip(leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                ElevatedChip(
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
-                ElevatedChip(selected = true, leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                ElevatedChip(
+                    selected = true,
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
-                ElevatedChip(enabled = false, leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                ElevatedChip(
+                    enabled = false,
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
             }
@@ -178,34 +210,49 @@ private fun ChipShowcase() {
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                OutlinedChip(leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                OutlinedChip(
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
-                OutlinedChip(selected = true, leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                OutlinedChip(
+                    selected = true,
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
-                OutlinedChip(enabled = false, leadingIcon = composableOrNull(!isNull(pair.first)) {
-                    Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
-                }, trailingIcon = composableOrNull(!isNull(pair.second)) {
-                    Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
-                }) {
+                OutlinedChip(
+                    enabled = false,
+                    leadingIcon =
+                        composableOrNull(!isNull(pair.first)) {
+                            Icon(imageVector = pair.first!!, contentDescription = "Leading Icon")
+                        },
+                    trailingIcon =
+                        composableOrNull(!isNull(pair.second)) {
+                            Icon(imageVector = pair.second!!, contentDescription = "Trailing Icon")
+                        },
+                ) {
                     Text(text = "Chip", style = AppTheme.typography.label3)
                 }
             }
         }
-
     }
-
 }
 
 @Composable
@@ -222,107 +269,133 @@ private fun ChipExamples() {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun FavoriteActivityExample() {
-
     var selectedActivities by remember { mutableStateOf<Set<String>>(emptySet()) }
 
     Text(
         modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
         text = "Favorite activity type ",
-        style = AppTheme.typography.label1
+        style = AppTheme.typography.label1,
     )
 
-    val activities = listOf(
-        "Hiking", "Cycling", "Swimming", "Running", "Gym", "Backpacking", "Walking", "Road biking", "Off-road driving"
-    )
+    val activities =
+        listOf(
+            "Hiking",
+            "Cycling",
+            "Swimming",
+            "Running",
+            "Gym",
+            "Backpacking",
+            "Walking",
+            "Road biking",
+            "Off-road driving",
+        )
 
     FlowRow(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         activities.forEach { activity ->
 
             val isSelected = selectedActivities.contains(activity)
-            Chip(selected = isSelected, onClick = {
+            Chip(
+                selected = isSelected,
+                onClick = {
                     if (selectedActivities.contains(activity)) {
                         selectedActivities -= activity
                     } else {
                         selectedActivities += activity
                     }
-            }, leadingIcon = composableOrNull(isSelected){
-                Icon(
-                    modifier = Modifier.size(16.dp),
-                    imageVector = Icons.Default.Check, contentDescription = "Selected")
-            }) {
+                },
+                leadingIcon =
+                    composableOrNull(isSelected) {
+                        Icon(
+                            modifier = Modifier.size(16.dp),
+                            imageVector = Icons.Default.Check,
+                            contentDescription = "Selected",
+                        )
+                    },
+            ) {
                 Text(text = activity, style = AppTheme.typography.label2)
             }
         }
     }
-
-
 }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SnacksExample() {
-
     var selectedSnacks by remember { mutableStateOf<Set<String>>(emptySet()) }
 
     Text(
         modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
         text = "Select snacks",
-        style = AppTheme.typography.label1
+        style = AppTheme.typography.label1,
     )
 
-    val snacks = listOf(
-        "Chips", "Cookies", "Candy", "Chocolate", "Popcorn", "Pretzels", "Nuts", "Fruit", "Vegetables"
-    )
+    val snacks =
+        listOf(
+            "Chips",
+            "Cookies",
+            "Candy",
+            "Chocolate",
+            "Popcorn",
+            "Pretzels",
+            "Nuts",
+            "Fruit",
+            "Vegetables",
+        )
 
-
-    if(selectedSnacks.isNotEmpty()){
+    if (selectedSnacks.isNotEmpty()) {
         Text(
             modifier = Modifier.padding(top = 8.dp, bottom = 4.dp),
             text = "Selected",
-            style = AppTheme.typography.label1
+            style = AppTheme.typography.label1,
         )
 
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             selectedSnacks.forEach { activity ->
 
                 val isSelected = selectedSnacks.contains(activity)
-                OutlinedChip (selected = isSelected, onClick = {
-                    selectedSnacks -= activity
-                }, trailingIcon = composableOrNull(isSelected){
-                    Icon(
-                        modifier = Modifier.size(16.dp),
-                        imageVector = Icons.Default.Close, contentDescription = "Close")
-                }, shape = CircleShape) {
+                OutlinedChip(
+                    selected = isSelected,
+                    onClick = {
+                        selectedSnacks -= activity
+                    },
+                    trailingIcon =
+                        composableOrNull(isSelected) {
+                            Icon(
+                                modifier = Modifier.size(16.dp),
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Close",
+                            )
+                        },
+                    shape = CircleShape,
+                ) {
                     Text(text = activity, style = AppTheme.typography.label2)
                 }
             }
         }
-
     }
 
     Text(
         modifier = Modifier.padding(top = 8.dp, bottom = 4.dp),
         text = "Available Snacks",
-        style = AppTheme.typography.label1
+        style = AppTheme.typography.label1,
     )
-
 
     FlowRow(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         snacks.filter { !selectedSnacks.contains(it) }.forEach { activity ->
 
-            OutlinedChip (onClick = {
+            OutlinedChip(onClick = {
                 if (selectedSnacks.contains(activity)) {
                     selectedSnacks -= activity
                 } else {
@@ -333,7 +406,4 @@ private fun SnacksExample() {
             }
         }
     }
-
-
 }
-

@@ -41,7 +41,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ScaffoldSample(navigateUp: (() -> Unit)?) {
-
     var selectedScreen by remember { mutableStateOf("Home") }
     val snackbarHost = rememberSnackbarHost()
 
@@ -56,7 +55,7 @@ fun ScaffoldSample(navigateUp: (() -> Unit)?) {
         snackBarMessage = null
         scope.launch {
             snackbarHost.showSnackbar(
-                newMessage
+                newMessage,
             )
         }
     }
@@ -76,18 +75,19 @@ fun ScaffoldSample(navigateUp: (() -> Unit)?) {
     }) { padding ->
 
         Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(padding)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier =
+                Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(padding)
+                    .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-
             Box(contentAlignment = Alignment.Center) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(60.dp),
                 )
 
                 Text("Scaffold, scaffolding everything all together", style = AppTheme.typography.body2)
@@ -95,9 +95,10 @@ fun ScaffoldSample(navigateUp: (() -> Unit)?) {
 
             Box(contentAlignment = Alignment.Center) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(60.dp),
                 )
 
                 Text("Accepts Topbar and Navigation bar", style = AppTheme.typography.body2)
@@ -105,34 +106,35 @@ fun ScaffoldSample(navigateUp: (() -> Unit)?) {
 
             Box(contentAlignment = Alignment.Center) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(60.dp),
                 )
 
                 Text("Along with FAB and Snackbar!", style = AppTheme.typography.body2)
             }
 
-            repeat(10){
+            repeat(10) {
                 Skeleton(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(60.dp),
                 )
             }
-
         }
-
     }
 }
 
 @Composable
 private fun ScaffoldSampleNavigationBar(selectedScreen: String, onSelect: (String) -> Unit) {
-    val screens = mutableListOf(
-        listOf("Home", Icons.Default.Home), listOf("Search", Icons.Default.Search), listOf("Profile", Icons.Default.Person),
-    )
-
-
+    val screens =
+        mutableListOf(
+            listOf("Home", Icons.Default.Home),
+            listOf("Search", Icons.Default.Search),
+            listOf("Profile", Icons.Default.Person),
+        )
 
     Column {
         HorizontalDivider()

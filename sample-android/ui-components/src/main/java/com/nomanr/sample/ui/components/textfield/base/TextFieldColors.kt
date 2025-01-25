@@ -147,14 +147,13 @@ class TextFieldColors(
         errorSuffixColor.takeOrElse { this.errorSuffixColor },
     )
 
-    private fun TextSelectionColors?.takeOrElse(block: () -> TextSelectionColors):
-        TextSelectionColors = this ?: block()
+    private fun TextSelectionColors?.takeOrElse(block: () -> TextSelectionColors): TextSelectionColors = this ?: block()
 
     @Composable
     internal fun leadingIconColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -164,7 +163,7 @@ class TextFieldColors(
                 isError -> errorLeadingIconColor
                 focused -> focusedLeadingIconColor
                 else -> unfocusedLeadingIconColor
-            }
+            },
         )
     }
 
@@ -172,7 +171,7 @@ class TextFieldColors(
     internal fun trailingIconColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -182,7 +181,7 @@ class TextFieldColors(
                 isError -> errorTrailingIconColor
                 focused -> focusedTrailingIconColor
                 else -> unfocusedTrailingIconColor
-            }
+            },
         )
     }
 
@@ -190,7 +189,7 @@ class TextFieldColors(
     internal fun labelColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -200,7 +199,7 @@ class TextFieldColors(
                 isError -> errorLabelColor
                 focused -> focusedLabelColor
                 else -> unfocusedLabelColor
-            }
+            },
         )
     }
 
@@ -208,7 +207,7 @@ class TextFieldColors(
     internal fun placeholderColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -218,7 +217,7 @@ class TextFieldColors(
                 isError -> errorPlaceholderColor
                 focused -> focusedPlaceholderColor
                 else -> unfocusedPlaceholderColor
-            }
+            },
         )
     }
 
@@ -226,7 +225,7 @@ class TextFieldColors(
     internal fun supportingTextColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -236,7 +235,7 @@ class TextFieldColors(
                 isError -> errorSupportingTextColor
                 focused -> focusedSupportingTextColor
                 else -> unfocusedSupportingTextColor
-            }
+            },
         )
     }
 
@@ -244,7 +243,7 @@ class TextFieldColors(
     internal fun prefixColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -254,7 +253,7 @@ class TextFieldColors(
                 isError -> errorPrefixColor
                 focused -> focusedPrefixColor
                 else -> unfocusedPrefixColor
-            }
+            },
         )
     }
 
@@ -262,7 +261,7 @@ class TextFieldColors(
     internal fun suffixColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -272,7 +271,7 @@ class TextFieldColors(
                 isError -> errorSuffixColor
                 focused -> focusedSuffixColor
                 else -> unfocusedSuffixColor
-            }
+            },
         )
     }
 
@@ -280,7 +279,7 @@ class TextFieldColors(
     internal fun containerColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -290,7 +289,7 @@ class TextFieldColors(
                 isError -> errorContainerColor
                 focused -> focusedContainerColor
                 else -> unfocusedContainerColor
-            }
+            },
         )
     }
 
@@ -298,7 +297,7 @@ class TextFieldColors(
     fun containerOutlineColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
         return rememberUpdatedState(
@@ -307,7 +306,7 @@ class TextFieldColors(
                 isError -> errorOutlineColor
                 focused -> focusedOutlineColor
                 else -> unfocusedOutlineColor
-            }
+            },
         )
     }
 
@@ -315,7 +314,7 @@ class TextFieldColors(
     internal fun textColor(
         enabled: Boolean,
         isError: Boolean,
-        interactionSource: InteractionSource
+        interactionSource: InteractionSource,
     ): State<Color> {
         val focused by interactionSource.collectIsFocusedAsState()
 
@@ -325,7 +324,7 @@ class TextFieldColors(
                 isError -> errorTextColor
                 focused -> focusedTextColor
                 else -> unfocusedTextColor
-            }
+            },
         )
     }
 

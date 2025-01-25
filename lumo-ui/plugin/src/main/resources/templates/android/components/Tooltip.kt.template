@@ -86,11 +86,17 @@ fun TooltipBox(
     }
 
     BasicTooltipBox(
-        positionProvider = positionProvider, tooltip = {
+        positionProvider = positionProvider,
+        tooltip = {
             Box(Modifier.animateTooltip(transition)) {
                 scope.tooltip()
             }
-        }, focusable = focusable, enableUserInput = enableUserInput, state = state, modifier = modifier, content = wrappedContent
+        },
+        focusable = focusable,
+        enableUserInput = enableUserInput,
+        state = state,
+        modifier = modifier,
+        content = wrappedContent,
     )
 }
 
@@ -102,29 +108,42 @@ fun TooltipScope.Tooltip(
     shape: Shape = TooltipDefaults.Shape,
     containerColor: Color = {{themeName}}.colors.surface,
     shadowElevation: Dp = TooltipDefaults.ShadowElevation,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-    val drawCaretModifier = if (caretSize.isSpecified) {
-        val density = LocalDensity.current
-        val configuration = LocalConfiguration.current
-        Modifier
-            .drawCaret { anchorLayoutCoordinates ->
-                drawCaretWithPath(
-                    density, configuration, containerColor, caretSize, anchorLayoutCoordinates
-                )
-            }
-            .then(modifier)
-    } else modifier
+    val drawCaretModifier =
+        if (caretSize.isSpecified) {
+            val density = LocalDensity.current
+            val configuration = LocalConfiguration.current
+            Modifier
+                .drawCaret { anchorLayoutCoordinates ->
+                    drawCaretWithPath(
+                        density,
+                        configuration,
+                        containerColor,
+                        caretSize,
+                        anchorLayoutCoordinates,
+                    )
+                }
+                .then(modifier)
+        } else {
+            modifier
+        }
 
     Surface(
-        modifier = drawCaretModifier, shape = shape, color = containerColor, shadowElevation = shadowElevation
+        modifier = drawCaretModifier,
+        shape = shape,
+        color = containerColor,
+        shadowElevation = shadowElevation,
     ) {
         Box(
-            modifier = Modifier
-                .sizeIn(
-                    minWidth = TooltipDefaults.MinWidth, maxWidth = maxWidth, minHeight = TooltipDefaults.MinHeight
-                )
-                .padding(TooltipDefaults.ContentPadding)
+            modifier =
+                Modifier
+                    .sizeIn(
+                        minWidth = TooltipDefaults.MinWidth,
+                        maxWidth = maxWidth,
+                        minHeight = TooltipDefaults.MinHeight,
+                    )
+                    .padding(TooltipDefaults.ContentPadding),
         ) {
             content()
         }
@@ -137,7 +156,7 @@ sealed interface TooltipScope {
 
 internal class DefaultTooltipScope(val getAnchorBounds: () -> LayoutCoordinates?) : TooltipScope {
     override fun Modifier.drawCaret(
-        draw: CacheDrawScope.(LayoutCoordinates?) -> DrawResult
+        draw: CacheDrawScope.(LayoutCoordinates?) -> DrawResult,
     ): Modifier = this.drawWithCache { draw(getAnchorBounds()) }
 }
 
@@ -148,7 +167,9 @@ interface TooltipState : BasicTooltipState {
 
 @Stable
 private class TooltipStateImpl(
-    initialIsVisible: Boolean, override val isPersistent: Boolean, private val mutatorMutex: MutatorMutex
+    initialIsVisible: Boolean,
+    override val isPersistent: Boolean,
+    private val mutatorMutex: MutatorMutex,
 ) : TooltipState {
     override val transition: MutableTransitionState<Boolean> = MutableTransitionState(initialIsVisible)
     private var job: CancellableContinuation<Unit>? = null
@@ -207,28 +228,38 @@ object TooltipDefaults {
 fun rememberTooltipState(
     initialIsVisible: Boolean = false,
     isPersistent: Boolean = false,
-    mutatorMutex: MutatorMutex = BasicTooltipDefaults.GlobalMutatorMutex
-): TooltipState = remember(isPersistent, mutatorMutex) {
-    TooltipStateImpl(
-        initialIsVisible = initialIsVisible, isPersistent = isPersistent, mutatorMutex = mutatorMutex
-    )
-}
+    mutatorMutex: MutatorMutex = BasicTooltipDefaults.GlobalMutatorMutex,
+): TooltipState =
+    remember(isPersistent, mutatorMutex) {
+        TooltipStateImpl(
+            initialIsVisible = initialIsVisible,
+            isPersistent = isPersistent,
+            mutatorMutex = mutatorMutex,
+        )
+    }
 
 @Composable
 fun rememberTooltipPositionProvider(
-    spacingBetweenTooltipAndAnchor: Dp = TooltipDefaults.SpacingBetweenTooltipAndAnchor
+    spacingBetweenTooltipAndAnchor: Dp = TooltipDefaults.SpacingBetweenTooltipAndAnchor,
 ): PopupPositionProvider {
-    val tooltipAnchorSpacing = with(LocalDensity.current) {
-        spacingBetweenTooltipAndAnchor.roundToPx()
-    }
+    val tooltipAnchorSpacing =
+        with(LocalDensity.current) {
+            spacingBetweenTooltipAndAnchor.roundToPx()
+        }
     return remember(tooltipAnchorSpacing) {
         object : PopupPositionProvider {
             override fun calculatePosition(
-                anchorBounds: IntRect, windowSize: IntSize, layoutDirection: LayoutDirection, popupContentSize: IntSize
+                anchorBounds: IntRect,
+                windowSize: IntSize,
+                layoutDirection: LayoutDirection,
+                popupContentSize: IntSize,
             ): IntOffset {
                 var x = anchorBounds.left + (anchorBounds.width - popupContentSize.width) / 2
-                if (x < 0) x = anchorBounds.left
-                else if (x + popupContentSize.width > windowSize.width) x = anchorBounds.right - popupContentSize.width
+                if (x < 0) {
+                    x = anchorBounds.left
+                } else if (x + popupContentSize.width > windowSize.width) {
+                    x = anchorBounds.right - popupContentSize.width
+                }
 
                 var y = anchorBounds.top - popupContentSize.height - tooltipAnchorSpacing
                 if (y < 0) y = anchorBounds.bottom + tooltipAnchorSpacing
@@ -238,34 +269,40 @@ fun rememberTooltipPositionProvider(
     }
 }
 
-internal fun Modifier.animateTooltip(transition: Transition<Boolean>): Modifier = composed(inspectorInfo = debugInspectorInfo {
-    name = "animateTooltip"
-    properties["transition"] = transition
-}) {
-    val inOutScaleAnimationSpec = tween<Float>(durationMillis = 100, easing = FastOutLinearInEasing)
-    val inOutAlphaAnimationSpec = tween<Float>(durationMillis = 50, easing = FastOutSlowInEasing)
-
-    val scale by transition.animateFloat(
-        transitionSpec = { inOutScaleAnimationSpec }, label = "tooltip transition: scaling"
+internal fun Modifier.animateTooltip(transition: Transition<Boolean>): Modifier =
+    composed(
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "animateTooltip"
+                properties["transition"] = transition
+            },
     ) {
-        if (it) 1f else 0.8f
-    }
+        val inOutScaleAnimationSpec = tween<Float>(durationMillis = 100, easing = FastOutLinearInEasing)
+        val inOutAlphaAnimationSpec = tween<Float>(durationMillis = 50, easing = FastOutSlowInEasing)
 
-    val alpha by transition.animateFloat(
-        transitionSpec = { inOutAlphaAnimationSpec }, label = "tooltip transition: alpha"
-    ) {
-        if (it) 1f else 0f
-    }
+        val scale by transition.animateFloat(
+            transitionSpec = { inOutScaleAnimationSpec },
+            label = "tooltip transition: scaling",
+        ) {
+            if (it) 1f else 0.8f
+        }
 
-    this.graphicsLayer(scaleX = scale, scaleY = scale, alpha = alpha)
-}
+        val alpha by transition.animateFloat(
+            transitionSpec = { inOutAlphaAnimationSpec },
+            label = "tooltip transition: alpha",
+        ) {
+            if (it) 1f else 0f
+        }
+
+        this.graphicsLayer(scaleX = scale, scaleY = scale, alpha = alpha)
+    }
 
 private fun CacheDrawScope.drawCaretWithPath(
     density: Density,
     configuration: Configuration,
     containerColor: Color,
     caretSize: DpSize,
-    anchorLayoutCoordinates: LayoutCoordinates?
+    anchorLayoutCoordinates: LayoutCoordinates?,
 ): DrawResult {
     val path = Path()
 
@@ -292,14 +329,15 @@ private fun CacheDrawScope.drawCaretWithPath(
         val isCaretTop = anchorTop - tooltipHeight - tooltipAnchorSpacing < 0
         val caretY = if (isCaretTop) 0f else tooltipHeight
 
-        var position: Offset = if (anchorLeft - tooltipWidth / 2 + anchorWidth / 2 <= 0) {
-            Offset(anchorMid, caretY)
-        } else if (anchorRight + tooltipWidth / 2 - anchorWidth / 2 >= screenWidthPx) {
-            val anchorMidFromRightScreenEdge = screenWidthPx - anchorMid
-            Offset(tooltipWidth - anchorMidFromRightScreenEdge, caretY)
-        } else {
-            Offset(tooltipWidth / 2, caretY)
-        }
+        var position: Offset =
+            if (anchorLeft - tooltipWidth / 2 + anchorWidth / 2 <= 0) {
+                Offset(anchorMid, caretY)
+            } else if (anchorRight + tooltipWidth / 2 - anchorWidth / 2 >= screenWidthPx) {
+                val anchorMidFromRightScreenEdge = screenWidthPx - anchorMid
+                Offset(tooltipWidth - anchorMidFromRightScreenEdge, caretY)
+            } else {
+                Offset(tooltipWidth / 2, caretY)
+            }
         if (anchorMid - tooltipWidth / 2 < 0) {
             position = Offset(anchorMid - anchorLeft, caretY)
         } else if (anchorMid + tooltipWidth / 2 > screenWidthPx) {
@@ -338,15 +376,18 @@ fun PlainTooltipWithCaret() {
             tooltip = {
                 Tooltip {
                     Text(
-                        text = "This is a tooltip", textAlign = TextAlign.Center
+                        text = "This is a tooltip",
+                        textAlign = TextAlign.Center,
                     )
                 }
-            }, state = tooltipState
+            },
+            state = tooltipState,
         ) {
             Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(Color.Blue)
+                modifier =
+                    Modifier
+                        .size(40.dp)
+                        .background(Color.Blue),
             )
         }
     }

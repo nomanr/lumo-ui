@@ -32,18 +32,18 @@ import com.nomanr.sample.ui.components.card.OutlinedCard
 @Composable
 fun CheckboxSample() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp), horizontalAlignment = Alignment.Start
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        horizontalAlignment = Alignment.Start,
     ) {
-
         CheckboxeShowcase()
 
         Spacer(modifier = Modifier.height(24.dp))
 
         CheckboxExamples()
-
     }
 }
 
@@ -58,10 +58,9 @@ private fun CheckboxeShowcase() {
     var checkbox2B by remember { mutableStateOf(ToggleableState.Off) }
     var checkbox2C by remember { mutableStateOf(ToggleableState.Off) }
 
-
     Column {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Checkbox(checked = checkbox1A, onCheckedChange = { checkbox1A = it })
 
@@ -69,7 +68,7 @@ private fun CheckboxeShowcase() {
         }
 
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Checkbox(checked = checkbox1A, enabled = false, onCheckedChange = { checkbox1A = it })
 
@@ -94,27 +93,21 @@ private fun CheckboxeShowcase() {
     }
 }
 
-
 @Composable
 private fun CheckboxExamples() {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-
         ExampleWithOutline()
 
         DifficultyExample()
-
     }
 }
-
 
 @Composable
 private fun ExampleWithOutline() {
     val checkedState1 = remember { mutableStateOf(false) }
     val checkedState2 = remember { mutableStateOf(false) }
 
-
-
-    val border1 = if (checkedState1.value)  BorderStroke(3.dp, AppTheme.colors.primary) else CardDefaults.outlinedCardBorder()
+    val border1 = if (checkedState1.value) BorderStroke(3.dp, AppTheme.colors.primary) else CardDefaults.outlinedCardBorder()
     val border2 = if (checkedState2.value) BorderStroke(3.dp, AppTheme.colors.primary) else CardDefaults.outlinedCardBorder()
 
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -122,11 +115,12 @@ private fun ExampleWithOutline() {
             border = border1,
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(modifier = Modifier.padding(end = 12.dp), text = "Weekly Discount", style = AppTheme.typography.h4)
                 Checkbox(checked = checkedState1.value, onCheckedChange = { checkedState1.value = it })
@@ -137,11 +131,12 @@ private fun ExampleWithOutline() {
             border = border2,
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(modifier = Modifier.padding(end = 12.dp), text = "Monthly Discount", style = AppTheme.typography.h4)
                 Checkbox(checked = checkedState2.value, onCheckedChange = { checkedState2.value = it })
@@ -149,7 +144,6 @@ private fun ExampleWithOutline() {
         }
     }
 }
-
 
 @Composable
 private fun DifficultyExample() {
@@ -159,22 +153,23 @@ private fun DifficultyExample() {
     var hard by remember { mutableStateOf(false) }
 
     LaunchedEffect(easy, medium, hard) {
-        all = when {
-            easy && medium && hard -> ToggleableState.On
-            !easy && !medium && !hard -> ToggleableState.Off
-            else -> ToggleableState.Indeterminate
-        }
+        all =
+            when {
+                easy && medium && hard -> ToggleableState.On
+                !easy && !medium && !hard -> ToggleableState.Off
+                else -> ToggleableState.Indeterminate
+            }
     }
-
 
     OutlinedCard {
         Column {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(text = "Difficulty", style = AppTheme.typography.h4)
                 TriStateCheckbox(state = all, onClick = {
@@ -196,17 +191,16 @@ private fun DifficultyExample() {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Easy")
                     Checkbox(checked = easy, onCheckedChange = { easy = it })
                 }
 
-
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Medium")
                     Checkbox(checked = medium, onCheckedChange = { medium = it })
@@ -215,7 +209,7 @@ private fun DifficultyExample() {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(text = "Hard")
                     Checkbox(checked = hard, onCheckedChange = { hard = it })
@@ -224,7 +218,6 @@ private fun DifficultyExample() {
         }
     }
 }
-
 
 private fun toggleTriState(currentState: ToggleableState): ToggleableState {
     return when (currentState) {

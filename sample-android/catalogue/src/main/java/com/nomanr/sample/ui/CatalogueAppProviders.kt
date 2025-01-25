@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun CatalogueAppProviders(
-    app: @Composable () -> Unit
+    app: @Composable () -> Unit,
 ) {
     AppTheme {
         app()

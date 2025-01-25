@@ -42,7 +42,9 @@ fun SnackbarSample(navigateUp: (() -> Unit)?) {
         snackBarMessage = SampleSnackbarMessage()
         scope.launch {
             snackbarHostState.showSnackbar(
-                newMessage.message!!, newMessage.actionLabel, newMessage.withDismissAction
+                newMessage.message!!,
+                newMessage.actionLabel,
+                newMessage.withDismissAction,
             )
         }
     }
@@ -55,17 +57,18 @@ fun SnackbarSample(navigateUp: (() -> Unit)?) {
         SnackbarHost(hostState = snackbarHostState, snackbar = { RenderSnackbar(selectedType, it) })
     }) { padding ->
         Column(
-            modifier = Modifier
-                .padding(padding)
-                .padding(horizontal = 16.dp)
-                .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .padding(padding)
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-
             Spacer(modifier = Modifier.padding(16.dp))
 
             Column(
-                modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 RadioButton(selected = selectedType == SnackbarType.Primary, onClick = {
                     selectedType = SnackbarType.Primary
@@ -84,9 +87,7 @@ fun SnackbarSample(navigateUp: (() -> Unit)?) {
                 }) {
                     Text("Success")
                 }
-
             }
-
 
             Button(modifier = Modifier.fillMaxWidth(), variant = ButtonVariant.PrimaryOutlined, onClick = {
                 snackBarMessage = SampleSnackbarMessage("Something happened", withDismissAction = true)
@@ -101,21 +102,23 @@ fun SnackbarSample(navigateUp: (() -> Unit)?) {
             }
 
             Button(modifier = Modifier.fillMaxWidth(), variant = ButtonVariant.PrimaryOutlined, onClick = {
-                snackBarMessage = SampleSnackbarMessage(
-                    "Snackbar can also stretch to 2 lines if the text is too long. For example this one!"
-                )
+                snackBarMessage =
+                    SampleSnackbarMessage(
+                        "Snackbar can also stretch to 2 lines if the text is too long. For example this one!",
+                    )
             }) {
                 Text("Two lines")
             }
 
             Button(modifier = Modifier.fillMaxWidth(), variant = ButtonVariant.PrimaryOutlined, onClick = {
-                snackBarMessage = SampleSnackbarMessage(
-                    "Deleted 22 items!", actionLabel = "Undo"
-                )
+                snackBarMessage =
+                    SampleSnackbarMessage(
+                        "Deleted 22 items!",
+                        actionLabel = "Undo",
+                    )
             }) {
                 Text("With custom action")
             }
-
         }
     }
 }
@@ -137,14 +140,14 @@ private fun RenderSnackbar(type: SnackbarType, data: SnackbarData) {
     }
 }
 
-
 private enum class SnackbarType {
     Primary,
     Error,
-    Success
+    Success,
 }
 
 private data class SampleSnackbarMessage(
-    val message: String? = null, val actionLabel: String? = null, val withDismissAction: Boolean = false
+    val message: String? = null,
+    val actionLabel: String? = null,
+    val withDismissAction: Boolean = false,
 )
-
