@@ -1,6 +1,5 @@
 package {{packageName}}.components
 
-import LocalContentColor
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +22,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import {{packageName}}.LocalContentColor
 import {{packageName}}.LocalTextStyle
 import {{packageName}}.LocalTypography
 import androidx.compose.ui.tooling.preview.Preview
