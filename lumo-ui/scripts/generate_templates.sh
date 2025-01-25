@@ -86,7 +86,7 @@ check_directory_exists "$IOS_SOURCE_DIR"
 check_directory_exists "$IOS_NATIVE_DEST_DIR"
 
 delete_existing_templates "$ANDROID_NATIVE_DEST_DIR"
-delete_existing_templates "$IOS_SOURCE_DIR"
+delete_existing_templates "$MULTIPLATFORM_DEST_DIR"
 delete_existing_templates "$IOS_NATIVE_DEST_DIR"
 
 # Generating Multiplatform Templates
