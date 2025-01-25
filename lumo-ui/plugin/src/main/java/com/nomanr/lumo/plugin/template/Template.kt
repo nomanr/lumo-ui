@@ -2,7 +2,10 @@ package com.nomanr.lumo.plugin.template
 
 enum class SupportedPlatforms(val label: String) {
     ANDROID("ANDROID"),
-    IOS("IOS")
+    IOS("IOS"),
+    MACOS("MACOS"),
+    DESKTOP("DESKTOP"),
+    WASMJS("WASMJS")
 }
 
 data class Template(

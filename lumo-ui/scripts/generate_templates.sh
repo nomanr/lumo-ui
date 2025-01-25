@@ -5,10 +5,16 @@ cd "$(dirname "$0")" || exit
 ANDROID_SOURCE_DIR="../components-lab/src/androidMain/kotlin/com/nomanr/lumo/ui"
 COMMON_SOURCE_DIR="../components-lab/src/commonMain/kotlin/com/nomanr/lumo/ui"
 IOS_SOURCE_DIR="../components-lab/src/iosMain/kotlin/com/nomanr/lumo/ui"
+MACOS_SOURCE_DIR="../components-lab/src/macosMain/kotlin/com/nomanr/lumo/ui"
+DESKTOP_SOURCE_DIR="../components-lab/src/desktopMain/kotlin/com/nomanr/lumo/ui"
+WASMJS_SOURCE_DIR="../components-lab/src/wasmJsMain/kotlin/com/nomanr/lumo/ui"
 
 MULTIPLATFORM_DEST_DIR="../plugin/src/main/resources/templates/commonMain"
 ANDROID_NATIVE_DEST_DIR="../plugin/src/main/resources/templates/androidMain"
 IOS_NATIVE_DEST_DIR="../plugin/src/main/resources/templates/iosMain"
+MACOS_NATIVE_DEST_DIR="../plugin/src/main/resources/templates/macosMain"
+DESKTOP_NATIVE_DEST_DIR="../plugin/src/main/resources/templates/desktopMain"
+WASMJS_NATIVE_DEST_DIR="../plugin/src/main/resources/templates/wasmJsMain"
 
 check_directory_exists() {
   local dir="$1"
@@ -84,14 +90,26 @@ check_directory_exists "$ANDROID_SOURCE_DIR"
 check_directory_exists "$ANDROID_NATIVE_DEST_DIR"
 check_directory_exists "$IOS_SOURCE_DIR"
 check_directory_exists "$IOS_NATIVE_DEST_DIR"
+check_directory_exists "$MACOS_SOURCE_DIR"
+check_directory_exists "$MACOS_NATIVE_DEST_DIR"
+check_directory_exists "$DESKTOP_SOURCE_DIR"
+check_directory_exists "$DESKTOP_NATIVE_DEST_DIR"
+check_directory_exists "$WASMJS_SOURCE_DIR"
+check_directory_exists "$WASMJS_NATIVE_DEST_DIR"
 
 delete_existing_templates "$ANDROID_NATIVE_DEST_DIR"
 delete_existing_templates "$MULTIPLATFORM_DEST_DIR"
 delete_existing_templates "$IOS_NATIVE_DEST_DIR"
+delete_existing_templates "$MACOS_NATIVE_DEST_DIR"
+delete_existing_templates "$DESKTOP_NATIVE_DEST_DIR"
+delete_existing_templates "$WASMJS_NATIVE_DEST_DIR"
 
 # Generating Multiplatform Templates
 process_files "$COMMON_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
 process_files "$ANDROID_SOURCE_DIR" "$ANDROID_NATIVE_DEST_DIR"
 process_files "$IOS_SOURCE_DIR" "$IOS_NATIVE_DEST_DIR"
+process_files "$MACOS_SOURCE_DIR" "$MACOS_NATIVE_DEST_DIR"
+process_files "$DESKTOP_SOURCE_DIR" "$DESKTOP_NATIVE_DEST_DIR"
+process_files "$WASMJS_SOURCE_DIR" "$WASMJS_NATIVE_DEST_DIR"
 
 echo "Templates have been updated."

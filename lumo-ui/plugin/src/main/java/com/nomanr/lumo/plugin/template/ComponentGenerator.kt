@@ -14,6 +14,9 @@ class ComponentGenerator(
     private val outputDir = File(config.componentsDir + File.separator + "commonMain/kotlin/" + packageNameToPath(config.packageName))
     private val androidOutputDir = File(config.componentsDir + File.separator + "androidMain/kotlin/" + packageNameToPath(config.packageName))
     private val iOSOutputDir = File(config.componentsDir + File.separator + "iosMain/kotlin/" + packageNameToPath(config.packageName))
+    private val macosOutputDir = File(config.componentsDir + File.separator + "macosMain/kotlin/" + packageNameToPath(config.packageName))
+    private val desktopOutputDir = File(config.componentsDir + File.separator + "desktopMain/kotlin/" + packageNameToPath(config.packageName))
+    private val wasmJsOutputDir = File(config.componentsDir + File.separator + "wasmJsMain/kotlin/" + packageNameToPath(config.packageName))
     private val successfullyGenerated = mutableListOf<File>()
     private val successFullyGeneratedSupportingFiles = mutableListOf<File>()
     private val otherSuccessMessages = mutableListOf<String>()
@@ -21,7 +24,7 @@ class ComponentGenerator(
     private val linkFormatter = LinkFormatter
 
     init {
-        for (dir in listOf(outputDir, androidOutputDir, iOSOutputDir)) {
+        for (dir in listOf(outputDir, androidOutputDir, iOSOutputDir, macosOutputDir, desktopOutputDir, wasmJsOutputDir)) {
             if (!dir.exists()) {
                 if (dir.mkdirs()) {
                     logger.info("Created base output directory: ${dir.absolutePath}")
@@ -77,6 +80,9 @@ class ComponentGenerator(
             val multiplatformTemplateParentPath = when (platform) {
                 SupportedPlatforms.ANDROID -> "templates/androidMain"
                 SupportedPlatforms.IOS -> "templates/iosMain"
+                SupportedPlatforms.MACOS -> "templates/macosMain"
+                SupportedPlatforms.DESKTOP -> "templates/desktopMain"
+                SupportedPlatforms.WASMJS -> "templates/wasmJsMain"
             }
 
             platformSpecificImplementationFiles.forEach { multiplatformTemplateFile ->
@@ -109,6 +115,12 @@ class ComponentGenerator(
             iOSOutputDir
         } else if (componentTemplatePath.contains("android.kt.template")) {
             androidOutputDir
+        } else if (componentTemplatePath.contains("macos.kt.template")) {
+            macosOutputDir
+        } else if (componentTemplatePath.contains("desktop.kt.template")) {
+            desktopOutputDir
+        } else if (componentTemplatePath.contains("wasmJs.kt.template")) {
+            wasmJsOutputDir
         } else {
             outputDir
         }
@@ -121,7 +133,7 @@ class ComponentGenerator(
     private fun generateComponentFromTemplate(
         templateFileName: String,
         outputFile: File,
-        templateParentPath: String = "templates",
+        templateParentPath: String
     ) {
         val resourcePath = templateParentPath + File.separator + templateFileName
         val resource = javaClass.classLoader.getResource(resourcePath)

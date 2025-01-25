@@ -18,6 +18,23 @@ kotlin {
     iosArm64()
     iosX64()
     iosSimulatorArm64()
+    macosX64()
+    macosArm64()
+
+    jvm("desktop") {
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_11)
+                }
+            }
+        }
+    }
+
+    @Suppress("OPT_IN_USAGE")
+    wasmJs {
+        browser()
+    }
 
     sourceSets {
 

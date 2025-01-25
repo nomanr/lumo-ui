@@ -193,12 +193,22 @@ object TemplateRegistry {
         componentFiles = listOf(
             "components/TestComponent.kt.template"
         ),
+        // TODO we shouldn't **HAVE TO** duplicate all this
         multiplatformFiles = mapOf(
             SupportedPlatforms.ANDROID to listOf(
                 "components/TestComponent.android.kt.template",
             ),
             SupportedPlatforms.IOS to listOf(
                 "components/TestComponent.ios.kt.template",
+            ),
+            SupportedPlatforms.MACOS to listOf(
+                "components/TestComponent.macos.kt.template",
+            ),
+            SupportedPlatforms.DESKTOP to listOf(
+                "components/TestComponent.desktop.kt.template",
+            ),
+            SupportedPlatforms.WASMJS to listOf(
+                "components/TestComponent.wasmJs.kt.template",
             )
         )
     )

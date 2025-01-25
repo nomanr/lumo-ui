@@ -10,26 +10,21 @@ plugins {
 
 
 kotlin {
-// TODO: Uncomment this block to enable all the targets
-//    applyDefaultHierarchyTemplate()
-//
-//    targets.all {
-//        compilations.all {
-//            compileTaskProvider.configure {
-//                compilerOptions {
-//                    progressiveMode.set(true)
-//                    // Disable warnings about expect/actual classes
-//                    freeCompilerArgs.addAll("-Xexpect-actual-classes")
-//                }
-//            }
-//        }
-//    }
-//
-//    iosArm64()
-//    iosX64()
-//    iosSimulatorArm64()
-//    macosX64()
-//    macosArm64()
+
+    jvm("desktop") {
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_11)
+                }
+            }
+        }
+    }
+
+    @Suppress("OPT_IN_USAGE")
+    wasmJs {
+        browser()
+    }
 
     androidTarget {
         compilerOptions {
@@ -40,7 +35,9 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
+        macosX64(),
+        macosArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "lumo-ui"
