@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run Catalog on iOS" type="KmmRunConfiguration" factoryName="iOS Application" CONFIG_VERSION="1" EXEC_TARGET_ID="E40826B7-9A1A-45CF-83CF-94D483338190" XCODE_PROJECT="$PROJECT_DIR$/sample-multiplatform/catalogue/ios/iosApp.xcodeproj">
+    <method v="2">
+      <option name="com.jetbrains.kmm.ios.BuildIOSAppTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
