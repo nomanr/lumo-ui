@@ -11,9 +11,9 @@ class ComponentGenerator(
     private val config: LumoConfig
 ) {
     private val logger = Logger.getInstance()
-    private val outputDir = File(config.componentsDir + File.separator + "commonMain/kotlin/com/nomanr/sample/ui") // sample-multiplatform/ui-components/src
-    private val androidOutputDir = File(config.componentsDir + File.separator + "androidMain/kotlin/com/nomanr/sample/ui") // sample-multiplatform/ui-components/src
-    private val iOSOutputDir = File(config.componentsDir + File.separator + "iosMain/kotlin/com/nomanr/sample/ui") // sample-multiplatform/ui-components/src
+    private val outputDir = File(config.componentsDir + File.separator + "commonMain/kotlin/" + packageNameToPath(config.packageName))
+    private val androidOutputDir = File(config.componentsDir + File.separator + "androidMain/kotlin/" + packageNameToPath(config.packageName))
+    private val iOSOutputDir = File(config.componentsDir + File.separator + "iosMain/kotlin/" + packageNameToPath(config.packageName))
     private val successfullyGenerated = mutableListOf<File>()
     private val successFullyGeneratedSupportingFiles = mutableListOf<File>()
     private val otherSuccessMessages = mutableListOf<String>()
@@ -112,6 +112,10 @@ class ComponentGenerator(
         } else {
             outputDir
         }
+    }
+
+    private fun packageNameToPath(packageName: String): String {
+        return packageName.replace(".", File.separator)
     }
 
     private fun generateComponentFromTemplate(

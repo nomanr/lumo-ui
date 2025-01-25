@@ -30,7 +30,6 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             themeName = properties.getProperty(PROPERTY_THEME_NAME).orEmpty(),
             componentsDir = properties.getProperty(PROPERTY_COMPONENTS_DIR).orEmpty(),
             packageName = properties.getProperty(PROPERTY_PACKAGE_NAME).orEmpty(),
-            kotlinMultiplatform = properties.getProperty(PROPERTY_KOTLIN_MULTIPLATFORM).toBoolean()
         )
     }
 
@@ -49,7 +48,6 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
             themeName=AppTheme
             componentsDir=<<relative-path-to-components-dir-from-root>>
             packageName=<<component-files-package-name>>
-            kotlinMultiplatform=false
         """.trimIndent()
 
         propertiesFile.writeText(defaultProperties)
@@ -69,6 +67,5 @@ class PropertyLoader(private val project: Project, private val logger: Logger = 
         private const val PROPERTY_THEME_NAME = "themeName"
         private const val PROPERTY_COMPONENTS_DIR = "componentsDir"
         private const val PROPERTY_PACKAGE_NAME = "packageName"
-        private const val PROPERTY_KOTLIN_MULTIPLATFORM = "kotlinMultiplatform"
     }
 }

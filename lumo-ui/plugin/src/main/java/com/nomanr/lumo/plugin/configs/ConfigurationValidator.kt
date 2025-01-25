@@ -27,7 +27,9 @@ class ConfigurationValidator(private val project: Project, private val logger: L
             logger.warn("normalisedComponentsDir: $normalizedDirPath")
             logger.warn("config.packageName: ${config.packageName}")
 
-            logger.warn("The directory (${normalizedDirPath}) and the package name (${config.packageName}) do not match.")
+            // I think we should just append the package name to the component path to avoid redundant config
+            // so we store components in normalizedDirPath + /commonMain/kotlin/ + packageName
+//            logger.warn("The directory (${normalizedDirPath}) and the package name (${config.packageName}) do not match.")
 //            return false
         }
 

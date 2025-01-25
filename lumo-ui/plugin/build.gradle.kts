@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.nomanr"
-version = "1.0.5"
+version = "1.0.5-local"
 
 gradlePlugin {
     plugins {
@@ -17,7 +17,7 @@ gradlePlugin {
 
 extensions.configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
     publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
+//    signAllPublications()
 
     coordinates(group.toString(), artifactId = "lumo", version = version.toString())
 
