@@ -8,27 +8,6 @@ plugins {
 }
 
 kotlin {
-// TODO: Uncomment this block to enable all the targets
-//    applyDefaultHierarchyTemplate()
-//
-//    targets.all {
-//        compilations.all {
-//            compileTaskProvider.configure {
-//                compilerOptions {
-//                    progressiveMode.set(true)
-//                    // Disable warnings about expect/actual classes
-//                    freeCompilerArgs.addAll("-Xexpect-actual-classes")
-//                }
-//            }
-//        }
-//    }
-//
-//    iosArm64()
-//    iosX64()
-//    iosSimulatorArm64()
-//    macosX64()
-//    macosArm64()
-
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
@@ -52,7 +31,6 @@ kotlin {
             api(compose.foundation)
             // Todo - get rid of this at somepoint and use ripple from androidx
             api(compose.material)
-//            api(libs.androidx.compose.ripple)
             api(compose.materialIconsExtended)
             api(compose.ui)
             api(compose.components.resources)
