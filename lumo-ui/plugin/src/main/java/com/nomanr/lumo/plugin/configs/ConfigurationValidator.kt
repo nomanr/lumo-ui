@@ -13,20 +13,19 @@ class ConfigurationValidator(private val project: Project, private val logger: L
             return false
         }
 
-        val normalizedDirPath = config.componentsDir
-            .removeSuffix("/").removeSuffix("\\") // Remove the last slash or backslash
-            .replace("\\", ".") // Replace Windows-style backslashes
-            .replace("/", ".")  // Replace Unix-style forward slashes
-            .replace("//", ".") // Handle double forward slashes (if any)
-
-
+        val normalizedDirPath =
+            config.componentsDir
+                .removeSuffix("/").removeSuffix("\\") // Remove the last slash or backslash
+                .replace("\\", ".") // Replace Windows-style backslashes
+                .replace("/", ".") // Replace Unix-style forward slashes
+                .replace("//", ".") // Handle double forward slashes (if any)
 
         if (!normalizedDirPath.endsWith(config.packageName)) {
             logger.warn("componentsDir: $config.componentsDir")
             logger.warn("normalisedComponentsDir: $normalizedDirPath")
             logger.warn("config.packageName: ${config.packageName}")
 
-            logger.warn("The directory (${normalizedDirPath}) and the package name (${config.packageName}) do not match.")
+            logger.warn("The directory ($normalizedDirPath) and the package name (${config.packageName}) do not match.")
             return false
         }
 
