@@ -1,0 +1,5 @@
+package {{packageName}}.components
+
+actual fun getPlatformGreeting(): String {
+    return "Hello from Android"
+}

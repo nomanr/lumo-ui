@@ -3,7 +3,6 @@ package com.nomanr.lumo.provider
 import com.nomanr.lumo.utils.Logger
 
 class PluginDependencyProvider(private val logger: Logger = Logger.getInstance()) {
-
     private val composeBomVersion = "2024.12.01"
     private val rippleVersion = "1.7.6"
 
@@ -18,25 +17,27 @@ class PluginDependencyProvider(private val logger: Logger = Logger.getInstance()
             "androidx.compose.ui:ui",
             "androidx.compose.ui:ui-tooling",
             "androidx.compose.ui:ui-tooling-preview",
-            "androidx.compose.ui:ui-util"
+            "androidx.compose.ui:ui-util",
         )
     }
 
     private fun getSupportingDependencies(): List<String> {
         return listOf(
-            "androidx.compose.material:material-ripple:$rippleVersion"
+            "androidx.compose.material:material-ripple:$rippleVersion",
         )
     }
 
     fun printFormattedComposeDependencies() {
-        val dependencies = mutableListOf(
-            "api(platform(\"${getComposeBom()}\"))"
-        )
+        val dependencies =
+            mutableListOf(
+                "api(platform(\"${getComposeBom()}\"))",
+            )
 
-        val allDependencies = listOf(
-            *getComposeDependencies().toTypedArray(),
-            *getSupportingDependencies().toTypedArray()
-        )
+        val allDependencies =
+            listOf(
+                *getComposeDependencies().toTypedArray(),
+                *getSupportingDependencies().toTypedArray(),
+            )
 
         allDependencies.forEach { dependencies.add("api(\"$it\")") }
         val formattedDependencies = dependencies.joinToString("\n").trimIndent()

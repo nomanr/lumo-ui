@@ -1,7 +1,43 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
+    id("com.android.library")
+    kotlin("multiplatform")
+}
+
+kotlin {
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "lumo-ui"
+            isStatic = true
+        }
+    }
+    sourceSets {
+        commonMain.dependencies {
+            implementation(compose.components.resources)
+            api(compose.runtime)
+            api(compose.foundation)
+            // Todo - get rid of this at somepoint and use ripple from androidx
+            api(compose.material)
+            api(compose.materialIconsExtended)
+            api(compose.ui)
+            api(compose.components.resources)
+            api(compose.components.uiToolingPreview)
+            api(libs.nomanr.composables)
+        }
+    }
 }
 
 android {
@@ -10,29 +46,13 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        lint {
+            targetSdk = libs.versions.targetSdk.get().toInt()
         }
     }
-    buildFeatures {
-        compose = true
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions{
-        jvmTarget = "17"
     }
 }
 

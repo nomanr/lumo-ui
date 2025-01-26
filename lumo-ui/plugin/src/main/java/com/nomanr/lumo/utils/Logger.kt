@@ -1,39 +1,36 @@
-
 package com.nomanr.lumo.utils
 
 class Logger {
-
-    private val RESET = "\u001B[0m"
-    private val RED = "\u001B[31m"
-    private val GREEN = "\u001B[32m"
-    private val BLUE = "\u001B[34m"
-    private val YELLOW = "\u001B[33m"
-    private val CYAN = "\u001B[36m"
-    private val MAGENTA = "\u001B[35m"
-    private val WHITE = "\u001B[37m"
+    private val red = "\u001B[31m"
+    private val green = "\u001B[32m"
+    private val blue = "\u001B[34m"
+    private val yellow = "\u001B[33m"
+    private val cyan = "\u001B[36m"
+    private val magenta = "\u001B[35m"
+    private val white = "\u001B[37m"
 
     fun formatAsErrorMessage(message: String): String {
-        return "$RED$message$RESET"
+        return "$red$message${Companion.RESET}"
     }
 
     fun formatAsWarningMessage(message: String): String {
-        return "$YELLOW$message$RESET"
+        return "$yellow$message${Companion.RESET}"
     }
 
     fun formatAsSuccessMessage(message: String): String {
-        return "$GREEN$message$RESET"
+        return "$green$message${Companion.RESET}"
     }
 
     fun formatAsInfoMessage(message: String): String {
-        return "$BLUE$message$RESET"
+        return "$blue$message${Companion.RESET}"
     }
 
     fun formatAsDebugMessage(message: String): String {
-        return "$CYAN$message$RESET"
+        return "$cyan$message${Companion.RESET}"
     }
 
     fun formatAsCriticalErrorMessage(message: String): String {
-        return "$MAGENTA$message$RESET"
+        return "$magenta$message${Companion.RESET}"
     }
 
     fun error(message: String) {
@@ -70,5 +67,7 @@ class Logger {
         fun getInstance(): Logger {
             return logger
         }
+
+        private const val RESET = "\u001B[0m"
     }
 }
