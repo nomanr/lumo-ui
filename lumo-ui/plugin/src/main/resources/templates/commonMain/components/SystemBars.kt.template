@@ -1,0 +1,30 @@
+package {{packageName}}.components
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
+import {{packageName}}.{{themeName}}
+
+@Composable
+fun SystemBars(colors: SystemBarColor) {}
+
+@Immutable
+data class SystemBarColor(
+    val statusBarColor: Color,
+    val navigationBarColor: Color
+)
+
+object SystemBarsDefaults {
+    @Composable
+    fun defaultColors() = SystemBarColor(
+        statusBarColor = {{themeName}}.colors.primary,
+        navigationBarColor = {{themeName}}.colors.background
+    )
+
+    @Composable
+    fun colors(isStatusContentBarDark: Boolean, isNavigationContentBarDark: Boolean): SystemBarColor {
+        val statusBarColor = if (isStatusContentBarDark) {{themeName}}.colors.background else {{themeName}}.colors.primary
+        val navigationBarColor = if (isNavigationContentBarDark) {{themeName}}.colors.background else {{themeName}}.colors.primary
+        return SystemBarColor(statusBarColor, navigationBarColor)
+    }
+}

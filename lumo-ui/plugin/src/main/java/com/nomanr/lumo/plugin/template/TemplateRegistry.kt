@@ -185,6 +185,7 @@ object TemplateRegistry {
             "components/topbar/TopBar.kt.template", "components/topbar/TopBarScrollBehaviours.kt.template"
         ), supportingFiles = listOf(
             "foundation/SystemBarsDefaultInsets.kt.template",
+            "components/SystemBars.kt.template",
             "components/Surface.kt.template",
         )
     )

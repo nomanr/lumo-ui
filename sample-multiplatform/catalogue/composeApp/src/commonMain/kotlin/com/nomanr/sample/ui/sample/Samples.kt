@@ -47,8 +47,7 @@ import com.nomanr.sample.ui.sample.samples.SurfaceSample
 import com.nomanr.sample.ui.sample.samples.SwitchSample
 import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
-//import com.nomanr.sample.ui.sample.samples.TooltipSample
-//import com.nomanr.sample.ui.sample.samples.TopBarSample
+import com.nomanr.sample.ui.sample.samples.TopBarSample
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -76,7 +75,7 @@ enum class ComponentId(val label: String) {
     TEXT("Text"),
     TEXT_FIELD("TextField"),
     TOOLTIP("Tooltip"),
-    TOP_BAR("Top App Bar")
+    TOP_BAR("Top Bar")
 }
 
 @Serializable
@@ -133,7 +132,7 @@ object Samples {
             ICON to { IconSample() },
             ICON_BUTTON to { IconButtonSample() },
             CARD to { CardSample() },
-//            TOP_BAR to { navigateUp -> TopBarSample(navigateUp) },
+            TOP_BAR to { navigateUp -> TopBarSample(navigateUp) },
             ACCORDION to { AccordionSample() },
             TEXT_FIELD to { TextFieldSample() },
 //            ALERT_DIALOG to { AlertDialogSample() },

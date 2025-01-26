@@ -33,9 +33,9 @@ import {{packageName}}.components.BadgeDefaults.BadgeSize
 import {{packageName}}.components.BadgeDefaults.BadgeVerticalOffset
 import {{packageName}}.components.BadgeDefaults.BadgeWithContentHorizontalOffset
 import {{packageName}}.components.BadgeDefaults.BadgeWithContentHorizontalPadding
-import {{packageName}}.components.BadgeDefaults.BadgeWithContentShape
 import {{packageName}}.components.BadgeDefaults.BadgeWithContentSize
 import {{packageName}}.components.BadgeDefaults.BadgeWithContentVerticalOffset
+import {{packageName}}.components.BadgeDefaults.BadgeWithContentVerticalPadding
 import {{packageName}}.contentColorFor
 import {{packageName}}.foundation.ProvideContentColorTextStyle
 import kotlin.math.roundToInt
@@ -128,11 +128,7 @@ fun Badge(
     content: @Composable (RowScope.() -> Unit)? = null,
 ) {
     val size = if (content != null) BadgeWithContentSize else BadgeSize
-    val shape = if (content != null) {
-        BadgeWithContentShape
-    } else {
-        BadgeShape
-    }
+    val shape = BadgeShape
 
     Row(
         modifier = modifier
@@ -144,7 +140,10 @@ fun Badge(
             .clip(shape)
             .then(
                 if (content != null)
-                    Modifier.padding(horizontal = BadgeWithContentHorizontalPadding) else Modifier
+                    Modifier.padding(
+                        horizontal = BadgeWithContentHorizontalPadding,
+                        vertical = BadgeWithContentVerticalPadding
+                    ) else Modifier
             ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -163,11 +162,11 @@ fun Badge(
 object BadgeDefaults {
     val containerColor: Color @Composable get() = {{themeName}}.colors.error
 
-    internal val BadgeWithContentSize = 16.dp
+    internal val BadgeWithContentSize = 18.dp
     internal val BadgeSize = 8.dp
-    internal val BadgeWithContentShape = RoundedCornerShape(8.dp)
     internal val BadgeShape = RoundedCornerShape(50)
     internal val BadgeWithContentHorizontalPadding = 4.dp
+    internal val BadgeWithContentVerticalPadding = 2.dp
 
     internal val BadgeWithContentHorizontalOffset = (-6).dp
     internal val BadgeWithContentVerticalOffset = 0.dp
@@ -175,4 +174,5 @@ object BadgeDefaults {
     internal val BadgeHorizontalOffset = (-BadgeSize / 2)
     internal val BadgeVerticalOffset = 0.dp
 }
+
 

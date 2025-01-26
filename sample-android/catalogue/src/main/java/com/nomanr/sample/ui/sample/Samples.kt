@@ -76,7 +76,7 @@ enum class ComponentId(val label: String) {
     TEXT("Text"),
     TEXT_FIELD("TextField"),
     TOOLTIP("Tooltip"),
-    TOP_BAR("Top App Bar")
+    TOP_BAR("Top Bar")
 }
 
 @Serializable

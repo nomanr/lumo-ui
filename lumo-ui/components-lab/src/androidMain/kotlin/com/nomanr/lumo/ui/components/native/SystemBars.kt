@@ -1,5 +1,6 @@
 package com.nomanr.lumo.ui.components.native
 
+import android.annotation.SuppressLint
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.graphics.ColorUtils
 import com.nomanr.lumo.ui.AppTheme
 
+@SuppressLint("ContextCastToActivity") // TODO fix this
 @Composable
 fun SystemBars(colors: SystemBarColor) {
     val context = LocalContext.current as? ComponentActivity ?: return
