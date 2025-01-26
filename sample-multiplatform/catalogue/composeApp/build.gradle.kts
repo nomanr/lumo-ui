@@ -18,10 +18,7 @@ kotlin {
         }
     }
 
-    jvm("desktop") {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        mainRun { println("poop") }
-    }
+    jvm("desktop")
 
     @Suppress("OPT_IN_USAGE")
     wasmJs {
