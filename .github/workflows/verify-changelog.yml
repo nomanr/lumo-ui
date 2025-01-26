@@ -1,0 +1,20 @@
+name: Verify Changelog Update
+
+on:
+  pull_request:
+
+jobs:
+  check-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR Branch
+        uses: actions/checkout@v3
+
+      - name: Check for Changelog Update
+        run: |
+          chmod +x ./.github/scripts/pr-changelog-validation.sh
+          ./.github/scripts/pr-changelog-validation.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
