@@ -1,4 +1,4 @@
-name: Build and Verify on Android Sample
+name: Build and Verify - Android Sample
 
 on:
   workflow_dispatch:
@@ -12,8 +12,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Clean and Build
-        run: ./gradlew clean build
+      - name: Gradlew Sync
+        run: ./gradlew --refresh-dependencies
 
       - name: Remove All Android Components from sample-android
         run: |
