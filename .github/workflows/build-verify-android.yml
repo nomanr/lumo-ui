@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  build-verify-android:
     runs-on: ubuntu-latest
 
     steps:

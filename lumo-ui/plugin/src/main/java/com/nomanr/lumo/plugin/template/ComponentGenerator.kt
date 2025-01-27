@@ -89,7 +89,6 @@ class ComponentGenerator(
         template.platformSpecificFiles.forEach { (sourceSet, files) ->
             val platformOutputDir =
                 config.componentsDir.replace(MultiplatformSourceSet.COMMON.sourceSetName, sourceSet.sourceSetName)
-            logger.error(platformOutputDir)
             files.forEach { file ->
                 val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
                 ensureDirectoryExists(outputFile)

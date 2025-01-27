@@ -15,10 +15,10 @@ androidx-lifecycle-runtime-compose = "2.8.7"
 androidx-compose-navigation = "2.8.5"
 androidx-compose-ripple = "1.7.5"
 androidx-core-splashscreen = "1.0.1"
-
 androidx-viewmodel-ktx = "2.8.7"
-
 androidx-multidex = "2.0.1"
+
+androidx-multiplatform-navigation = "2.8.0-alpha12"
 
 coil = "2.7.0"
 compose-multiplatform = "1.7.0"
@@ -33,6 +33,7 @@ kotlin-serialization-json = "1.6.3"
 ksp = "2.0.0-1.0.21"
 
 mockk = "1.13.10"
+
 
 nomanr-composables = "0.0.1-alpha.12"
 
@@ -82,6 +83,8 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle-compose" }
 
 androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "androidx-multidex" }
+
+androidx-multiplatform-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-multiplatform-navigation" }
 
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 

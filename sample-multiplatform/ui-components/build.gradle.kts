@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -33,15 +32,19 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(project(":sample-multiplatform:ui-components"))
-            implementation(libs.androidx.multiplatform.navigation)
-            implementation(libs.kotlin.serialization.json)
+            api(compose.runtime)
+            api(compose.foundation)
+            api(compose.material)
+            api(compose.ui)
+            api(compose.components.resources)
+            api(compose.components.uiToolingPreview)
+            api(libs.androidx.lifecycle.runtime.multiplatform)
         }
     }
 }
 
 android {
-    namespace = "com.nomanr.lumo.multiplatform.sample"
+    namespace = "com.nomanr.lumo.multiplatform.ui"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -62,10 +65,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-}
-
-dependencies {
-    debugImplementation(compose.uiTooling)
-    debugImplementation(compose.preview)
-    debugImplementation(compose.ui)
 }
