@@ -21,23 +21,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nomanr.lumo.sample.R
-import com.nomanr.sample.ui.AppTheme
-import com.nomanr.sample.ui.components.Icon
-import com.nomanr.sample.ui.components.IconButton
-import com.nomanr.sample.ui.components.IconButtonVariant
-import com.nomanr.sample.ui.components.Scaffold
-import com.nomanr.sample.ui.components.Text
-import com.nomanr.sample.ui.components.card.OutlinedCard
-import com.nomanr.sample.ui.components.topbar.TopBar
-import com.nomanr.sample.ui.components.topbar.TopBarDefaults
-import com.nomanr.sample.ui.home.components.ConfigModal
-import com.nomanr.sample.ui.sample.Component
-import com.nomanr.sample.ui.sample.Samples
+import com.nomanr.lumo.multiplatform.sample.sample.Component
+import com.nomanr.lumo.multiplatform.sample.sample.Samples
+import com.nomanr.lumo.multiplatform.ui.AppTheme
+import com.nomanr.lumo.multiplatform.ui.components.Scaffold
+import com.nomanr.lumo.multiplatform.ui.components.Icon
+import com.nomanr.lumo.multiplatform.ui.components.IconButton
+import com.nomanr.lumo.multiplatform.ui.components.IconButtonVariant
+import com.nomanr.lumo.multiplatform.ui.components.Text
+import com.nomanr.lumo.multiplatform.ui.components.card.OutlinedCard
+import com.nomanr.lumo.multiplatform.ui.components.topbar.TopBar
+import com.nomanr.lumo.multiplatform.ui.components.topbar.TopBarDefaults
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun HomeScreen(navigateToDemo: (Component) -> Unit, navigateToUpdateTheme: () -> Unit) {
@@ -67,11 +65,11 @@ fun HomeTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Icon(
-                modifier = Modifier.height(26.dp),
-                painter = painterResource(id = R.drawable.logo_with_name),
-                contentDescription = "Logo",
-            )
+//            Icon(
+//                modifier = Modifier.height(26.dp),
+//                painter = painterResource(Res.drawable.logo),
+//                contentDescription = "Logo",
+//            )
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 IconButton(variant = IconButtonVariant.Ghost, onClick = navigateToUpdateTheme) {
@@ -86,9 +84,10 @@ fun HomeTopBar(
         }
     }
 
-    ConfigModal(isVisible = isConfigModalVisible, onDismiss = {
-        isConfigModalVisible = false
-    })
+// TODO: Add Modal Bottom Sheet first
+//    ConfigModal(isVisible = isConfigModalVisible, onDismiss = {
+//        isConfigModalVisible = false
+//    })
 }
 
 @Composable

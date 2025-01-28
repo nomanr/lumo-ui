@@ -137,3 +137,21 @@ fun provideTypography(): Typography {
 
 val LocalTypography = staticCompositionLocalOf { defaultTypography }
 val LocalTextStyle = compositionLocalOf(structuralEqualityPolicy()) { TextStyle.Default }
+val LocalOriginalTypography = staticCompositionLocalOf { defaultTypography }
+
+fun scaledTypography(fontScale: Float): Typography {
+    return Typography(
+        h1 = defaultTypography.h1.copy(fontSize = 24.sp * fontScale, lineHeight = 32.sp * fontScale),
+        h2 = defaultTypography.h2.copy(fontSize = 20.sp * fontScale, lineHeight = 28.sp * fontScale),
+        h3 = defaultTypography.h3.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+        h4 = defaultTypography.h4.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+        body1 = defaultTypography.body1.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+        body2 = defaultTypography.body2.copy(fontSize = 14.sp * fontScale, lineHeight = 20.sp * fontScale),
+        body3 = defaultTypography.body3.copy(fontSize = 12.sp * fontScale, lineHeight = 16.sp * fontScale),
+        label1 = defaultTypography.label1.copy(fontSize = 14.sp * fontScale, lineHeight = 20.sp * fontScale),
+        label2 = defaultTypography.label2.copy(fontSize = 12.sp * fontScale, lineHeight = 16.sp * fontScale),
+        label3 = defaultTypography.label3.copy(fontSize = 10.sp * fontScale, lineHeight = 12.sp * fontScale),
+        button = defaultTypography.button.copy(fontSize = 14.sp * fontScale, lineHeight = 20.sp * fontScale),
+        input = defaultTypography.input.copy(fontSize = 16.sp * fontScale, lineHeight = 24.sp * fontScale),
+    )
+}

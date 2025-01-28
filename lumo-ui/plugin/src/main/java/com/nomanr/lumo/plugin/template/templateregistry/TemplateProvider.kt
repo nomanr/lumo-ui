@@ -36,4 +36,8 @@ class TemplateProvider(kotlinMultiplatform: Boolean) {
             platformSpecificSupportingFiles = allPlatformSpecificSupportingFiles,
         )
     }
+
+    fun getAllComponents(): List<SupportedComponents> {
+        return templates.keys.toList()
+    }
 }

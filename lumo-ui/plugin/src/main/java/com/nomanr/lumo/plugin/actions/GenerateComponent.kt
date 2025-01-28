@@ -20,4 +20,8 @@ class GenerateComponent(project: Project, propertyLoader: PropertyLoader) {
     fun execute(component: SupportedComponents) {
         componentGenerator.validateAndGenerate(component)
     }
+
+    fun executeAll() {
+        componentGenerator.generateAll()
+    }
 }

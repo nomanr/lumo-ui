@@ -132,7 +132,6 @@ class ComponentGenerator(
         templateSourceDir: String,
     ) {
         val resourcePath = "$templateSourceDir/$templateFileName"
-        logger.error(resourcePath)
         val resource =
             javaClass.classLoader.getResource(resourcePath)
                 ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
@@ -150,6 +149,12 @@ class ComponentGenerator(
             if (!parentDir.mkdirs()) {
                 throw LumoException("Failed to create directory: ${parentDir.absolutePath}")
             }
+        }
+    }
+
+    fun generateAll() {
+        templateProvider.getAllComponents().forEach { component ->
+            validateAndGenerate(component)
         }
     }
 

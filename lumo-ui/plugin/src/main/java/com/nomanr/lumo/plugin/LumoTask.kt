@@ -82,9 +82,7 @@ abstract class LumoTask : DefaultTask() {
         }
 
         if (allAll) {
-            SupportedComponents.values().forEach {
-                generateComponent.execute(it)
-            }
+            generateComponent.executeAll()
         }
     }
 

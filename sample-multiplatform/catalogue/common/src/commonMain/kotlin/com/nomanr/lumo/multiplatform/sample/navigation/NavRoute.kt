@@ -1,6 +1,6 @@
 package com.nomanr.lumo.multiplatform.sample.navigation
 
-import com.nomanr.sample.ui.sample.ComponentId
+import com.nomanr.lumo.multiplatform.sample.sample.ComponentId
 import kotlinx.serialization.Serializable
 
 sealed class NavRoute {

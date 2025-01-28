@@ -10,6 +10,9 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
+import com.nomanr.lumo.multiplatform.ui.configs.LocalAppConfigState
+import com.nomanr.lumo.multiplatform.ui.configs.rememberAppConfigState
+import com.nomanr.lumo.multiplatform.ui.foundation.ripple
 
 object AppTheme {
     val colors: Colors
@@ -45,7 +48,7 @@ fun AppTheme(
         LocalDefaultColors provides AppColors(),
         LocalContentColor provides colors.contentColorFor(colors.background),
         LocalTypography provides scaledTypography,
-        LocalOriginalTypography provides typography,
+        LocalOriginalTypography provides scaledTypography,
         LocalIndication provides rippleIndication,
         LocalTextSelectionColors provides selectionColors,
         LocalAppConfigState provides appConfigState,

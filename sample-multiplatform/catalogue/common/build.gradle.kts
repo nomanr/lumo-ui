@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -36,6 +37,7 @@ kotlin {
             implementation(project(":sample-multiplatform:ui-components"))
             implementation(libs.androidx.multiplatform.navigation)
             implementation(libs.kotlin.serialization.json)
+            implementation(compose.materialIconsExtended)
         }
     }
 }
@@ -65,6 +67,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":sample-android:catalogue"))
     debugImplementation(compose.uiTooling)
     debugImplementation(compose.preview)
     debugImplementation(compose.ui)
