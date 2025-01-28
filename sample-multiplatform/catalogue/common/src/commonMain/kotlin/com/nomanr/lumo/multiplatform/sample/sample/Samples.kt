@@ -47,6 +47,7 @@ import com.nomanr.lumo.multiplatform.sample.sample.samples.TextSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.TopBarSample
 import kotlinx.serialization.Serializable
 
+@Serializable
 enum class ComponentId(val label: String) {
     ACCORDION("Accordion"),
     ALERT_DIALOG("Alert Dialog"),

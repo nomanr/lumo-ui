@@ -34,6 +34,9 @@ import com.nomanr.lumo.multiplatform.ui.components.Text
 import com.nomanr.lumo.multiplatform.ui.components.card.OutlinedCard
 import com.nomanr.lumo.multiplatform.ui.components.topbar.TopBar
 import com.nomanr.lumo.multiplatform.ui.components.topbar.TopBarDefaults
+import lumo_ui.sample_multiplatform.catalogue.common.generated.resources.Res
+import lumo_ui.sample_multiplatform.catalogue.common.generated.resources.logo
+import lumo_ui.sample_multiplatform.catalogue.common.generated.resources.logo_with_name
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -65,11 +68,11 @@ fun HomeTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-//            Icon(
-//                modifier = Modifier.height(26.dp),
-//                painter = painterResource(Res.drawable.logo),
-//                contentDescription = "Logo",
-//            )
+            Icon(
+                modifier = Modifier.height(26.dp),
+                painter = painterResource(Res.drawable.logo_with_name),
+                contentDescription = "Logo",
+            )
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 IconButton(variant = IconButtonVariant.Ghost, onClick = navigateToUpdateTheme) {

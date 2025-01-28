@@ -35,6 +35,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(project(":sample-multiplatform:ui-components"))
+            implementation(compose.components.resources)
             implementation(libs.androidx.multiplatform.navigation)
             implementation(libs.kotlin.serialization.json)
             implementation(compose.materialIconsExtended)
