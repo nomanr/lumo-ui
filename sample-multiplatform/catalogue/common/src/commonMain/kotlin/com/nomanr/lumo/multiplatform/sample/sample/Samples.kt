@@ -26,6 +26,7 @@ import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TEXT_FIELD
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TOOLTIP
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TOP_BAR
 import com.nomanr.lumo.multiplatform.sample.sample.samples.AccordionSample
+import com.nomanr.lumo.multiplatform.sample.sample.samples.AlertDialogSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.BadgeSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.ButtonSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.CardSample
@@ -133,7 +134,7 @@ object Samples {
                 TOP_BAR to { navigateUp -> TopBarSample(navigateUp) },
                 ACCORDION to { AccordionSample() },
                 TEXT_FIELD to { TextFieldSample() },
-//                ALERT_DIALOG to { AlertDialogSample() },
+                ALERT_DIALOG to { AlertDialogSample() },
                 BADGE to { navigateUp -> BadgeSample(navigateUp) },
 //                MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
                 NAVIGATION_BAR to { navigateUp -> NavigationBarSample(navigateUp) },

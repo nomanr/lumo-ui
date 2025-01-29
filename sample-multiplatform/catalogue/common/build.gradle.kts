@@ -30,7 +30,7 @@ kotlin {
     sourceSets {
 
         androidMain.dependencies {
-            implementation(compose.preview)
+            implementation(libs.androidx.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
@@ -68,8 +68,5 @@ android {
 }
 
 dependencies {
-    implementation(project(":sample-android:catalogue"))
-    debugImplementation(compose.uiTooling)
-    debugImplementation(compose.preview)
-    debugImplementation(compose.ui)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 }

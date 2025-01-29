@@ -41,7 +41,7 @@ import {{packageName}}.components.AlertDialogDefaults.DialogShape
 import {{packageName}}.components.AlertDialogDefaults.IconPadding
 import {{packageName}}.components.AlertDialogDefaults.TitlePadding
 import {{packageName}}.foundation.ProvideContentColorTextStyle
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.max
 
 @Composable

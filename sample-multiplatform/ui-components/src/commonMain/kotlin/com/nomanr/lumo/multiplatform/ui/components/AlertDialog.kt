@@ -1,4 +1,4 @@
-package {{packageName}}.components
+package com.nomanr.lumo.multiplatform.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,20 +28,20 @@ import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import {{packageName}}.{{themeName}}
-import {{packageName}}.LocalContentColor
-import {{packageName}}.components.AlertDialogDefaults.TextPadding
-import {{packageName}}.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
-import {{packageName}}.components.AlertDialogDefaults.ButtonsMainAxisSpacing
-import {{packageName}}.components.AlertDialogDefaults.DialogElevation
-import {{packageName}}.components.AlertDialogDefaults.DialogMaxWidth
-import {{packageName}}.components.AlertDialogDefaults.DialogMinWidth
-import {{packageName}}.components.AlertDialogDefaults.DialogPadding
-import {{packageName}}.components.AlertDialogDefaults.DialogShape
-import {{packageName}}.components.AlertDialogDefaults.IconPadding
-import {{packageName}}.components.AlertDialogDefaults.TitlePadding
-import {{packageName}}.foundation.ProvideContentColorTextStyle
-import androidx.compose.ui.tooling.preview.Preview
+import com.nomanr.lumo.multiplatform.ui.AppTheme
+import com.nomanr.lumo.multiplatform.ui.LocalContentColor
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.TextPadding
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.ButtonsMainAxisSpacing
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.DialogElevation
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.DialogMaxWidth
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.DialogMinWidth
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.DialogPadding
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.DialogShape
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.IconPadding
+import com.nomanr.lumo.multiplatform.ui.components.AlertDialogDefaults.TitlePadding
+import com.nomanr.lumo.multiplatform.ui.foundation.ProvideContentColorTextStyle
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.max
 
 @Composable
@@ -54,10 +54,10 @@ fun AlertDialog(
     dismissButtonText: String? = "Cancel",
     icon: (@Composable () -> Unit)? = null,
     shape: Shape = DialogShape,
-    containerColor: Color = {{themeName}}.colors.surface,
-    iconContentColor: Color = {{themeName}}.colors.primary,
-    titleContentColor: Color = {{themeName}}.colors.primary,
-    textContentColor: Color = {{themeName}}.colors.primary,
+    containerColor: Color = AppTheme.colors.surface,
+    iconContentColor: Color = AppTheme.colors.primary,
+    titleContentColor: Color = AppTheme.colors.primary,
+    textContentColor: Color = AppTheme.colors.primary,
     elevation: Dp = DialogElevation,
     properties: DialogProperties = DialogProperties(),
     content: @Composable (() -> Unit)? = null,
@@ -210,7 +210,7 @@ internal fun AlertDialogContent(
             title?.let {
                 ProvideContentColorTextStyle(
                     contentColor = titleContentColor,
-                    textStyle = {{themeName}}.typography.h3,
+                    textStyle = AppTheme.typography.h3,
                 ) {
                     Box(
                         Modifier
@@ -228,7 +228,7 @@ internal fun AlertDialogContent(
                 }
             }
             text?.let {
-                val textStyle = {{themeName}}.typography.body1
+                val textStyle = AppTheme.typography.body1
                 ProvideContentColorTextStyle(
                     contentColor = textContentColor,
                     textStyle = textStyle,
@@ -244,7 +244,7 @@ internal fun AlertDialogContent(
                 }
             }
             Box(modifier = Modifier.align(Alignment.End)) {
-                val textStyle = {{themeName}}.typography.body2
+                val textStyle = AppTheme.typography.body2
                 ProvideContentColorTextStyle(
                     contentColor = buttonContentColor,
                     textStyle = textStyle,

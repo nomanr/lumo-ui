@@ -1,22 +1,11 @@
 package com.nomanr.lumo.plugin.template.templateregistry
 
-import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.AlertDialog
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.ModalBottomSheet
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Slider
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.SystemBars
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Tooltip
 
 object AndroidTemplates {
-    private val alertDialog =
-        Template(
-            componentFiles = listOf("components/AlertDialog.kt.template"),
-            supportingFiles =
-                listOf(
-                    "foundation/Providers.kt.template",
-                ),
-            dependsOn = listOf(SupportedComponents.Button),
-        )
-
     private val modalBottomSheet =
         Template(
             componentFiles = listOf("components/ModalBottomSheet.kt.template"),
@@ -43,7 +32,6 @@ object AndroidTemplates {
 
     fun getTemplates() =
         mapOf(
-            AlertDialog to alertDialog,
             ModalBottomSheet to modalBottomSheet,
             Slider to slider,
             SystemBars to systemBars,
