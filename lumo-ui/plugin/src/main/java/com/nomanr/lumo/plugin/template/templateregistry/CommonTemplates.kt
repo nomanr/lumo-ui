@@ -189,6 +189,7 @@ object CommonTemplates {
             supportingFiles = listOf("foundation/SystemBarsDefaultInsets.kt.template"),
             dependsOn = listOf(Surface),
         )
+    
 
     fun getTemplates() =
         mapOf(

@@ -25,6 +25,9 @@ kotlin {
         }
     }
     sourceSets {
+        androidMain.dependencies {
+
+        }
         commonMain.dependencies {
             implementation(compose.components.resources)
             api(compose.runtime)

@@ -45,6 +45,7 @@ import com.nomanr.lumo.multiplatform.sample.sample.samples.SurfaceSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SwitchSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.TextFieldSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.TextSample
+import com.nomanr.lumo.multiplatform.sample.sample.samples.TooltipSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.TopBarSample
 import kotlinx.serialization.Serializable
 
@@ -146,7 +147,7 @@ object Samples {
                 SCAFFOLD to { navigateUp -> ScaffoldSample(navigateUp) },
                 SURFACE to { SurfaceSample() },
                 SWITCH to { SwitchSample() },
-//                TOOLTIP to { TooltipSample() },
+                TOOLTIP to { TooltipSample() },
             )
 
     fun hasComponent(componentName: String): Boolean {
