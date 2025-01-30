@@ -1,6 +1,7 @@
 package {{packageName}}.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +15,6 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AcUnit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -24,8 +23,10 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -82,13 +83,10 @@ private fun IconButtonComponent(
 
     Surface(
         onClick = onClick,
-        modifier =
-            modifier
-                .defaultMinSize(
-                    minWidth = IconButtonDefaults.ButtonSize,
-                    minHeight = IconButtonDefaults.ButtonSize,
-                )
-                .semantics { role = Role.Button },
+        modifier = modifier.defaultMinSize(
+            minWidth = IconButtonDefaults.ButtonSize,
+            minHeight = IconButtonDefaults.ButtonSize,
+        ).semantics { role = Role.Button },
         enabled = enabled,
         shape = style.shape,
         color = containerColor,
@@ -131,14 +129,13 @@ internal object IconButtonDefaults {
     val OutlineHeight = 1.dp
 
     @Composable
-    fun buttonElevation() =
-        ButtonElevation(
-            defaultElevation = 2.dp,
-            pressedElevation = 2.dp,
-            focusedElevation = 2.dp,
-            hoveredElevation = 2.dp,
-            disabledElevation = 0.dp,
-        )
+    fun buttonElevation() = ButtonElevation(
+        defaultElevation = 2.dp,
+        pressedElevation = 2.dp,
+        focusedElevation = 2.dp,
+        hoveredElevation = 2.dp,
+        disabledElevation = 0.dp,
+    )
 
     @Composable
     fun styleFor(variant: IconButtonVariant, shape: Shape): IconButtonStyle {
@@ -160,198 +157,172 @@ internal object IconButtonDefaults {
     }
 
     @Composable
-    fun primaryFilled(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.primary,
-                    contentColor = {{themeName}}.colors.onPrimary,
-                    disabledContainerColor = {{themeName}}.colors.disabled,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun primaryFilled(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.primary,
+            contentColor = {{themeName}}.colors.onPrimary,
+            disabledContainerColor = {{themeName}}.colors.disabled,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun primaryOutlined(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.primary,
-                    borderColor = {{themeName}}.colors.primary,
-                    disabledContainerColor = {{themeName}}.colors.transparent,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                    disabledBorderColor = {{themeName}}.colors.disabled,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun primaryOutlined(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.transparent,
+            contentColor = {{themeName}}.colors.primary,
+            borderColor = {{themeName}}.colors.primary,
+            disabledContainerColor = {{themeName}}.colors.transparent,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+            disabledBorderColor = {{themeName}}.colors.disabled,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun primaryElevated(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.primary,
-                    contentColor = {{themeName}}.colors.onPrimary,
-                    disabledContainerColor = {{themeName}}.colors.disabled,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                ),
-            shape = shape,
-            elevation = buttonElevation(),
-        )
+    fun primaryElevated(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.primary,
+            contentColor = {{themeName}}.colors.onPrimary,
+            disabledContainerColor = {{themeName}}.colors.disabled,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+        ),
+        shape = shape,
+        elevation = buttonElevation(),
+    )
 
     @Composable
-    fun primaryGhost(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.primary,
-                    borderColor = {{themeName}}.colors.transparent,
-                    disabledContainerColor = {{themeName}}.colors.transparent,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                    disabledBorderColor = {{themeName}}.colors.transparent,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun primaryGhost(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.transparent,
+            contentColor = {{themeName}}.colors.primary,
+            borderColor = {{themeName}}.colors.transparent,
+            disabledContainerColor = {{themeName}}.colors.transparent,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+            disabledBorderColor = {{themeName}}.colors.transparent,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun secondaryFilled(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.secondary,
-                    contentColor = {{themeName}}.colors.onSecondary,
-                    disabledContainerColor = {{themeName}}.colors.disabled,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun secondaryFilled(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.secondary,
+            contentColor = {{themeName}}.colors.onSecondary,
+            disabledContainerColor = {{themeName}}.colors.disabled,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun secondaryOutlined(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.secondary,
-                    borderColor = {{themeName}}.colors.secondary,
-                    disabledContainerColor = {{themeName}}.colors.transparent,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                    disabledBorderColor = {{themeName}}.colors.disabled,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun secondaryOutlined(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.transparent,
+            contentColor = {{themeName}}.colors.secondary,
+            borderColor = {{themeName}}.colors.secondary,
+            disabledContainerColor = {{themeName}}.colors.transparent,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+            disabledBorderColor = {{themeName}}.colors.disabled,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun secondaryElevated(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.secondary,
-                    contentColor = {{themeName}}.colors.onSecondary,
-                    disabledContainerColor = {{themeName}}.colors.disabled,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                ),
-            shape = shape,
-            elevation = buttonElevation(),
-        )
+    fun secondaryElevated(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.secondary,
+            contentColor = {{themeName}}.colors.onSecondary,
+            disabledContainerColor = {{themeName}}.colors.disabled,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+        ),
+        shape = shape,
+        elevation = buttonElevation(),
+    )
 
     @Composable
-    fun secondaryGhost(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.secondary,
-                    borderColor = {{themeName}}.colors.transparent,
-                    disabledContainerColor = {{themeName}}.colors.transparent,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                    disabledBorderColor = {{themeName}}.colors.transparent,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun secondaryGhost(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.transparent,
+            contentColor = {{themeName}}.colors.secondary,
+            borderColor = {{themeName}}.colors.transparent,
+            disabledContainerColor = {{themeName}}.colors.transparent,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+            disabledBorderColor = {{themeName}}.colors.transparent,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun destructiveFilled(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.error,
-                    contentColor = {{themeName}}.colors.onError,
-                    disabledContainerColor = {{themeName}}.colors.disabled,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun destructiveFilled(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.error,
+            contentColor = {{themeName}}.colors.onError,
+            disabledContainerColor = {{themeName}}.colors.disabled,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun destructiveOutlined(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.error,
-                    borderColor = {{themeName}}.colors.error,
-                    disabledContainerColor = {{themeName}}.colors.transparent,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                    disabledBorderColor = {{themeName}}.colors.disabled,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun destructiveOutlined(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.transparent,
+            contentColor = {{themeName}}.colors.error,
+            borderColor = {{themeName}}.colors.error,
+            disabledContainerColor = {{themeName}}.colors.transparent,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+            disabledBorderColor = {{themeName}}.colors.disabled,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun destructiveElevated(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.error,
-                    contentColor = {{themeName}}.colors.onError,
-                    disabledContainerColor = {{themeName}}.colors.disabled,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                ),
-            shape = shape,
-            elevation = buttonElevation(),
-        )
+    fun destructiveElevated(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.error,
+            contentColor = {{themeName}}.colors.onError,
+            disabledContainerColor = {{themeName}}.colors.disabled,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+        ),
+        shape = shape,
+        elevation = buttonElevation(),
+    )
 
     @Composable
-    fun destructiveGhost(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.error,
-                    borderColor = {{themeName}}.colors.transparent,
-                    disabledContainerColor = {{themeName}}.colors.transparent,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                    disabledBorderColor = {{themeName}}.colors.transparent,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun destructiveGhost(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.transparent,
+            contentColor = {{themeName}}.colors.error,
+            borderColor = {{themeName}}.colors.transparent,
+            disabledContainerColor = {{themeName}}.colors.transparent,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+            disabledBorderColor = {{themeName}}.colors.transparent,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 
     @Composable
-    fun ghost(shape: Shape) =
-        IconButtonStyle(
-            colors =
-                IconButtonColors(
-                    containerColor = {{themeName}}.colors.transparent,
-                    contentColor = LocalContentColor.current,
-                    disabledContainerColor = {{themeName}}.colors.transparent,
-                    disabledContentColor = {{themeName}}.colors.onDisabled,
-                ),
-            shape = shape,
-            elevation = null,
-        )
+    fun ghost(shape: Shape) = IconButtonStyle(
+        colors = IconButtonColors(
+            containerColor = {{themeName}}.colors.transparent,
+            contentColor = LocalContentColor.current,
+            disabledContainerColor = {{themeName}}.colors.transparent,
+            disabledContentColor = {{themeName}}.colors.onDisabled,
+        ),
+        shape = shape,
+        elevation = null,
+    )
 }
 
 @Immutable
@@ -392,16 +363,16 @@ fun PrimaryIconButtonPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Primary) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryFilled")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.PrimaryOutlined) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryOutlined")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.PrimaryElevated) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryElevated")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.PrimaryGhost) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "PrimaryGhost")
+                    DummyIconForIconButtonPreview()
                 }
             }
         }
@@ -420,16 +391,16 @@ fun SecondaryIconButtonPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Secondary) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryFilled")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.SecondaryOutlined) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryOutlined")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.SecondaryElevated) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryElevated")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.SecondaryGhost) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SecondaryGhost")
+                    DummyIconForIconButtonPreview()
                 }
             }
         }
@@ -448,16 +419,16 @@ fun DestructiveIconButtonPreview() {
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Destructive) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.DestructiveOutlined) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveOutlined")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.DestructiveElevated) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveElevated")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(variant = IconButtonVariant.DestructiveGhost) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveGhost")
+                    DummyIconForIconButtonPreview()
                 }
             }
         }
@@ -477,91 +448,67 @@ fun GhostIconButtonPreview() {
 
             FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 Box(
-                    modifier =
-                        Modifier
-                            .size(56.dp)
-                            .clip(RoundedCornerShape(8))
-                            .background({{themeName}}.colors.background),
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(8)).background({{themeName}}.colors.background),
                     contentAlignment = Alignment.Center,
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.background)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            DummyIconForIconButtonPreview()
                         }
                     }
                 }
 
                 Box(
-                    modifier =
-                        Modifier
-                            .size(56.dp)
-                            .clip(RoundedCornerShape(8))
-                            .background({{themeName}}.colors.primary),
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(8)).background({{themeName}}.colors.primary),
                     contentAlignment = Alignment.Center,
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.primary)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            DummyIconForIconButtonPreview()
                         }
                     }
                 }
 
                 Box(
-                    modifier =
-                        Modifier
-                            .size(56.dp)
-                            .clip(RoundedCornerShape(8))
-                            .background({{themeName}}.colors.secondary),
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(8)).background({{themeName}}.colors.secondary),
                     contentAlignment = Alignment.Center,
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.secondary)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            DummyIconForIconButtonPreview()
                         }
                     }
                 }
 
                 Box(
-                    modifier =
-                        Modifier
-                            .size(56.dp)
-                            .clip(RoundedCornerShape(8))
-                            .background({{themeName}}.colors.tertiary),
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(8)).background({{themeName}}.colors.tertiary),
                     contentAlignment = Alignment.Center,
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.tertiary)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            DummyIconForIconButtonPreview()
                         }
                     }
                 }
 
                 Box(
-                    modifier =
-                        Modifier
-                            .size(56.dp)
-                            .clip(RoundedCornerShape(8))
-                            .background({{themeName}}.colors.surface),
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(8)).background({{themeName}}.colors.surface),
                     contentAlignment = Alignment.Center,
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.surface)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            DummyIconForIconButtonPreview()
                         }
                     }
                 }
 
                 Box(
-                    modifier =
-                        Modifier
-                            .size(56.dp)
-                            .clip(RoundedCornerShape(8))
-                            .background({{themeName}}.colors.error),
+                    modifier = Modifier.size(56.dp).clip(RoundedCornerShape(8)).background({{themeName}}.colors.error),
                     contentAlignment = Alignment.Center,
                 ) {
                     CompositionLocalProvider(LocalContentColor provides contentColorFor(color = {{themeName}}.colors.error)) {
                         IconButton(variant = IconButtonVariant.Ghost) {
-                            Icon(Icons.Filled.AcUnit, contentDescription = "DestructiveFilled")
+                            DummyIconForIconButtonPreview()
                         }
                     }
                 }
@@ -585,13 +532,13 @@ fun IconButtonShapesPreview() {
                     variant = IconButtonVariant.Primary,
                     shape = IconButtonDefaults.ButtonSquareShape,
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SquareShape")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(
                     variant = IconButtonVariant.PrimaryOutlined,
                     shape = IconButtonDefaults.ButtonSquareShape,
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "SquareShapeOutlined")
+                    DummyIconForIconButtonPreview()
                 }
             }
 
@@ -602,15 +549,71 @@ fun IconButtonShapesPreview() {
                     variant = IconButtonVariant.Primary,
                     shape = IconButtonDefaults.ButtonCircleShape,
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "CircleShape")
+                    DummyIconForIconButtonPreview()
                 }
                 IconButton(
                     variant = IconButtonVariant.PrimaryOutlined,
                     shape = IconButtonDefaults.ButtonCircleShape,
                 ) {
-                    Icon(Icons.Filled.AcUnit, contentDescription = "CircleShapeOutlined")
+                    DummyIconForIconButtonPreview()
                 }
             }
         }
+    }
+}
+
+@Composable
+@Preview
+private fun DummyIconForIconButtonPreview() {
+    Canvas(modifier = Modifier.size(16.dp)) {
+        val center = size / 2f
+        val radius = size.minDimension * 0.4f
+        val strokeWidth = 4f
+        val cap = StrokeCap.Round
+
+        drawLine(
+            color = Color.Black,
+            start = Offset(center.width - radius, center.height),
+            end = Offset(center.width + radius, center.height),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
+
+        drawLine(
+            color = Color.Black,
+            start = Offset(center.width, center.height - radius),
+            end = Offset(center.width, center.height + radius),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
+
+        val diagonalRadius = radius * 0.75f
+        drawLine(
+            color = Color.Black,
+            start = Offset(
+                center.width - diagonalRadius,
+                center.height - diagonalRadius,
+            ),
+            end = Offset(
+                center.width + diagonalRadius,
+                center.height + diagonalRadius,
+            ),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
+
+        drawLine(
+            color = Color.Black,
+            start = Offset(
+                center.width - diagonalRadius,
+                center.height + diagonalRadius,
+            ),
+            end = Offset(
+                center.width + diagonalRadius,
+                center.height - diagonalRadius,
+            ),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
     }
 }

@@ -1,6 +1,7 @@
 package {{packageName}}.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,16 +12,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AcUnit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -344,7 +345,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -354,7 +355,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -364,7 +365,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -374,7 +375,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -385,7 +386,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -395,7 +396,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -405,7 +406,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -414,7 +415,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -425,7 +426,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -435,7 +436,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -445,7 +446,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -455,7 +456,7 @@ fun PrimaryChipPreview() {
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
+                        DummyIconForChipPreview()
                         Text("Chip", style = {{themeName}}.typography.label3)
                     }
                 }
@@ -463,3 +464,60 @@ fun PrimaryChipPreview() {
         }
     }
 }
+
+@Composable
+@Preview
+private fun DummyIconForChipPreview() {
+    Canvas(modifier = Modifier.size(16.dp)) {
+        val center = size / 2f
+        val radius = size.minDimension * 0.4f
+        val strokeWidth = 4f
+        val cap = StrokeCap.Round
+
+        drawLine(
+            color = Color.Black,
+            start = Offset(center.width - radius, center.height),
+            end = Offset(center.width + radius, center.height),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
+
+        drawLine(
+            color = Color.Black,
+            start = Offset(center.width, center.height - radius),
+            end = Offset(center.width, center.height + radius),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
+
+        val diagonalRadius = radius * 0.75f
+        drawLine(
+            color = Color.Black,
+            start = Offset(
+                center.width - diagonalRadius,
+                center.height - diagonalRadius,
+            ),
+            end = Offset(
+                center.width + diagonalRadius,
+                center.height + diagonalRadius,
+            ),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
+
+        drawLine(
+            color = Color.Black,
+            start = Offset(
+                center.width - diagonalRadius,
+                center.height + diagonalRadius,
+            ),
+            end = Offset(
+                center.width + diagonalRadius,
+                center.height - diagonalRadius,
+            ),
+            strokeWidth = strokeWidth,
+            cap = cap,
+        )
+    }
+}
+
