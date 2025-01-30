@@ -19,9 +19,9 @@ jobs:
         run: |
           rm -rf sample-multiplatform/ui-components/src/commonMain/kotlin/com/nomanr/lumo/multiplatform/ui/foundation
           rm -rf sample-multiplatform/ui-components/src/commonMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
+          rm -rf sample-multiplatform/ui-components/src/androidMain/kotlin/com/nomanr/lumo/multiplatform/ui/foundation
           rm -rf sample-multiplatform/ui-components/src/androidMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
-          rm -rf sample-multiplatform/ui-components/src/androidMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
-          rm -rf sample-multiplatform/ui-components/src/iosMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
+          rm -rf sample-multiplatform/ui-components/src/iosMain/kotlin/com/nomanr/lumo/multiplatform/ui/foundation
           rm -rf sample-multiplatform/ui-components/src/iosMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
 
       - name: Add lumo.properties
