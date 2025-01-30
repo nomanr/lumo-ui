@@ -1,7 +1,9 @@
-name: Verify Changelog Update
+name: Verify Changelog
 
 on:
   pull_request:
+    types:
+      - opened
 
 jobs:
   check-changelog:
@@ -11,7 +13,7 @@ jobs:
       - name: Checkout PR Branch
         uses: actions/checkout@v3
 
-      - name: Check for Changelog Update
+      - name: Check for Changelog
         run: |
           chmod +x ./.github/scripts/pr-changelog-validation.sh
           ./.github/scripts/pr-changelog-validation.sh

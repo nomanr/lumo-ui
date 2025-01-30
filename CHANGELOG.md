@@ -1,7 +1,7 @@
 # Changelog
 
 ## [1.1.0] - TBD
-- Add support for Kotlin Multiplatform
+- Add support for Kotlin Multiplatform!
 
 ## [1.0.5] - 2025-01-23
 - Revert 1.0.4
