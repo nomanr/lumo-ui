@@ -20,6 +20,16 @@ jobs:
           rm -rf sample-android/ui-components/src/main/java/com/nomanr/sample/ui/foundation
           rm -rf sample-android/ui-components/src/main/java/com/nomanr/sample/ui/components
 
+      - name: Add lumo.properties
+        run: |
+          rm -rf lumo.properties
+          cat <<EOF > lumo.properties
+          ThemeName=AppTheme
+
+          ComponentsDir=sample-android/ui-components/src/main/java/com/nomanr/sample/ui
+          PackageName=com.nomanr.sample.ui
+          EOF
+
       - name: Generate All Components in sample-android
         run: ./gradlew lumo --addAll
 
