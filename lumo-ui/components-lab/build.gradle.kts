@@ -34,7 +34,6 @@ kotlin {
             api(compose.foundation)
             // Todo - get rid of this at somepoint and use ripple from androidx
             api(compose.material)
-            api(compose.materialIconsExtended)
             api(compose.ui)
             api(compose.components.resources)
             api(compose.components.uiToolingPreview)
@@ -67,7 +66,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
-    implementation(libs.androidx.compose.material.iconsExtended)
 
     implementation(libs.nomanr.composables)
     implementation(libs.androidx.compose.ripple)
