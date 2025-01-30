@@ -2,16 +2,12 @@ package com.nomanr.lumo.multiplatform.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
@@ -29,7 +25,6 @@ import com.nomanr.lumo.multiplatform.ui.components.ChipDefaults.ChipIconHorizont
 import com.nomanr.lumo.multiplatform.ui.components.ChipDefaults.ChipIconSize
 import com.nomanr.lumo.multiplatform.ui.components.ChipDefaults.ChipRectShape
 import com.nomanr.lumo.multiplatform.ui.foundation.ButtonElevation
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Chip(

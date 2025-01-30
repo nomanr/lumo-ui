@@ -2,17 +2,12 @@ package com.nomanr.lumo.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AcUnit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
@@ -30,7 +25,6 @@ import com.nomanr.lumo.ui.components.ChipDefaults.ChipIconHorizontalPadding
 import com.nomanr.lumo.ui.components.ChipDefaults.ChipIconSize
 import com.nomanr.lumo.ui.components.ChipDefaults.ChipRectShape
 import com.nomanr.lumo.ui.foundation.ButtonElevation
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Chip(
@@ -333,133 +327,4 @@ internal data class ChipStyle(
     val contentPadding: PaddingValues,
 )
 
-@Composable
-@Preview
-fun PrimaryChipPreview() {
-    AppTheme {
-        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Chip {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
 
-                Chip(enabled = false) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                Chip {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                Chip(enabled = false) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                ElevatedChip {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                ElevatedChip(enabled = false) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                ElevatedChip {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-                ElevatedChip(enabled = false) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedChip {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                OutlinedChip(enabled = false) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                OutlinedChip {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-
-                OutlinedChip(enabled = false) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Filled.AcUnit, modifier = Modifier.size(16.dp), contentDescription = "Filled Icon Button")
-                        Text("Chip", style = AppTheme.typography.label3)
-                    }
-                }
-            }
-        }
-    }
-}
