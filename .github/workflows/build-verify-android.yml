@@ -12,26 +12,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Gradle Sync
-        run: ./gradlew --refresh-dependencies
-
-      - name: Remove All Android Components from sample-android
+      - name: Build And Verify - Multiplatform Sample
         run: |
-          rm -rf sample-android/ui-components/src/main/java/com/nomanr/sample/ui/foundation
-          rm -rf sample-android/ui-components/src/main/java/com/nomanr/sample/ui/components
-
-      - name: Add lumo.properties
-        run: |
-          rm -rf lumo.properties
-          cat <<EOF > lumo.properties
-          ThemeName=AppTheme
-
-          ComponentsDir=sample-android/ui-components/src/main/java/com/nomanr/sample/ui
-          PackageName=com.nomanr.sample.ui
-          EOF
-
-      - name: Generate All Components in sample-android
-        run: ./gradlew lumo --addAll
-
-      - name: Build sample-android
-        run: ./gradlew sample-android:catalogue:assembleDebug
+          chmod +x .github/scripts/build-verify-android.sh
+          .github/scripts/build-verify-android.sh

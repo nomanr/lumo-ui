@@ -48,4 +48,3 @@ extensions.configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
         }
     }
 }
-

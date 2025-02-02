@@ -12,30 +12,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Gradle Sync
-        run: ./gradlew --refresh-dependencies
-
-      - name: Remove All Multiplatform Components from sample-multiplatform
+      - name: Build And Verify - Multiplatform Sample
         run: |
-          rm -rf sample-multiplatform/ui-components/src/commonMain/kotlin/com/nomanr/lumo/multiplatform/ui/foundation
-          rm -rf sample-multiplatform/ui-components/src/commonMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
-          rm -rf sample-multiplatform/ui-components/src/androidMain/kotlin/com/nomanr/lumo/multiplatform/ui/foundation
-          rm -rf sample-multiplatform/ui-components/src/androidMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
-          rm -rf sample-multiplatform/ui-components/src/iosMain/kotlin/com/nomanr/lumo/multiplatform/ui/foundation
-          rm -rf sample-multiplatform/ui-components/src/iosMain/kotlin/com/nomanr/lumo/multiplatform/ui/components
-
-      - name: Add lumo.properties
-        run: |
-          rm -rf lumo.properties
-          cat <<EOF > lumo.properties
-          ThemeName=AppTheme
-          ComponentsDir=sample-multiplatform/ui-components/src/commonMain/kotlin/com/nomanr/lumo/multiplatform/ui
-          PackageName=com.nomanr.lumo.multiplatform.ui
-          KotlinMultiplatform=true
-          EOF
-
-      - name: Generate All Components in sample-multiplatform
-        run: ./gradlew lumo --addAll
-
-      - name: Build sample-android
-        run: ./gradlew sample-multiplatform:catalogue:android:assembleDebug
+          chmod +x .github/scripts/build-verify-multiplatform.sh
+          .github/scripts/build-verify-multiplatform.sh
