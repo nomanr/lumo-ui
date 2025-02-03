@@ -10,17 +10,18 @@ androidx-appcompat = "1.7.0"
 androidx-compose-bom = "2024.12.01"
 androidx-constraintlayout = "1.1.0"
 androidx-corektx = "1.15.0"
-androidx-lifecycle-compose = "2.8.7"
+androidx-lifecycle-compose = "2.8.4"
 androidx-lifecycle-runtime-compose = "2.8.7"
 androidx-compose-navigation = "2.8.5"
-androidx-compose-ripple = "1.7.6"
+androidx-compose-ripple = "1.7.5"
 androidx-core-splashscreen = "1.0.1"
-
 androidx-viewmodel-ktx = "2.8.7"
-
 androidx-multidex = "2.0.1"
 
+androidx-multiplatform-navigation = "2.8.0-alpha12"
+
 coil = "2.7.0"
+compose-multiplatform = "1.7.0"
 
 hilt = "2.50"
 hilt-ext = "1.2.0"
@@ -30,13 +31,13 @@ kotlin = "2.1.0"
 kotlin-coroutines-android = "1.8.1"
 kotlin-serialization-json = "1.6.3"
 ksp = "2.0.0-1.0.21"
-ktlint = "0.42.1"
 
 mockk = "1.13.10"
 
+
 nomanr-composables = "0.0.1-alpha.12"
 
-spotless = "6.25.0"
+spotless = "7.0.2"
 
 junit = "4.13.2"
 androidx-test-ext-junit = "1.2.1"
@@ -74,12 +75,16 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 androidx-corektx = { module = "androidx.core:core-ktx", version.ref = "androidx-corektx" }
 
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-runtime-compose" }
+androidx-lifecycle-runtime-multiplatform = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-compose" }
+
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle-compose" }
 androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle-compose" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-viewmodel-ktx" }
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle-compose" }
 
 androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "androidx-multidex" }
+
+androidx-multiplatform-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-multiplatform-navigation" }
 
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
@@ -114,13 +119,13 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 vanniktech-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven-publish" }
 
-#Local plugins
-app-publishing-plugin = { id = "com.nomanr.lumo.publishing-plugin" }
 
 
 

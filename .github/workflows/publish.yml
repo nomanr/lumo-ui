@@ -1,0 +1,108 @@
+name: Publish
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  publish-to-maven-central:
+    runs-on: ubuntu-latest
+    if: |
+      github.event.pull_request.merged == true && 
+      (contains(join(github.event.pull_request.labels.*.name, ','), 'release: major') ||
+       contains(join(github.event.pull_request.labels.*.name, ','), 'release: minor') ||
+       contains(join(github.event.pull_request.labels.*.name, ','), 'release: patch'))
+
+    steps:
+      - name: Checkout base branch (where PR was merged)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
+
+      - name: Determine Release Type
+        id: release_type
+        run: |
+          LABELS="${{ join(github.event.pull_request.labels.*.name, ' ') }}"
+          chmod +x .github/scripts/publish/get-release-type.sh
+          RELEASE_TYPE=$(./.github/scripts/publish/get-release-type.sh "$LABELS")
+          echo "RELEASE_TYPE=$RELEASE_TYPE" >> $GITHUB_ENV
+
+      - name: Update Release Version
+        run: |
+          chmod +x .github/scripts/publish/update-version.sh
+          NEW_VERSION=$(./.github/scripts/publish/update-version.sh "$RELEASE_TYPE")
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+          echo "NEW_VERSION_TAG=v$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Regenerate templates
+        run: |
+          chmod +x lumo-ui/scripts/generate_templates.sh
+          lumo-ui/scripts/generate_templates.sh
+
+      - name: Download and Verify KMP Starter Project
+        run: |
+          ./gradlew plugin:publishToMavenLocal
+          chmod +x .github/scripts/download-build-kmp-starter-project.sh
+          .github/scripts/download-build-kmp-starter-project.sh "$NEW_VERSION"
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USER_NAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_IN_MEMORY_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
+
+      - name: Build And Verify - Multiplatform Sample
+        run: |
+          chmod +x .github/scripts/build-verify-multiplatform.sh
+          .github/scripts/build-verify-multiplatform.sh
+
+      - name: Build And Verify - Android Sample
+        run: |
+          chmod +x .github/scripts/build-verify-android.sh
+          .github/scripts/build-verify-android.sh
+
+      - name: Publish to Maven Central
+        run: ./gradlew plugin:publishToMavenCentral
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USER_NAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_IN_MEMORY_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
+
+      - name: Generate Release Notes
+        run: |
+          chmod +x .github/scripts/publish/generate-release-notes.sh
+          RELEASE_NOTES=$(./.github/scripts/publish/generate-release-notes.sh "$NEW_VERSION")
+          echo "RELEASE_NOTES<<EOF" >> "$GITHUB_ENV"
+          echo "$RELEASE_NOTES" >> "$GITHUB_ENV"
+          echo "EOF" >> "$GITHUB_ENV"
+
+      - name: Git user configs
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Push version and template updates to base branch
+        run: |
+          git add lumo-ui
+          git commit --amend --no-edit
+          git push --force
+
+      - name: Create Release Tag
+        run: |
+          git tag $NEW_VERSION_TAG
+          git push origin $NEW_VERSION_TAG
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.NEW_VERSION_TAG }}
+          name: ${{ env.NEW_VERSION_TAG }}
+          body: ${{ env.RELEASE_NOTES }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

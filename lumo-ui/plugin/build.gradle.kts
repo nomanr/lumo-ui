@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.nomanr"
-version = "1.0.5"
+version = "1.1.0"
 
 gradlePlugin {
     plugins {
@@ -48,4 +48,3 @@ extensions.configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
         }
     }
 }
-

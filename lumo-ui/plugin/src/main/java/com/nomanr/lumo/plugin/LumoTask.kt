@@ -4,7 +4,7 @@ import com.nomanr.lumo.exceptions.LumoException
 import com.nomanr.lumo.plugin.actions.GenerateComponent
 import com.nomanr.lumo.plugin.actions.Initialiser
 import com.nomanr.lumo.plugin.configs.PropertyLoader
-import com.nomanr.lumo.plugin.template.SupportedComponents
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents
 import com.nomanr.lumo.provider.PluginDependencyProvider
 import com.nomanr.lumo.utils.Logger
 import org.gradle.api.DefaultTask
@@ -24,7 +24,7 @@ abstract class LumoTask : DefaultTask() {
 
     @set:Option(
         option = "required-deps",
-        description = "Returns the required dependencies to be added to the build.gradle.kts file"
+        description = "Returns the required dependencies to be added to the build.gradle.kts file",
     )
     @get:Input
     var requiredDeps: Boolean = false
@@ -37,6 +37,10 @@ abstract class LumoTask : DefaultTask() {
     @get:Input
     @Optional
     var componentToAdd: String? = null
+
+    @set:Option(option = "addAll", description = "Add a new Lumo UI Component")
+    @get:Input
+    var allAll: Boolean = false
 
     private val propertyLoader by lazy { PropertyLoader(project) }
     private val initialiser by lazy { Initialiser(project, propertyLoader) }
@@ -76,6 +80,10 @@ abstract class LumoTask : DefaultTask() {
         if (componentToAdd != null) {
             generateComponent.execute(componentToAdd!!)
         }
+
+        if (allAll) {
+            generateComponent.executeAll()
+        }
     }
 
     private fun noInputProvided(): Boolean {
@@ -89,7 +97,8 @@ abstract class LumoTask : DefaultTask() {
     }
 
     private fun printHelpMessage() {
-        val helpMessage = """
+        val helpMessage =
+            """
             |Usage: ./gradlew lumo --option <value>
             |
             |Options:
@@ -99,9 +108,8 @@ abstract class LumoTask : DefaultTask() {
             |  --add <component>       Add a new Lumo UI Component
             |  --plugin-help           Display this help message
             |
-        """.trimMargin()
+            """.trimMargin()
 
         logger.info(helpMessage)
     }
 }
-
