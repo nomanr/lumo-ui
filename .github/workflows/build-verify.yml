@@ -1,4 +1,4 @@
-name: Download and Build KMP Starter Project
+name: Build and Verify
 
 on:
   workflow_dispatch:
@@ -30,8 +30,31 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
 
-
       - name: Download and Build KMP Starter Project
         run: |
           chmod +x .github/scripts/download-build-kmp-starter-project.sh
           .github/scripts/download-build-kmp-starter-project.sh "$TEST_VERSION"
+
+  build-verify-multiplatform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build And Verify - Multiplatform Sample
+        run: |
+          chmod +x .github/scripts/build-verify-multiplatform.sh
+          .github/scripts/build-verify-multiplatform.sh
+
+  build-verify-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build And Verify - Android Sample
+        run: |
+          chmod +x .github/scripts/build-verify-android.sh
+          .github/scripts/build-verify-android.sh
