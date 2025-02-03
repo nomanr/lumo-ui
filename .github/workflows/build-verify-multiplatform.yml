@@ -2,7 +2,7 @@ name: Build and Verify - Multiplatform Sample
 
 on:
   workflow_dispatch:
-#  pull_request:
+  pull_request:
 
 jobs:
   build-verify-multiplatform:
