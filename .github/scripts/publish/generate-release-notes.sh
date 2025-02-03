@@ -14,8 +14,4 @@ fi
 
 RELEASE_NOTES=$(git log --pretty=format:"- %s" "$START_COMMIT"..HEAD)
 
-{
-    echo "RELEASE_NOTES<<EOF"
-    echo "$RELEASE_NOTES"
-    echo "EOF"
-} >> "$GITHUB_ENV"
+echo "$RELEASE_NOTES"

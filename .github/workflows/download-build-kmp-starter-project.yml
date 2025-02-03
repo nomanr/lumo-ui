@@ -2,17 +2,36 @@ name: Download and Build KMP Starter Project
 
 on:
   workflow_dispatch:
-  pull_request:
+#  pull_request:
 
 jobs:
   build-verify-kmp-starter-project:
     runs-on: ubuntu-latest
+    env:
+      TEST_VERSION: "0.0.1-SNAPSHOT"
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Publish test version to local maven
+        run: |
+          GRADLE_FILE="lumo-ui/plugin/build.gradle.kts"
+
+          CURRENT_VERSION=$(grep -oE 'version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"' "$GRADLE_FILE" | awk -F'"' '{print $2}')
+          ESCAPED_CURRENT_VERSION=$(echo "$CURRENT_VERSION" | sed 's/\./\\./g')
+          sed -i "s/version\s*=\s*\"$ESCAPED_CURRENT_VERSION\"/version = \"$TEST_VERSION\"/" "$GRADLE_FILE"
+          echo "Updated version in $GRADLE_FILE from $CURRENT_VERSION to $TEST_VERSION"
+          ./gradlew plugin:publishToMavenLocal
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USER_NAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_IN_MEMORY_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
+
+
       - name: Download and Build KMP Starter Project
         run: |
           chmod +x .github/scripts/download-build-kmp-starter-project.sh
-          .github/scripts/download-build-kmp-starter-project.sh "0.0.1-SNAPSHOT"
+          .github/scripts/download-build-kmp-starter-project.sh "$TEST_VERSION"

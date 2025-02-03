@@ -20,5 +20,5 @@ else
   exit 1
 fi
 
-echo "RELEASE_TYPE=$RELEASE_TYPE" >> $GITHUB_ENV
-echo "RELEASE_TYPE: $RELEASE_TYPE"
+echo $RELEASE_TYPE
+

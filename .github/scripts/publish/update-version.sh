@@ -33,12 +33,6 @@ case "$RELEASE_TYPE" in
 esac
 
 NEW_VERSION="$MAJOR.$MINOR.$PATCH"
-NEW_TAG_VERSION="v$MAJOR.$MINOR.$PATCH"
-
-if [[ -n "$GITHUB_ENV" ]]; then
-  echo "NEW_VERSION=$NEW_VERSION" >> "$GITHUB_ENV"
-  echo "NEW_TAG_VERSION=$NEW_TAG_VERSION" >> "$GITHUB_ENV"
-fi
 
 ESCAPED_CURRENT_VERSION=$(echo "$CURRENT_VERSION" | sed 's/\./\\./g')
 sed -i "s/version\s*=\s*\"$ESCAPED_CURRENT_VERSION\"/version = \"$NEW_VERSION\"/" "$GRADLE_FILE"
@@ -49,8 +43,4 @@ if [[ "$UPDATED_VERSION" != "$NEW_VERSION" ]]; then
   exit 1
 fi
 
-git config --global user.name "github-actions"
-git config --global user.email "github-actions@github.com"
-git add "$GRADLE_FILE"
-git commit --amend --no-edit
-git push --force
+echo $NEW_VERSION
