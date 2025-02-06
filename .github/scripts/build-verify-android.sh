@@ -13,5 +13,5 @@ ComponentsDir=sample-android/ui-components/src/main/java/com/nomanr/sample/ui
 PackageName=com.nomanr.sample.ui
 EOF
 
-./gradlew lumo --addAll
+./gradlew lumo --add-all
 ./gradlew sample-android:catalogue:assembleDebug
