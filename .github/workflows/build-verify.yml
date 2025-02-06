@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
 
-jobs:
-  regenerate-templates:
+  build-verify-kmp-starter-project:
     runs-on: ubuntu-latest
+    env:
+      TEST_VERSION: "0.0.1-SNAPSHOT"
 
     steps:
       - name: Checkout Repository
@@ -16,17 +17,6 @@ jobs:
         run: |
           chmod +x lumo-ui/scripts/generate_templates.sh
           lumo-ui/scripts/generate_templates.sh
-
-
-  build-verify-kmp-starter-project:
-    needs: regenerate-templates
-    runs-on: ubuntu-latest
-    env:
-      TEST_VERSION: "0.0.1-SNAPSHOT"
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
 
       - name: Publish test version to local maven
         run: |
@@ -57,6 +47,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Regenerate templates
+        run: |
+          chmod +x lumo-ui/scripts/generate_templates.sh
+          lumo-ui/scripts/generate_templates.sh
+
       - name: Build And Verify - Multiplatform Sample
         run: |
           chmod +x .github/scripts/build-verify-multiplatform.sh
@@ -69,6 +64,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Regenerate templates
+        run: |
+          chmod +x lumo-ui/scripts/generate_templates.sh
+          lumo-ui/scripts/generate_templates.sh
 
       - name: Build And Verify - Android Sample
         run: |
