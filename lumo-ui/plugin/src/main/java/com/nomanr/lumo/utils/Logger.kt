@@ -52,6 +52,9 @@ class Logger {
     fun debug(message: String) {
         println(formatAsDebugMessage(message))
     }
+    fun log(message: String) {
+        println(message)
+    }
 
     fun criticalError(message: String) {
         println(formatAsCriticalErrorMessage(message))

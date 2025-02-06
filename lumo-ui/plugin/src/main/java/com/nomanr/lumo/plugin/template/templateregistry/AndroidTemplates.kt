@@ -2,6 +2,7 @@ package com.nomanr.lumo.plugin.template.templateregistry
 
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.ModalBottomSheet
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Slider
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Surface
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.SystemBars
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Tooltip
 
@@ -28,6 +29,7 @@ object AndroidTemplates {
     private val toolTip =
         Template(
             componentFiles = listOf("components/Tooltip.kt.template"),
+            dependsOn = listOf(Surface),
         )
 
     fun getTemplates() =
