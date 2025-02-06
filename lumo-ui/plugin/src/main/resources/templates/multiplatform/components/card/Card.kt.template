@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -26,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import {{packageName}}.{{themeName}}
 import {{packageName}}.LocalTypography
 import {{packageName}}.components.Surface
-import {{packageName}}.components.Text
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -319,7 +319,7 @@ fun CardComponentSample() {
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         Column {
-            Text(text = "Default Card", style = LocalTypography.current.h3)
+            BasicText(text = "Default Card", style = LocalTypography.current.h3)
             Spacer(modifier = Modifier.height(8.dp))
 
             Card(
@@ -328,7 +328,7 @@ fun CardComponentSample() {
         }
 
         Column {
-            Text(text = "Elevated Card with Action", style = LocalTypography.current.h3)
+            BasicText(text = "Elevated Card with Action", style = LocalTypography.current.h3)
             ElevatedCard(
                 modifier = cardModifier,
                 onClick = { /* Handle click */ },
@@ -337,14 +337,14 @@ fun CardComponentSample() {
 
         // Outlined Card
         Column {
-            Text(text = "Custom Outlined Card", style = LocalTypography.current.h3)
+            BasicText(text = "Custom Outlined Card", style = LocalTypography.current.h3)
             OutlinedCard(
                 modifier = cardModifier,
             ) {}
         }
 
         Column {
-            Text(text = "Disabled Card", style = LocalTypography.current.h3)
+            BasicText(text = "Disabled Card", style = LocalTypography.current.h3)
             Card(
                 modifier = cardModifier,
                 onClick = { },
@@ -360,7 +360,7 @@ fun CardComponentSample() {
         }
 
         Column {
-            Text(text = "Custom Colored Card", style = LocalTypography.current.h3)
+            BasicText(text = "Custom Colored Card", style = LocalTypography.current.h3)
             Card(
                 modifier = cardModifier,
                 colors =
@@ -372,7 +372,7 @@ fun CardComponentSample() {
         }
 
         Column {
-            Text(text = "Outlined Card with Hover Elevation", style = LocalTypography.current.h3)
+            BasicText(text = "Outlined Card with Hover Elevation", style = LocalTypography.current.h3)
             OutlinedCard(
                 modifier = cardModifier,
                 onClick = { /* Handle click */ },
@@ -392,7 +392,7 @@ fun CardComponentSample() {
 
         // Interactive Card
         Column {
-            Text(text = "Interactive Card", style = LocalTypography.current.h3)
+            BasicText(text = "Interactive Card", style = LocalTypography.current.h3)
             Card(
                 modifier = cardModifier,
                 onClick = { /* Handle click */ },

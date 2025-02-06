@@ -32,7 +32,7 @@ object CommonTemplates {
             listOf(
                 "foundation/Providers.kt.template",
             ),
-            dependsOn = listOf(SupportedComponents.Button),
+            dependsOn = listOf(Button),
         )
 
     private val surface =
@@ -107,7 +107,7 @@ object CommonTemplates {
     private val navigationBar =
         Template(
             componentFiles = listOf("components/NavigationBar.kt.template"),
-            supportingFiles = listOf("foundation/SystemBarsDefaultInsets.kt.template"),
+            supportingFiles = listOf("foundation/SystemBarsDefaultInsets.kt.template", "foundation/Providers.kt.template"),
             dependsOn = listOf(Surface),
         )
 
@@ -150,7 +150,7 @@ object CommonTemplates {
                 "components/snackbar/SnackbarHost.kt.template",
             ),
             supportingFiles = listOf("foundation/Providers.kt.template"),
-            dependsOn = listOf(Surface),
+            dependsOn = listOf(Surface, Text),
         )
 
     private val switch =
@@ -176,7 +176,7 @@ object CommonTemplates {
     private val theme =
         Template(
             componentFiles = listOf("Theme.kt.template", "Color.kt.template", "Typography.kt.template"),
-            supportingFiles = listOf("foundation/Ripple.kt.template", "foundation/Elevation.kt.template"),
+            supportingFiles = listOf("foundation/Ripple.kt.template", "foundation/Elevation.kt.template", "Providers.kt.template"),
         )
 
     private val topBar =

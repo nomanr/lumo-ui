@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.progressSemantics
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +23,6 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.ui.AppTheme
-import com.nomanr.lumo.ui.components.Text
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.abs
 
@@ -217,10 +217,10 @@ fun LinearProgressIndicatorPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(16.dp),
         ) {
-            Text(text = "Determinate Progress", style = AppTheme.typography.body1)
+            BasicText(text = "Determinate Progress", style = AppTheme.typography.body1)
             LinearProgressIndicator(progress = 0.7f)
 
-            Text(text = "Indeterminate Progress", style = AppTheme.typography.body1)
+            BasicText(text = "Indeterminate Progress", style = AppTheme.typography.body1)
             LinearProgressIndicator()
         }
     }

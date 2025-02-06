@@ -21,7 +21,7 @@ class ComponentGenerator(
     private val otherSuccessMessages = mutableListOf<String>()
     private val failedToGenerate = mutableListOf<File>()
     private val linkFormatter = LinkFormatter
-    private val templateProvider = TemplateProvider(config.kotlinMultiplatform)
+    val templateProvider = TemplateProvider(config.kotlinMultiplatform)
 
     init {
         if (!outputDir.exists()) {
@@ -144,11 +144,24 @@ class ComponentGenerator(
     }
 
     private fun ensureDirectoryExists(file: File) {
-        val parentDir = file.parentFile
-        if (parentDir != null && !parentDir.exists()) {
-            if (!parentDir.mkdirs()) {
-                throw LumoException("Failed to create directory: ${parentDir.absolutePath}")
+        var parentDir = file.parentFile
+
+        while (parentDir != null && !parentDir.exists()) {
+            val immediateParent = parentDir.parentFile
+
+            if (immediateParent != null && !immediateParent.exists()) {
+                if (!immediateParent.mkdirs()) {
+                    throw LumoException("Failed to create parent directory: ${immediateParent.path}. " +
+                            "Possible reasons: existing file, no write permissions, or filesystem issues.")
+                }
             }
+
+            if (!parentDir.mkdirs()) {
+                throw LumoException("Failed to create directory: ${parentDir.path}. " +
+                        "Possible reasons: existing file, missing parents, no write permissions, or filesystem issues.")
+            }
+
+            parentDir = parentDir.parentFile
         }
     }
 

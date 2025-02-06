@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
@@ -346,7 +347,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -356,7 +357,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -366,7 +367,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -376,7 +377,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
             }
@@ -387,7 +388,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -397,7 +398,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -407,7 +408,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
                 ElevatedChip(enabled = false) {
@@ -416,7 +417,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
             }
@@ -427,7 +428,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -437,7 +438,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -447,7 +448,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
 
@@ -457,7 +458,7 @@ fun PrimaryChipPreview() {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         DummyIconForChipPreview()
-                        Text("Chip", style = AppTheme.typography.label3)
+                        BasicText("Chip", style = AppTheme.typography.label3)
                     }
                 }
             }

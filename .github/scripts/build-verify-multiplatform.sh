@@ -17,5 +17,5 @@ PackageName=com.nomanr.lumo.multiplatform.ui
 KotlinMultiplatform=true
 EOF
 
-./gradlew lumo --addAll
+./gradlew lumo --add-all
 ./gradlew sample-multiplatform:catalogue:android:assembleDebug

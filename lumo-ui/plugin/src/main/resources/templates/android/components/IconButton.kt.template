@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -359,7 +360,7 @@ fun PrimaryIconButtonPreview() {
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(text = "Primary Icon Buttons", style = {{themeName}}.typography.h2)
+            BasicText(text = "Primary Icon Buttons", style = {{themeName}}.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Primary) {
@@ -387,7 +388,7 @@ fun SecondaryIconButtonPreview() {
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(text = "Secondary Icon Buttons", style = {{themeName}}.typography.h2)
+            BasicText(text = "Secondary Icon Buttons", style = {{themeName}}.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Secondary) {
@@ -415,7 +416,7 @@ fun DestructiveIconButtonPreview() {
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(text = "Destructive Icon Buttons", style = {{themeName}}.typography.h2)
+            BasicText(text = "Destructive Icon Buttons", style = {{themeName}}.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(variant = IconButtonVariant.Destructive) {
@@ -444,7 +445,7 @@ fun GhostIconButtonPreview() {
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(text = "Ghost Icon Buttons", style = {{themeName}}.typography.h2)
+            BasicText(text = "Ghost Icon Buttons", style = {{themeName}}.typography.h2)
 
             FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 Box(
@@ -525,7 +526,7 @@ fun IconButtonShapesPreview() {
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(text = "Square Shape", style = {{themeName}}.typography.h2)
+            BasicText(text = "Square Shape", style = {{themeName}}.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(
@@ -542,7 +543,7 @@ fun IconButtonShapesPreview() {
                 }
             }
 
-            Text(text = "Circle Shape", style = {{themeName}}.typography.h2)
+            BasicText(text = "Circle Shape", style = {{themeName}}.typography.h2)
 
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 IconButton(

@@ -13,22 +13,30 @@ class TemplateProvider(kotlinMultiplatform: Boolean) {
     fun getFlattenedTemplate(component: SupportedComponents): Template {
         val template = getTemplate(component)
 
-        val allSupportingFiles = template.supportingFiles.toMutableList()
-        val allPlatformSpecificSupportingFiles = template.platformSpecificSupportingFiles.toMutableMap()
+        val allSupportingFiles = mutableListOf<String>().apply { addAll(template.supportingFiles) }
+        val allPlatformSpecificSupportingFiles = mutableMapOf<MultiplatformSourceSet, MutableList<String>>()
+        val visited = mutableSetOf<SupportedComponents>()
+        val queue = ArrayDeque<SupportedComponents>()
 
-        var dependsOnTemplate: Template? = template.dependsOn.firstOrNull()?.let { getTemplate(it) }
+        queue.addAll(template.dependsOn)
 
-        while (dependsOnTemplate != null) {
-            allSupportingFiles.addAll(
-                dependsOnTemplate.componentFiles +
-                    dependsOnTemplate.supportingFiles,
-            )
-            allPlatformSpecificSupportingFiles.putAll(
-                dependsOnTemplate.platformSpecificFiles +
-                    dependsOnTemplate.platformSpecificSupportingFiles,
-            )
+        while (queue.isNotEmpty()) {
+            val currentComponent = queue.removeFirst()
+            if (!visited.add(currentComponent)) continue
 
-            dependsOnTemplate = dependsOnTemplate.dependsOn.firstOrNull()?.let { getTemplate(it) }
+            val currentTemplate = getTemplate(currentComponent)
+
+            allSupportingFiles.addAll(currentTemplate.componentFiles)
+            allSupportingFiles.addAll(currentTemplate.supportingFiles)
+
+            currentTemplate.platformSpecificFiles.forEach { (key, value) ->
+                allPlatformSpecificSupportingFiles.computeIfAbsent(key) { mutableListOf() }.addAll(value)
+            }
+            currentTemplate.platformSpecificSupportingFiles.forEach { (key, value) ->
+                allPlatformSpecificSupportingFiles.computeIfAbsent(key) { mutableListOf() }.addAll(value)
+            }
+
+            queue.addAll(currentTemplate.dependsOn)
         }
 
         return template.copy(

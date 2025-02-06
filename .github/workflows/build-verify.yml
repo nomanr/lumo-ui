@@ -14,6 +14,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Regenerate templates
+        run: |
+          chmod +x lumo-ui/scripts/generate_templates.sh
+          lumo-ui/scripts/generate_templates.sh
+
       - name: Publish test version to local maven
         run: |
           GRADLE_FILE="lumo-ui/plugin/build.gradle.kts"
@@ -42,6 +47,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Regenerate templates
+        run: |
+          chmod +x lumo-ui/scripts/generate_templates.sh
+          lumo-ui/scripts/generate_templates.sh
+
       - name: Build And Verify - Multiplatform Sample
         run: |
           chmod +x .github/scripts/build-verify-multiplatform.sh
@@ -53,6 +63,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Regenerate templates
+        run: |
+          chmod +x lumo-ui/scripts/generate_templates.sh
+          lumo-ui/scripts/generate_templates.sh
 
       - name: Build And Verify - Android Sample
         run: |

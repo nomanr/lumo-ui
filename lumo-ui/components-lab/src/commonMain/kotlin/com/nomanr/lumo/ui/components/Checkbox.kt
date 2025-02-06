@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.selection.triStateToggleable
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.State
@@ -388,7 +389,7 @@ fun CheckboxPreview() {
                     checked = isChecked,
                     onCheckedChange = { isChecked = it },
                 )
-                Text("Basic Checkbox")
+                BasicText("Basic Checkbox")
             }
 
             Row(
@@ -402,7 +403,7 @@ fun CheckboxPreview() {
                         enabled = false,
                     )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text("Disabled Checked")
+                    BasicText("Disabled Checked")
                 }
 
                 Column {
@@ -412,7 +413,7 @@ fun CheckboxPreview() {
                         enabled = false,
                     )
                     Spacer(modifier = Modifier.height(4.dp))
-                    Text("Disabled Unchecked")
+                    BasicText("Disabled Unchecked")
                 }
             }
 
@@ -432,7 +433,7 @@ fun CheckboxPreview() {
                             }
                     },
                 )
-                Text("Tri-State Checkbox")
+                BasicText("Tri-State Checkbox")
             }
 
             var customColorChecked by remember { mutableStateOf(false) }
@@ -461,14 +462,14 @@ fun CheckboxPreview() {
                     onCheckedChange = { customColorChecked = it },
                     colors = customColors,
                 )
-                Text("Custom Colors")
+                BasicText("Custom Colors")
             }
 
             var selectedItems by remember { mutableStateOf(setOf<String>()) }
             val items = listOf("Option 1", "Option 2", "Option 3")
 
             Column {
-                Text("Checkbox Group")
+                BasicText("Checkbox Group")
                 Spacer(modifier = Modifier.height(8.dp))
                 items.forEach { item ->
                     Row(
@@ -490,7 +491,7 @@ fun CheckboxPreview() {
                                     }
                             },
                         )
-                        Text(item)
+                        BasicText(item)
                     }
                 }
             }

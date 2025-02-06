@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.progressSemantics
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +29,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import {{packageName}}.{{themeName}}
-import {{packageName}}.components.Text
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.PI
 import kotlin.math.abs
@@ -246,10 +246,10 @@ fun CircularProgressIndicatorPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(16.dp),
         ) {
-            Text(text = "Determinate Progress", style = {{themeName}}.typography.body1)
+            BasicText(text = "Determinate Progress", style = {{themeName}}.typography.body1)
             CircularProgressIndicator(progress = 0.7f)
 
-            Text(text = "Indeterminate Progress", style = {{themeName}}.typography.body1)
+            BasicText(text = "Indeterminate Progress", style = {{themeName}}.typography.body1)
             CircularProgressIndicator()
         }
     }
