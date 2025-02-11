@@ -13,4 +13,3 @@ sealed class NavRoute {
     @Serializable
     data object UpdateTheme : NavRoute()
 }
-

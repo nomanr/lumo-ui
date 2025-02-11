@@ -46,7 +46,6 @@ abstract class LumoTask : DefaultTask() {
     @get:Input
     var availableComponents: Boolean = false
 
-
     private val propertyLoader by lazy { PropertyLoader(project) }
     private val initialiser by lazy { Initialiser(project, propertyLoader) }
     private val dependencyProvider by lazy { PluginDependencyProvider() }
@@ -68,7 +67,7 @@ abstract class LumoTask : DefaultTask() {
             return
         }
 
-        if(availableComponents) {
+        if (availableComponents) {
             generateComponent.printAllAvailableComponents()
             return
         }

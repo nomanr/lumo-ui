@@ -6,9 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.nomanr.lumo.multiplatform.sample.CatalogueAppState
 import com.nomanr.lumo.multiplatform.sample.home.HomeScreen
-import com.nomanr.lumo.multiplatform.sample.sample.ComponentId
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SampleScreen
-import kotlin.reflect.typeOf
 
 @Composable
 fun CatalogueAppNavHost(
@@ -30,13 +28,13 @@ fun CatalogueAppNavHost(
         }
 
         composable<NavRoute.Demo>(
-            typeMap = componentIdNavTypeMap
+            typeMap = componentIdNavTypeMap,
         ) {
             val args = it.toRoute<NavRoute.Demo>()
             SampleScreen(componentId = args.componentId, navigateUp = { navController.navigateUp() })
         }
 
-        //TODO: Add Modal Bottom Sheet first
+        // TODO: Add Modal Bottom Sheet first
 //        composable<NavRoute.UpdateTheme> {
 //            UpdateThemeScreen(navigateUp = { navController.navigateUp() })
 //        }

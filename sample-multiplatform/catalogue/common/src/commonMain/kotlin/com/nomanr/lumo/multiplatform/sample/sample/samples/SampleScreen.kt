@@ -31,9 +31,9 @@ fun SampleScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
     }) { padding ->
         Column(
             modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(padding),
+                Modifier
+                    .fillMaxSize()
+                    .padding(padding),
         ) {
             if (sample != null) {
                 sample(navigateUp)

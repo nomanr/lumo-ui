@@ -151,14 +151,18 @@ class ComponentGenerator(
 
             if (immediateParent != null && !immediateParent.exists()) {
                 if (!immediateParent.mkdirs()) {
-                    throw LumoException("Failed to create parent directory: ${immediateParent.path}. " +
-                            "Possible reasons: existing file, no write permissions, or filesystem issues.")
+                    throw LumoException(
+                        "Failed to create parent directory: ${immediateParent.path}. " +
+                            "Possible reasons: existing file, no write permissions, or filesystem issues.",
+                    )
                 }
             }
 
             if (!parentDir.mkdirs()) {
-                throw LumoException("Failed to create directory: ${parentDir.path}. " +
-                        "Possible reasons: existing file, missing parents, no write permissions, or filesystem issues.")
+                throw LumoException(
+                    "Failed to create directory: ${parentDir.path}. " +
+                        "Possible reasons: existing file, missing parents, no write permissions, or filesystem issues.",
+                )
             }
 
             parentDir = parentDir.parentFile
