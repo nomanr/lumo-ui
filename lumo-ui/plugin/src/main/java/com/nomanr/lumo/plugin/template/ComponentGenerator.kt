@@ -87,12 +87,12 @@ class ComponentGenerator(
         templateSourceDir: String,
     ) {
         template.platformSpecificFiles.forEach { (sourceSet, files) ->
-            val platformOutputDir =
-                config.componentsDir.replace(MultiplatformSourceSet.COMMON.sourceSetName, sourceSet.sourceSetName)
+            val platformOutputDir = config.componentsDir.replace(MultiplatformSourceSet.COMMON.sourceSetName, sourceSet.sourceSetName)
             files.forEach { file ->
                 val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
-                ensureDirectoryExists(outputFile)
-
+                if (!doesOutputDirectoryExist(outputFile)) {
+                    logger.warn("Skipping to generate '${outputFile.name}' for '${sourceSet.sourceSetName}' source set as it does not exists.\n")
+                }
                 if (outputFile.exists()) {
                     failedToGenerate.add(outputFile)
                 } else {
@@ -110,7 +110,10 @@ class ComponentGenerator(
             val platformOutputDir = config.componentsDir.replace(MultiplatformSourceSet.COMMON.name, sourceSet.name)
             files.forEach { file ->
                 val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
-                ensureDirectoryExists(outputFile)
+                if (!doesOutputDirectoryExist(outputFile)) {
+                    logger.warn("Skipping to generate '${outputFile.name}' for '${sourceSet.sourceSetName}' source set as it does not exists.\n")
+
+                }
 
                 if (outputFile.exists()) {
                     failedToGenerate.add(outputFile)
@@ -132,9 +135,8 @@ class ComponentGenerator(
         templateSourceDir: String,
     ) {
         val resourcePath = "$templateSourceDir/$templateFileName"
-        val resource =
-            javaClass.classLoader.getResource(resourcePath)
-                ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
+        val resource = javaClass.classLoader.getResource(resourcePath)
+            ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
 
         val templateContent = resource.readText()
 
@@ -144,6 +146,14 @@ class ComponentGenerator(
     }
 
     private fun ensureDirectoryExists(file: File) {
+        if (!doesOutputDirectoryExist(file)) {
+            throw LumoException(
+                "Failed to create parent directory: ${file.parentFile}. " + "Possible reasons: existing file or any of the parent directory does not exists.",
+            )
+        }
+    }
+
+    private fun doesOutputDirectoryExist(file: File): Boolean {
         var parentDir = file.parentFile
 
         while (parentDir != null && !parentDir.exists()) {
@@ -151,22 +161,18 @@ class ComponentGenerator(
 
             if (immediateParent != null && !immediateParent.exists()) {
                 if (!immediateParent.mkdirs()) {
-                    throw LumoException(
-                        "Failed to create parent directory: ${immediateParent.path}. " +
-                            "Possible reasons: existing file, no write permissions, or filesystem issues.",
-                    )
+                    return false
                 }
             }
 
             if (!parentDir.mkdirs()) {
-                throw LumoException(
-                    "Failed to create directory: ${parentDir.path}. " +
-                        "Possible reasons: existing file, missing parents, no write permissions, or filesystem issues.",
-                )
+                return false
             }
 
             parentDir = parentDir.parentFile
         }
+
+        return true
     }
 
     fun generateAll() {
@@ -177,8 +183,7 @@ class ComponentGenerator(
 
     private fun logSummary(componentName: String) {
         val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
-        val successSupportingLinks =
-            successFullyGeneratedSupportingFiles.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
+        val successSupportingLinks = successFullyGeneratedSupportingFiles.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
         val otherSuccessMessages = otherSuccessMessages.joinToString("\n")
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 

@@ -494,31 +494,34 @@ private fun DummyIconForChipPreview() {
         val diagonalRadius = radius * 0.75f
         drawLine(
             color = Color.Black,
-            start = Offset(
-                center.width - diagonalRadius,
-                center.height - diagonalRadius,
-            ),
-            end = Offset(
-                center.width + diagonalRadius,
-                center.height + diagonalRadius,
-            ),
+            start =
+                Offset(
+                    center.width - diagonalRadius,
+                    center.height - diagonalRadius,
+                ),
+            end =
+                Offset(
+                    center.width + diagonalRadius,
+                    center.height + diagonalRadius,
+                ),
             strokeWidth = strokeWidth,
             cap = cap,
         )
 
         drawLine(
             color = Color.Black,
-            start = Offset(
-                center.width - diagonalRadius,
-                center.height + diagonalRadius,
-            ),
-            end = Offset(
-                center.width + diagonalRadius,
-                center.height - diagonalRadius,
-            ),
+            start =
+                Offset(
+                    center.width - diagonalRadius,
+                    center.height + diagonalRadius,
+                ),
+            end =
+                Offset(
+                    center.width + diagonalRadius,
+                    center.height - diagonalRadius,
+                ),
             strokeWidth = strokeWidth,
             cap = cap,
         )
     }
 }
-

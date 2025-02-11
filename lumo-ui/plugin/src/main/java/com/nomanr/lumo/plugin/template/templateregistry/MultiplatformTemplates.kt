@@ -15,6 +15,8 @@ object MultiplatformTemplates {
                 mapOf(
                     MultiplatformSourceSet.ANDROID to listOf("components/Tooltip.android.kt.template"),
                     MultiplatformSourceSet.IOS to listOf("components/Tooltip.ios.kt.template"),
+                    MultiplatformSourceSet.MACOS to listOf("components/Tooltip.macos.kt.template"),
+                    MultiplatformSourceSet.DESKTOP to listOf("components/Tooltip.desktop.kt.template"),
                 ),
         )
 

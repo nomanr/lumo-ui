@@ -6,6 +6,8 @@ ANDROID_NATIVE_SOURCE_DIR="../components-lab/src/androidMain/kotlin/com/nomanr/l
 ANDROID_SOURCE_DIR="../components-lab/src/androidMain/kotlin/com/nomanr/lumo/ui"
 COMMON_SOURCE_DIR="../components-lab/src/commonMain/kotlin/com/nomanr/lumo/ui"
 IOS_SOURCE_DIR="../components-lab/src/iosMain/kotlin/com/nomanr/lumo/ui"
+MAC_OS_SOURCE_DIR="../components-lab/src/macosMain/kotlin/com/nomanr/lumo/ui"
+DESKTOP_SOURCE_DIR="../components-lab/src/desktopMain/kotlin/com/nomanr/lumo/ui"
 
 ANDROID_DEST_DIR="../plugin/src/main/resources/templates/android"
 ANDROID_DEST_COMPONENTS_DIR="$ANDROID_DEST_DIR/components"
@@ -95,5 +97,7 @@ process_files "$ANDROID_NATIVE_SOURCE_DIR" "$ANDROID_DEST_COMPONENTS_DIR" "true"
 process_files "$COMMON_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
 process_files "$ANDROID_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
 process_files "$IOS_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
+process_files "$MAC_OS_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
+process_files "$DESKTOP_SOURCE_DIR" "$MULTIPLATFORM_DEST_DIR"
 
 echo "Templates have been updated."
