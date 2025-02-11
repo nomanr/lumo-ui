@@ -380,7 +380,7 @@ private fun CacheDrawScope.drawCaretWithPath(
     }
 }
 
-// Won't be needing this once containerSize LocalWindowInfo in upstreamed.
+// Won't be needing this once containerSize API in LocalWindowInfo is upstreamed.
 @Composable
 internal expect fun windowContainerWidthInPx(): Int
 
