@@ -8,7 +8,7 @@ Download the app to explore all components.
   <img src="https://github.com/user-attachments/assets/c5304628-c1aa-42cb-b5be-321f6555acd9" width="150">
 </a>
 &nbsp;&nbsp;
-<a href="https://lumo.nomanr.com/lumo-ui.apk">
+<a href="https://lumoui.com/lumo-ui.apk">
   <img src="https://github.com/user-attachments/assets/1a80efdc-1ca8-4536-9431-17c526fcc246" width="150">
 </a>
 
@@ -25,7 +25,7 @@ https://github.com/user-attachments/assets/fe662057-d223-4718-ac3d-06f5f29738c0
 
 ## Documentation
 
-Visit https://lumo.nomanr.com to view the documentation.
+Visit https://lumoui.com to view the documentation.
 
 ## License
 
