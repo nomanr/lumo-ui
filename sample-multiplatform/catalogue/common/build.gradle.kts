@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -16,10 +16,14 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
+        macosX64(),
+        macosArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
@@ -28,6 +32,7 @@ kotlin {
     }
 
     sourceSets {
+        val desktopMain by getting
 
         androidMain.dependencies {
             implementation(libs.androidx.compose.ui.tooling.preview)
@@ -39,6 +44,9 @@ kotlin {
             implementation(libs.androidx.multiplatform.navigation)
             implementation(libs.kotlin.serialization.json)
             implementation(compose.materialIconsExtended)
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
         }
     }
 }
@@ -69,4 +77,16 @@ android {
 
 dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
+}
+
+compose.desktop {
+    application {
+        mainClass = "com.nomanr.lumo.multiplatform.sample.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "com.nomanr.lumo.multiplatform.sample"
+            packageVersion = "1.0.0"
+        }
+    }
 }

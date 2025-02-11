@@ -318,4 +318,3 @@ data class TopBarColors(
         )
     }
 }
-

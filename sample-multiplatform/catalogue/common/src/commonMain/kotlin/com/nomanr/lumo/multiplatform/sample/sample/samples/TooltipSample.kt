@@ -34,10 +34,10 @@ import com.nomanr.lumo.multiplatform.ui.components.rememberTooltipState
 fun TooltipSample() {
     Column(
         modifier =
-        Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Long tap to show.", style = AppTheme.typography.h4)
@@ -78,10 +78,10 @@ fun TooltipSample() {
         ) {
             TooltipBox(
                 state =
-                rememberTooltipState(
-                    initialIsVisible = true,
-                    isPersistent = true,
-                ),
+                    rememberTooltipState(
+                        initialIsVisible = true,
+                        isPersistent = true,
+                    ),
                 tooltip = {
                     Tooltip { Text("Dismiss on tap outside", style = AppTheme.typography.label1) }
                 },

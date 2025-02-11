@@ -30,7 +30,6 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.nomanr.lumo.ui.AppTheme
 import com.nomanr.lumo.ui.LocalContentColor
-import com.nomanr.lumo.ui.components.AlertDialogDefaults.TextPadding
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.ButtonsCrossAxisSpacing
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.ButtonsMainAxisSpacing
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogElevation
@@ -39,6 +38,7 @@ import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogMinWidth
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogPadding
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.DialogShape
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.IconPadding
+import com.nomanr.lumo.ui.components.AlertDialogDefaults.TextPadding
 import com.nomanr.lumo.ui.components.AlertDialogDefaults.TitlePadding
 import com.nomanr.lumo.ui.foundation.ProvideContentColorTextStyle
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -69,13 +69,13 @@ fun AlertDialog(
         },
         modifier = Modifier,
         dismissButton =
-        if (dismissButtonText != null) {
-            {
-                Button(variant = ButtonVariant.Ghost, text = dismissButtonText, onClick = onDismissRequest)
-            }
-        } else {
-            null
-        },
+            if (dismissButtonText != null) {
+                {
+                    Button(variant = ButtonVariant.Ghost, text = dismissButtonText, onClick = onDismissRequest)
+                }
+            } else {
+                null
+            },
         icon = icon,
         title = { Text(text = title) },
         text = { Text(text = text) },
@@ -104,9 +104,9 @@ fun BasicAlertDialog(
         val dialogPaneDescription = "dialog"
         Box(
             modifier =
-            modifier
-                .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
-                .then(Modifier.semantics { paneTitle = dialogPaneDescription }),
+                modifier
+                    .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
+                    .then(Modifier.semantics { paneTitle = dialogPaneDescription }),
             propagateMinConstraints = true,
         ) {
             content()
@@ -140,9 +140,9 @@ private fun AlertDialogComponent(
 
         Box(
             modifier =
-            modifier
-                .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
-                .then(Modifier.semantics { paneTitle = dialogPaneDescription }),
+                modifier
+                    .sizeIn(minWidth = DialogMinWidth, maxWidth = DialogMaxWidth)
+                    .then(Modifier.semantics { paneTitle = dialogPaneDescription }),
             propagateMinConstraints = true,
         ) {
             if (content != null) {
@@ -367,9 +367,9 @@ internal object AlertDialogDefaults {
 fun AlertDialogPreviews() {
     Column(
         modifier =
-        Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         var showSimpleDialog by remember { mutableStateOf(false) }
@@ -443,7 +443,7 @@ fun AlertDialogPreviews() {
                 onConfirmClick = { showLongContentDialog = false },
                 title = "Terms & Conditions",
                 text =
-                "This is a longer content example that demonstrates how the alert dialog handles " +
+                    "This is a longer content example that demonstrates how the alert dialog handles " +
                         "multiple lines of text. The content will automatically adjust to show longer " +
                         "messages while maintaining readability. This is particularly useful for " +
                         "displaying terms and conditions or detailed information to users.",

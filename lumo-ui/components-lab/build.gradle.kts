@@ -14,19 +14,24 @@ kotlin {
         }
     }
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "lumo-ui"
-            isStatic = true
+    iosArm64()
+    iosX64()
+    iosSimulatorArm64()
+    macosX64()
+    macosArm64()
+
+    jvm("desktop") {
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_11)
+                }
+            }
         }
     }
+
     sourceSets {
         androidMain.dependencies {
-
         }
         commonMain.dependencies {
             implementation(compose.components.resources)

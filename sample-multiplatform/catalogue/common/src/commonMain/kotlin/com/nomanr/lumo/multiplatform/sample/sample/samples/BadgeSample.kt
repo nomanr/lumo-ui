@@ -27,9 +27,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.nomanr.lumo.multiplatform.ui.components.Badge
 import com.nomanr.lumo.multiplatform.ui.AppTheme
 import com.nomanr.lumo.multiplatform.ui.LocalContentColor
+import com.nomanr.lumo.multiplatform.ui.components.Badge
 import com.nomanr.lumo.multiplatform.ui.components.BadgedBox
 import com.nomanr.lumo.multiplatform.ui.components.HorizontalDivider
 import com.nomanr.lumo.multiplatform.ui.components.Icon

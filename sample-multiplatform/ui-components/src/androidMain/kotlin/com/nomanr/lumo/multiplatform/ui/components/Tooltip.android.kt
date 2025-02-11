@@ -11,6 +11,5 @@ internal actual fun windowContainerWidthInPx(): Int {
     val density = LocalDensity.current
     return with(density) {
         configuration.screenWidthDp.dp.roundToPx()
-
     }
 }

@@ -13,7 +13,7 @@ class GenerateComponent(project: Project, propertyLoader: PropertyLoader) {
 
     fun execute(componentName: String) {
         if (componentName.isEmpty() || !SupportedComponents.values().map { it.name }.contains(componentName)) {
-            throw LumoException("Invalid component name ${componentName}. Find supported components: https://lumoui.com")
+            throw LumoException("Invalid component name $componentName. Find supported components: https://lumoui.com")
         }
 
         execute(SupportedComponents.valueOf(componentName))

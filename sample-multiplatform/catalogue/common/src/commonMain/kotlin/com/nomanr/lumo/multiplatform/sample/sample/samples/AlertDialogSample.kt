@@ -40,10 +40,10 @@ fun AlertDialogSample() {
 
     Column(
         modifier =
-        Modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Spacer(modifier = Modifier.height(16.dp))
@@ -131,7 +131,7 @@ private fun AlertDialogSamples(state: AlertDialogState) {
             onConfirmClick = { state.showLongContentDialog = false },
             title = "Terms & Conditions",
             text =
-            "This dialog displays longer content to ensure readability and proper layout for users with detailed content." +
+                "This dialog displays longer content to ensure readability and proper layout for users with detailed content." +
                     " It can be used for displaying terms and conditions, privacy policies, or any other lengthy content.",
             confirmButtonText = "Accept",
             dismissButtonText = "Decline",
@@ -144,9 +144,9 @@ private fun AlertDialogSamples(state: AlertDialogState) {
         BasicAlertDialog(onDismissRequest = { state.showInputDialog = false }) {
             Column(
                 modifier =
-                Modifier
-                    .background(AppTheme.colors.success)
-                    .padding(16.dp),
+                    Modifier
+                        .background(AppTheme.colors.success)
+                        .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Text("Enter your email", style = AppTheme.typography.h4)
@@ -200,9 +200,9 @@ private fun AlertDialogSamples(state: AlertDialogState) {
         BasicAlertDialog(onDismissRequest = { state.showCustomContentDialog = false }) {
             Column(
                 modifier =
-                Modifier
-                    .background(AppTheme.colors.success)
-                    .padding(16.dp),
+                    Modifier
+                        .background(AppTheme.colors.success)
+                        .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 CompositionLocalProvider(

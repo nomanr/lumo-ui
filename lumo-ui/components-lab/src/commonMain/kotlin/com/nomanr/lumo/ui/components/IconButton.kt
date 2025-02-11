@@ -84,10 +84,11 @@ private fun IconButtonComponent(
 
     Surface(
         onClick = onClick,
-        modifier = modifier.defaultMinSize(
-            minWidth = IconButtonDefaults.ButtonSize,
-            minHeight = IconButtonDefaults.ButtonSize,
-        ).semantics { role = Role.Button },
+        modifier =
+            modifier.defaultMinSize(
+                minWidth = IconButtonDefaults.ButtonSize,
+                minHeight = IconButtonDefaults.ButtonSize,
+            ).semantics { role = Role.Button },
         enabled = enabled,
         shape = style.shape,
         color = containerColor,
@@ -130,13 +131,14 @@ internal object IconButtonDefaults {
     val OutlineHeight = 1.dp
 
     @Composable
-    fun buttonElevation() = ButtonElevation(
-        defaultElevation = 2.dp,
-        pressedElevation = 2.dp,
-        focusedElevation = 2.dp,
-        hoveredElevation = 2.dp,
-        disabledElevation = 0.dp,
-    )
+    fun buttonElevation() =
+        ButtonElevation(
+            defaultElevation = 2.dp,
+            pressedElevation = 2.dp,
+            focusedElevation = 2.dp,
+            hoveredElevation = 2.dp,
+            disabledElevation = 0.dp,
+        )
 
     @Composable
     fun styleFor(variant: IconButtonVariant, shape: Shape): IconButtonStyle {
@@ -158,172 +160,198 @@ internal object IconButtonDefaults {
     }
 
     @Composable
-    fun primaryFilled(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.primary,
-            contentColor = AppTheme.colors.onPrimary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun primaryFilled(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.primary,
+                    contentColor = AppTheme.colors.onPrimary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun primaryOutlined(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
-            borderColor = AppTheme.colors.primary,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.disabled,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun primaryOutlined(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.primary,
+                    borderColor = AppTheme.colors.primary,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.disabled,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun primaryElevated(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.primary,
-            contentColor = AppTheme.colors.onPrimary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = buttonElevation(),
-    )
+    fun primaryElevated(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.primary,
+                    contentColor = AppTheme.colors.onPrimary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = buttonElevation(),
+        )
 
     @Composable
-    fun primaryGhost(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.primary,
-            borderColor = AppTheme.colors.transparent,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.transparent,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun primaryGhost(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.primary,
+                    borderColor = AppTheme.colors.transparent,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.transparent,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun secondaryFilled(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.secondary,
-            contentColor = AppTheme.colors.onSecondary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun secondaryFilled(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.secondary,
+                    contentColor = AppTheme.colors.onSecondary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun secondaryOutlined(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.secondary,
-            borderColor = AppTheme.colors.secondary,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.disabled,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun secondaryOutlined(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.secondary,
+                    borderColor = AppTheme.colors.secondary,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.disabled,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun secondaryElevated(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.secondary,
-            contentColor = AppTheme.colors.onSecondary,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = buttonElevation(),
-    )
+    fun secondaryElevated(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.secondary,
+                    contentColor = AppTheme.colors.onSecondary,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = buttonElevation(),
+        )
 
     @Composable
-    fun secondaryGhost(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.secondary,
-            borderColor = AppTheme.colors.transparent,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.transparent,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun secondaryGhost(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.secondary,
+                    borderColor = AppTheme.colors.transparent,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.transparent,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun destructiveFilled(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.error,
-            contentColor = AppTheme.colors.onError,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun destructiveFilled(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.error,
+                    contentColor = AppTheme.colors.onError,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun destructiveOutlined(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.error,
-            borderColor = AppTheme.colors.error,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.disabled,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun destructiveOutlined(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.error,
+                    borderColor = AppTheme.colors.error,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.disabled,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun destructiveElevated(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.error,
-            contentColor = AppTheme.colors.onError,
-            disabledContainerColor = AppTheme.colors.disabled,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = buttonElevation(),
-    )
+    fun destructiveElevated(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.error,
+                    contentColor = AppTheme.colors.onError,
+                    disabledContainerColor = AppTheme.colors.disabled,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = buttonElevation(),
+        )
 
     @Composable
-    fun destructiveGhost(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = AppTheme.colors.error,
-            borderColor = AppTheme.colors.transparent,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-            disabledBorderColor = AppTheme.colors.transparent,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun destructiveGhost(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = AppTheme.colors.error,
+                    borderColor = AppTheme.colors.transparent,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                    disabledBorderColor = AppTheme.colors.transparent,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 
     @Composable
-    fun ghost(shape: Shape) = IconButtonStyle(
-        colors = IconButtonColors(
-            containerColor = AppTheme.colors.transparent,
-            contentColor = LocalContentColor.current,
-            disabledContainerColor = AppTheme.colors.transparent,
-            disabledContentColor = AppTheme.colors.onDisabled,
-        ),
-        shape = shape,
-        elevation = null,
-    )
+    fun ghost(shape: Shape) =
+        IconButtonStyle(
+            colors =
+                IconButtonColors(
+                    containerColor = AppTheme.colors.transparent,
+                    contentColor = LocalContentColor.current,
+                    disabledContainerColor = AppTheme.colors.transparent,
+                    disabledContentColor = AppTheme.colors.onDisabled,
+                ),
+            shape = shape,
+            elevation = null,
+        )
 }
 
 @Immutable
@@ -591,28 +619,32 @@ private fun DummyIconForIconButtonPreview() {
         val diagonalRadius = radius * 0.75f
         drawLine(
             color = Color.Black,
-            start = Offset(
-                center.width - diagonalRadius,
-                center.height - diagonalRadius,
-            ),
-            end = Offset(
-                center.width + diagonalRadius,
-                center.height + diagonalRadius,
-            ),
+            start =
+                Offset(
+                    center.width - diagonalRadius,
+                    center.height - diagonalRadius,
+                ),
+            end =
+                Offset(
+                    center.width + diagonalRadius,
+                    center.height + diagonalRadius,
+                ),
             strokeWidth = strokeWidth,
             cap = cap,
         )
 
         drawLine(
             color = Color.Black,
-            start = Offset(
-                center.width - diagonalRadius,
-                center.height + diagonalRadius,
-            ),
-            end = Offset(
-                center.width + diagonalRadius,
-                center.height - diagonalRadius,
-            ),
+            start =
+                Offset(
+                    center.width - diagonalRadius,
+                    center.height + diagonalRadius,
+                ),
+            end =
+                Offset(
+                    center.width + diagonalRadius,
+                    center.height - diagonalRadius,
+                ),
             strokeWidth = strokeWidth,
             cap = cap,
         )

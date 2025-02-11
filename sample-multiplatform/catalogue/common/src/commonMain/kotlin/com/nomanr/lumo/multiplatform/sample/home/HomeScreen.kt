@@ -26,16 +26,15 @@ import androidx.compose.ui.unit.dp
 import com.nomanr.lumo.multiplatform.sample.sample.Component
 import com.nomanr.lumo.multiplatform.sample.sample.Samples
 import com.nomanr.lumo.multiplatform.ui.AppTheme
-import com.nomanr.lumo.multiplatform.ui.components.Scaffold
 import com.nomanr.lumo.multiplatform.ui.components.Icon
 import com.nomanr.lumo.multiplatform.ui.components.IconButton
 import com.nomanr.lumo.multiplatform.ui.components.IconButtonVariant
+import com.nomanr.lumo.multiplatform.ui.components.Scaffold
 import com.nomanr.lumo.multiplatform.ui.components.Text
 import com.nomanr.lumo.multiplatform.ui.components.card.OutlinedCard
 import com.nomanr.lumo.multiplatform.ui.components.topbar.TopBar
 import com.nomanr.lumo.multiplatform.ui.components.topbar.TopBarDefaults
 import lumo_ui.sample_multiplatform.catalogue.common.generated.resources.Res
-import lumo_ui.sample_multiplatform.catalogue.common.generated.resources.logo
 import lumo_ui.sample_multiplatform.catalogue.common.generated.resources.logo_with_name
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview

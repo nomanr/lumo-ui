@@ -24,14 +24,13 @@ import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Them
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.TopBar
 
 object CommonTemplates {
-
     private val alertDialog =
         Template(
             componentFiles = listOf("components/AlertDialog.kt.template"),
             supportingFiles =
-            listOf(
-                "foundation/Providers.kt.template",
-            ),
+                listOf(
+                    "foundation/Providers.kt.template",
+                ),
             dependsOn = listOf(Button),
         )
 
@@ -67,10 +66,10 @@ object CommonTemplates {
         Template(
             componentFiles = listOf("components/card/Card.kt.template"),
             supportingFiles =
-            listOf(
-                "components/card/CardElevation.kt.template",
-                "foundation/Elevation.kt.template",
-            ),
+                listOf(
+                    "components/card/CardElevation.kt.template",
+                    "foundation/Elevation.kt.template",
+                ),
             dependsOn = listOf(Surface),
         )
 
@@ -114,19 +113,19 @@ object CommonTemplates {
     private val otpTextField =
         Template(
             componentFiles =
-            listOf(
-                "components/otptextfield/OTPTextField.kt.template",
-                "components/otptextfield/OTPTextFieldDefaults.kt.template",
-            ),
+                listOf(
+                    "components/otptextfield/OTPTextField.kt.template",
+                    "components/otptextfield/OTPTextFieldDefaults.kt.template",
+                ),
         )
 
     private val progressIndicator =
         Template(
             componentFiles =
-            listOf(
-                "components/progressindicators/CircularProgressIndicator.kt.template",
-                "components/progressindicators/LinearProgressIndicator.kt.template",
-            ),
+                listOf(
+                    "components/progressindicators/CircularProgressIndicator.kt.template",
+                    "components/progressindicators/LinearProgressIndicator.kt.template",
+                ),
         )
 
     private val radioButton =
@@ -145,10 +144,10 @@ object CommonTemplates {
     private val snackBar =
         Template(
             componentFiles =
-            listOf(
-                "components/snackbar/Snackbar.kt.template",
-                "components/snackbar/SnackbarHost.kt.template",
-            ),
+                listOf(
+                    "components/snackbar/Snackbar.kt.template",
+                    "components/snackbar/SnackbarHost.kt.template",
+                ),
             supportingFiles = listOf("foundation/Providers.kt.template"),
             dependsOn = listOf(Surface, Text),
         )
@@ -162,14 +161,14 @@ object CommonTemplates {
     private val textField =
         Template(
             componentFiles =
-            listOf(
-                "components/textfield/TextField.kt.template",
-                "components/textfield/OutlinedTextField.kt.template",
-                "components/textfield/UnderlinedTextField.kt.template",
-                "components/textfield/base/TextFieldColors.kt.template",
-                "components/textfield/base/TextFieldDecoration.kt.template",
-                "components/textfield/base/TextFieldLayout.kt.template",
-            ),
+                listOf(
+                    "components/textfield/TextField.kt.template",
+                    "components/textfield/OutlinedTextField.kt.template",
+                    "components/textfield/UnderlinedTextField.kt.template",
+                    "components/textfield/base/TextFieldColors.kt.template",
+                    "components/textfield/base/TextFieldDecoration.kt.template",
+                    "components/textfield/base/TextFieldLayout.kt.template",
+                ),
             supportingFiles = listOf("foundation/Providers.kt.template"),
         )
 
@@ -182,14 +181,13 @@ object CommonTemplates {
     private val topBar =
         Template(
             componentFiles =
-            listOf(
-                "components/topbar/TopBar.kt.template",
-                "components/topbar/TopBarScrollBehaviours.kt.template",
-            ),
+                listOf(
+                    "components/topbar/TopBar.kt.template",
+                    "components/topbar/TopBarScrollBehaviours.kt.template",
+                ),
             supportingFiles = listOf("foundation/SystemBarsDefaultInsets.kt.template"),
             dependsOn = listOf(Surface),
         )
-    
 
     fun getTemplates() =
         mapOf(

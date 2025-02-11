@@ -326,4 +326,3 @@ internal data class ChipStyle(
     val elevation: ButtonElevation? = null,
     val contentPadding: PaddingValues,
 )
-

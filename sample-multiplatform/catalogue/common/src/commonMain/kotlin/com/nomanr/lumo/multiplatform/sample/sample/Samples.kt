@@ -1,7 +1,6 @@
 package com.nomanr.lumo.multiplatform.sample.sample
 
 import androidx.compose.runtime.Composable
-import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TEXT
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.ACCORDION
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.ALERT_DIALOG
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.BADGE
@@ -22,6 +21,7 @@ import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.SLIDER
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.SNACKBAR
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.SURFACE
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.SWITCH
+import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TEXT
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TEXT_FIELD
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TOOLTIP
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId.TOP_BAR
