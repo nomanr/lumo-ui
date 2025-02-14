@@ -21,7 +21,7 @@ androidx-multidex = "2.0.1"
 androidx-multiplatform-navigation = "2.8.0-alpha12"
 
 coil = "2.7.0"
-compose-multiplatform = "1.7.0"
+compose-multiplatform = "1.7.3"
 
 hilt = "2.50"
 hilt-ext = "1.2.0"
