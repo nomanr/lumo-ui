@@ -1,0 +1,56 @@
+name: Publish
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+
+jobs:
+  publish-to-maven-central:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch (where PR is being updated)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Build And Verify - Multiplatform Sample
+        run: |
+          chmod +x .github/scripts/build-verify-multiplatform.sh
+          .github/scripts/build-verify-multiplatform.sh
+
+      - name: Git user configs
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Run Gradle task for WASM JS Distribution
+        run: |
+          ./gradlew :sample-multiplatform:catalogue:web:wasmJsBrowserDistribution
+
+      - name: Move WASM JS distribution to root/docs
+        run: |
+          DOCS_DIR=docs
+          BUILD_DIR=sample-multiplatform/catalogue/web/build/dist/wasmJs/productionExecutable
+
+          rm -rf $DOCS_DIR
+          mkdir -p $DOCS_DIR
+
+          mv $BUILD_DIR/* $DOCS_DIR/
+
+      - name: Push changes to deploy branch
+        run: |
+          git fetch origin deploy || echo "Deploy branch does not exist, creating one."
+          git checkout deploy 2>/dev/null || git checkout -b deploy
+          git pull origin deploy || echo "No previous deploy branch to pull from."
+
+          git checkout deploy
+          git rm -rf docs || true
+          cp -r docs ./
+
+          git add docs
+          git commit -m "Update docs from PR ${{ github.event.pull_request.number }}"
+          git push origin deploy
