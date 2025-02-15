@@ -3,24 +3,22 @@ name: Upload Build to Deploy branch
 on:
   pull_request:
     types:
-      - synchronize
-      - opened
-      - reopened
+      - closed
 
 jobs:
   upload-build-to-deploy-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR branch (where PR is being updated)
+      - name: Checkout base branch (where PR was merged)
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
 
-#      - name: Build And Verify - Multiplatform Sample
-#        run: |
-#          chmod +x .github/scripts/build-verify-multiplatform.sh
-#          .github/scripts/build-verify-multiplatform.sh
+      - name: Build And Verify - Multiplatform Sample
+        run: |
+          chmod +x .github/scripts/build-verify-multiplatform.sh
+          .github/scripts/build-verify-multiplatform.sh
 
       - name: Git user configs
         run: |
@@ -31,7 +29,7 @@ jobs:
         run: |
           git fetch origin
           git checkout -b deploy
-          git reset --hard origin/web-support
+          git reset --hard origin/main
 
       - name: Build Sample
         run: |
