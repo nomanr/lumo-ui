@@ -31,7 +31,7 @@ jobs:
         run: |
           git fetch origin
           git checkout -b deploy
-          git reset --hard origin/main
+          git reset --hard origin/web-support
 
       - name: Build Sample
         run: |
