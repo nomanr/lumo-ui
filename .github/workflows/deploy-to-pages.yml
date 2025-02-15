@@ -32,7 +32,6 @@ jobs:
           git fetch origin
           git checkout -b deploy
           git reset --hard origin/main
-          git push --force origin deploy
 
       - name: Build Sample
         run: |
