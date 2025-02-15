@@ -1,4 +1,4 @@
-name: Deploy to pages
+name: Upload Build to Deploy branch
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - reopened
 
 jobs:
-  Deploy to Pages:
+  upload-build-to-deploy-branch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch (where PR is being updated)
