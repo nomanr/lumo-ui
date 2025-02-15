@@ -17,6 +17,7 @@ object MultiplatformTemplates {
                     MultiplatformSourceSet.IOS to listOf("components/Tooltip.ios.kt.template"),
                     MultiplatformSourceSet.MACOS to listOf("components/Tooltip.macos.kt.template"),
                     MultiplatformSourceSet.DESKTOP to listOf("components/Tooltip.desktop.kt.template"),
+                    MultiplatformSourceSet.WASMJS to listOf("components/Tooltip.wasmJs.kt.template"),
                 ),
         )
 
@@ -32,4 +33,5 @@ enum class MultiplatformSourceSet(val sourceSetName: String) {
     COMMON("commonMain"),
     MACOS("macosMain"),
     DESKTOP("desktopMain"),
+    WASMJS("wasmJsMain"),
 }
