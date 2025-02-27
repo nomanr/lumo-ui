@@ -18,4 +18,11 @@ KotlinMultiplatform=true
 EOF
 
 ./gradlew lumo --add-all
+
 ./gradlew sample-multiplatform:catalogue:android:assembleDebug
+
+./gradlew clean
+
+./gradlew :sample-multiplatform:catalogue:web:wasmJsBrowserDistribution
+
+./gradlew clean

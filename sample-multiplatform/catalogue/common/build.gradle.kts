@@ -1,4 +1,4 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -18,6 +18,11 @@ kotlin {
 
     jvm("desktop")
 
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -34,12 +39,14 @@ kotlin {
     sourceSets {
         val desktopMain by getting
 
-        androidMain.dependencies {
-            implementation(libs.androidx.compose.ui.tooling.preview)
-            implementation(libs.androidx.activity.compose)
+        androidMain {
+            dependencies {
+                implementation(libs.androidx.compose.ui.tooling.preview)
+                implementation(libs.androidx.activity.compose)
+            }
         }
         commonMain.dependencies {
-            implementation(project(":sample-multiplatform:ui-components"))
+            api(project(":sample-multiplatform:ui-components"))
             implementation(compose.components.resources)
             implementation(libs.androidx.multiplatform.navigation)
             implementation(libs.kotlin.serialization.json)
@@ -79,14 +86,3 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
 
-compose.desktop {
-    application {
-        mainClass = "com.nomanr.lumo.multiplatform.sample.MainKt"
-
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.nomanr.lumo.multiplatform.sample"
-            packageVersion = "1.0.0"
-        }
-    }
-}

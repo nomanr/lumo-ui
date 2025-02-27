@@ -25,7 +25,9 @@ fun SampleScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
     }
 
     Scaffold(topBar = {
-        SampleScreenTopBar(title = component.label, onBack = {
+        SampleScreenTopBar(title = component.label,
+        showBackButton = showBackButton(),
+            onBack = {
             navigateUp()
         })
     }) { padding ->
@@ -45,3 +47,5 @@ fun SampleScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
         }
     }
 }
+
+expect fun showBackButton(): Boolean

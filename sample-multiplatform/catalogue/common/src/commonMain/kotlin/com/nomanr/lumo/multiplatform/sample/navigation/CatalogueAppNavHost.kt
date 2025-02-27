@@ -1,11 +1,13 @@
 package com.nomanr.lumo.multiplatform.sample.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.nomanr.lumo.multiplatform.sample.CatalogueAppState
 import com.nomanr.lumo.multiplatform.sample.home.HomeScreen
+import com.nomanr.lumo.multiplatform.sample.sample.ComponentId
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SampleScreen
 
 @Composable
@@ -14,6 +16,16 @@ fun CatalogueAppNavHost(
     appState: CatalogueAppState,
 ) {
     val navController = appState.navController
+
+
+    LaunchedEffect(Unit) {
+        val initialComponentId = getInitialComponentId()
+        if (initialComponentId != null) {
+            ComponentId.entries.find { it.name == initialComponentId }?.let {
+                navController.navigate(NavRoute.Demo(it))
+            }
+        }
+    }
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable<NavRoute.Home> {
@@ -40,3 +52,6 @@ fun CatalogueAppNavHost(
 //        }
     }
 }
+
+expect fun getInitialComponentId(): String?
+
