@@ -21,10 +21,10 @@ kotlin {
     macosX64()
     macosArm64()
 
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-    }
+//    @OptIn(ExperimentalWasmDsl::class)
+//    wasmJs {
+//        browser()
+//    }
 
     jvm("desktop") {
         compilations.all {

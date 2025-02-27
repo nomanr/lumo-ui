@@ -1,6 +1,7 @@
 package com.nomanr.lumo.multiplatform.sample.sample.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ fun SampleScreenTopBar(
     scrollBehavior: TopBarScrollBehavior? = null,
     title: String,
     onBack: () -> Unit = {},
+    showBackButton: Boolean = true,
 ) {
     TopBar(
         modifier = modifier,
@@ -39,14 +41,20 @@ fun SampleScreenTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            IconButton(
-                variant = IconButtonVariant.Ghost,
-                onClick = onBack,
-            ) {
-                Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "More Options")
-            }
+            if(showBackButton){
+                IconButton(
+                    variant = IconButtonVariant.Ghost,
+                    onClick = onBack,
+                ) {
+                    Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "More Options")
+                }
 
-            Text(text = title, style = AppTheme.typography.h3)
+            }
+            Box(
+                modifier = if(!showBackButton) Modifier.padding(start = 12.dp, top = 8.dp) else Modifier
+            ) {
+                Text(text = title, style = AppTheme.typography.h3)
+            }
         }
     }
 }

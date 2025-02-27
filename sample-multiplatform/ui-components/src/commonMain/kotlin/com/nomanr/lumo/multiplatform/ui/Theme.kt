@@ -13,6 +13,9 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import com.nomanr.lumo.multiplatform.ui.configs.LocalAppConfigState
 import com.nomanr.lumo.multiplatform.ui.configs.rememberAppConfigState
 import com.nomanr.lumo.multiplatform.ui.foundation.ripple
+import lumo_ui.sample_multiplatform.ui_components.generated.resources.Res
+import lumo_ui.sample_multiplatform.ui_components.generated.resources.poppins_regular
+import org.jetbrains.compose.resources.Font
 
 object AppTheme {
     val colors: Colors
@@ -33,15 +36,15 @@ fun AppTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
+
     val rippleIndication = ripple()
     val selectionColors = rememberTextSelectionColors(LightColors)
 
     val appConfigState = rememberAppConfigState()
-    val scaledTypography =
-        remember(appConfigState.fontScale) {
-            scaledTypography(appConfigState.fontScale)
-        }
+    val defaultTypography = provideTypography()
+    val scaledTypography =  scaledTypography(appConfigState.fontScale, defaultTypography)
     val colors = if (isDarkTheme) appConfigState.colors.darkColors else appConfigState.colors.lightColors
+
 
     CompositionLocalProvider(
         LocalColors provides colors,
