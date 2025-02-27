@@ -28,6 +28,7 @@ hilt-ext = "1.2.0"
 hilt-navigation-compose = "1.2.0"
 
 kotlin = "2.1.0"
+kotlin-coroutines-core = "1.10.1"
 kotlin-coroutines-android = "1.8.1"
 kotlin-serialization-json = "1.6.3"
 ksp = "2.0.0-1.0.21"
@@ -96,6 +97,7 @@ dagger-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigat
 
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines-android" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines-android" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines-core" }
 kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-serialization-json" }
 
 nomanr-composables = { group = "com.nomanr", name = "composables", version.ref = "nomanr-composables" }

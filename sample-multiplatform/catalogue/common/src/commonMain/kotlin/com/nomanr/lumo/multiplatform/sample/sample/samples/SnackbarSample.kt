@@ -50,7 +50,9 @@ fun SnackbarSample(navigateUp: (() -> Unit)?) {
     }
 
     Scaffold(topBar = {
-        SampleScreenTopBar(title = "Snackbar", onBack = {
+        SampleScreenTopBar(title = "Snackbar",
+            showBackButton = showBackButton(),
+            onBack = {
             navigateUp?.invoke()
         })
     }, snackbarHost = {

@@ -122,7 +122,9 @@ private fun InitialStateSample(
     LaunchedEffect(colors) { onChangeTopBarColor(colors.background) }
 
     Scaffold(topBar = {
-        SampleScreenTopBar(title = "TopBar Sample", onBack = navigateUp)
+        SampleScreenTopBar(title = "TopBar Sample",
+            showBackButton = showBackButton(),
+            onBack = navigateUp)
     }) { padding ->
         Column(
             modifier =

@@ -52,7 +52,9 @@ fun NavigationBarSample(navigateUp: (() -> Unit)?) {
     var items by remember { mutableIntStateOf(3) }
 
     Scaffold(topBar = {
-        SampleScreenTopBar(title = "Navigation Bar", onBack = {
+        SampleScreenTopBar(title = "Navigation Bar",
+            showBackButton = showBackButton(),
+            onBack = {
             navigateUp?.invoke()
         })
     }, bottomBar = {
