@@ -33,18 +33,17 @@ fun main() {
     }
 }
 
-
 @Composable
 fun MobileFrame(content: @Composable () -> Unit) {
     Box(modifier = Modifier.fillMaxSize().background(AppTheme.colors.background), contentAlignment = Alignment.Center) {
         Box(
-            modifier = Modifier.size(size = DpSize(400.dp, 800.dp))
-                .border(5.dp, color = AppTheme.colors.primary, shape = RoundedCornerShape(12.dp))
-                .clip(RoundedCornerShape(12.dp)),
+            modifier =
+                Modifier.size(size = DpSize(400.dp, 800.dp))
+                    .border(5.dp, color = AppTheme.colors.primary, shape = RoundedCornerShape(12.dp))
+                    .clip(RoundedCornerShape(12.dp)),
         ) { content() }
     }
 }
-
 
 fun mobileMode(): Boolean {
     val searchParams = URLSearchParams(window.location.search.toJsString())

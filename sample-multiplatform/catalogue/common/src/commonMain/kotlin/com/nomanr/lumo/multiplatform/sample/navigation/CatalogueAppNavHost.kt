@@ -17,7 +17,6 @@ fun CatalogueAppNavHost(
 ) {
     val navController = appState.navController
 
-
     LaunchedEffect(Unit) {
         val initialComponentId = getInitialComponentId()
         if (initialComponentId != null) {
@@ -54,4 +53,3 @@ fun CatalogueAppNavHost(
 }
 
 expect fun getInitialComponentId(): String?
-

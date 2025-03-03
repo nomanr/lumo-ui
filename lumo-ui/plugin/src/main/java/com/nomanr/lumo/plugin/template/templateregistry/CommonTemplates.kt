@@ -10,6 +10,7 @@ import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Chip
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Divider
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Icon
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.IconButton
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.ModalBottomSheet
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.NavigationBar
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.OTPTextField
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.ProgressIndicators
@@ -101,6 +102,14 @@ object CommonTemplates {
             componentFiles = listOf("components/IconButton.kt.template"),
             supportingFiles = listOf("foundation/ButtonElevation.kt.template"),
             dependsOn = listOf(Surface),
+        )
+
+    private val modalBottomSheet =
+        Template(
+            componentFiles = listOf("components/ModalBottomSheet.kt.template"),
+            requirements =
+                "Note: Add the following dependency to the project to use this component: \n" +
+                    "implementation(\"com.nomanr:composables:{version}\")\n" + "Reference: https://github.com/nomanr/compose-components",
         )
 
     private val navigationBar =
@@ -201,6 +210,7 @@ object CommonTemplates {
             Divider to divider,
             Icon to icon,
             IconButton to iconButton,
+            ModalBottomSheet to modalBottomSheet,
             NavigationBar to navigationBar,
             OTPTextField to otpTextField,
             ProgressIndicators to progressIndicator,

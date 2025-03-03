@@ -41,17 +41,16 @@ fun SampleScreenTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            if(showBackButton){
+            if (showBackButton) {
                 IconButton(
                     variant = IconButtonVariant.Ghost,
                     onClick = onBack,
                 ) {
                     Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "More Options")
                 }
-
             }
             Box(
-                modifier = if(!showBackButton) Modifier.padding(start = 12.dp, top = 8.dp) else Modifier
+                modifier = if (!showBackButton) Modifier.padding(start = 12.dp, top = 8.dp) else Modifier,
             ) {
                 Text(text = title, style = AppTheme.typography.h3)
             }

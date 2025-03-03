@@ -380,7 +380,6 @@ private fun CacheDrawScope.drawCaretWithPath(
     }
 }
 
-
 @Composable
 internal expect fun windowContainerWidthInPx(): Int
 
