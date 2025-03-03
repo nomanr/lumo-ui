@@ -75,13 +75,13 @@ fun HomeTopBar(
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 IconButton(variant = IconButtonVariant.Ghost, onClick = {
-                    //TODO: Add modal first
+                    // TODO: Add modal first
                 }) {
                     Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
                 }
                 IconButton(variant = IconButtonVariant.Ghost, onClick = {
-                //TODO: Add modal first
-                // isConfigModalVisible = true
+                    // TODO: Add modal first
+                    // isConfigModalVisible = true
                 }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = "More Options")
                 }

@@ -35,11 +35,13 @@ import com.nomanr.lumo.multiplatform.sample.sample.samples.ChipSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.DividerSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.IconButtonSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.IconSample
+import com.nomanr.lumo.multiplatform.sample.sample.samples.ModalBottomSheetSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.NavigationBarSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.OTPTextFieldSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.ProgressIndicatorSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.RadioButtonSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.ScaffoldSample
+import com.nomanr.lumo.multiplatform.sample.sample.samples.SliderSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SnackbarSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SurfaceSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SwitchSample
@@ -137,12 +139,12 @@ object Samples {
                 TEXT_FIELD to { TextFieldSample() },
                 ALERT_DIALOG to { AlertDialogSample() },
                 BADGE to { navigateUp -> BadgeSample(navigateUp) },
-//                MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
+                MODAL_BOTTOM_SHEET to { ModalBottomSheetSample() },
                 NAVIGATION_BAR to { navigateUp -> NavigationBarSample(navigateUp) },
                 OTP_TEXT_FIELD to { OTPTextFieldSample() },
                 PROGRESS_INDICATOR to { ProgressIndicatorSample() },
                 RADIO_BUTTON to { RadioButtonSample() },
-//                SLIDER to { SliderSample() },
+                SLIDER to { SliderSample() },
                 SNACKBAR to { navigateUp -> SnackbarSample(navigateUp) },
                 SCAFFOLD to { navigateUp -> ScaffoldSample(navigateUp) },
                 SURFACE to { SurfaceSample() },

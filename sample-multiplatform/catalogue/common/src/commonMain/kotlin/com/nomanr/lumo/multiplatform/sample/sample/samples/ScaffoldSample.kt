@@ -61,9 +61,11 @@ fun ScaffoldSample(navigateUp: (() -> Unit)?) {
     }
 
     Scaffold(topBar = {
-        SampleScreenTopBar(title = "Scaffold Sample",
+        SampleScreenTopBar(
+            title = "Scaffold Sample",
             showBackButton = showBackButton(),
-            onBack = { navigateUp?.invoke() })
+            onBack = { navigateUp?.invoke() },
+        )
     }, bottomBar = {
         ScaffoldSampleNavigationBar(selectedScreen = selectedScreen, onSelect = { selectedScreen = it })
     }, floatingActionButton = {

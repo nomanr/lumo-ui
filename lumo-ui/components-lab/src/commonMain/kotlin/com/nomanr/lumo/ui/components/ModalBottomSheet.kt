@@ -1,4 +1,4 @@
-package {{packageName}}.components
+package com.nomanr.lumo.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import com.nomanr.composables.bottomsheet.BasicModalBottomSheet
 import com.nomanr.composables.bottomsheet.SheetState
 import com.nomanr.composables.bottomsheet.rememberModalBottomSheetState
-import {{packageName}}.{{themeName}}
-import androidx.compose.ui.tooling.preview.Preview
+import com.nomanr.lumo.ui.AppTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ModalBottomSheet(
@@ -36,8 +36,8 @@ fun ModalBottomSheet(
             sheetState = sheetState,
             onDismissRequest = onDismissRequest,
             sheetGesturesEnabled = sheetGesturesEnabled,
-            containerColor = {{themeName}}.colors.background,
-            scrimColor = {{themeName}}.colors.scrim,
+            containerColor = AppTheme.colors.background,
+            scrimColor = AppTheme.colors.scrim,
             shape = BottomSheetDefaults.ModalBottomSheetShape,
             dragHandle = dragHandle,
             content = content,
@@ -67,7 +67,7 @@ internal object BottomSheetDefaults {
             Spacer(
                 Modifier
                     .size(width = DragHandleWidth, height = DragHandleHeight)
-                    .background(color = {{themeName}}.colors.secondary, shape = DragHandleShape),
+                    .background(color = AppTheme.colors.secondary, shape = DragHandleShape),
             )
         }
     }

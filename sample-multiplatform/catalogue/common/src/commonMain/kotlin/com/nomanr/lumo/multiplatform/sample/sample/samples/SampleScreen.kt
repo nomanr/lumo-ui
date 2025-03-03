@@ -25,11 +25,13 @@ fun SampleScreen(componentId: ComponentId, navigateUp: () -> Unit = {}) {
     }
 
     Scaffold(topBar = {
-        SampleScreenTopBar(title = component.label,
-        showBackButton = showBackButton(),
+        SampleScreenTopBar(
+            title = component.label,
+            showBackButton = showBackButton(),
             onBack = {
-            navigateUp()
-        })
+                navigateUp()
+            },
+        )
     }) { padding ->
         Column(
             modifier =

@@ -10,11 +10,13 @@ import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Chip
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Divider
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Icon
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.IconButton
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.ModalBottomSheet
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.NavigationBar
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.OTPTextField
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.ProgressIndicators
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.RadioButton
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Scaffold
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Slider
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Snackbar
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Surface
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Switch
@@ -103,6 +105,14 @@ object CommonTemplates {
             dependsOn = listOf(Surface),
         )
 
+    private val modalBottomSheet =
+        Template(
+            componentFiles = listOf("components/ModalBottomSheet.kt.template"),
+            requirements =
+                "Note: Add the following dependency to the project to use this component: \n" +
+                    "implementation(\"com.nomanr:composables:{version}\")\n" + "Reference: https://github.com/nomanr/compose-components",
+        )
+
     private val navigationBar =
         Template(
             componentFiles = listOf("components/NavigationBar.kt.template"),
@@ -139,6 +149,11 @@ object CommonTemplates {
             componentFiles = listOf("components/Scaffold.kt.template"),
             supportingFiles = listOf("foundation/SystemBarsDefaultInsets.kt.template"),
             dependsOn = listOf(Surface),
+        )
+
+    private val slider =
+        Template(
+            componentFiles = listOf("components/Slider.kt.template"),
         )
 
     private val snackBar =
@@ -201,11 +216,13 @@ object CommonTemplates {
             Divider to divider,
             Icon to icon,
             IconButton to iconButton,
+            ModalBottomSheet to modalBottomSheet,
             NavigationBar to navigationBar,
             OTPTextField to otpTextField,
             ProgressIndicators to progressIndicator,
             RadioButton to radioButton,
             Scaffold to scaffold,
+            Slider to slider,
             Surface to surface,
             Snackbar to snackBar,
             Switch to switch,

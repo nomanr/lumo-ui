@@ -50,11 +50,13 @@ fun SnackbarSample(navigateUp: (() -> Unit)?) {
     }
 
     Scaffold(topBar = {
-        SampleScreenTopBar(title = "Snackbar",
+        SampleScreenTopBar(
+            title = "Snackbar",
             showBackButton = showBackButton(),
             onBack = {
-            navigateUp?.invoke()
-        })
+                navigateUp?.invoke()
+            },
+        )
     }, snackbarHost = {
         SnackbarHost(hostState = snackbarHostState, snackbar = { RenderSnackbar(selectedType, it) })
     }) { padding ->

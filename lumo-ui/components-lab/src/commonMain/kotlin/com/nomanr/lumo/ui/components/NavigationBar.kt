@@ -273,6 +273,7 @@ object NavigationBarItemDefaults {
     fun textStyle(): TextStyle = AppTheme.typography.label2
 }
 
+@ConsistentCopyVisibility
 @Stable
 data class NavigationBarItemColors internal constructor(
     private val selectedIconColor: Color,

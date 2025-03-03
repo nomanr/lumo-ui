@@ -1,4 +1,4 @@
-package {{packageName}}.components
+package com.nomanr.lumo.ui.components
 
 import androidx.annotation.IntRange
 import androidx.compose.foundation.background
@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -30,8 +31,8 @@ import com.nomanr.composables.slider.BasicSlider
 import com.nomanr.composables.slider.RangeSliderState
 import com.nomanr.composables.slider.SliderColors
 import com.nomanr.composables.slider.SliderState
-import {{packageName}}.{{themeName}}
-import androidx.compose.ui.tooling.preview.Preview
+import com.nomanr.lumo.ui.AppTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Slider(
@@ -145,15 +146,15 @@ fun RangeSlider(
 object SliderDefaults {
     @Composable
     fun colors(
-        thumbColor: Color = {{themeName}}.colors.primary,
-        activeTrackColor: Color = {{themeName}}.colors.primary,
-        activeTickColor: Color = {{themeName}}.colors.onPrimary,
-        inactiveTrackColor: Color = {{themeName}}.colors.secondary,
-        inactiveTickColor: Color = {{themeName}}.colors.primary,
-        disabledThumbColor: Color = {{themeName}}.colors.disabled,
-        disabledActiveTrackColor: Color = {{themeName}}.colors.disabled,
-        disabledActiveTickColor: Color = {{themeName}}.colors.disabled,
-        disabledInactiveTrackColor: Color = {{themeName}}.colors.disabled,
+        thumbColor: Color = AppTheme.colors.primary,
+        activeTrackColor: Color = AppTheme.colors.primary,
+        activeTickColor: Color = AppTheme.colors.onPrimary,
+        inactiveTrackColor: Color = AppTheme.colors.secondary,
+        inactiveTickColor: Color = AppTheme.colors.primary,
+        disabledThumbColor: Color = AppTheme.colors.disabled,
+        disabledActiveTrackColor: Color = AppTheme.colors.disabled,
+        disabledActiveTickColor: Color = AppTheme.colors.disabled,
+        disabledInactiveTrackColor: Color = AppTheme.colors.disabled,
         disabledInactiveTickColor: Color = Color.Unspecified,
     ) = SliderColors(
         thumbColor = thumbColor,
@@ -172,7 +173,7 @@ object SliderDefaults {
 @Preview
 @Composable
 private fun SliderPreview() {
-    {{themeName}} {
+    AppTheme {
         Column(
             modifier =
                 Modifier
@@ -182,16 +183,15 @@ private fun SliderPreview() {
                     .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(32.dp),
         ) {
-            Text(
+            BasicText(
                 text = "Slider Components",
-                style = {{themeName}}.typography.h3,
+                style = AppTheme.typography.h3,
             )
 
             Column {
-                Text(
+                BasicText(
                     text = "Basic Slider",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var value by remember { mutableFloatStateOf(0.5f) }
                 Slider(
@@ -202,10 +202,9 @@ private fun SliderPreview() {
             }
 
             Column {
-                Text(
+                BasicText(
                     text = "Stepped Slider (5 steps)",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var value by remember { mutableFloatStateOf(0.4f) }
                 Slider(
@@ -217,10 +216,9 @@ private fun SliderPreview() {
             }
 
             Column {
-                Text(
+                BasicText(
                     text = "Custom Range (0-100)",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var value by remember { mutableFloatStateOf(30f) }
                 Row(
@@ -234,19 +232,18 @@ private fun SliderPreview() {
                         valueRange = 0f..100f,
                         modifier = Modifier.weight(1f),
                     )
-                    Text(
+                    BasicText(
                         text = "${value.toInt()}",
-                        style = {{themeName}}.typography.body1,
+                        style = AppTheme.typography.body1,
                         modifier = Modifier.width(40.dp),
                     )
                 }
             }
 
             Column {
-                Text(
+                BasicText(
                     text = "Disabled States",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 Slider(
                     value = 0.3f,
@@ -264,10 +261,9 @@ private fun SliderPreview() {
             }
 
             Column {
-                Text(
+                 BasicText(
                     text = "Custom Colors",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var value by remember { mutableFloatStateOf(0.5f) }
                 Slider(
@@ -275,25 +271,24 @@ private fun SliderPreview() {
                     onValueChange = { value = it },
                     colors =
                         SliderDefaults.colors(
-                            thumbColor = {{themeName}}.colors.error,
-                            activeTrackColor = {{themeName}}.colors.error,
-                            inactiveTrackColor = {{themeName}}.colors.error.copy(alpha = 0.3f),
+                            thumbColor = AppTheme.colors.error,
+                            activeTrackColor = AppTheme.colors.error,
+                            inactiveTrackColor = AppTheme.colors.error.copy(alpha = 0.3f),
                         ),
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
 
             Column {
-                Text(
+                 BasicText(
                     text = "Interactive Slider",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var value by remember { mutableFloatStateOf(50f) }
                 var isEditing by remember { mutableStateOf(false) }
-                Text(
+                 BasicText(
                     text = if (isEditing) "Editing..." else "Value: ${value.toInt()}",
-                    style = {{themeName}}.typography.body1,
+                    style = AppTheme.typography.body1,
                 )
                 Slider(
                     value = value,
@@ -313,7 +308,7 @@ private fun SliderPreview() {
 @Preview
 @Composable
 private fun RangeSliderPreview() {
-    {{themeName}} {
+    AppTheme {
         Column(
             modifier =
                 Modifier
@@ -323,16 +318,15 @@ private fun RangeSliderPreview() {
                     .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(32.dp),
         ) {
-            Text(
+             BasicText(
                 text = "Range Slider Components",
-                style = {{themeName}}.typography.h3,
+                style = AppTheme.typography.h3,
             )
 
             Column {
-                Text(
+                 BasicText(
                     text = "Basic Range Slider",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var range by remember { mutableStateOf(0.2f..0.8f) }
                 RangeSlider(
@@ -343,10 +337,9 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                Text(
+                 BasicText(
                     text = "Stepped Range Slider (5 steps)",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var range by remember { mutableStateOf(0.2f..0.6f) }
                 RangeSlider(
@@ -358,10 +351,9 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                Text(
+                 BasicText(
                     text = "Custom Range (0-100)",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var range by remember { mutableStateOf(20f..80f) }
                 Column {
@@ -375,23 +367,22 @@ private fun RangeSliderPreview() {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
-                        Text(
+                         BasicText(
                             text = "Start: ${range.start.toInt()}",
-                            style = {{themeName}}.typography.body1,
+                            style = AppTheme.typography.body1,
                         )
-                        Text(
+                         BasicText(
                             text = "End: ${range.endInclusive.toInt()}",
-                            style = {{themeName}}.typography.body1,
+                            style = AppTheme.typography.body1,
                         )
                     }
                 }
             }
 
             Column {
-                Text(
+                 BasicText(
                     text = "Disabled State",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 RangeSlider(
                     value = 0.3f..0.7f,
@@ -402,10 +393,9 @@ private fun RangeSliderPreview() {
             }
 
             Column {
-                Text(
+                 BasicText(
                     text = "Custom Colors",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var range by remember { mutableStateOf(0.3f..0.7f) }
                 RangeSlider(
@@ -413,25 +403,24 @@ private fun RangeSliderPreview() {
                     onValueChange = { range = it },
                     colors =
                         SliderDefaults.colors(
-                            thumbColor = {{themeName}}.colors.error,
-                            activeTrackColor = {{themeName}}.colors.error,
-                            inactiveTrackColor = {{themeName}}.colors.error.copy(alpha = 0.3f),
+                            thumbColor = AppTheme.colors.error,
+                            activeTrackColor = AppTheme.colors.error,
+                            inactiveTrackColor = AppTheme.colors.error.copy(alpha = 0.3f),
                         ),
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
 
             Column {
-                Text(
+                 BasicText(
                     text = "Interactive Range Slider",
-                    style = {{themeName}}.typography.h4,
-                    color = {{themeName}}.colors.primary,
+                    style = AppTheme.typography.h4,
                 )
                 var range by remember { mutableStateOf(30f..70f) }
                 var isEditing by remember { mutableStateOf(false) }
-                Text(
+                 BasicText(
                     text = if (isEditing) "Editing..." else "Range: ${range.start.toInt()} - ${range.endInclusive.toInt()}",
-                    style = {{themeName}}.typography.body1,
+                    style = AppTheme.typography.body1,
                 )
                 RangeSlider(
                     value = range,

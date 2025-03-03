@@ -1,4 +1,4 @@
-package com.nomanr.lumo.ui.components.native
+package com.nomanr.lumo.multiplatform.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,12 +13,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.composables.bottomsheet.BasicModalBottomSheet
 import com.nomanr.composables.bottomsheet.SheetState
 import com.nomanr.composables.bottomsheet.rememberModalBottomSheetState
-import com.nomanr.lumo.ui.AppTheme
+import com.nomanr.lumo.multiplatform.ui.AppTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ModalBottomSheet(

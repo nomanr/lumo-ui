@@ -91,7 +91,9 @@ class ComponentGenerator(
             files.forEach { file ->
                 val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
                 if (!doesOutputDirectoryExist(outputFile)) {
-                    logger.warn("Skipping to generate '${outputFile.name}' for '${sourceSet.sourceSetName}' source set as it does not exists.\n")
+                    logger.warn(
+                        "Skipping to generate '${outputFile.name}' for '${sourceSet.sourceSetName}' source set as it does not exists.\n",
+                    )
                 }
                 if (outputFile.exists()) {
                     failedToGenerate.add(outputFile)
@@ -111,8 +113,9 @@ class ComponentGenerator(
             files.forEach { file ->
                 val outputFile = File(platformOutputDir, file.replace(".kt.template", ".kt"))
                 if (!doesOutputDirectoryExist(outputFile)) {
-                    logger.warn("Skipping to generate '${outputFile.name}' for '${sourceSet.sourceSetName}' source set as it does not exists.\n")
-
+                    logger.warn(
+                        "Skipping to generate '${outputFile.name}' for '${sourceSet.sourceSetName}' source set as it does not exists.\n",
+                    )
                 }
 
                 if (outputFile.exists()) {
@@ -135,12 +138,16 @@ class ComponentGenerator(
         templateSourceDir: String,
     ) {
         val resourcePath = "$templateSourceDir/$templateFileName"
-        val resource = javaClass.classLoader.getResource(resourcePath)
-            ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
+        val resource =
+            javaClass.classLoader.getResource(resourcePath)
+                ?: throw IllegalArgumentException("Template file $templateFileName not found in resources.")
 
         val templateContent = resource.readText()
 
-        val content = templateContent.replace("{{packageName}}", config.packageName).replace("{{themeName}}", config.themeName)
+        val content =
+            templateContent
+                .replace("{{packageName}}", config.packageName)
+                .replace("{{themeName}}", config.themeName)
 
         outputFile.writeText(content)
     }
@@ -148,7 +155,8 @@ class ComponentGenerator(
     private fun ensureDirectoryExists(file: File) {
         if (!doesOutputDirectoryExist(file)) {
             throw LumoException(
-                "Failed to create parent directory: ${file.parentFile}. " + "Possible reasons: existing file or any of the parent directory does not exists.",
+                "Failed to create parent directory: ${file.parentFile}. " +
+                    "Possible reasons: existing file or any of the parent directory does not exists.",
             )
         }
     }
@@ -183,7 +191,9 @@ class ComponentGenerator(
 
     private fun logSummary(componentName: String) {
         val successLinks = successfullyGenerated.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
-        val successSupportingLinks = successFullyGeneratedSupportingFiles.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
+        val successSupportingLinks =
+            successFullyGeneratedSupportingFiles
+                .joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
         val otherSuccessMessages = otherSuccessMessages.joinToString("\n")
         val failedLinks = failedToGenerate.joinToString("\n") { linkFormatter.formatLink(rootDir, it) }
 

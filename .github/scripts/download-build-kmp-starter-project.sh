@@ -9,6 +9,8 @@ COMPONENTS_DIR="composeApp/src/commonMain/kotlin/com/jetbrains/kmpapp/components
 rm -rf template.zip
 rm -rf "$PROJECT_DIR"
 
+COMPOSABLE_VERSION=$(find . -name "libs.versions.toml" -exec awk -F ' = "' '/^nomanr-composables/ {gsub(/"/, "", $2); if ($2 ~ /^[0-9]+\.[0-9]+\.[0-9]+$/) print $2}' {} +)
+
 curl -L -o template.zip https://github.com/Kotlin/KMP-App-Template/archive/refs/heads/main.zip
 
 unzip -q template.zip
@@ -18,6 +20,8 @@ if [ ! -d "$PROJECT_DIR" ]; then
 fi
 
 cd "$PROJECT_DIR" || exit 1
+
+sed -i '/commonMain\.dependencies {/,/}/ {/implementation/!s/\(commonMain\.dependencies {\)/\1\n            implementation("com.nomanr:composables:'"$COMPOSABLE_VERSION"'")/}' composeApp/build.gradle.kts
 
 awk '/mavenCentral()/ { if (!seen) { print "        mavenLocal()"; print "\n"; seen=1 } } {print}' settings.gradle.kts > temp && mv temp settings.gradle.kts
 
