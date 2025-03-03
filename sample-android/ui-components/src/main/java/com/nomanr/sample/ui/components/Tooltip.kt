@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
@@ -45,7 +46,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.debugInspectorInfo
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
@@ -59,7 +59,6 @@ import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.window.PopupPositionProvider
 import com.nomanr.sample.ui.AppTheme
 import com.nomanr.sample.ui.components.Surface
-import com.nomanr.sample.ui.components.Text
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeout
@@ -137,13 +136,13 @@ fun TooltipScope.Tooltip(
     ) {
         Box(
             modifier =
-                Modifier
-                    .sizeIn(
-                        minWidth = TooltipDefaults.MinWidth,
-                        maxWidth = maxWidth,
-                        minHeight = TooltipDefaults.MinHeight,
-                    )
-                    .padding(TooltipDefaults.ContentPadding),
+            Modifier
+                .sizeIn(
+                    minWidth = TooltipDefaults.MinWidth,
+                    maxWidth = maxWidth,
+                    minHeight = TooltipDefaults.MinHeight,
+                )
+                .padding(TooltipDefaults.ContentPadding),
         ) {
             content()
         }
@@ -272,10 +271,10 @@ fun rememberTooltipPositionProvider(
 internal fun Modifier.animateTooltip(transition: Transition<Boolean>): Modifier =
     composed(
         inspectorInfo =
-            debugInspectorInfo {
-                name = "animateTooltip"
-                properties["transition"] = transition
-            },
+        debugInspectorInfo {
+            name = "animateTooltip"
+            properties["transition"] = transition
+        },
     ) {
         val inOutScaleAnimationSpec = tween<Float>(durationMillis = 100, easing = FastOutLinearInEasing)
         val inOutAlphaAnimationSpec = tween<Float>(durationMillis = 50, easing = FastOutSlowInEasing)
@@ -375,9 +374,8 @@ fun PlainTooltipWithCaret() {
         TooltipBox(
             tooltip = {
                 Tooltip {
-                    Text(
+                    BasicText(
                         text = "This is a tooltip",
-                        textAlign = TextAlign.Center,
                     )
                 }
             },
@@ -385,9 +383,9 @@ fun PlainTooltipWithCaret() {
         ) {
             Box(
                 modifier =
-                    Modifier
-                        .size(40.dp)
-                        .background(Color.Blue),
+                Modifier
+                    .size(40.dp)
+                    .background(Color.Blue),
             )
         }
     }

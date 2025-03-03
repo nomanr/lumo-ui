@@ -1,4 +1,4 @@
-package {{packageName}}.components
+package com.nomanr.lumo.ui.components.native
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -57,8 +57,8 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.window.PopupPositionProvider
-import {{packageName}}.{{themeName}}
-import {{packageName}}.components.Surface
+import com.nomanr.lumo.ui.AppTheme
+import com.nomanr.lumo.ui.components.Surface
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeout
@@ -105,7 +105,7 @@ fun TooltipScope.Tooltip(
     caretSize: DpSize = TooltipDefaults.CaretSize,
     maxWidth: Dp = TooltipDefaults.MaxWidth,
     shape: Shape = TooltipDefaults.Shape,
-    containerColor: Color = {{themeName}}.colors.surface,
+    containerColor: Color = AppTheme.colors.surface,
     shadowElevation: Dp = TooltipDefaults.ShadowElevation,
     content: @Composable () -> Unit,
 ) {
