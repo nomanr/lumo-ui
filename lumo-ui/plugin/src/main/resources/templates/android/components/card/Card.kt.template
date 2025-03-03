@@ -276,6 +276,7 @@ object CardDefaults {
     }
 }
 
+@ConsistentCopyVisibility
 @Immutable
 data class CardColors internal constructor(
     private val containerColor: Color,
