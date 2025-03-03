@@ -41,6 +41,7 @@ import com.nomanr.lumo.multiplatform.sample.sample.samples.OTPTextFieldSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.ProgressIndicatorSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.RadioButtonSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.ScaffoldSample
+import com.nomanr.lumo.multiplatform.sample.sample.samples.SliderSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SnackbarSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SurfaceSample
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SwitchSample
@@ -143,7 +144,7 @@ object Samples {
                 OTP_TEXT_FIELD to { OTPTextFieldSample() },
                 PROGRESS_INDICATOR to { ProgressIndicatorSample() },
                 RADIO_BUTTON to { RadioButtonSample() },
-//                SLIDER to { SliderSample() },
+                SLIDER to { SliderSample() },
                 SNACKBAR to { navigateUp -> SnackbarSample(navigateUp) },
                 SCAFFOLD to { navigateUp -> ScaffoldSample(navigateUp) },
                 SURFACE to { SurfaceSample() },

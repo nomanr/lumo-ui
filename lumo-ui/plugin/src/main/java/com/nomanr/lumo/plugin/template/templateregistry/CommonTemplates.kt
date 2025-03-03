@@ -16,6 +16,7 @@ import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.OTPT
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.ProgressIndicators
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.RadioButton
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Scaffold
+import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Slider
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Snackbar
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Surface
 import com.nomanr.lumo.plugin.template.templateregistry.SupportedComponents.Switch
@@ -150,6 +151,11 @@ object CommonTemplates {
             dependsOn = listOf(Surface),
         )
 
+    private val slider =
+        Template(
+            componentFiles = listOf("components/Slider.kt.template"),
+        )
+
     private val snackBar =
         Template(
             componentFiles =
@@ -216,6 +222,7 @@ object CommonTemplates {
             ProgressIndicators to progressIndicator,
             RadioButton to radioButton,
             Scaffold to scaffold,
+            Slider to slider,
             Surface to surface,
             Snackbar to snackBar,
             Switch to switch,

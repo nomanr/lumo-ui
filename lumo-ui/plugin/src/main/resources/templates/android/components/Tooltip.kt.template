@@ -1,6 +1,5 @@
 package {{packageName}}.components
 
-import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.MutableTransitionState
@@ -43,10 +42,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.debugInspectorInfo
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
@@ -58,10 +55,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.window.PopupPositionProvider
 import {{packageName}}.{{themeName}}
-import {{packageName}}.components.Surface
+import {{packageName}}.components.TooltipDefaults.SpacingBetweenTooltipAndAnchor
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeout
+import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -112,12 +110,12 @@ fun TooltipScope.Tooltip(
     val drawCaretModifier =
         if (caretSize.isSpecified) {
             val density = LocalDensity.current
-            val configuration = LocalConfiguration.current
+            val windowContainerWidthInPx = windowContainerWidthInPx()
             Modifier
                 .drawCaret { anchorLayoutCoordinates ->
                     drawCaretWithPath(
                         density,
-                        configuration,
+                        windowContainerWidthInPx,
                         containerColor,
                         caretSize,
                         anchorLayoutCoordinates,
@@ -298,7 +296,7 @@ internal fun Modifier.animateTooltip(transition: Transition<Boolean>): Modifier 
 
 private fun CacheDrawScope.drawCaretWithPath(
     density: Density,
-    configuration: Configuration,
+    windowContainerWidthInPx: Int,
     containerColor: Color,
     caretSize: DpSize,
     anchorLayoutCoordinates: LayoutCoordinates?,
@@ -313,10 +311,9 @@ private fun CacheDrawScope.drawCaretWithPath(
         with(density) {
             caretHeightPx = caretSize.height.roundToPx()
             caretWidthPx = caretSize.width.roundToPx()
-            screenWidthPx = configuration.screenWidthDp.dp.roundToPx()
-            tooltipAnchorSpacing = TooltipDefaults.SpacingBetweenTooltipAndAnchor.roundToPx()
+            screenWidthPx = windowContainerWidthInPx
+            tooltipAnchorSpacing = SpacingBetweenTooltipAndAnchor.roundToPx()
         }
-
         val anchorBounds = anchorLayoutCoordinates.boundsInWindow()
         val anchorLeft = anchorBounds.left
         val anchorRight = anchorBounds.right
@@ -326,35 +323,52 @@ private fun CacheDrawScope.drawCaretWithPath(
         val tooltipWidth = this.size.width
         val tooltipHeight = this.size.height
         val isCaretTop = anchorTop - tooltipHeight - tooltipAnchorSpacing < 0
-        val caretY = if (isCaretTop) 0f else tooltipHeight
+        val caretY =
+            if (isCaretTop) {
+                0f
+            } else {
+                tooltipHeight
+            }
 
+        // Default the caret to be in the middle
+        // caret might need to be offset depending on where
+        // the tooltip is placed relative to the anchor
         var position: Offset =
             if (anchorLeft - tooltipWidth / 2 + anchorWidth / 2 <= 0) {
                 Offset(anchorMid, caretY)
             } else if (anchorRight + tooltipWidth / 2 - anchorWidth / 2 >= screenWidthPx) {
                 val anchorMidFromRightScreenEdge = screenWidthPx - anchorMid
-                Offset(tooltipWidth - anchorMidFromRightScreenEdge, caretY)
+                val caretX = tooltipWidth - anchorMidFromRightScreenEdge
+                Offset(caretX, caretY)
             } else {
                 Offset(tooltipWidth / 2, caretY)
             }
         if (anchorMid - tooltipWidth / 2 < 0) {
+            // The tooltip needs to be start aligned if it would collide with the left side of
+            // screen.
             position = Offset(anchorMid - anchorLeft, caretY)
         } else if (anchorMid + tooltipWidth / 2 > screenWidthPx) {
+            // The tooltip needs to be end aligned if it would collide with the right side of the
+            // screen.
             position = Offset(anchorMid - (anchorRight - tooltipWidth), caretY)
         }
 
         if (isCaretTop) {
-            path.moveTo(position.x, position.y)
-            path.lineTo(position.x + caretWidthPx / 2, position.y)
-            path.lineTo(position.x, position.y - caretHeightPx)
-            path.lineTo(position.x - caretWidthPx / 2, position.y)
-            path.close()
+            path.apply {
+                moveTo(x = position.x, y = position.y)
+                lineTo(x = position.x + caretWidthPx / 2, y = position.y)
+                lineTo(x = position.x, y = position.y - caretHeightPx)
+                lineTo(x = position.x - caretWidthPx / 2, y = position.y)
+                close()
+            }
         } else {
-            path.moveTo(position.x, position.y)
-            path.lineTo(position.x + caretWidthPx / 2, position.y)
-            path.lineTo(position.x, position.y + caretHeightPx)
-            path.lineTo(position.x - caretWidthPx / 2, position.y)
-            path.close()
+            path.apply {
+                moveTo(x = position.x, y = position.y)
+                lineTo(x = position.x + caretWidthPx / 2, y = position.y)
+                lineTo(x = position.x, y = position.y + caretHeightPx.toFloat())
+                lineTo(x = position.x - caretWidthPx / 2, y = position.y)
+                close()
+            }
         }
     }
 
@@ -366,7 +380,11 @@ private fun CacheDrawScope.drawCaretWithPath(
     }
 }
 
-@Preview(showBackground = true)
+// Won't be needing this once containerSize API in LocalWindowInfo is upstreamed.
+@Composable
+internal expect fun windowContainerWidthInPx(): Int
+
+@Preview
 @Composable
 fun PlainTooltipWithCaret() {
     val tooltipState = rememberTooltipState(isPersistent = true)

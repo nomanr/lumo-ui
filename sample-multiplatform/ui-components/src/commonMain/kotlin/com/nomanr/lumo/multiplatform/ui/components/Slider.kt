@@ -1,4 +1,4 @@
-package com.nomanr.lumo.ui.components.native
+package com.nomanr.lumo.multiplatform.ui.components
 
 import androidx.annotation.IntRange
 import androidx.compose.foundation.background
@@ -24,15 +24,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nomanr.composables.slider.BasicRangeSlider
 import com.nomanr.composables.slider.BasicSlider
 import com.nomanr.composables.slider.RangeSliderState
 import com.nomanr.composables.slider.SliderColors
 import com.nomanr.composables.slider.SliderState
-import com.nomanr.lumo.ui.AppTheme
-import com.nomanr.lumo.ui.components.Text
+import com.nomanr.lumo.multiplatform.ui.AppTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Slider(
@@ -170,12 +169,7 @@ object SliderDefaults {
     )
 }
 
-@Preview(
-    name = "Slider Preview",
-    showBackground = true,
-    backgroundColor = 0xFFFFFFFF,
-    showSystemUi = true,
-)
+@Preview
 @Composable
 private fun SliderPreview() {
     AppTheme {
@@ -316,12 +310,7 @@ private fun SliderPreview() {
     }
 }
 
-@Preview(
-    name = "Range Slider Preview",
-    showBackground = true,
-    backgroundColor = 0xFFFFFFFF,
-    showSystemUi = true,
-)
+@Preview
 @Composable
 private fun RangeSliderPreview() {
     AppTheme {

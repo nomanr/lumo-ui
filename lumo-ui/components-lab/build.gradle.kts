@@ -41,6 +41,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(compose.components.resources)
+            implementation(libs.androidx.annotation)
             api(compose.runtime)
             api(compose.foundation)
             // Todo - get rid of this at somepoint and use ripple from androidx
