@@ -9,6 +9,7 @@ import com.nomanr.lumo.multiplatform.sample.CatalogueAppState
 import com.nomanr.lumo.multiplatform.sample.home.HomeScreen
 import com.nomanr.lumo.multiplatform.sample.sample.ComponentId
 import com.nomanr.lumo.multiplatform.sample.sample.samples.SampleScreen
+import com.nomanr.lumo.multiplatform.sample.updatetheme.UpdateThemeScreen
 
 @Composable
 fun CatalogueAppNavHost(
@@ -45,10 +46,9 @@ fun CatalogueAppNavHost(
             SampleScreen(componentId = args.componentId, navigateUp = { navController.navigateUp() })
         }
 
-        // TODO: Add Modal Bottom Sheet first
-//        composable<NavRoute.UpdateTheme> {
-//            UpdateThemeScreen(navigateUp = { navController.navigateUp() })
-//        }
+        composable<NavRoute.UpdateTheme> {
+            UpdateThemeScreen(navigateUp = { navController.navigateUp() })
+        }
     }
 }
 

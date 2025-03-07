@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.nomanr.lumo.multiplatform.sample.home.components.ConfigModal
 import com.nomanr.lumo.multiplatform.sample.sample.Component
 import com.nomanr.lumo.multiplatform.sample.sample.Samples
 import com.nomanr.lumo.multiplatform.ui.AppTheme
@@ -75,13 +76,12 @@ fun HomeTopBar(
 
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 IconButton(variant = IconButtonVariant.Ghost, onClick = {
-                    // TODO: Add modal first
+                    navigateToUpdateTheme()
                 }) {
                     Icon(Icons.Outlined.ColorLens, contentDescription = "More Options")
                 }
                 IconButton(variant = IconButtonVariant.Ghost, onClick = {
-                    // TODO: Add modal first
-                    // isConfigModalVisible = true
+                     isConfigModalVisible = true
                 }) {
                     Icon(Icons.Outlined.MoreVert, contentDescription = "More Options")
                 }
@@ -89,10 +89,9 @@ fun HomeTopBar(
         }
     }
 
-// TODO: Add Modal Bottom Sheet first
-//    ConfigModal(isVisible = isConfigModalVisible, onDismiss = {
-//        isConfigModalVisible = false
-//    })
+    ConfigModal(isVisible = isConfigModalVisible, onDismiss = {
+        isConfigModalVisible = false
+    })
 }
 
 @Composable
