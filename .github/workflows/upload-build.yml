@@ -28,12 +28,12 @@ jobs:
 
       - name: Build Sample
         run: |
-          ./gradlew :sample-multiplatform:catalogue:web:jsBrowserProductionWebpack   
+          ./gradlew :sample-multiplatform:catalogue:web:jsBrowserDistribution
 
       - name: Move dist to root/docs
         run: |
           DOCS_DIR=docs
-          BUILD_DIR=sample-multiplatform/catalogue/web/build/dist/wasmJs/productionExecutable
+          BUILD_DIR=sample-multiplatform/catalogue/web/build/dist/js/productionExecutable
 
           rm -rf $DOCS_DIR
           mkdir -p $DOCS_DIR
