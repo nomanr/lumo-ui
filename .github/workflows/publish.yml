@@ -83,7 +83,7 @@ jobs:
       - name: Git user configs
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Push version and template updates to base branch
         run: |

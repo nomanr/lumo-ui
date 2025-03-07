@@ -30,6 +30,15 @@ kotlin {
         binaries.executable()
     }
 
+    js(IR) {
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+            }
+        }
+        binaries.executable()
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":sample-multiplatform:catalogue:common"))

@@ -15,15 +15,10 @@ jobs:
           ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
 
-      - name: Build And Verify - Multiplatform Sample
-        run: |
-          chmod +x .github/scripts/build-verify-multiplatform.sh
-          .github/scripts/build-verify-multiplatform.sh
-
       - name: Git user configs
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Switch to deploy branch and force merge main
         run: |
@@ -33,12 +28,12 @@ jobs:
 
       - name: Build Sample
         run: |
-          ./gradlew :sample-multiplatform:catalogue:web:wasmJsBrowserDistribution
+          ./gradlew :sample-multiplatform:catalogue:web:jsBrowserDistribution
 
       - name: Move dist to root/docs
         run: |
           DOCS_DIR=docs
-          BUILD_DIR=sample-multiplatform/catalogue/web/build/dist/wasmJs/productionExecutable
+          BUILD_DIR=sample-multiplatform/catalogue/web/build/dist/js/productionExecutable
 
           rm -rf $DOCS_DIR
           mkdir -p $DOCS_DIR
