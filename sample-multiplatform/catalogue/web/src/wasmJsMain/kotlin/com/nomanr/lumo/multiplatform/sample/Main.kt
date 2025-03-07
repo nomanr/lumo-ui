@@ -13,15 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.ComposeViewport
+import androidx.compose.ui.window.CanvasBasedWindow
 import com.nomanr.lumo.multiplatform.ui.AppTheme
-import kotlinx.browser.document
 import kotlinx.browser.window
 import org.w3c.dom.url.URLSearchParams
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
-    ComposeViewport(document.body!!) {
+    CanvasBasedWindow("ComposeTarget") {
         val mobileMode = mobileMode()
         if (mobileMode) {
             MobileFrame {
