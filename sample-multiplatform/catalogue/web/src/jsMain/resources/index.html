@@ -13,9 +13,11 @@
 <script>
     const canvas = document.getElementById('ComposeTarget');
 
-    canvas.addEventListener('wheel', (event) => {
+    const preventScroll = (event) => {
         event.preventDefault();
-    });
-</script>
+    };
+
+    canvas.addEventListener('wheel', preventScroll, { passive: false });
+    canvas.addEventListener('touchmove', preventScroll, { passive: false });</script>
 </body>
 </html>
