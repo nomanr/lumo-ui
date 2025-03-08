@@ -27,8 +27,10 @@ kotlin {
     wasmJs {
         browser()
     }
+    js(IR)
 
     sourceSets {
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -43,7 +45,9 @@ kotlin {
             api(libs.androidx.lifecycle.runtime.multiplatform)
             api(libs.nomanr.composables)
         }
+
     }
+
 }
 
 android {

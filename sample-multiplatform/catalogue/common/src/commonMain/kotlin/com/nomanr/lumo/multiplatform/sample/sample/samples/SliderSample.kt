@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -22,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nomanr.composables.slider.SliderColors
 import com.nomanr.lumo.multiplatform.ui.AppTheme
+import com.nomanr.lumo.multiplatform.ui.components.Checkbox
 import com.nomanr.lumo.multiplatform.ui.components.RangeSlider
 import com.nomanr.lumo.multiplatform.ui.components.Slider
 import com.nomanr.lumo.multiplatform.ui.components.SliderDefaults
