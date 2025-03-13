@@ -1,6 +1,10 @@
 name: Publish
 
 on:
+  pull_request:
+    types:
+      - closed
+
   pull_request_target:
     types:
       - closed

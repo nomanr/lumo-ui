@@ -2,6 +2,7 @@ name: Upload Build to Deploy branch
 
 on:
   pull_request_target:
+  pull_request:
     types:
       - closed
 

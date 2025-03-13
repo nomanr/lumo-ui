@@ -11,6 +11,11 @@ jobs:
       TEST_VERSION: "0.0.1-SNAPSHOT"
 
     steps:
+      - name: Checkout PR Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
