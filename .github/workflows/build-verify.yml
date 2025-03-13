@@ -2,7 +2,8 @@ name: Build and Verify
 
 on:
   workflow_dispatch:
-  pull_request:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build-verify-kmp-starter-project:
@@ -11,8 +12,11 @@ jobs:
       TEST_VERSION: "0.0.1-SNAPSHOT"
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout PR Code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Regenerate templates
         run: |
@@ -44,8 +48,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout PR Code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Regenerate templates
         run: |
@@ -61,8 +68,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout PR Code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Regenerate templates
         run: |
