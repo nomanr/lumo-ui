@@ -20,15 +20,41 @@ class ConfigurationValidator(private val project: Project, private val logger: L
                 .replace("/", ".") // Replace Unix-style forward slashes
                 .replace("//", ".") // Handle double forward slashes (if any)
 
-        if (!normalizedDirPath.endsWith(config.packageName)) {
-            logger.warn("componentsDir: $config.componentsDir")
+        val normalizedPackageName =
+            config.packageName.normalizePackageName()
+
+        if (!normalizedDirPath.endsWith(normalizedPackageName)) {
+            logger.warn("componentsDir: ${config.componentsDir}")
             logger.warn("normalisedComponentsDir: $normalizedDirPath")
             logger.warn("config.packageName: ${config.packageName}")
+            logger.warn("normalizedPackageName: $normalizedPackageName")
 
-            logger.warn("The directory ($normalizedDirPath) and the package name (${config.packageName}) do not match.")
+            logger.warn("The directory ($normalizedDirPath) and the package name ($normalizedPackageName) do not match.")
             return false
         }
 
         return true
     }
+}
+
+private fun String.normalizePackageName(): String = let { packageName ->
+    val splitIndices = buildList {
+        var opened = false
+        packageName.forEachIndexed { i, c ->
+            when (c) {
+                '.' -> if (!opened) add(i)
+                '`' -> opened = !opened
+            }
+        }
+    }
+    buildList {
+        var from = 0
+        for (splitAt in splitIndices) {
+            add(packageName.substring(from, splitAt).removeSurrounding("`"))
+            from = splitAt + 1
+        }
+        if (from <= packageName.length) {
+            add(packageName.substring(from, packageName.length).removeSurrounding("`"))
+        }
+    }.joinToString(".")
 }
