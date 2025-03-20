@@ -314,7 +314,7 @@ internal object ButtonDefaults {
             colors =
                 ButtonColors(
                     containerColor = AppTheme.colors.transparent,
-                    contentColor = AppTheme.colors.primary,
+                    contentColor = AppTheme.colors.secondary,
                     borderColor = AppTheme.colors.secondary,
                     disabledContainerColor = AppTheme.colors.transparent,
                     disabledContentColor = AppTheme.colors.onDisabled,
@@ -331,7 +331,7 @@ internal object ButtonDefaults {
             colors =
                 ButtonColors(
                     containerColor = AppTheme.colors.transparent,
-                    contentColor = AppTheme.colors.primary,
+                    contentColor = AppTheme.colors.secondary,
                     borderColor = AppTheme.colors.transparent,
                     disabledContainerColor = AppTheme.colors.transparent,
                     disabledContentColor = AppTheme.colors.onDisabled,
