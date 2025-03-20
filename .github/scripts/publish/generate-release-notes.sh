@@ -12,6 +12,5 @@ else
     START_COMMIT=$LATEST_RELEASE_TAG
 fi
 
-RELEASE_NOTES=$(git log --pretty=format:"- %s" "$START_COMMIT"..HEAD)
-
+RELEASE_NOTES=$(git log --pretty=format:"- %s" "$START_COMMIT"..HEAD | grep -vE "^-\s*CI\s")
 echo "$RELEASE_NOTES"
