@@ -55,6 +55,8 @@ git checkout -b feature/your-feature-name
 
 Make the necessary changes to the codebase. Ensure that your code follows the project's coding standards and guidelines.
 
+**_Note:_** You don't need to generate templates for your changes, they are re-generated when a PR is merged.
+
 #### Create a pull request:
 
 Create a pull request, ensure checks pass, and allow owner edits.
@@ -64,4 +66,3 @@ Create a pull request, ensure checks pass, and allow owner edits.
 Create an issue for new components request, and we'd be happy to help
 
 **Happy coding!** 🚀
-
