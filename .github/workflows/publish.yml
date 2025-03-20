@@ -64,7 +64,7 @@ jobs:
           .github/scripts/build-verify-android.sh
 
       - name: Publish to Maven Central
-        run: ./gradlew plugin:publishToMavenCentral
+        run: ./gradlew plugin:publishAndReleaseToMavenCentral
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USER_NAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
@@ -88,7 +88,7 @@ jobs:
       - name: Commit new version and changes
         run: |
           git add lumo-ui
-          git commit -m "[CI] Release $NEW_VERSION"
+          git commit -m "ci: release $NEW_VERSION"
           git push origin ${{ github.event.pull_request.base.ref }}
 
       - name: Tag the last commit (PR merge commit)
