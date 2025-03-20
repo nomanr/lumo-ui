@@ -314,7 +314,7 @@ internal object ButtonDefaults {
             colors =
                 ButtonColors(
                     containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.primary,
+                    contentColor = {{themeName}}.colors.secondary,
                     borderColor = {{themeName}}.colors.secondary,
                     disabledContainerColor = {{themeName}}.colors.transparent,
                     disabledContentColor = {{themeName}}.colors.onDisabled,
@@ -331,7 +331,7 @@ internal object ButtonDefaults {
             colors =
                 ButtonColors(
                     containerColor = {{themeName}}.colors.transparent,
-                    contentColor = {{themeName}}.colors.primary,
+                    contentColor = {{themeName}}.colors.secondary,
                     borderColor = {{themeName}}.colors.transparent,
                     disabledContainerColor = {{themeName}}.colors.transparent,
                     disabledContentColor = {{themeName}}.colors.onDisabled,
