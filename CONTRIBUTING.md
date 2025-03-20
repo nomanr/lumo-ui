@@ -62,3 +62,6 @@ Create a pull request, ensure checks pass, and allow owner edits.
 ## Request for new components
 
 Create an issue for new components request, and we'd be happy to help
+
+**Happy coding!** 🚀
+
