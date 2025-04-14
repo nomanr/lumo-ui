@@ -79,11 +79,11 @@ fun TextField(
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
         BasicTextField(
             modifier =
-                modifier
-                    .defaultMinSize(
-                        minHeight = TextFieldDefaults.MinHeight,
-                    )
-                    .fillMaxWidth(),
+            modifier
+                .defaultMinSize(
+                    minHeight = TextFieldDefaults.MinHeight,
+                )
+                .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -113,7 +113,7 @@ fun TextField(
                     enabled = enabled,
                     isError = isError,
                     interactionSource = interactionSource,
-                    colors = TextFieldDefaults.colors(),
+                    colors = colors,
                     shape = shape,
                 )
             },
@@ -158,11 +158,11 @@ fun TextField(
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
         BasicTextField(
             modifier =
-                modifier
-                    .defaultMinSize(
-                        minHeight = TextFieldDefaults.MinHeight,
-                    )
-                    .fillMaxWidth(),
+            modifier
+                .defaultMinSize(
+                    minHeight = TextFieldDefaults.MinHeight,
+                )
+                .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -201,7 +201,7 @@ fun TextField(
 }
 
 @Immutable
-internal object TextFieldDefaults {
+object TextFieldDefaults {
     val MinHeight = TextFieldMinHeight
     val Shape: Shape = RoundedCornerShape(8.dp)
 
