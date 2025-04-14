@@ -2,14 +2,12 @@ package com.nomanr.lumo.plugin.actions
 
 import com.nomanr.lumo.plugin.configs.ConfigurationValidator
 import com.nomanr.lumo.plugin.configs.PropertyLoader
-import com.nomanr.lumo.provider.PluginDependencyProvider
 import com.nomanr.lumo.utils.Logger
 import org.gradle.api.Project
 
 class Initialiser(project: Project, private val propertyLoader: PropertyLoader) {
     private val logger = Logger.getInstance()
     private val validator = ConfigurationValidator(project, logger)
-    private val pluginDependencyProvider = PluginDependencyProvider()
 
     fun init() {
         try {
@@ -17,7 +15,6 @@ class Initialiser(project: Project, private val propertyLoader: PropertyLoader) 
                 logger.error("Lumo UI plugin is already initialised. The config file can be found here: ${propertyLoader.configFilePath()}")
                 return
             }
-            pluginDependencyProvider.printFormattedComposeDependencies()
             propertyLoader.createDefaultPropertiesFile()
             logger.success("Initialised successfully. List of required dependencies printed above.")
         } catch (e: IllegalStateException) {

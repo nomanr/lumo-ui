@@ -62,11 +62,6 @@ abstract class LumoTask : DefaultTask() {
             throw LumoException("No input provided, run with --plugin-help for more information")
         }
 
-        if (requiredDeps) {
-            dependencyProvider.printFormattedComposeDependencies()
-            return
-        }
-
         if (availableComponents) {
             generateComponent.printAllAvailableComponents()
             return
@@ -78,6 +73,11 @@ abstract class LumoTask : DefaultTask() {
         }
 
         if (!initialiser.validateConfigs()) {
+            return
+        }
+
+        if (requiredDeps) {
+            dependencyProvider.printFormattedDependencies(propertyLoader.loadProperties().kotlinMultiplatform)
             return
         }
 
