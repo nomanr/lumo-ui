@@ -111,7 +111,7 @@ fun OutlinedTextField(
                     enabled = enabled,
                     isError = isError,
                     interactionSource = interactionSource,
-                    colors = OutlinedTextFieldDefaults.colors(),
+                    colors = colors,
                     shape = shape,
                 )
             },
@@ -199,7 +199,7 @@ fun OutlinedTextField(
 }
 
 @Immutable
-internal object OutlinedTextFieldDefaults {
+object OutlinedTextFieldDefaults {
     val MinHeight = TextFieldMinHeight
     val Shape: Shape = RoundedCornerShape(8.dp)
 
