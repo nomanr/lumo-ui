@@ -194,7 +194,7 @@ fun UnderlinedTextField(
 }
 
 @Immutable
-internal object UnderlinedTextFieldDefaults {
+object UnderlinedTextFieldDefaults {
     val MinHeight = TextFieldMinHeight
 
     private fun contentPadding(
