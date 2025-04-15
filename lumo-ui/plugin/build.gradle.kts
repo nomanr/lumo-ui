@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.nomanr"
-version = "1.2.4"
+version = "1.2.5"
 
 gradlePlugin {
     plugins {
