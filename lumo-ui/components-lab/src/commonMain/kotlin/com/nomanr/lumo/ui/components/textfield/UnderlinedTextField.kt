@@ -109,7 +109,7 @@ fun UnderlinedTextField(
                     enabled = enabled,
                     isError = isError,
                     interactionSource = interactionSource,
-                    colors = UnderlinedTextFieldDefaults.colors(),
+                    colors = colors,
                 )
             },
         )
@@ -194,7 +194,7 @@ fun UnderlinedTextField(
 }
 
 @Immutable
-internal object UnderlinedTextFieldDefaults {
+object UnderlinedTextFieldDefaults {
     val MinHeight = TextFieldMinHeight
 
     private fun contentPadding(

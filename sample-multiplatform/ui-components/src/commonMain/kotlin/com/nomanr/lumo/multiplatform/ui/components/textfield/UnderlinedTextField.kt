@@ -109,7 +109,7 @@ fun UnderlinedTextField(
                     enabled = enabled,
                     isError = isError,
                     interactionSource = interactionSource,
-                    colors = UnderlinedTextFieldDefaults.colors(),
+                    colors = colors,
                 )
             },
         )
