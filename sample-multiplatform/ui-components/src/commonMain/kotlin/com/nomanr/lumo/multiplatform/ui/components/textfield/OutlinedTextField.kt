@@ -199,7 +199,7 @@ fun OutlinedTextField(
 }
 
 @Immutable
-internal object OutlinedTextFieldDefaults {
+object OutlinedTextFieldDefaults {
     val MinHeight = TextFieldMinHeight
     val Shape: Shape = RoundedCornerShape(8.dp)
 

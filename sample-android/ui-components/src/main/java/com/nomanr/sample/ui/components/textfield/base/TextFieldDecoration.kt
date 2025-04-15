@@ -217,24 +217,27 @@ private object TextFieldTransitionScope {
     ) {
         val transition = updateTransition(inputState, label = "TextFieldInputState")
 
-        val placeholderOpacity by transition.animateFloat(label = "PlaceholderOpacity", transitionSpec = {
-            if (InputPhase.Focused isTransitioningTo InputPhase.UnfocusedEmpty) {
-                tween(
-                    durationMillis = PlaceholderAnimationDelayOrDuration,
-                    easing = LinearEasing,
-                )
-            } else if (InputPhase.UnfocusedEmpty isTransitioningTo InputPhase.Focused ||
-                InputPhase.UnfocusedNotEmpty isTransitioningTo InputPhase.UnfocusedEmpty
-            ) {
-                tween(
-                    durationMillis = PlaceholderAnimationDuration,
-                    delayMillis = PlaceholderAnimationDelayOrDuration,
-                    easing = LinearEasing,
-                )
-            } else {
-                spring()
-            }
-        }) {
+        val placeholderOpacity by transition.animateFloat(
+            label = "PlaceholderOpacity",
+            transitionSpec = {
+                if (InputPhase.Focused isTransitioningTo InputPhase.UnfocusedEmpty) {
+                    tween(
+                        durationMillis = PlaceholderAnimationDelayOrDuration,
+                        easing = LinearEasing,
+                    )
+                } else if (InputPhase.UnfocusedEmpty isTransitioningTo InputPhase.Focused ||
+                    InputPhase.UnfocusedNotEmpty isTransitioningTo InputPhase.UnfocusedEmpty
+                ) {
+                    tween(
+                        durationMillis = PlaceholderAnimationDuration,
+                        delayMillis = PlaceholderAnimationDelayOrDuration,
+                        easing = LinearEasing,
+                    )
+                } else {
+                    spring()
+                }
+            },
+        ) {
             when (it) {
                 InputPhase.Focused -> 1f
                 InputPhase.UnfocusedEmpty -> if (showLabel) 0f else 1f

@@ -113,7 +113,7 @@ fun TextField(
                     enabled = enabled,
                     isError = isError,
                     interactionSource = interactionSource,
-                    colors = TextFieldDefaults.colors(),
+                    colors = colors,
                     shape = shape,
                 )
             },
@@ -201,7 +201,7 @@ fun TextField(
 }
 
 @Immutable
-internal object TextFieldDefaults {
+object TextFieldDefaults {
     val MinHeight = TextFieldMinHeight
     val Shape: Shape = RoundedCornerShape(8.dp)
 

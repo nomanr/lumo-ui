@@ -79,11 +79,11 @@ fun TextField(
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
         BasicTextField(
             modifier =
-            modifier
-                .defaultMinSize(
-                    minHeight = TextFieldDefaults.MinHeight,
-                )
-                .fillMaxWidth(),
+                modifier
+                    .defaultMinSize(
+                        minHeight = TextFieldDefaults.MinHeight,
+                    )
+                    .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
@@ -158,11 +158,11 @@ fun TextField(
     CompositionLocalProvider(LocalTextSelectionColors provides colors.selectionColors) {
         BasicTextField(
             modifier =
-            modifier
-                .defaultMinSize(
-                    minHeight = TextFieldDefaults.MinHeight,
-                )
-                .fillMaxWidth(),
+                modifier
+                    .defaultMinSize(
+                        minHeight = TextFieldDefaults.MinHeight,
+                    )
+                    .fillMaxWidth(),
             value = value,
             onValueChange = onValueChange,
             enabled = enabled,
