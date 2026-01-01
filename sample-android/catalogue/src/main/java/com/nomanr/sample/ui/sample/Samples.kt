@@ -49,6 +49,7 @@ import com.nomanr.sample.ui.sample.samples.TextFieldSample
 import com.nomanr.sample.ui.sample.samples.TextSample
 import com.nomanr.sample.ui.sample.samples.TooltipSample
 import com.nomanr.sample.ui.sample.samples.TopBarSample
+import com.nomanr.sample.ui.sample.samples.CandlestickChartSample
 import kotlinx.serialization.Serializable
 
 enum class ComponentId(val label: String) {
@@ -76,6 +77,7 @@ enum class ComponentId(val label: String) {
     TEXT_FIELD("TextField"),
     TOOLTIP("Tooltip"),
     TOP_BAR("Top App Bar"),
+    CANDLESTICK_CHART("Candlestick Chart"),
 }
 
 @Serializable
@@ -113,6 +115,7 @@ data class Component internal constructor(
                 Component(id = TEXT_FIELD),
                 Component(id = TOOLTIP),
                 Component(id = TOP_BAR, showTopBar = false),
+                Component(id = CANDLESTICK_CHART),
             )
 
         fun getAll(): List<Component> = components
@@ -149,6 +152,7 @@ object Samples {
                 SURFACE to { SurfaceSample() },
                 SWITCH to { SwitchSample() },
                 TOOLTIP to { TooltipSample() },
+                CANDLESTICK_CHART to { CandlestickChartSample() },
             )
 
     fun hasComponent(componentName: String): Boolean {

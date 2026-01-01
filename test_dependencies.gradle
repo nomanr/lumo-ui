@@ -1,0 +1,8 @@
+// 测试依赖配置
+task testDependencies {
+    doLast {
+        configurations.implementation.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+            println "Resolved: ${artifact.name} - ${artifact.moduleVersion.id}"
+        }
+    }
+}

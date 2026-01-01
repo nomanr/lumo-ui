@@ -2,6 +2,16 @@ pluginManagement {
     includeBuild("lumo-ui/plugin")
 
     repositories {
+        maven(url = "https://maven.aliyun.com/repository/gradle-plugin")
+        maven(url = "https://maven.aliyun.com/repository/google")
+        maven(url = "https://maven.aliyun.com/repository/public")
+        maven(url = "https://maven.aliyun.com/repository/jcenter")
+
+        // ★ 腾讯云镜像（大厂兜底，速度媲美阿里云）
+        maven(url = "https://mirrors.cloud.tencent.com/nexus/repository/maven-public/")
+
+        // ★ 华为云镜像（稳定无劫持，备用首选）
+        maven(url = "https://repo.huaweicloud.com/repository/maven/")
         google {
             mavenContent {
                 includeGroupAndSubgroups("androidx")

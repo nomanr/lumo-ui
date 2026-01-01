@@ -56,4 +56,5 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.compose.navigation)
     implementation(libs.kotlin.serialization.json)
+    implementation(libs.kotlinx.collections.immutable)
 }
